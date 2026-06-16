@@ -1,0 +1,7 @@
+# Jekyll config for GitHub Pages.
+# Source folder is /docs, set in Settings > Pages once published.
+# TWEAK: swap theme to minima or jekyll-theme-minimal if cayman feels too marketing-y.
+
+theme: jekyll-theme-cayman
+title: Stroke Burden Index
+description: Identifying high-priority stroke intervention areas in the US.
