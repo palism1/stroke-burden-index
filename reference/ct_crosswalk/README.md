@@ -25,7 +25,7 @@ towns: aggregate town-level data up to whichever system you need.
 ## FIPS Structure
 | Geo level               | Number of digits | Structure                                                  |
 |-------------------------|------------------|------------------------------------------------------------|
-| State                   | 2 digits         | 09 for CT, 34 for NY, 36 for NJ                            |
+| State                   | 2 digits         | 09 for CT, 36 for NY, 34 for NJ                            |
 | County/Planning Regions | 5 digits         | XX (State) + YYY (County/Planning Region)                  |
 | Town                    | 10 digits        | XX (State) + YYY (County/Planning Region) + ZZZZZ (Town)   |
 | Census Tract            | 11 digits        | XX (State) + YYY (County/Planning Region) + ZZZZZZ (Tract) |
@@ -42,7 +42,7 @@ restores it. Never read or store a FIPS as an int anywhere downstream.
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ct_town_crosswalk.csv`              | **The artifact. Join against this.** 169 towns, each with its old county (code + name) and its planning region (code + name). Every FIPS is a zero-padded string. |
 | `ct-town-to-planning-region.raw.csv` | The untouched source pull, kept for provenance only.                                                                                                              |
-| `2022tractcrosswalk.csv`             | The crosswalk file for mapping cenus tracts with counties                                                                                                         |                                                                                                       |
+| `2022tractcrosswalk.csv`             | The crosswalk file for mapping census tracts with counties                                                                                                         |                                                                                                       |
 | `build_ct_crosswalk.py`              | Regenerates the clean CSV from the raw pull. Provenance, not runtime. Prints `169 towns, 8 counties, 9 regions`.                                                  |
 | `validate_ct_codes.py`               | The runtime gate. See below.                                                                                                                                      |
 
