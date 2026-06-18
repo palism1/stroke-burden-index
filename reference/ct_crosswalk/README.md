@@ -22,14 +22,29 @@ region pulls towns from more than one old county, and vice versa. So you
 denominator is the **town** (Connecticut has 169). All conversion goes through
 towns: aggregate town-level data up to whichever system you need.
 
+## FIPS Structure
+| Geo level               | Number of digits | Structure                                                  |
+|-------------------------|------------------|------------------------------------------------------------|
+| State                   | 2 digits         | 09 for CT, 34 for NY, 36 for NJ                            |
+| County/Planning Regions | 5 digits         | XX (State) + YYY (County/Planning Region)                  |
+| Town                    | 10 digits        | XX (State) + YYY (County/Planning Region) + ZZZZZ (Town)   |
+| Census Tract            | 11 digits        | XX (State) + YYY (County/Planning Region) + ZZZZZZ (Tract) |
+
+### FIPS are strings, always
+
+Every FIPS in here is a zero-padded string. The raw source had the leading zero
+stripped off CT's `09` codes (they looked like 9-digit numbers); the build step
+restores it. Never read or store a FIPS as an int anywhere downstream.
+
 ## Files
 
-| File | What it is |
-|---|---|
-| `ct_town_crosswalk.csv` | **The artifact. Join against this.** 169 towns, each with its old county (code + name) and its planning region (code + name). Every FIPS is a zero-padded string. |
-| `ct-town-to-planning-region.raw.csv` | The untouched source pull, kept for provenance only. |
-| `build_ct_crosswalk.py` | Regenerates the clean CSV from the raw pull. Provenance, not runtime. Prints `169 towns, 8 counties, 9 regions`. |
-| `validate_ct_codes.py` | The runtime gate. See below. |
+| File                                 | What it is                                                                                                                                                        |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ct_town_crosswalk.csv`              | **The artifact. Join against this.** 169 towns, each with its old county (code + name) and its planning region (code + name). Every FIPS is a zero-padded string. |
+| `ct-town-to-planning-region.raw.csv` | The untouched source pull, kept for provenance only.                                                                                                              |
+| `2022tractcrosswalk.csv`             | The crosswalk file for mapping cenus tracts with counties                                                                                                         |                                                                                                       |
+| `build_ct_crosswalk.py`              | Regenerates the clean CSV from the raw pull. Provenance, not runtime. Prints `169 towns, 8 counties, 9 regions`.                                                  |
+| `validate_ct_codes.py`               | The runtime gate. See below.                                                                                                                                      |
 
 ### `ct_town_crosswalk.csv` columns
 
@@ -55,12 +70,6 @@ mismatched code system makes the pipeline **stop loudly** instead of dropping CT
 `system` is one of `"county_2020"` (8 counties) or `"region_2022"` (9 regions).
 The default is `"county_2020"`. **Which system is canonical is still on hold
 pending Ngan**, so leave the default alone for now.
-
-## FIPS are strings, always
-
-Every FIPS in here is a zero-padded string. The raw source had the leading zero
-stripped off CT's `09` codes (they looked like 9-digit numbers); the build step
-restores it. Never read or store a FIPS as an int anywhere downstream.
 
 ## Source
 
