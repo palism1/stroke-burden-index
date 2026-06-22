@@ -1,0 +1,160 @@
+"Notes","State","State Code","County","County Code",Deaths,Population,Crude Rate,Crude Rate Lower 95% Confidence Interval,Crude Rate Upper 95% Confidence Interval
+,"Connecticut","09","Fairfield County, CT","09001",803,Not Available,Not Available,Not Available,Not Available
+,"Connecticut","09","Hartford County, CT","09003",853,Not Available,Not Available,Not Available,Not Available
+,"Connecticut","09","Litchfield County, CT","09005",246,Not Available,Not Available,Not Available,Not Available
+,"Connecticut","09","Middlesex County, CT","09007",163,Not Available,Not Available,Not Available,Not Available
+,"Connecticut","09","New Haven County, CT","09009",822,Not Available,Not Available,Not Available,Not Available
+,"Connecticut","09","New London County, CT","09011",318,Not Available,Not Available,Not Available,Not Available
+,"Connecticut","09","Tolland County, CT","09013",95,Not Available,Not Available,Not Available,Not Available
+,"Connecticut","09","Windham County, CT","09015",118,Not Available,Not Available,Not Available,Not Available
+,"New Jersey","34","Atlantic County, NJ","34001",307,1896975,16.2,14.4,18.0
+,"New Jersey","34","Bergen County, NJ","34003",983,6642481,14.8,13.9,15.7
+,"New Jersey","34","Burlington County, NJ","34005",615,3212383,19.1,17.6,20.7
+,"New Jersey","34","Camden County, NJ","34007",665,3630220,18.3,16.9,19.7
+,"New Jersey","34","Cape May County, NJ","34009",190,655925,29.0,24.8,33.1
+,"New Jersey","34","Cumberland County, NJ","34011",215,1060494,20.3,17.6,23.0
+,"New Jersey","34","Essex County, NJ","34013",756,5836281,13.0,12.0,13.9
+,"New Jersey","34","Gloucester County, NJ","34015",404,2107573,19.2,17.3,21.0
+,"New Jersey","34","Hudson County, NJ","34017",403,4867604,8.3,7.5,9.1
+,"New Jersey","34","Hunterdon County, NJ","34019",132,895474,14.7,12.2,17.3
+,"New Jersey","34","Mercer County, NJ","34021",340,2644875,12.9,11.5,14.2
+,"New Jersey","34","Middlesex County, NJ","34023",649,5953450,10.9,10.1,11.7
+,"New Jersey","34","Monmouth County, NJ","34025",751,4438301,16.9,15.7,18.1
+,"New Jersey","34","Morris County, NJ","34027",526,3536768,14.9,13.6,16.1
+,"New Jersey","34","Ocean County, NJ","34029",882,4453438,19.8,18.5,21.1
+,"New Jersey","34","Passaic County, NJ","34031",443,3577563,12.4,11.2,13.5
+,"New Jersey","34","Salem County, NJ","34033",107,448818,23.8,19.3,28.4
+,"New Jersey","34","Somerset County, NJ","34035",351,2388260,14.7,13.2,16.2
+,"New Jersey","34","Sussex County, NJ","34037",147,1006492,14.6,12.2,17.0
+,"New Jersey","34","Union County, NJ","34039",456,3978617,11.5,10.4,12.5
+,"New Jersey","34","Warren County, NJ","34041",134,761610,17.6,14.6,20.6
+,"New York","36","Albany County, NY","36001",256,2182454,11.7,10.3,13.2
+,"New York","36","Allegany County, NY","36003",51,324858,15.7,11.7,20.6
+,"New York","36","Bronx County, NY","36005",913,9797575,9.3,8.7,9.9
+,"New York","36","Broome County, NY","36007",225,1358398,16.6,14.4,18.7
+,"New York","36","Cattaraugus County, NY","36009",94,532760,17.6,14.3,21.6
+,"New York","36","Cayuga County, NY","36011",100,529680,18.9,15.2,22.6
+,"New York","36","Chautauqua County, NY","36013",187,882704,21.2,18.1,24.2
+,"New York","36","Chemung County, NY","36015",109,577243,18.9,15.3,22.4
+,"New York","36","Chenango County, NY","36017",50,326164,15.3,11.4,20.2
+,"New York","36","Clinton County, NY","36019",80,555293,14.4,11.4,17.9
+,"New York","36","Columbia County, NY","36021",50,422744,11.8,8.8,15.6
+,"New York","36","Cortland County, NY","36023",45,326711,13.8,10.0,18.4
+,"New York","36","Delaware County, NY","36025",57,310319,18.4,13.9,23.8
+,"New York","36","Dutchess County, NY","36027",248,2072999,12.0,10.5,13.5
+,"New York","36","Erie County, NY","36029",1085,6553406,16.6,15.6,17.5
+,"New York","36","Essex County, NY","36031",53,258773,20.5,15.3,26.8
+,"New York","36","Franklin County, NY","36033",42,337697,12.4,9.0,16.8
+,"New York","36","Fulton County, NY","36035",64,369878,17.3,13.3,22.1
+,"New York","36","Genesee County, NY","36037",75,402306,18.6,14.7,23.4
+,"New York","36","Greene County, NY","36039",42,332381,12.6,9.1,17.1
+,"New York","36","Hamilton County, NY","36041",Suppressed,33596,Suppressed,Suppressed,Suppressed
+,"New York","36","Herkimer County, NY","36043",58,422925,13.7,10.4,17.7
+,"New York","36","Jefferson County, NY","36045",108,790543,13.7,11.1,16.2
+,"New York","36","Kings County, NY","36047",1369,18092091,7.6,7.2,8.0
+,"New York","36","Lewis County, NY","36049",44,185320,23.7,17.3,31.9
+,"New York","36","Livingston County, NY","36051",75,434352,17.3,13.6,21.6
+,"New York","36","Madison County, NY","36053",79,480962,16.4,13.0,20.5
+,"New York","36","Monroe County, NY","36055",940,5233023,18.0,16.8,19.1
+,"New York","36","Montgomery County, NY","36057",68,346043,19.7,15.3,24.9
+,"New York","36","Nassau County, NY","36059",856,9615387,8.9,8.3,9.5
+,"New York","36","New York County, NY","36061",791,11300660,7.0,6.5,7.5
+,"New York","36","Niagara County, NY","36063",283,1469670,19.3,17.0,21.5
+,"New York","36","Oneida County, NY","36065",303,1600616,18.9,16.8,21.1
+,"New York","36","Onondaga County, NY","36067",522,3260721,16.0,14.6,17.4
+,"New York","36","Ontario County, NY","36069",140,780453,17.9,15.0,20.9
+,"New York","36","Orange County, NY","36071",259,2781828,9.3,8.2,10.4
+,"New York","36","Orleans County, NY","36073",46,279261,16.5,12.1,22.0
+,"New York","36","Oswego County, NY","36075",145,823509,17.6,14.7,20.5
+,"New York","36","Otsego County, NY","36077",52,417352,12.5,9.3,16.3
+,"New York","36","Putnam County, NY","36079",75,688194,10.9,8.6,13.7
+,"New York","36","Queens County, NY","36081",1224,15936794,7.7,7.3,8.1
+,"New York","36","Rensselaer County, NY","36083",135,1116403,12.1,10.1,14.1
+,"New York","36","Richmond County, NY","36085",256,3401175,7.5,6.6,8.4
+,"New York","36","Rockland County, NY","36087",223,2344909,9.5,8.3,10.8
+,"New York","36","St. Lawrence County, NY","36089",91,751894,12.1,9.7,14.9
+,"New York","36","Saratoga County, NY","36091",196,1645551,11.9,10.2,13.6
+,"New York","36","Schenectady County, NY","36093",166,1106352,15.0,12.7,17.3
+,"New York","36","Schoharie County, NY","36095",33,213410,15.5,10.6,21.7
+,"New York","36","Schuyler County, NY","36097",22,123434,17.8,11.2,27.0
+,"New York","36","Seneca County, NY","36099",31,233876,13.3,9.0,18.8
+,"New York","36","Steuben County, NY","36101",117,655556,17.8,14.6,21.1
+,"New York","36","Suffolk County, NY","36103",1004,10542855,9.5,8.9,10.1
+,"New York","36","Sullivan County, NY","36105",56,546566,10.2,7.7,13.3
+,"New York","36","Tioga County, NY","36107",54,335708,16.1,12.1,21.0
+,"New York","36","Tompkins County, NY","36109",78,725130,10.8,8.5,13.4
+,"New York","36","Ulster County, NY","36111",167,1264468,13.2,11.2,15.2
+,"New York","36","Warren County, NY","36113",96,453850,21.2,17.1,25.8
+,"New York","36","Washington County, NY","36115",77,424690,18.1,14.3,22.7
+,"New York","36","Wayne County, NY","36117",101,632955,16.0,12.8,19.1
+,"New York","36","Westchester County, NY","36119",757,6886506,11.0,10.2,11.8
+,"New York","36","Wyoming County, NY","36121",33,278686,11.8,8.2,16.6
+,"New York","36","Yates County, NY","36123",39,172457,22.6,16.1,30.9
+"---"
+"Dataset: Underlying Cause of Death, 2018-2024, Single Race"
+"Query Parameters:"
+"ICD-10 Codes: I64 (Stroke, not specified as haemorrhage or infarction)"
+"States: Connecticut (09); New Jersey (34); New York (36)"
+"Group By: State; County"
+"Show Totals: Disabled"
+"Show Zero Values: True"
+"Show Suppressed: True"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/ucd-expanded.html for more information."
+"---"
+"Query Date: Jun 22, 2026 2:00:39 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 2018-2024 on CDC WONDER Online Database, released in 2026. Data are from the Multiple Cause of Death Files,"
+"2018-2024, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/ucd-icd10-expanded.html on Jun 22, 2026 2:00:39 PM"
+"---"
+Messages:
+"1. Totals are not available for these results due to suppression constraints. More Information:"
+"http://wonder.cdc.gov/wonder/help/faq.html#Privacy."
+"---"
+Caveats:
+"1. Data are Suppressed when the data meet the criteria for confidentiality constraints. More information:"
+"http://wonder.cdc.gov/wonder/help/ucd-expanded.html#Assurance of Confidentiality."
+"2. The method used to calculate 95% confidence intervals is documented here: More information:"
+"http://wonder.cdc.gov/wonder/help/ucd-expanded.html#Confidence-Intervals."
+"3. The population figures for year 2024 are single-race estimates of the July 1 resident population, from the Vintage 2024"
+"postcensal series released by the Census Bureau on June 27, 2024. The 2024 series is based on the Modified Blended Base produced"
+"by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The Modified Blended Base consists of the blend"
+"of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic Analysis Estimates, and 2020 Census data"
+"from the internal Census Edited File (CEF). The population figures for year 2023 are single-race estimates of the July 1"
+"resident population, from the Vintage 2023 postcensal series released by the Census Bureau on June 27, 2024. The 2023 series is"
+"based on the Modified Blended Base produced by the US Census Bureau in lieu of the April 1, 2020 decennial population count. The"
+"Modified Blended Base consists of the blend of Vintage 2020 postcensal population estimates for April 1, 2020, 2020 Demographic"
+"Analysis Estimates, and 2020 Census data from the internal Census Edited File (CEF). The population figures for years 2022 are"
+"single-race estimates of the July 1 resident population, from the Vintage 2022 postcensal series released by the Census Bureau"
+"on June 22, 2023. The 2022 series is based on the Modified Blended Base produced by the US Census Bureau in lieu of the April 1,"
+"2020 decennial population count. The Modified Blended Base consists of the blend of Vintage 2020 postcensal population estimates"
+"for April 1, 2020, 2020 Demographic Analysis Estimates, and 2020 Census data from the internal Census Edited File (CEF). The"
+"population figures for years 2021 are single-race estimates of the July 1 resident population, based on the Blended Base"
+"produced by the US Census Bureau in lieu of the April 1, 2020 decennial population count, from the Vintage 2021 postcensal"
+"series released by the Census Bureau on June 30, 2022. The population figures for year 2020 are single-race estimates of the"
+"July 1 resident population, from the Vintage 2020 postcensal series based on April 2010 Census, released by the Census Bureau on"
+"July 27, 2021. The population figures for year 2019 are single-race estimates of the July 1 resident population, from the"
+"Vintage 2019 postcensal series based on April 2010 Census, released by the Census Bureau on June 25, 2020. The population"
+"figures for year 2018 are single-race estimates of the July 1 resident population, from the Vintage 2018 postcensal series based"
+"on April 2010 Census, released by the Census Bureau on June 20, 2019. More information:"
+"http://wonder.cdc.gov/wonder/help/ucd-expanded.html#Population Data."
+"4. The population figures used in the calculation of death rates for the age group 'under 1 year' are the estimates of the"
+"resident population that is under one year of age. More information: http://wonder.cdc.gov/wonder/help/ucd-expanded.html#Age"
+"Group."
+"5. Connecticut population estimates for 2022 and later years are reported for 9 planning regions as county equivalent areas,"
+"instead of the former 8 legacy counties in the Vintage 2022 postcensal series released by the Census Bureau on June 22, 2023,"
+"and in the Vintage 2023 postcensal series released by the Census Bureau on June 27, 2024. Populations estimates for the former"
+"counties are not available for 2022 and later years. More information:"
+"http://wonder.cdc.gov/wonder/help/ucd-expanded.html#Connecticut-2022."
+"6. After the creation of the final 2023 dataset, North Carolina updated the cause of death information for over 900 death"
+"certificates to include a cause of death code indicating drug overdose (ICD-10 underlying cause-of-death codes: X40-X44,"
+"X60-X64, X85, and Y10-Y14). Jurisdictions can continue to update death certificates after the closing of the mortality file. As"
+"a result, users should consider that the actual death count for drug overdose deaths for North Carolina in 2023 is over 4,400"
+"deaths, with a crude rate of approximately 41.0 per 100,000 population, and an age-adjusted rate of approximately 42.1 per"
+"100,000 population. These deaths will not be updated on the final mortality datasets."
+"7. Changes to cause of death classification affect reporting trends. More information:"
+"http://wonder.cdc.gov/wonder/help/ucd-expanded.html#ICD-10 Changes."
