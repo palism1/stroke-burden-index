@@ -42,17 +42,25 @@ restores it. Never read or store a FIPS as an int anywhere downstream.
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ct_town_crosswalk.csv`              | **The artifact. Join against this.** 169 towns, each with its old county (code + name) and its planning region (code + name). Every FIPS is a zero-padded string. |
 | `ct-town-to-planning-region.raw.csv` | The untouched source pull, kept for provenance only.                                                                                                              |
-| `2022tractcrosswalk.csv`             | The crosswalk file for mapping census tracts with counties                                                                                                         |                                                                                                       |
+| `2022tractcrosswalk.csv`             | The crosswalk file for mapping census tracts/towns onto counties                                                                                                         |                                                                                                       |
 | `build_ct_crosswalk.py`              | Regenerates the clean CSV from the raw pull. Provenance, not runtime. Prints `169 towns, 8 counties, 9 regions`.                                                  |
 | `validate_ct_codes.py`               | The runtime gate. See below.                                                                                                                                      |
 
 ### `ct_town_crosswalk.csv` columns
 
-`town_name, town_fips_2020, county_fips, county_name, town_fips_2022, region_fips, region_name`
+`town_name`, `town_fips_2020`, `county_fips`, `county_name`, `town_fips_2022`, `region_fips`, `region_name`
 
-- `town_fips_2020` / `town_fips_2022` — 10-char town GEOIDs in the old / new systems.
-- `county_fips` (5 char, e.g. `09013`) + `county_name` — the 8 legacy counties.
-- `region_fips` (5 char, e.g. `09110`) + `region_name` — the 9 planning regions.
+- `town_fips_2020` or `town_fips_2022`: 10-char town FIPS codes in the old or new systems.
+- `county_fips` (5 char, e.g. `09013`) and `county_name`: the 8 legacy counties.
+- `region_fips` (5 char, e.g. `09110`) and `region_name`: the 9 planning regions.
+
+### `2022tractcrosswalk.csv` columns
+
+`tract_fips_2020`, `Tract_fips_2022`, `tract_name`, `town_name`, `town_fips_2020`, `town_fips_2022`, `county_name`,	`county_fips_2020`
+
+- `tract_fips_2020` or `Tract_fips_2022`: 11-char census tract FIPS codes in the old or new systems.
+- `town_fips_2020` or `town_fips_2022`: 10-char town FIPS codes in the old or new systems.
+- `county_fips` (5 char) and `county_name`: the 8 legacy counties.
 
 ## The gate
 
@@ -76,3 +84,5 @@ pending Ngan**, so leave the default alone for now.
 CT-Data-Collaborative town-to-planning-region crosswalk (MIT licensed), built
 from Census TIGER county-subdivision and county-equivalent files:
 <https://github.com/CT-Data-Collaborative/ct-town-to-planning-region>
+
+CT-Data-Collaborative/2022-tract-crosswalk (MIT licensed): <https://github.com/CT-Data-Collaborative/2022-tract-crosswalk>
