@@ -1,4 +1,4 @@
-fips,COUNAME,STNAME,drive_time_min,drive_time_advanced,nearest_stroke_distance,nearest_stroke_distance_advanced
+fips,county,state,drive_time_min,drive_time_advanced,nearest_stroke_distance,nearest_stroke_distance_advanced
 09001,Fairfield,Connecticut,19.296333333333333,26.44066666666667,7.162504854663964,8.626322341090251
 09003,Hartford,Connecticut,17.087333333333333,6.081166666666666,7.752296245435731,1.3590239417492869
 09005,Litchfield,Connecticut,9.9975,45.874,5.375039492335274,20.651834017624903
