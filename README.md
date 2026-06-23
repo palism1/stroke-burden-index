@@ -23,3 +23,16 @@ outputs/     figures, maps, tables
 ```
 
 `raw/` and `interim/` inside `data/` are gitignored (re-downloadable). Everything else is committed when small.
+
+## Running the merge pipeline
+
+Once all data files are in place, run:
+
+```bash
+pip install -r requirements.txt
+python src/merge.py
+```
+
+This produces `data/master.csv` — one row per county with all sources joined and cleaned. `master.csv` is not committed (it is generated). The script prints a summary of row count and any missing values when it runs.
+
+Not all source files are collected yet. The script will still run with what is available; columns from missing sources will show as `NaN` in the output.
