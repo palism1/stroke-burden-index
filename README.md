@@ -36,3 +36,15 @@ python src/merge.py
 This produces `data/master.csv` — one row per county with all sources joined and cleaned. `master.csv` is not committed (it is generated). The script prints a summary of row count and any missing values when it runs.
 
 Not all source files are collected yet. The script will still run with what is available; columns from missing sources will show as `NaN` in the output.
+
+### Adding a new data source
+
+When a new file is ready, add one function and one line to `src/merge.py`:
+
+```python
+def _load_svi_health() -> pd.DataFrame:
+    df = pd.read_csv(DATA / "svi_health.csv", dtype={"fips": str})
+    return df.drop(columns=["county", "state"], errors="ignore")
+```
+
+Then add `_load_svi_health` to the list in `build_master()`. That's all. The script re-runs and master.csv updates.
