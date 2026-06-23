@@ -2,19 +2,49 @@
 
 Identifying high-priority stroke intervention areas in the US by combining a Stroke Vulnerability Index (stroke risk) and a Stroke Care Access Index (treatment availability) at the county level.
 
-**Status:** planning + data gathering.
+**Status:** data gathering — ACS demographics, CDC WONDER stroke mortality, and geographic accessibility (drive time + distance to nearest stroke center) are collected for all 91 NY/NJ/CT counties. SCAI variables and SVI health variables are in progress.
 
-- Project plan: [docs/plan.md](docs/plan.md)
-- Live site: _to be added once GitHub Pages is enabled_
+- Project plan and methodology: [docs/plan.md](docs/plan.md)
+- Data dictionary and naming conventions: [data/data_dictionary.md](data/data_dictionary.md)
+- Live site: https://palism1.github.io/stroke-burden-index/
 
 ## Layout
 
 ```
 docs/        GitHub Pages source (Jekyll, jekyll-theme-cayman)
-data/        raw/ interim/ processed/  (raw + interim are gitignored)
-src/         pipelines and analysis code
+data/        county-level data files and collection notebooks
+  acs_data/                ACS demographics notebook and outputs
+  cdcwonder_data/          CDC WONDER stroke mortality notebook and outputs
+  geographic_accessibility_data/  stroke center geocoding and accessibility outputs
+reference/   crosswalks and reference tables (CT county crosswalk)
+src/         analysis pipelines (index construction, modeling)
 notebooks/   exploratory work
 outputs/     figures, maps, tables
 ```
 
-`data/` `src/` `notebooks/` `outputs/` are created when the first pipeline task lands; the repo only contains the plan + Pages scaffold today.
+`raw/` and `interim/` inside `data/` are gitignored (re-downloadable). Everything else is committed when small.
+
+## Running the merge pipeline
+
+Once all data files are in place, run:
+
+```bash
+pip install -r requirements.txt
+python src/merge.py
+```
+
+This produces `data/master.csv` — one row per county with all sources joined and cleaned. `master.csv` is not committed (it is generated). The script prints a summary of row count and any missing values when it runs.
+
+Not all source files are collected yet. The script will still run with what is available; columns from missing sources will show as `NaN` in the output.
+
+### Adding a new data source
+
+When a new file is ready, add one function and one line to `src/merge.py`:
+
+```python
+def _load_svi_health() -> pd.DataFrame:
+    df = pd.read_csv(DATA / "svi_health.csv", dtype={"fips": str})
+    return df.drop(columns=["county", "state"], errors="ignore")
+```
+
+Then add `_load_svi_health` to the list in `build_master()`. That's all. The script re-runs and master.csv updates.
