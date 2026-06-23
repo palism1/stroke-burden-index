@@ -6,14 +6,15 @@ The final output is the `cdcplaces_data.csv` file in the `data/` folder.
 
 For the full documentation and code, see the HTML export of the notebook: `cdcplaces_data_collection.html`.
 
-### Input
-- `data/cdcplaces_data/PLACES__Census_Tract_Data_(GIS_Friendly_Format),_2025_release_20260622.csv` - raw download
-- `data/cdcplaces_data/PLACES__County_Data_(GIS_Friendly_Format),_2025_release_20260622.csv` - raw download
+### Inputs
+- `data/cdcplaces_data/PLACES__Census_Tract_Data_(GIS_Friendly_Format),_2025_release_20260622.csv` - raw download from CDC PLACES
+- `data/cdcplaces_data/PLACES__County_Data_(GIS_Friendly_Format),_2025_release_20260622.csv` - raw download from CDC PLACES
+- `reference/ct_crosswalk/2022tractcrosswalk.csv` - tract-county crosswalk file
 
-### Output
+### Outputs
 - `data/cdcplaces_data.csv`
 
-### Columns in the Final Output
+#### Final Output Variables
 
 | Column Name | Data Type | Description |
 |---|---|---|
