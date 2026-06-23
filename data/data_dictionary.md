@@ -105,4 +105,6 @@ These are planned for upcoming data collection. Follow the naming convention abo
 | `physical_inactivity` | % of adults with no leisure-time physical activity | CDC PLACES |
 | `hypertension_prevalence` | % of adults with hypertension | CDC PLACES |
 | `high_cholesterol_prevalence` | % of adults with high cholesterol | CDC PLACES |
+| `binge_drinking_prevalence` | % of adults who binge drink | CDC PLACES |
+| `stroke_prevalence` | % of adults ever told they had a stroke | CDC PLACES |
 | `pop_density` | Population per square mile | Census TIGER + ACS |
