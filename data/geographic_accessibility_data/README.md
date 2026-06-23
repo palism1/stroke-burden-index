@@ -15,7 +15,7 @@ For the full documentation and code, see the HTML export of the notebook: `Geogr
 - `ny_all_stroke_centers_geocoded.csv` — all NY stroke centers (primary, thrombectomy-capable, comprehensive) with lat/lon. 5 entries have empty coordinates.
 - `nj_all_stroke_centers_geocoded.csv` — all NJ stroke centers with lat/lon. 11 entries have empty coordinates; 3 of the missing are Comprehensive centers that were manually patched inside the notebook for the distance calculation.
 - `ny_primary_stroke_centers_geocoded.csv` — NY primary (basic) stroke centers only. No missing coordinates.
-- `nj_primary_stroke_centers_geocoded.csv` — NJ primary stroke centers only. No missing coordinates. **Note:** this file and `nj_all` were compiled from different sources and have minimal coordinate overlap — do not combine them to count unique stroke centers or you will double-count.
+- `nj_primary_stroke_centers_geocoded.csv` — NJ primary stroke centers only. No missing coordinates. **Note:** in the geographic accessibility notebook, `nj_primary` was used for basic stroke centers and `nj_all` was filtered to comprehensive centers only for advanced stroke centers. Do not stack these two files to count unique stroke centers — primary centers appear in both files and would be double-counted.
 - `ct_basic_geocoded.csv` — CT basic stroke centers. No missing coordinates.
 - `ct_advanced_geocoded.csv` — CT advanced stroke centers. No missing coordinates.
 
