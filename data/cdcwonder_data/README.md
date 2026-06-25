@@ -27,7 +27,7 @@ Rates are per 100,000 population.
 
 | Column Name | Data Type | Description |
 |---|---|---|
-| `fips` | Integer | County-level FIPS code identifying the county and state |
+| `fips` | String | 5-character zero-padded county FIPS code (e.g. "09001") |
 | `county` | String | County name |
 | `state` | String | Two-letter U.S. state postal abbreviation |
 | `acute_stroke_mortality_per_100k` | Float | Deaths from acute stroke per 100,000 population |
