@@ -60,17 +60,8 @@ def test_master_fips_are_5_chars():
     assert not bad, f"FIPS codes with wrong length: {bad}"
 
 
-def test_master_only_expected_missing_values():
+def test_master_no_missing_values():
     master = build_master()
     missing = master.isnull().sum()
     missing = missing[missing > 0]
-    unexpected = [col for col in missing.index if col != "drive_time_advanced"]
-    assert not unexpected, f"unexpected missing values in: {unexpected}"
-
-
-def test_master_drive_time_advanced_missing_only_essex_hamilton():
-    master = build_master()
-    missing_fips = master[master["drive_time_advanced"].isnull()]["fips"].tolist()
-    assert sorted(missing_fips) == ["36031", "36041"], (
-        f"expected only Essex (36031) and Hamilton (36041) to have missing drive_time_advanced, got {missing_fips}"
-    )
+    assert missing.empty, f"unexpected missing values in: {dict(missing)}"
