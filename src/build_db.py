@@ -102,6 +102,17 @@ def _load_pop_density() -> pd.DataFrame | None:
     return df.drop(columns=["county", "state"], errors="ignore")
 
 
+def _load_scai() -> pd.DataFrame | None:
+    # Placeholder — wire in once Cathleen's SCAI file is merged to main.
+    # Expected columns: fips, hospitals_per_100k, hospital_beds_per_100k,
+    #                   pcp_per_100k, neurologists_per_100k, stroke_centers_per_100k
+    path = DATA / "scai_data.csv"
+    if not path.exists():
+        return None
+    df = pd.read_csv(path, dtype={"fips": str})
+    return df.drop(columns=["county", "state"], errors="ignore")
+
+
 # Add new loaders here following the same pattern.
 
 
@@ -122,6 +133,7 @@ def build_db() -> None:
         "geographic": _load_geographic,
         "cdc_places": _load_cdc_places,
         "pop_density": _load_pop_density,
+        "scai": _load_scai,
     }
 
     loaded = []
