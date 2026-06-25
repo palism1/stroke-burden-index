@@ -7,6 +7,18 @@ title: Project plan
 
 **Status: DATA GATHERING is the active phase; methodology below is the agreed plan, not yet executed.** The analytical approach (indices, geospatial analysis, models) is now drafted and aligned across the team. We do not run it until the county-level data is in hand and audited. Items marked `(?)` are still open.
 
+**Collected so far (91 NY/NJ/CT counties):**
+- ACS demographics: `data/acs_data.csv` — age 65+, poverty, insurance, education, income bins
+- CDC WONDER stroke mortality: `data/stroke_mortality.csv` — acute and sequelae age-adjusted rates, 2018–2024 pooled
+- Geographic accessibility: `data/geographic_accessibility_data/geographic_stroke_accessibility.csv` — drive time and distance to nearest basic and advanced stroke center per county, via OpenRouteService
+- Stroke center coordinates: geocoded for all NY, NJ, CT centers (see `data/geographic_accessibility_data/`)
+- CT county crosswalk: `reference/ct_crosswalk/` — town-level mapping to old counties and planning regions
+
+**Still needed:**
+- SCAI: hospitals per capita, hospital beds per capita, PCP per capita, neurologists per capita (HIFLD / HRSA)
+- SVI health variables: smoking, obesity, diabetes, physical inactivity, hypertension (CDC PLACES)
+- Population density (Census TIGER + ACS land area)
+
 ---
 
 ## 0. The question
@@ -197,18 +209,18 @@ Audit each before committing: confirm current vintage, county-level granularity,
   - EMNet **findERnow** (Mass General) — all certified/designated stroke centers nationally, linked to CMS Provider ID (cleanest join key); available to researchers on request (emnet@partners.org).
   - The Joint Commission Quality Check directory (also DNV, ACHC/HFAP).
 
-**Travel distance to nearest stroke center (derive, not download):**
+**Travel distance to nearest stroke center (done for tristate):**
 
-- v1: haversine distance from county population center to nearest stroke-center coordinate.
-- Later `(?)`: real drive time via a routing engine (OSRM / OpenRouteService).
+- Straight-line distance and drive time (via OpenRouteService) from each county's population center to nearest basic and advanced stroke center. Output: `data/geographic_accessibility_data/geographic_stroke_accessibility.csv`.
+- Essex NY and Hamilton NY have imputed drive times (ORS could not route). See `data/geographic_accessibility_data/README.md`.
 
 > **Audit step before any of the above:** confirm what fraction of the stroke-center list actually matches HIFLD cleanly. That single number decides whether geocoding leftovers is a footnote or the main event. First thing to test (see 4b).
 
-### 4b. First concrete deliverable: verified stroke-centers-with-coordinates file
+### 4b. Verified stroke-centers-with-coordinates file (done for tristate)
 
-A **join, not a geocode**: HIFLD has coordinates for every hospital but doesn't flag stroke designation; the designation lists flag stroke centers but mostly give addresses, not coordinates. So we join the two and only geocode whatever fails to match.
+Geocoded stroke center files for NY, NJ, CT are in `data/geographic_accessibility_data/`. See the README in that folder for file descriptions, missing coordinate counts, and the NJ dual-file usage pattern.
 
-`(?)` **Scope: tristate proof-of-concept first, or national?** Tristate is fast (three state lists). National is the real target — coordinates come free from HIFLD, but national designation leans on EMNet findERnow or Joint Commission rather than per-state PDFs. Pipeline handles either.
+`(?)` **National expansion:** tristate proof-of-concept is complete. National designation data leans on EMNet findERnow (CMS Provider ID) or Joint Commission rather than per-state PDFs — scope decision still open.
 
 **Pipeline (v1):**
 
