@@ -24,6 +24,25 @@ outputs/     figures, maps, tables
 
 `raw/` and `interim/` inside `data/` are gitignored (re-downloadable). Everything else is committed when small.
 
+## Database
+
+For querying across all data sources without manual merges, build the local SQLite database:
+
+```bash
+python src/build_db.py
+```
+
+This creates `data/stroke_burden.db` (not committed — regenerate locally). Query it from any notebook:
+
+```python
+import sqlite3, pandas as pd
+con = sqlite3.connect("data/stroke_burden.db")
+df = pd.read_sql("SELECT * FROM master", con)
+con.close()
+```
+
+Available tables: `counties`, `acs`, `mortality`, `geographic`, `cdc_places`, `pop_density`. The `master` view joins all of them on `fips`.
+
 ## Running the merge pipeline
 
 Once all data files are in place, run:
