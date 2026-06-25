@@ -27,7 +27,7 @@ These exist in already-committed files and will need to be harmonized before the
 | `stroke_mortality.csv` | `county` | `"Albany County"` (includes suffix) | `"Albany"` |
 | `geographic_stroke_accessibility.csv` | `state` | `"New York"` (full name) | `"NY"` |
 | `geographic_stroke_accessibility.csv` | `county` | `"Albany"` (no suffix) | `"Albany"` (already correct) |
-| `acs_data.csv` | `pcnt_65+` | special character in column name | `pcnt_65plus` |
+| `acs_data.csv` | `pcnt_65_plus` | already renamed, no action needed | `pcnt_65_plus` |
 
 **Bottom line:** always join on `fips`, never on `county` or `state` name strings. FIPS is consistent across all files.
 
@@ -44,7 +44,7 @@ Source: U.S. Census Bureau ACS 5-year estimates, 2023. One row per county (91 to
 | `county` | string | County name with "County" suffix (e.g. "Albany County") |
 | `state` | string | Two-letter state abbreviation |
 | `total_pop` | integer | Total county population |
-| `pcnt_65+` | float | % of population aged 65 and over |
+| `pcnt_65_plus` | float | % of population aged 65 and over |
 | `poverty_rate` | float | % of population below poverty line |
 | `pcnt_insured` | float | % of population with health insurance coverage |
 | `pcnt_bachelors` | float | % of adults with a bachelor's degree or higher |
@@ -64,8 +64,8 @@ Source: CDC WONDER Underlying Cause of Death, 2018–2024, Single Race. Pooled a
 | `fips` | string | 5-digit county FIPS code, zero-padded |
 | `county` | string | County name with "County" suffix |
 | `state` | string | Two-letter state abbreviation |
-| `acute_stroke_mortality_rate` | float | Age-adjusted mortality rate per 100,000 for acute stroke (ICD-10 I60–I66) |
-| `sequelae_stroke_mortality_rate` | float | Age-adjusted mortality rate per 100,000 for stroke sequelae (ICD-10 I69) |
+| `acute_stroke_mortality_per_100k` | float | Age-adjusted mortality rate per 100,000 for acute stroke (ICD-10 I60–I66) |
+| `sequelae_stroke_mortality_per_100k` | float | Age-adjusted mortality rate per 100,000 for stroke sequelae (ICD-10 I69) |
 
 ---
 

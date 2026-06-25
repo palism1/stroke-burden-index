@@ -4,13 +4,12 @@ Merge all county-level data sources into one master table.
 Cleaning applied at merge time (per data/data_dictionary.md):
   - county: strips " County" suffix from acs_data and stroke_mortality
   - state:  converts full names to 2-letter abbreviations in geographic file
-  - pcnt_65+: renamed to pcnt_65plus (special character breaks most tooling)
 
 Output: data/master.csv — one row per county (91 total), keyed by fips.
 
 To add a new source: write a load_<name>() function that returns a DataFrame
 with 'fips' as a string column, drop county/state if present, then add one
-merge line in build_master(). That's it.
+loader to the list in build_master(). That's it.
 """
 
 from pathlib import Path
@@ -43,7 +42,6 @@ def _load_spine() -> pd.DataFrame:
 
 def _load_acs() -> pd.DataFrame:
     df = pd.read_csv(DATA / "acs_data.csv", dtype={"fips": str})
-    df = df.rename(columns={"pcnt_65+": "pcnt_65plus"})
     return df.drop(columns=["county", "state"])
 
 
@@ -61,6 +59,16 @@ def _load_geographic() -> pd.DataFrame:
     return df.drop(columns=["county", "state"])
 
 
+def _load_cdc_places() -> pd.DataFrame:
+    df = pd.read_csv(DATA / "cdcplaces_data.csv", dtype={"fips": str})
+    return df.drop(columns=["county", "state"], errors="ignore")
+
+
+def _load_pop_density() -> pd.DataFrame:
+    df = pd.read_csv(DATA / "pop_density.csv", dtype={"fips": str})
+    return df.drop(columns=["county", "state"], errors="ignore")
+
+
 # ---------------------------------------------------------------------------
 # Add new sources here when they land. Pattern:
 #   def _load_<name>() -> pd.DataFrame:
@@ -74,7 +82,7 @@ def build_master() -> pd.DataFrame:
     validate_ct_codes(spine, fips_col="fips")
 
     master = spine
-    for loader in [_load_acs, _load_mortality, _load_geographic]:
+    for loader in [_load_acs, _load_mortality, _load_geographic, _load_cdc_places, _load_pop_density]:
         master = master.merge(loader(), on="fips", how="left")
 
     out = DATA / "master.csv"
