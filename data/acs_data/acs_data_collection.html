@@ -7890,7 +7890,7 @@ Variable code: S1701_C03_001E</li>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8e367036-ede2-4f00-99b7-c6f93d8ea24f">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8e367036-ede2-4f00-99b7-c6f93d8ea24f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7901,25 +7901,6 @@ Variable code: S1701_C03_001E</li>
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Run this line to find variable codes</span>
 <span class="c1">#%run retrieve_variable_codes.py</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-</div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>
-Table: S1701
-Variable label: Estimate!!Percent below poverty level!!Population for whom poverty status is determined
-Variable code: S1701_C03_001E
-</pre>
 </div>
 </div>
 </div>
@@ -7954,7 +7935,7 @@ Variable code: S1701_C03_001E
 <td>S0101_C01_001E</td>
 </tr>
 <tr>
-<td>pcnt_65+</td>
+<td>pcnt_65_plus</td>
 <td>The percentage of people aged 65 and over</td>
 <td>S0101</td>
 <td>S0101_C02_030E</td>
@@ -7972,7 +7953,7 @@ Variable code: S1701_C03_001E
 <td>S2701_C03_001E</td>
 </tr>
 <tr>
-<td>pop_18+</td>
+<td>pop_18_plus</td>
 <td>The number of people aged 18+</td>
 <td>S0101</td>
 <td>S0101_C01_026E</td>
@@ -7984,7 +7965,7 @@ Variable code: S1701_C03_001E
 <td>S1501_C01_005E</td>
 </tr>
 <tr>
-<td>bachelors_25+</td>
+<td>bachelors_25_plus</td>
 <td>The number of people aged 25+ with at least a bachelor’s degree</td>
 <td>S1501</td>
 <td>S1501_C01_015E</td>
@@ -8074,8 +8055,8 @@ Variable code: S1701_C03_001E
 <tbody>
 <tr>
 <td>pcnt_bachelors</td>
-<td>Percentage of peole 18+ with a bachelor's degree or higher</td>
-<td>(<code>bachelor_18-24</code> + <code>bachelor_25+</code>) / (<code>pop_18+</code>) x 100</td>
+<td>Percentage of peole 18_plus with a bachelor's degree or higher</td>
+<td>(<code>bachelor_18-24</code> + <code>bachelor_25_plus</code>) / (<code>pop_18_plus</code>) x 100</td>
 </tr>
 <tr>
 <td>low_income</td>
@@ -8108,12 +8089,12 @@ Variable code: S1701_C03_001E
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create a dictionary of variable codes for API URL</span>
 <span class="n">var_dict_nynj</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"NAME"</span><span class="p">:</span> <span class="s2">"county"</span><span class="p">,</span>
     <span class="s2">"S0101_C01_001E"</span><span class="p">:</span> <span class="s2">"total_pop"</span><span class="p">,</span>
-    <span class="s2">"S0101_C02_030E"</span><span class="p">:</span> <span class="s2">"pcnt_65+"</span><span class="p">,</span>
+    <span class="s2">"S0101_C02_030E"</span><span class="p">:</span> <span class="s2">"pcnt_65_plus"</span><span class="p">,</span>
     <span class="s2">"S1701_C03_001E"</span><span class="p">:</span> <span class="s2">"poverty_rate"</span><span class="p">,</span>
     <span class="s2">"S2701_C03_001E"</span><span class="p">:</span> <span class="s2">"pcnt_insured"</span><span class="p">,</span>
-    <span class="s2">"S0101_C01_026E"</span><span class="p">:</span> <span class="s2">"pop_18+"</span><span class="p">,</span>
+    <span class="s2">"S0101_C01_026E"</span><span class="p">:</span> <span class="s2">"pop_18_plus"</span><span class="p">,</span>
     <span class="s2">"S1501_C01_005E"</span><span class="p">:</span> <span class="s2">"bachelors_18-24"</span><span class="p">,</span>
-    <span class="s2">"S1501_C01_015E"</span><span class="p">:</span> <span class="s2">"bachelors_25+"</span><span class="p">,</span>
+    <span class="s2">"S1501_C01_015E"</span><span class="p">:</span> <span class="s2">"bachelors_25_plus"</span><span class="p">,</span>
     <span class="s2">"S1901_C01_002E"</span><span class="p">:</span> <span class="s2">"pcnt_under_10k"</span><span class="p">,</span>
     <span class="s2">"S1901_C01_003E"</span><span class="p">:</span> <span class="s2">"pcnt_10k_15k"</span><span class="p">,</span>
     <span class="s2">"S1901_C01_004E"</span><span class="p">:</span> <span class="s2">"pcnt_15k_25k"</span><span class="p">,</span>
@@ -8444,12 +8425,12 @@ Variable code: S1701_C03_001E
 <th></th>
 <th>county</th>
 <th>total_pop</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
-<th>pop_18+</th>
+<th>pop_18_plus</th>
 <th>bachelors_18-24</th>
-<th>bachelors_25+</th>
+<th>bachelors_25_plus</th>
 <th>pcnt_under_10k</th>
 <th>pcnt_10k_15k</th>
 <th>pcnt_15k_25k</th>
@@ -8565,28 +8546,28 @@ Variable code: S1701_C03_001E
 <pre>&lt;class 'pandas.DataFrame'&gt;
 RangeIndex: 83 entries, 0 to 82
 Data columns (total 20 columns):
- #   Column            Non-Null Count  Dtype
----  ------            --------------  -----
- 0   county            83 non-null     str  
- 1   total_pop         83 non-null     str  
- 2   pcnt_65+          83 non-null     str  
- 3   poverty_rate      83 non-null     str  
- 4   pcnt_insured      83 non-null     str  
- 5   pop_18+           83 non-null     str  
- 6   bachelors_18-24   83 non-null     str  
- 7   bachelors_25+     83 non-null     str  
- 8   pcnt_under_10k    83 non-null     str  
- 9   pcnt_10k_15k      83 non-null     str  
- 10  pcnt_15k_25k      83 non-null     str  
- 11  pcnt_25k_35k      83 non-null     str  
- 12  pcnt_35k_50k      83 non-null     str  
- 13  pcnt_50k_75k      83 non-null     str  
- 14  pcnt_75k_100k     83 non-null     str  
- 15  pcnt_100k_150k    83 non-null     str  
- 16  pcnt_150k_200k    83 non-null     str  
- 17  pcnt_upper_class  83 non-null     str  
- 18  state_fips        83 non-null     str  
- 19  county_fips       83 non-null     str  
+ #   Column             Non-Null Count  Dtype
+---  ------             --------------  -----
+ 0   county             83 non-null     str  
+ 1   total_pop          83 non-null     str  
+ 2   pcnt_65_plus       83 non-null     str  
+ 3   poverty_rate       83 non-null     str  
+ 4   pcnt_insured       83 non-null     str  
+ 5   pop_18_plus        83 non-null     str  
+ 6   bachelors_18-24    83 non-null     str  
+ 7   bachelors_25_plus  83 non-null     str  
+ 8   pcnt_under_10k     83 non-null     str  
+ 9   pcnt_10k_15k       83 non-null     str  
+ 10  pcnt_15k_25k       83 non-null     str  
+ 11  pcnt_25k_35k       83 non-null     str  
+ 12  pcnt_35k_50k       83 non-null     str  
+ 13  pcnt_50k_75k       83 non-null     str  
+ 14  pcnt_75k_100k      83 non-null     str  
+ 15  pcnt_100k_150k     83 non-null     str  
+ 16  pcnt_150k_200k     83 non-null     str  
+ 17  pcnt_upper_class   83 non-null     str  
+ 18  state_fips         83 non-null     str  
+ 19  county_fips        83 non-null     str  
 dtypes: str(20)
 memory usage: 13.1 KB
 </pre>
@@ -8603,7 +8584,7 @@ memory usage: 13.1 KB
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Change the data type of numeric columns</span>
-<span class="n">df1</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">'total_pop'</span><span class="p">:</span> <span class="s1">'int64'</span><span class="p">,</span> <span class="s1">'pcnt_65+'</span><span class="p">:</span><span class="s1">'float64'</span><span class="p">,</span> <span class="s1">'poverty_rate'</span><span class="p">:</span><span class="s1">'float64'</span><span class="p">,</span> <span class="s1">'pcnt_insured'</span><span class="p">:</span><span class="s1">'float64'</span><span class="p">,</span> <span class="s1">'pop_18+'</span><span class="p">:</span><span class="s1">'int64'</span><span class="p">,</span> <span class="s1">'bachelors_18-24'</span><span class="p">:</span><span class="s1">'int64'</span><span class="p">,</span> <span class="s1">'bachelors_25+'</span><span class="p">:</span><span class="s1">'int64'</span><span class="p">})</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s1">'total_pop'</span><span class="p">:</span> <span class="s1">'int64'</span><span class="p">,</span> <span class="s1">'pcnt_65_plus'</span><span class="p">:</span><span class="s1">'float64'</span><span class="p">,</span> <span class="s1">'poverty_rate'</span><span class="p">:</span><span class="s1">'float64'</span><span class="p">,</span> <span class="s1">'pcnt_insured'</span><span class="p">:</span><span class="s1">'float64'</span><span class="p">,</span> <span class="s1">'pop_18_plus'</span><span class="p">:</span><span class="s1">'int64'</span><span class="p">,</span> <span class="s1">'bachelors_18-24'</span><span class="p">:</span><span class="s1">'int64'</span><span class="p">,</span> <span class="s1">'bachelors_25_plus'</span><span class="p">:</span><span class="s1">'int64'</span><span class="p">})</span>
 
 <span class="n">income_cols</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">18</span><span class="p">]</span>
 <span class="n">df1</span><span class="p">[</span><span class="n">income_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[</span><span class="n">income_cols</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'float64'</span><span class="p">)</span>
@@ -8624,28 +8605,28 @@ memory usage: 13.1 KB
 <pre>&lt;class 'pandas.DataFrame'&gt;
 RangeIndex: 83 entries, 0 to 82
 Data columns (total 20 columns):
- #   Column            Non-Null Count  Dtype  
----  ------            --------------  -----  
- 0   county            83 non-null     str    
- 1   total_pop         83 non-null     int64  
- 2   pcnt_65+          83 non-null     float64
- 3   poverty_rate      83 non-null     float64
- 4   pcnt_insured      83 non-null     float64
- 5   pop_18+           83 non-null     int64  
- 6   bachelors_18-24   83 non-null     int64  
- 7   bachelors_25+     83 non-null     int64  
- 8   pcnt_under_10k    83 non-null     float64
- 9   pcnt_10k_15k      83 non-null     float64
- 10  pcnt_15k_25k      83 non-null     float64
- 11  pcnt_25k_35k      83 non-null     float64
- 12  pcnt_35k_50k      83 non-null     float64
- 13  pcnt_50k_75k      83 non-null     float64
- 14  pcnt_75k_100k     83 non-null     float64
- 15  pcnt_100k_150k    83 non-null     float64
- 16  pcnt_150k_200k    83 non-null     float64
- 17  pcnt_upper_class  83 non-null     float64
- 18  state_fips        83 non-null     str    
- 19  county_fips       83 non-null     str    
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   county             83 non-null     str    
+ 1   total_pop          83 non-null     int64  
+ 2   pcnt_65_plus       83 non-null     float64
+ 3   poverty_rate       83 non-null     float64
+ 4   pcnt_insured       83 non-null     float64
+ 5   pop_18_plus        83 non-null     int64  
+ 6   bachelors_18-24    83 non-null     int64  
+ 7   bachelors_25_plus  83 non-null     int64  
+ 8   pcnt_under_10k     83 non-null     float64
+ 9   pcnt_10k_15k       83 non-null     float64
+ 10  pcnt_15k_25k       83 non-null     float64
+ 11  pcnt_25k_35k       83 non-null     float64
+ 12  pcnt_35k_50k       83 non-null     float64
+ 13  pcnt_50k_75k       83 non-null     float64
+ 14  pcnt_75k_100k      83 non-null     float64
+ 15  pcnt_100k_150k     83 non-null     float64
+ 16  pcnt_150k_200k     83 non-null     float64
+ 17  pcnt_upper_class   83 non-null     float64
+ 18  state_fips         83 non-null     str    
+ 19  county_fips        83 non-null     str    
 dtypes: float64(13), int64(4), str(3)
 memory usage: 13.1 KB
 </pre>
@@ -8660,8 +8641,8 @@ memory usage: 13.1 KB
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><code>pcnt_bachelors</code>: The percentage of people aged 18+ with at least a Bachelor's degree<br/>
-<code>pcnt_bachelors</code> = (<code>bachelors_18-24</code> + <code>bachelors_25+</code>) / (<code>18+_pop</code>) x 100</p>
+<p><code>pcnt_bachelors</code>: The percentage of people aged 18_plus with at least a Bachelor's degree<br/>
+<code>pcnt_bachelors</code> = (<code>bachelors_18-24</code> + <code>bachelors_25_plus</code>) / (<code>18_plus_pop</code>) x 100</p>
 </div>
 </div>
 </div>
@@ -8673,8 +8654,8 @@ memory usage: 13.1 KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Get column for percentage of people aged 18+ with a bachelor's degree</span>
-<span class="n">df1</span><span class="p">[</span><span class="s1">'pcnt_bachelors'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">df1</span><span class="p">[</span><span class="s1">'bachelors_18-24'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df1</span><span class="p">[</span><span class="s1">'bachelors_25+'</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">'pop_18+'</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Get column for percentage of people aged 18_plus with a bachelor's degree</span>
+<span class="n">df1</span><span class="p">[</span><span class="s1">'pcnt_bachelors'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">df1</span><span class="p">[</span><span class="s1">'bachelors_18-24'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df1</span><span class="p">[</span><span class="s1">'bachelors_25_plus'</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">'pop_18_plus'</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -8708,12 +8689,12 @@ memory usage: 13.1 KB
 <th></th>
 <th>county</th>
 <th>total_pop</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
-<th>pop_18+</th>
+<th>pop_18_plus</th>
 <th>bachelors_18-24</th>
-<th>bachelors_25+</th>
+<th>bachelors_25_plus</th>
 <th>pcnt_under_10k</th>
 <th>pcnt_10k_15k</th>
 <th>...</th>
@@ -8854,12 +8835,12 @@ memory usage: 13.1 KB
 <th></th>
 <th>county</th>
 <th>total_pop</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
-<th>pop_18+</th>
+<th>pop_18_plus</th>
 <th>bachelors_18-24</th>
-<th>bachelors_25+</th>
+<th>bachelors_25_plus</th>
 <th>pcnt_under_10k</th>
 <th>pcnt_10k_15k</th>
 <th>...</th>
@@ -8976,12 +8957,12 @@ memory usage: 13.1 KB
 <th></th>
 <th>county</th>
 <th>total_pop</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
-<th>pop_18+</th>
+<th>pop_18_plus</th>
 <th>bachelors_18-24</th>
-<th>bachelors_25+</th>
+<th>bachelors_25_plus</th>
 <th>pcnt_under_10k</th>
 <th>pcnt_10k_15k</th>
 <th>...</th>
@@ -9087,7 +9068,7 @@ memory usage: 13.1 KB
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Keep only important columns</span>
-<span class="n">df1</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[[</span><span class="s1">'fips'</span><span class="p">,</span> <span class="s1">'county'</span><span class="p">,</span> <span class="s1">'total_pop'</span><span class="p">,</span> <span class="s1">'pcnt_65+'</span><span class="p">,</span> <span class="s1">'poverty_rate'</span><span class="p">,</span> <span class="s1">'pcnt_insured'</span><span class="p">,</span> <span class="s1">'pcnt_bachelors'</span><span class="p">,</span> <span class="s1">'pcnt_low_income'</span><span class="p">,</span> <span class="s1">'pcnt_middle_class'</span><span class="p">,</span> <span class="s1">'pcnt_upper_class'</span><span class="p">]]</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[[</span><span class="s1">'fips'</span><span class="p">,</span> <span class="s1">'county'</span><span class="p">,</span> <span class="s1">'total_pop'</span><span class="p">,</span> <span class="s1">'pcnt_65_plus'</span><span class="p">,</span> <span class="s1">'poverty_rate'</span><span class="p">,</span> <span class="s1">'pcnt_insured'</span><span class="p">,</span> <span class="s1">'pcnt_bachelors'</span><span class="p">,</span> <span class="s1">'pcnt_low_income'</span><span class="p">,</span> <span class="s1">'pcnt_middle_class'</span><span class="p">,</span> <span class="s1">'pcnt_upper_class'</span><span class="p">]]</span>
 <span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -9122,7 +9103,7 @@ memory usage: 13.1 KB
 <th>fips</th>
 <th>county</th>
 <th>total_pop</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
 <th>pcnt_bachelors</th>
@@ -9266,31 +9247,31 @@ memory usage: 2.3 KB
 <tr>
 <th>78</th>
 <td>34033</td>
-<td>Salem County</td>
+<td>Salem</td>
 <td>NJ</td>
 </tr>
 <tr>
 <th>79</th>
 <td>34035</td>
-<td>Somerset County</td>
+<td>Somerset</td>
 <td>NJ</td>
 </tr>
 <tr>
 <th>80</th>
 <td>34037</td>
-<td>Sussex County</td>
+<td>Sussex</td>
 <td>NJ</td>
 </tr>
 <tr>
 <th>81</th>
 <td>34039</td>
-<td>Union County</td>
+<td>Union</td>
 <td>NJ</td>
 </tr>
 <tr>
 <th>82</th>
 <td>34041</td>
-<td>Warren County</td>
+<td>Warren</td>
 <td>NJ</td>
 </tr>
 </tbody>
@@ -9346,7 +9327,7 @@ memory usage: 2.3 KB
 <th>state</th>
 <th>county_y</th>
 <th>total_pop</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
 <th>pcnt_bachelors</th>
@@ -9359,7 +9340,7 @@ memory usage: 2.3 KB
 <tr>
 <th>0</th>
 <td>36001</td>
-<td>Albany County</td>
+<td>Albany</td>
 <td>NY</td>
 <td>Albany County, New York</td>
 <td>315374</td>
@@ -9374,7 +9355,7 @@ memory usage: 2.3 KB
 <tr>
 <th>1</th>
 <td>36003</td>
-<td>Allegany County</td>
+<td>Allegany</td>
 <td>NY</td>
 <td>Allegany County, New York</td>
 <td>47027</td>
@@ -9389,7 +9370,7 @@ memory usage: 2.3 KB
 <tr>
 <th>2</th>
 <td>36005</td>
-<td>Bronx County</td>
+<td>Bronx</td>
 <td>NY</td>
 <td>Bronx County, New York</td>
 <td>1419250</td>
@@ -9454,7 +9435,7 @@ Data columns (total 11 columns):
  1   county             83 non-null     str    
  2   state              83 non-null     str    
  3   total_pop          83 non-null     int64  
- 4   pcnt_65+           83 non-null     float64
+ 4   pcnt_65_plus       83 non-null     float64
  5   poverty_rate       83 non-null     float64
  6   pcnt_insured       83 non-null     float64
  7   pcnt_bachelors     83 non-null     float64
@@ -9498,7 +9479,7 @@ memory usage: 7.3 KB
 <td>S0101_C01_001E</td>
 </tr>
 <tr>
-<td>pop_65+</td>
+<td>pop_65_plus</td>
 <td>Number of people aged 65 and over</td>
 <td>S0101</td>
 <td>S0101_C01_030E</td>
@@ -9528,8 +9509,8 @@ memory usage: 7.3 KB
 <td>S2701_C02_001E</td>
 </tr>
 <tr>
-<td>pop_18+</td>
-<td>Number of people aged 18+</td>
+<td>pop_18_plus</td>
+<td>Number of people aged 18_plus</td>
 <td>S0101</td>
 <td>S0101_C01_026E</td>
 </tr>
@@ -9540,8 +9521,8 @@ memory usage: 7.3 KB
 <td>S1501_C01_005E</td>
 </tr>
 <tr>
-<td>bachelors_25+</td>
-<td>Number of people aged 25+ with a bachelor’s degree or higher</td>
+<td>bachelors_25_plus</td>
+<td>Number of people aged 25_plus with a bachelor’s degree or higher</td>
 <td>S1501</td>
 <td>S1501_C01_015E</td>
 </tr>
@@ -9641,9 +9622,9 @@ memory usage: 7.3 KB
 </thead>
 <tbody>
 <tr>
-<td>bachelors_18+</td>
-<td>The number of people aged 18+ with a bachelor’s degree or higher</td>
-<td><code>bachelors_18-24</code> + <code>bachelors_25+</code></td>
+<td>bachelors_18_plus</td>
+<td>The number of people aged 18_plus with a bachelor’s degree or higher</td>
+<td><code>bachelors_18-24</code> + <code>bachelors_25_plus</code></td>
 </tr>
 <tr>
 <td>pcnt_town_low_income</td>
@@ -9714,35 +9695,35 @@ memory usage: 7.3 KB
 </tr>
 </tbody>
 </table>
-<h3 id="4.-Aggregation-by-County">4. Aggregation by County<a class="anchor-link" href="#4.-Aggregation-by-County">¶</a></h3><p>All variables are grouped by county. The raw count columns (<code>total_pop</code>, <code>pop_65+</code>, <code>poverty_universe</code>, <code>below_poverty</code>, <code>civ_noninst_pop</code>, <code>insured_pop</code>, <code>pop_18+</code>, <code>bachelors_18+</code>, <code>total_households</code>, <code>pop_low_income</code>, <code>pop_middle_class</code>, <code>pop_upper_class</code>) are summed across towns within each county before any ratios are computed.</p>
-<h3 id="5.-Derived-Columns-after-Aggregation">5. Derived Columns after Aggregation<a class="anchor-link" href="#5.-Derived-Columns-after-Aggregation">¶</a></h3><table>
+<h3 id="4.-Aggregation-by-County">4. Aggregation by County<a class="anchor-link" href="#4.-Aggregation-by-County">¶</a></h3><p>All variables are grouped by county. The raw count columns (<code>total_pop</code>, <code>pop_65_plus</code>, <code>poverty_universe</code>, <code>below_poverty</code>, <code>civ_noninst_pop</code>, <code>insured_pop</code>, <code>pop_18_plus</code>, <code>bachelors_18_plus</code>, <code>total_households</code>, <code>pop_low_income</code>, <code>pop_middle_class</code>, <code>pop_upper_class</code>) are summed across towns within each county before any ratios are computed.</p>
+<h3 id="5.-Computing-County-Level-Columns">5. Computing County-Level Columns<a class="anchor-link" href="#5.-Computing-County-Level-Columns">¶</a></h3><table>
 <thead>
 <tr>
-<th>Derived Column</th>
+<th>County-Level Column</th>
 <th>Description</th>
 <th>Calculation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>pcnt_65+</td>
+<td>pcnt_65_plus</td>
 <td>Percentage of people aged 65 and over</td>
-<td><code>pop_65+</code> / <code>total_pop</code></td>
+<td>(<code>pop_65_plus</code> / <code>total_pop</code>) *100</td>
 </tr>
 <tr>
 <td>poverty_rate</td>
 <td>Percentage of people who are below poverty threshold</td>
-<td><code>below_poverty</code> / <code>poverty_universe</code></td>
+<td>(<code>below_poverty</code> / <code>poverty_universe</code>) *100</td>
 </tr>
 <tr>
 <td>pcnt_insured</td>
 <td>Percentage of people having health insurance</td>
-<td><code>insured_pop</code> / <code>civ_noninst_pop</code></td>
+<td>(<code>insured_pop</code> / <code>civ_noninst_pop</code>) *100</td>
 </tr>
 <tr>
 <td>pcnt_bachelors</td>
-<td>Percentage of people 18+ with a bachelor's degree or higher</td>
-<td><code>bachelors_18+</code> / <code>pop_18+</code></td>
+<td>Percentage of people 18_plus with a bachelor's degree or higher</td>
+<td>(<code>bachelors_18_plus</code> / <code>pop_18_plus</code>) *100</td>
 </tr>
 <tr>
 <td>pcnt_low_income</td>
@@ -9775,14 +9756,14 @@ memory usage: 7.3 KB
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create a dictionary of variable codes for API URL</span>
 <span class="n">var_dict_ct</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"NAME"</span><span class="p">:</span> <span class="s2">"town"</span><span class="p">,</span>
     <span class="s2">"S0101_C01_001E"</span><span class="p">:</span> <span class="s2">"total_pop"</span><span class="p">,</span>
-    <span class="s2">"S0101_C01_030E"</span><span class="p">:</span> <span class="s2">"pop_65+"</span><span class="p">,</span>
+    <span class="s2">"S0101_C01_030E"</span><span class="p">:</span> <span class="s2">"pop_65_plus"</span><span class="p">,</span>
     <span class="s2">"S1701_C01_001E"</span><span class="p">:</span> <span class="s2">"poverty_universe"</span><span class="p">,</span>
     <span class="s2">"S1701_C02_001E"</span><span class="p">:</span> <span class="s2">"below_poverty"</span><span class="p">,</span>
     <span class="s2">"S2701_C01_001E"</span><span class="p">:</span> <span class="s2">"civ_noninst_pop"</span><span class="p">,</span>
     <span class="s2">"S2701_C02_001E"</span><span class="p">:</span> <span class="s2">"insured_pop"</span><span class="p">,</span>
-    <span class="s2">"S0101_C01_026E"</span><span class="p">:</span> <span class="s2">"pop_18+"</span><span class="p">,</span>
+    <span class="s2">"S0101_C01_026E"</span><span class="p">:</span> <span class="s2">"pop_18_plus"</span><span class="p">,</span>
     <span class="s2">"S1501_C01_005E"</span><span class="p">:</span> <span class="s2">"bachelors_18-24"</span><span class="p">,</span>
-    <span class="s2">"S1501_C01_015E"</span><span class="p">:</span> <span class="s2">"bachelors_25+"</span><span class="p">,</span>
+    <span class="s2">"S1501_C01_015E"</span><span class="p">:</span> <span class="s2">"bachelors_25_plus"</span><span class="p">,</span>
     <span class="s2">"S1901_C01_001E"</span><span class="p">:</span> <span class="s2">"total_households"</span><span class="p">,</span>
     <span class="s2">"S1901_C01_002E"</span><span class="p">:</span> <span class="s2">"pcnt_under_10k"</span><span class="p">,</span>
     <span class="s2">"S1901_C01_003E"</span><span class="p">:</span> <span class="s2">"pcnt_10k_15k"</span><span class="p">,</span>
@@ -10123,14 +10104,14 @@ memory usage: 7.3 KB
 <th></th>
 <th>town</th>
 <th>total_pop</th>
-<th>pop_65+</th>
+<th>pop_65_plus</th>
 <th>poverty_universe</th>
 <th>below_poverty</th>
 <th>civ_noninst_pop</th>
 <th>insured_pop</th>
-<th>pop_18+</th>
+<th>pop_18_plus</th>
 <th>bachelors_18-24</th>
-<th>bachelors_25+</th>
+<th>bachelors_25_plus</th>
 <th>...</th>
 <th>pcnt_25k_35k</th>
 <th>pcnt_35k_50k</th>
@@ -10253,14 +10234,14 @@ Data columns (total 24 columns):
 ---  ------                 --------------  -----
  0   town                   174 non-null    str  
  1   total_pop              174 non-null    str  
- 2   pop_65+                174 non-null    str  
+ 2   pop_65_plus            174 non-null    str  
  3   poverty_universe       174 non-null    str  
  4   below_poverty          174 non-null    str  
  5   civ_noninst_pop        174 non-null    str  
  6   insured_pop            174 non-null    str  
- 7   pop_18+                174 non-null    str  
+ 7   pop_18_plus            174 non-null    str  
  8   bachelors_18-24        174 non-null    str  
- 9   bachelors_25+          174 non-null    str  
+ 9   bachelors_25_plus      174 non-null    str  
  10  total_households       174 non-null    str  
  11  pcnt_under_10k         174 non-null    str  
  12  pcnt_10k_15k           174 non-null    str  
@@ -10317,14 +10298,14 @@ Data columns (total 24 columns):
 ---  ------                 --------------  -----  
  0   town                   174 non-null    str    
  1   total_pop              174 non-null    int64  
- 2   pop_65+                174 non-null    int64  
+ 2   pop_65_plus            174 non-null    int64  
  3   poverty_universe       174 non-null    int64  
  4   below_poverty          174 non-null    int64  
  5   civ_noninst_pop        174 non-null    int64  
  6   insured_pop            174 non-null    int64  
- 7   pop_18+                174 non-null    int64  
+ 7   pop_18_plus            174 non-null    int64  
  8   bachelors_18-24        174 non-null    float64
- 9   bachelors_25+          174 non-null    float64
+ 9   bachelors_25_plus      174 non-null    float64
  10  total_households       174 non-null    float64
  11  pcnt_under_10k         174 non-null    float64
  12  pcnt_10k_15k           174 non-null    float64
@@ -10354,8 +10335,8 @@ memory usage: 32.8 KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate the number of people aged 18+ with a bachelor's degree</span>
-<span class="n">df2</span><span class="p">[</span><span class="s1">'bachelors_18+'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'bachelors_18-24'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'bachelors_25+'</span><span class="p">]</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate the number of people aged 18_plus with a bachelor's degree</span>
+<span class="n">df2</span><span class="p">[</span><span class="s1">'bachelors_18_plus'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'bachelors_18-24'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'bachelors_25_plus'</span><span class="p">]</span>
 <span class="c1"># # Get percentage columns for low-income and middle class groups</span>
 <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_town_low_income'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_under_10k'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_10k_15k'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_15k_25k'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_25k_35k'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_35k_50k'</span><span class="p">]</span>
 <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_town_middle_class'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_50k_75k'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_75k_100k'</span><span class="p">]</span> <span class="o">+</span> <span class="n">df2</span><span class="p">[</span><span class="s1">'pcnt_150k_200k'</span><span class="p">]</span>
@@ -10392,14 +10373,14 @@ memory usage: 32.8 KB
 <th></th>
 <th>town</th>
 <th>total_pop</th>
-<th>pop_65+</th>
+<th>pop_65_plus</th>
 <th>poverty_universe</th>
 <th>below_poverty</th>
 <th>civ_noninst_pop</th>
 <th>insured_pop</th>
-<th>pop_18+</th>
+<th>pop_18_plus</th>
 <th>bachelors_18-24</th>
-<th>bachelors_25+</th>
+<th>bachelors_25_plus</th>
 <th>...</th>
 <th>pcnt_75k_100k</th>
 <th>pcnt_100k_150k</th>
@@ -10408,7 +10389,7 @@ memory usage: 32.8 KB
 <th>state_fips</th>
 <th>region_fips</th>
 <th>town_fips</th>
-<th>bachelors_18+</th>
+<th>bachelors_18_plus</th>
 <th>pcnt_town_low_income</th>
 <th>pcnt_town_middle_class</th>
 </tr>
@@ -10503,7 +10484,7 @@ memory usage: 32.8 KB
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Keep only important columns</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[[</span><span class="s1">'town_fips'</span><span class="p">,</span> <span class="s1">'town'</span><span class="p">,</span> <span class="s1">'total_pop'</span><span class="p">,</span> <span class="s1">'pop_65+'</span><span class="p">,</span> <span class="s1">'poverty_universe'</span><span class="p">,</span> <span class="s1">'below_poverty'</span><span class="p">,</span> <span class="s1">'civ_noninst_pop'</span><span class="p">,</span> <span class="s1">'insured_pop'</span><span class="p">,</span> <span class="s1">'pop_18+'</span><span class="p">,</span> <span class="s1">'bachelors_18+'</span><span class="p">,</span> 
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[[</span><span class="s1">'town_fips'</span><span class="p">,</span> <span class="s1">'town'</span><span class="p">,</span> <span class="s1">'total_pop'</span><span class="p">,</span> <span class="s1">'pop_65_plus'</span><span class="p">,</span> <span class="s1">'poverty_universe'</span><span class="p">,</span> <span class="s1">'below_poverty'</span><span class="p">,</span> <span class="s1">'civ_noninst_pop'</span><span class="p">,</span> <span class="s1">'insured_pop'</span><span class="p">,</span> <span class="s1">'pop_18_plus'</span><span class="p">,</span> <span class="s1">'bachelors_18_plus'</span><span class="p">,</span> 
            <span class="s1">'total_households'</span><span class="p">,</span> <span class="s1">'pcnt_town_low_income'</span><span class="p">,</span> <span class="s1">'pcnt_town_middle_class'</span><span class="p">,</span> <span class="s1">'pcnt_town_upper_class'</span><span class="p">]]</span>
 <span class="n">df2</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
@@ -10539,13 +10520,13 @@ memory usage: 32.8 KB
 <th>town_fips</th>
 <th>town</th>
 <th>total_pop</th>
-<th>pop_65+</th>
+<th>pop_65_plus</th>
 <th>poverty_universe</th>
 <th>below_poverty</th>
 <th>civ_noninst_pop</th>
 <th>insured_pop</th>
-<th>pop_18+</th>
-<th>bachelors_18+</th>
+<th>pop_18_plus</th>
+<th>bachelors_18_plus</th>
 <th>total_households</th>
 <th>pcnt_town_low_income</th>
 <th>pcnt_town_middle_class</th>
@@ -10611,7 +10592,7 @@ memory usage: 32.8 KB
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a26d6458-ab36-40bb-8284-2f1ada6e6946">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=abede47b-a0c0-4a48-bbdd-1a7966ef1201">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -10619,78 +10600,7 @@ memory usage: 32.8 KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'state'</span><span class="p">]</span><span class="o">==</span><span class="s1">'CT'</span><span class="p">]</span>
-<span class="n">ct</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[26]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>fips</th>
-<th>county</th>
-<th>state</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>83</th>
-<td>09001</td>
-<td>Fairfield County</td>
-<td>CT</td>
-</tr>
-<tr>
-<th>84</th>
-<td>09003</td>
-<td>Hartford County</td>
-<td>CT</td>
-</tr>
-<tr>
-<th>85</th>
-<td>09005</td>
-<td>Litchfield County</td>
-<td>CT</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=abede47b-a0c0-4a48-bbdd-1a7966ef1201">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import the crosswalk file</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Import the CT town-county crosswalk file</span>
 <span class="n">crosswalk</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../../reference/ct_crosswalk/ct_town_crosswalk.csv'</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">{</span><span class="s1">'town_fips_2020'</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s1">'county_fips'</span><span class="p">:</span> <span class="nb">str</span><span class="p">})</span>
 <span class="n">crosswalk</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
@@ -10729,7 +10639,7 @@ memory usage: 9.4 KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Keep only important columns in crosswalk</span>
@@ -10745,7 +10655,7 @@ memory usage: 9.4 KB
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[27]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -10800,6 +10710,82 @@ memory usage: 9.4 KB
 </div>
 </div>
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=68f6f5d2-c44e-4b86-9fc5-2060fbab7264">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Remove County suffix in county_name</span>
+<span class="n">crosswalk</span><span class="p">[</span><span class="s1">'county_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">crosswalk</span><span class="p">[</span><span class="s1">'county_name'</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">' County'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">crosswalk</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[28]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>town_name</th>
+<th>town_fips_2020</th>
+<th>county_fips</th>
+<th>county_name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>Andover</td>
+<td>0901301080</td>
+<td>09013</td>
+<td>Tolland</td>
+</tr>
+<tr>
+<th>1</th>
+<td>Ansonia</td>
+<td>0900901220</td>
+<td>09009</td>
+<td>New Haven</td>
+</tr>
+<tr>
+<th>2</th>
+<td>Ashford</td>
+<td>0901501430</td>
+<td>09015</td>
+<td>Windham</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=be34ae64-6f1e-4bdb-9cdd-52843c98555b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -10808,7 +10794,7 @@ memory usage: 9.4 KB
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Town FIPS code structure: XX (State) + YYY (County/Region) + ZZZZZ (Town Code)</p>
-<p>We need to extract the town FIPS from <code>town_fips_2020</code> to match with <code>town_fips</code> column in <code>ct</code> dataframe.</p>
+<p>We need to extract the town FIPS from <code>town_fips_2020</code> in <code>crosswalk</code> to match with <code>town_fips</code> column in <code>df2</code> dataframe before merging the two.</p>
 </div>
 </div>
 </div>
@@ -10866,7 +10852,7 @@ memory usage: 9.4 KB
 <td>Andover</td>
 <td>0901301080</td>
 <td>09013</td>
-<td>Tolland County</td>
+<td>Tolland</td>
 <td>01080</td>
 </tr>
 <tr>
@@ -10874,7 +10860,7 @@ memory usage: 9.4 KB
 <td>Ansonia</td>
 <td>0900901220</td>
 <td>09009</td>
-<td>New Haven County</td>
+<td>New Haven</td>
 <td>01220</td>
 </tr>
 <tr>
@@ -10882,7 +10868,7 @@ memory usage: 9.4 KB
 <td>Ashford</td>
 <td>0901501430</td>
 <td>09015</td>
-<td>Windham County</td>
+<td>Windham</td>
 <td>01430</td>
 </tr>
 <tr>
@@ -10890,7 +10876,7 @@ memory usage: 9.4 KB
 <td>Avon</td>
 <td>0900302060</td>
 <td>09003</td>
-<td>Hartford County</td>
+<td>Hartford</td>
 <td>02060</td>
 </tr>
 <tr>
@@ -10898,7 +10884,7 @@ memory usage: 9.4 KB
 <td>Barkhamsted</td>
 <td>0900502760</td>
 <td>09005</td>
-<td>Litchfield County</td>
+<td>Litchfield</td>
 <td>02760</td>
 </tr>
 </tbody>
@@ -10956,13 +10942,13 @@ memory usage: 9.4 KB
 <th>town_fips</th>
 <th>town</th>
 <th>total_pop</th>
-<th>pop_65+</th>
+<th>pop_65_plus</th>
 <th>poverty_universe</th>
 <th>below_poverty</th>
 <th>civ_noninst_pop</th>
 <th>insured_pop</th>
-<th>pop_18+</th>
-<th>bachelors_18+</th>
+<th>pop_18_plus</th>
+<th>bachelors_18_plus</th>
 <th>total_households</th>
 <th>pcnt_town_low_income</th>
 <th>pcnt_town_middle_class</th>
@@ -10975,7 +10961,7 @@ memory usage: 9.4 KB
 <td>Andover</td>
 <td>0901301080</td>
 <td>09013</td>
-<td>Tolland County</td>
+<td>Tolland</td>
 <td>01080</td>
 <td>Andover town, Capitol Planning Region, Connect...</td>
 <td>3148</td>
@@ -10996,7 +10982,7 @@ memory usage: 9.4 KB
 <td>Ansonia</td>
 <td>0900901220</td>
 <td>09009</td>
-<td>New Haven County</td>
+<td>New Haven</td>
 <td>01220</td>
 <td>Ansonia town, Naugatuck Valley Planning Region...</td>
 <td>18951</td>
@@ -11017,7 +11003,7 @@ memory usage: 9.4 KB
 <td>Ashford</td>
 <td>0901501430</td>
 <td>09015</td>
-<td>Windham County</td>
+<td>Windham</td>
 <td>01430</td>
 <td>Ashford town, Northeastern Connecticut Plannin...</td>
 <td>4220</td>
@@ -11049,7 +11035,7 @@ memory usage: 9.4 KB
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Arrange columns</span>
-<span class="n">ct</span> <span class="o">=</span> <span class="n">merged_ct</span><span class="p">[[</span><span class="s1">'county_fips'</span><span class="p">,</span> <span class="s1">'county_name'</span><span class="p">,</span> <span class="s1">'town_fips'</span><span class="p">,</span> <span class="s1">'town_name'</span><span class="p">,</span> <span class="s1">'total_pop'</span><span class="p">,</span> <span class="s1">'pop_65+'</span><span class="p">,</span> <span class="s1">'poverty_universe'</span><span class="p">,</span> <span class="s1">'below_poverty'</span><span class="p">,</span> <span class="s1">'civ_noninst_pop'</span><span class="p">,</span> <span class="s1">'insured_pop'</span><span class="p">,</span> <span class="s1">'pop_18+'</span><span class="p">,</span> <span class="s1">'bachelors_18+'</span><span class="p">,</span> 
+<span class="n">ct</span> <span class="o">=</span> <span class="n">merged_ct</span><span class="p">[[</span><span class="s1">'county_fips'</span><span class="p">,</span> <span class="s1">'county_name'</span><span class="p">,</span> <span class="s1">'town_fips'</span><span class="p">,</span> <span class="s1">'town_name'</span><span class="p">,</span> <span class="s1">'total_pop'</span><span class="p">,</span> <span class="s1">'pop_65_plus'</span><span class="p">,</span> <span class="s1">'poverty_universe'</span><span class="p">,</span> <span class="s1">'below_poverty'</span><span class="p">,</span> <span class="s1">'civ_noninst_pop'</span><span class="p">,</span> <span class="s1">'insured_pop'</span><span class="p">,</span> <span class="s1">'pop_18_plus'</span><span class="p">,</span> <span class="s1">'bachelors_18_plus'</span><span class="p">,</span> 
            <span class="s1">'total_households'</span><span class="p">,</span> <span class="s1">'pcnt_town_low_income'</span><span class="p">,</span> <span class="s1">'pcnt_town_middle_class'</span><span class="p">,</span> <span class="s1">'pcnt_town_upper_class'</span><span class="p">]]</span>
 <span class="n">ct</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
 </pre></div>
@@ -11074,13 +11060,13 @@ Data columns (total 16 columns):
  2   town_fips               169 non-null    str    
  3   town_name               169 non-null    str    
  4   total_pop               169 non-null    int64  
- 5   pop_65+                 169 non-null    int64  
+ 5   pop_65_plus             169 non-null    int64  
  6   poverty_universe        169 non-null    int64  
  7   below_poverty           169 non-null    int64  
  8   civ_noninst_pop         169 non-null    int64  
  9   insured_pop             169 non-null    int64  
- 10  pop_18+                 169 non-null    int64  
- 11  bachelors_18+           169 non-null    float64
+ 10  pop_18_plus             169 non-null    int64  
+ 11  bachelors_18_plus       169 non-null    float64
  12  total_households        169 non-null    float64
  13  pcnt_town_low_income    169 non-null    float64
  14  pcnt_town_middle_class  169 non-null    float64
@@ -11141,13 +11127,13 @@ memory usage: 21.3 KB
 <th>town_fips</th>
 <th>town_name</th>
 <th>total_pop</th>
-<th>pop_65+</th>
+<th>pop_65_plus</th>
 <th>poverty_universe</th>
 <th>below_poverty</th>
 <th>civ_noninst_pop</th>
 <th>insured_pop</th>
-<th>pop_18+</th>
-<th>bachelors_18+</th>
+<th>pop_18_plus</th>
+<th>bachelors_18_plus</th>
 <th>total_households</th>
 <th>pcnt_town_low_income</th>
 <th>pcnt_town_middle_class</th>
@@ -11161,7 +11147,7 @@ memory usage: 21.3 KB
 <tr>
 <th>8</th>
 <td>09001</td>
-<td>Fairfield County</td>
+<td>Fairfield</td>
 <td>04720</td>
 <td>Bethel</td>
 <td>20498</td>
@@ -11183,7 +11169,7 @@ memory usage: 21.3 KB
 <tr>
 <th>14</th>
 <td>09001</td>
-<td>Fairfield County</td>
+<td>Fairfield</td>
 <td>08070</td>
 <td>Bridgeport</td>
 <td>148012</td>
@@ -11205,7 +11191,7 @@ memory usage: 21.3 KB
 <tr>
 <th>17</th>
 <td>09001</td>
-<td>Fairfield County</td>
+<td>Fairfield</td>
 <td>08980</td>
 <td>Brookfield</td>
 <td>17490</td>
@@ -11239,7 +11225,8 @@ memory usage: 21.3 KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">ct</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'pcnt_town_low_income'</span><span class="p">,</span> <span class="s1">'pcnt_town_middle_class'</span><span class="p">,</span> <span class="s1">'pcnt_town_upper_class'</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Drop town-level percentage columns before aggregating</span>
+<span class="n">ct</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'pcnt_town_low_income'</span><span class="p">,</span> <span class="s1">'pcnt_town_middle_class'</span><span class="p">,</span> <span class="s1">'pcnt_town_upper_class'</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ct</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">'county_name'</span><span class="p">,</span> <span class="s1">'town_name'</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -11276,13 +11263,13 @@ memory usage: 21.3 KB
 <th>town_fips</th>
 <th>town_name</th>
 <th>total_pop</th>
-<th>pop_65+</th>
+<th>pop_65_plus</th>
 <th>poverty_universe</th>
 <th>below_poverty</th>
 <th>civ_noninst_pop</th>
 <th>insured_pop</th>
-<th>pop_18+</th>
-<th>bachelors_18+</th>
+<th>pop_18_plus</th>
+<th>bachelors_18_plus</th>
 <th>total_households</th>
 <th>pop_low_income</th>
 <th>pop_middle_class</th>
@@ -11293,7 +11280,7 @@ memory usage: 21.3 KB
 <tr>
 <th>8</th>
 <td>09001</td>
-<td>Fairfield County</td>
+<td>Fairfield</td>
 <td>04720</td>
 <td>Bethel</td>
 <td>20498</td>
@@ -11312,7 +11299,7 @@ memory usage: 21.3 KB
 <tr>
 <th>14</th>
 <td>09001</td>
-<td>Fairfield County</td>
+<td>Fairfield</td>
 <td>08070</td>
 <td>Bridgeport</td>
 <td>148012</td>
@@ -11331,7 +11318,7 @@ memory usage: 21.3 KB
 <tr>
 <th>17</th>
 <td>09001</td>
-<td>Fairfield County</td>
+<td>Fairfield</td>
 <td>08980</td>
 <td>Brookfield</td>
 <td>17490</td>
@@ -11362,7 +11349,8 @@ memory usage: 21.3 KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">agg_ct</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'town_fips'</span><span class="p">,</span> <span class="s1">'town_name'</span><span class="p">])</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'county_name'</span><span class="p">,</span><span class="s1">'county_fips'</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Aggregate CT data to county level</span>
+<span class="n">agg_ct</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'town_fips'</span><span class="p">,</span> <span class="s1">'town_name'</span><span class="p">])</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'county_name'</span><span class="p">,</span><span class="s1">'county_fips'</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">agg_ct</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -11397,13 +11385,13 @@ memory usage: 21.3 KB
 <th>county_name</th>
 <th>county_fips</th>
 <th>total_pop</th>
-<th>pop_65+</th>
+<th>pop_65_plus</th>
 <th>poverty_universe</th>
 <th>below_poverty</th>
 <th>civ_noninst_pop</th>
 <th>insured_pop</th>
-<th>pop_18+</th>
-<th>bachelors_18+</th>
+<th>pop_18_plus</th>
+<th>bachelors_18_plus</th>
 <th>total_households</th>
 <th>pop_low_income</th>
 <th>pop_middle_class</th>
@@ -11413,7 +11401,7 @@ memory usage: 21.3 KB
 <tbody>
 <tr>
 <th>0</th>
-<td>Fairfield County</td>
+<td>Fairfield</td>
 <td>09001</td>
 <td>959099</td>
 <td>160339</td>
@@ -11430,7 +11418,7 @@ memory usage: 21.3 KB
 </tr>
 <tr>
 <th>1</th>
-<td>Hartford County</td>
+<td>Hartford</td>
 <td>09003</td>
 <td>895736</td>
 <td>156768</td>
@@ -11447,7 +11435,7 @@ memory usage: 21.3 KB
 </tr>
 <tr>
 <th>2</th>
-<td>Litchfield County</td>
+<td>Litchfield</td>
 <td>09005</td>
 <td>185732</td>
 <td>40743</td>
@@ -11464,7 +11452,7 @@ memory usage: 21.3 KB
 </tr>
 <tr>
 <th>3</th>
-<td>Middlesex County</td>
+<td>Middlesex</td>
 <td>09007</td>
 <td>164983</td>
 <td>35131</td>
@@ -11481,7 +11469,7 @@ memory usage: 21.3 KB
 </tr>
 <tr>
 <th>4</th>
-<td>New Haven County</td>
+<td>New Haven</td>
 <td>09009</td>
 <td>862028</td>
 <td>157625</td>
@@ -11527,22 +11515,22 @@ memory usage: 21.3 KB
 <pre>&lt;class 'pandas.DataFrame'&gt;
 RangeIndex: 8 entries, 0 to 7
 Data columns (total 14 columns):
- #   Column            Non-Null Count  Dtype  
----  ------            --------------  -----  
- 0   county_name       8 non-null      str    
- 1   county_fips       8 non-null      str    
- 2   total_pop         8 non-null      int64  
- 3   pop_65+           8 non-null      int64  
- 4   poverty_universe  8 non-null      int64  
- 5   below_poverty     8 non-null      int64  
- 6   civ_noninst_pop   8 non-null      int64  
- 7   insured_pop       8 non-null      int64  
- 8   pop_18+           8 non-null      int64  
- 9   bachelors_18+     8 non-null      float64
- 10  total_households  8 non-null      float64
- 11  pop_low_income    8 non-null      float64
- 12  pop_middle_class  8 non-null      float64
- 13  pop_upper_class   8 non-null      float64
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   county_name        8 non-null      str    
+ 1   county_fips        8 non-null      str    
+ 2   total_pop          8 non-null      int64  
+ 3   pop_65_plus        8 non-null      int64  
+ 4   poverty_universe   8 non-null      int64  
+ 5   below_poverty      8 non-null      int64  
+ 6   civ_noninst_pop    8 non-null      int64  
+ 7   insured_pop        8 non-null      int64  
+ 8   pop_18_plus        8 non-null      int64  
+ 9   bachelors_18_plus  8 non-null      float64
+ 10  total_households   8 non-null      float64
+ 11  pop_low_income     8 non-null      float64
+ 12  pop_middle_class   8 non-null      float64
+ 13  pop_upper_class    8 non-null      float64
 dtypes: float64(5), int64(7), str(2)
 memory usage: 1.0 KB
 </pre>
@@ -11558,11 +11546,11 @@ memory usage: 1.0 KB
 <div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate percentages</span>
-<span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pcnt_65+'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pop_65+'</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'total_pop'</span><span class="p">])</span> <span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate percentages for CT</span>
+<span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pcnt_65_plus'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pop_65_plus'</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'total_pop'</span><span class="p">])</span> <span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'poverty_rate'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">agg_ct</span><span class="p">[</span><span class="s1">'below_poverty'</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'poverty_universe'</span><span class="p">])</span> <span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pcnt_insured'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">agg_ct</span><span class="p">[</span><span class="s1">'insured_pop'</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'civ_noninst_pop'</span><span class="p">])</span> <span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pcnt_bachelors'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">agg_ct</span><span class="p">[</span><span class="s1">'bachelors_18+'</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pop_18+'</span><span class="p">])</span> <span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pcnt_bachelors'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">agg_ct</span><span class="p">[</span><span class="s1">'bachelors_18_plus'</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pop_18_plus'</span><span class="p">])</span> <span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pcnt_low_income'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pop_low_income'</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'total_households'</span><span class="p">])</span> <span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pcnt_middle_class'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pop_middle_class'</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'total_households'</span><span class="p">])</span> <span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pcnt_upper_class'</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">agg_ct</span><span class="p">[</span><span class="s1">'pop_upper_class'</span><span class="p">]</span> <span class="o">/</span> <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'total_households'</span><span class="p">])</span> <span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -11601,18 +11589,18 @@ memory usage: 1.0 KB
 <th>county_name</th>
 <th>county_fips</th>
 <th>total_pop</th>
-<th>pop_65+</th>
+<th>pop_65_plus</th>
 <th>poverty_universe</th>
 <th>below_poverty</th>
 <th>civ_noninst_pop</th>
 <th>insured_pop</th>
-<th>pop_18+</th>
-<th>bachelors_18+</th>
+<th>pop_18_plus</th>
+<th>bachelors_18_plus</th>
 <th>...</th>
 <th>pop_low_income</th>
 <th>pop_middle_class</th>
 <th>pop_upper_class</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
 <th>pcnt_bachelors</th>
@@ -11624,7 +11612,7 @@ memory usage: 1.0 KB
 <tbody>
 <tr>
 <th>0</th>
-<td>Fairfield County</td>
+<td>Fairfield</td>
 <td>09001</td>
 <td>959099</td>
 <td>160339</td>
@@ -11648,7 +11636,7 @@ memory usage: 1.0 KB
 </tr>
 <tr>
 <th>1</th>
-<td>Hartford County</td>
+<td>Hartford</td>
 <td>09003</td>
 <td>895736</td>
 <td>156768</td>
@@ -11672,7 +11660,7 @@ memory usage: 1.0 KB
 </tr>
 <tr>
 <th>2</th>
-<td>Litchfield County</td>
+<td>Litchfield</td>
 <td>09005</td>
 <td>185732</td>
 <td>40743</td>
@@ -11696,7 +11684,7 @@ memory usage: 1.0 KB
 </tr>
 <tr>
 <th>3</th>
-<td>Middlesex County</td>
+<td>Middlesex</td>
 <td>09007</td>
 <td>164983</td>
 <td>35131</td>
@@ -11720,7 +11708,7 @@ memory usage: 1.0 KB
 </tr>
 <tr>
 <th>4</th>
-<td>New Haven County</td>
+<td>New Haven</td>
 <td>09009</td>
 <td>862028</td>
 <td>157625</td>
@@ -11761,7 +11749,7 @@ memory usage: 1.0 KB
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Rename and rearrange columns before appending CT data to NY &amp; NJ</span>
 <span class="n">agg_ct</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">'county_fips'</span><span class="p">:</span> <span class="s1">'fips'</span><span class="p">,</span> <span class="s1">'county_name'</span><span class="p">:</span> <span class="s1">'county'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">agg_ct</span><span class="p">[</span><span class="s1">'state'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'CT'</span>
-<span class="n">agg_ct</span> <span class="o">=</span> <span class="n">agg_ct</span><span class="p">[[</span><span class="s1">'fips'</span><span class="p">,</span> <span class="s1">'county'</span><span class="p">,</span> <span class="s1">'state'</span><span class="p">,</span> <span class="s1">'total_pop'</span><span class="p">,</span> <span class="s1">'pcnt_65+'</span><span class="p">,</span> <span class="s1">'poverty_rate'</span><span class="p">,</span> <span class="s1">'pcnt_insured'</span><span class="p">,</span> <span class="s1">'pcnt_bachelors'</span><span class="p">,</span> <span class="s1">'pcnt_low_income'</span><span class="p">,</span> <span class="s1">'pcnt_middle_class'</span><span class="p">,</span> <span class="s1">'pcnt_upper_class'</span><span class="p">]]</span>
+<span class="n">agg_ct</span> <span class="o">=</span> <span class="n">agg_ct</span><span class="p">[[</span><span class="s1">'fips'</span><span class="p">,</span> <span class="s1">'county'</span><span class="p">,</span> <span class="s1">'state'</span><span class="p">,</span> <span class="s1">'total_pop'</span><span class="p">,</span> <span class="s1">'pcnt_65_plus'</span><span class="p">,</span> <span class="s1">'poverty_rate'</span><span class="p">,</span> <span class="s1">'pcnt_insured'</span><span class="p">,</span> <span class="s1">'pcnt_bachelors'</span><span class="p">,</span> <span class="s1">'pcnt_low_income'</span><span class="p">,</span> <span class="s1">'pcnt_middle_class'</span><span class="p">,</span> <span class="s1">'pcnt_upper_class'</span><span class="p">]]</span>
 
 <span class="n">agg_ct</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
@@ -11798,7 +11786,7 @@ memory usage: 1.0 KB
 <th>county</th>
 <th>state</th>
 <th>total_pop</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
 <th>pcnt_bachelors</th>
@@ -11811,7 +11799,7 @@ memory usage: 1.0 KB
 <tr>
 <th>0</th>
 <td>09001</td>
-<td>Fairfield County</td>
+<td>Fairfield</td>
 <td>CT</td>
 <td>959099</td>
 <td>16.7</td>
@@ -11825,7 +11813,7 @@ memory usage: 1.0 KB
 <tr>
 <th>1</th>
 <td>09003</td>
-<td>Hartford County</td>
+<td>Hartford</td>
 <td>CT</td>
 <td>895736</td>
 <td>17.5</td>
@@ -11839,7 +11827,7 @@ memory usage: 1.0 KB
 <tr>
 <th>2</th>
 <td>09005</td>
-<td>Litchfield County</td>
+<td>Litchfield</td>
 <td>CT</td>
 <td>185732</td>
 <td>21.9</td>
@@ -11887,7 +11875,7 @@ Data columns (total 11 columns):
  1   county             8 non-null      str    
  2   state              8 non-null      str    
  3   total_pop          8 non-null      int64  
- 4   pcnt_65+           8 non-null      float64
+ 4   pcnt_65_plus       8 non-null      float64
  5   poverty_rate       8 non-null      float64
  6   pcnt_insured       8 non-null      float64
  7   pcnt_bachelors     8 non-null      float64
@@ -11943,7 +11931,7 @@ Data columns (total 11 columns):
  1   county             91 non-null     str    
  2   state              91 non-null     str    
  3   total_pop          91 non-null     int64  
- 4   pcnt_65+           91 non-null     float64
+ 4   pcnt_65_plus       91 non-null     float64
  5   poverty_rate       91 non-null     float64
  6   pcnt_insured       91 non-null     float64
  7   pcnt_bachelors     91 non-null     float64
@@ -12000,7 +11988,7 @@ memory usage: 8.5 KB
 <th>county</th>
 <th>state</th>
 <th>total_pop</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
 <th>pcnt_bachelors</th>
@@ -12013,7 +12001,7 @@ memory usage: 8.5 KB
 <tr>
 <th>0</th>
 <td>36001</td>
-<td>Albany County</td>
+<td>Albany</td>
 <td>NY</td>
 <td>315374</td>
 <td>17.8</td>
@@ -12027,7 +12015,7 @@ memory usage: 8.5 KB
 <tr>
 <th>1</th>
 <td>36003</td>
-<td>Allegany County</td>
+<td>Allegany</td>
 <td>NY</td>
 <td>47027</td>
 <td>19.7</td>
@@ -12041,7 +12029,7 @@ memory usage: 8.5 KB
 <tr>
 <th>2</th>
 <td>36005</td>
-<td>Bronx County</td>
+<td>Bronx</td>
 <td>NY</td>
 <td>1419250</td>
 <td>13.9</td>
@@ -12055,7 +12043,7 @@ memory usage: 8.5 KB
 <tr>
 <th>3</th>
 <td>36007</td>
-<td>Broome County</td>
+<td>Broome</td>
 <td>NY</td>
 <td>197738</td>
 <td>19.9</td>
@@ -12069,7 +12057,7 @@ memory usage: 8.5 KB
 <tr>
 <th>4</th>
 <td>36009</td>
-<td>Cattaraugus County</td>
+<td>Cattaraugus</td>
 <td>NY</td>
 <td>76479</td>
 <td>20.3</td>
@@ -12130,7 +12118,7 @@ memory usage: 8.5 KB
 <th>county</th>
 <th>state</th>
 <th>total_pop</th>
-<th>pcnt_65+</th>
+<th>pcnt_65_plus</th>
 <th>poverty_rate</th>
 <th>pcnt_insured</th>
 <th>pcnt_bachelors</th>
@@ -12143,7 +12131,7 @@ memory usage: 8.5 KB
 <tr>
 <th>3</th>
 <td>09007</td>
-<td>Middlesex County</td>
+<td>Middlesex</td>
 <td>CT</td>
 <td>164983</td>
 <td>21.3</td>
@@ -12157,7 +12145,7 @@ memory usage: 8.5 KB
 <tr>
 <th>4</th>
 <td>09009</td>
-<td>New Haven County</td>
+<td>New Haven</td>
 <td>CT</td>
 <td>862028</td>
 <td>18.3</td>
@@ -12171,7 +12159,7 @@ memory usage: 8.5 KB
 <tr>
 <th>5</th>
 <td>09011</td>
-<td>New London County</td>
+<td>New London</td>
 <td>CT</td>
 <td>267707</td>
 <td>19.7</td>
@@ -12185,7 +12173,7 @@ memory usage: 8.5 KB
 <tr>
 <th>6</th>
 <td>09013</td>
-<td>Tolland County</td>
+<td>Tolland</td>
 <td>CT</td>
 <td>146907</td>
 <td>17.9</td>
@@ -12199,7 +12187,7 @@ memory usage: 8.5 KB
 <tr>
 <th>7</th>
 <td>09015</td>
-<td>Windham County</td>
+<td>Windham</td>
 <td>CT</td>
 <td>116156</td>
 <td>18.2</td>
