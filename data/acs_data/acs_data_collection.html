@@ -7835,7 +7835,19 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Constructing-API-Request-URLs">Constructing API Request URLs<a class="anchor-link" href="#Constructing-API-Request-URLs">¶</a></h2><p>To construct the API request URLs, we first need to identify <strong>parameters for county-level/town-level data in selected states</strong> and <strong>variable codes</strong>.</p>
+<h2 id="Constructing-API-Request-URLs">Constructing API Request URLs<a class="anchor-link" href="#Constructing-API-Request-URLs">¶</a></h2><p>To construct the API request URLs, we first need to identify the <strong>URL</strong>, <strong>parameters for county-level/town-level data in selected states</strong> and <strong>variable codes</strong>.</p>
+<h3 id="URLs">URLs<a class="anchor-link" href="#URLs">¶</a></h3><p>A <strong>table ID</strong> starts with a letter indicating the type of table:</p>
+<ul>
+<li>S - Subject Table. Ex: S0101</li>
+<li>B - Detailed Table. Ex: B01001</li>
+<li>DP - Data Profile Table. Ex: DP01</li>
+</ul>
+<p>URLs for 3 types of table in ACS data:</p>
+<ul>
+<li>Subject Tables: <code>https://api.census.gov/data/2023/acs/acs5/subject</code></li>
+<li>Detailed Tables: <code>https://api.census.gov/data/2023/acs/acs5</code></li>
+<li>Data Profile Tables: <code>https://api.census.gov/data/2023/acs/acs5//profile</code></li>
+</ul>
 <h3 id="Parameters-for-county-level-or-town-level-data-in-selected-states">Parameters for county-level or town-level data in selected states<a class="anchor-link" href="#Parameters-for-county-level-or-town-level-data-in-selected-states">¶</a></h3><ul>
 <li>Parameter for selected states is the FIPS codes of the states (CT - 09, NY - 36, NJ - 34): <code>in=state:09</code> or <code>in=state:36,34</code>. These parameters will return column <code>state</code> for the state FIPS
 Parameter for county level data: <code>for=county:*</code> will return column <code>county</code> for county FIPS</li>
