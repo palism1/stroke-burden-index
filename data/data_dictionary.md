@@ -82,6 +82,8 @@ Source: Computed from county population centers (Census 2020) and geocoded strok
 | `nearest_stroke_distance` | float | Straight-line distance in miles to nearest basic stroke center |
 | `nearest_stroke_distance_advanced` | float | Straight-line distance in miles to nearest advanced stroke center |
 
+These 4 columns are the inputs to the Geographic Accessibility Index (GAI). The GAI is calculated via PCA across all 4 variables and normalized to 0-100. Higher = better access (closer). See the geographic accessibility analysis notebook for the index calculation.
+
 ---
 
 ## Variables still needed
@@ -95,6 +97,7 @@ These are planned for upcoming data collection. Follow the naming convention abo
 | `hospital_beds_per_100k` | Hospital beds per 100,000 population | HIFLD BEDS column |
 | `pcp_per_100k` | Primary care physicians per 100,000 population | County Health Rankings |
 | `neurologists_per_100k` | Neurologists per 100,000 population | HRSA AHRF |
+| `stroke_centers_per_100k` | Stroke centers per 100,000 population | Geocoded stroke center files + ACS population |
 
 ### For SVI (health variables)
 | Suggested column name | Description | Planned source |

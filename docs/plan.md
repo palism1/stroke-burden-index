@@ -98,10 +98,11 @@ Every index follows the same pipeline: **raw → align direction → standardize
 4. **Check direction** (flip the sign if PC1 points the wrong way).
 5. **Normalize to 0–100.** `0` = worst access, `100` = best access.
 
-### 2c. Geographic Access Score
+### 2c. Geographic Accessibility Index (GAI)
 
-- Take travel distance to nearest stroke center → **standardize** → score **0–100**.
-- `0` = very far, `100` = very close (so higher = better access, same orientation as SCAI).
+- Built from **4 variables**: `drive_time_min`, `drive_time_advanced`, `nearest_stroke_distance`, `nearest_stroke_distance_advanced`.
+- All 4 run through the standard pipeline: **align direction** so higher = better access (flip the variables, since lower drive time / distance = better access) → **standardize** → **PCA** → **normalize to 0–100**.
+- `0` = worst access (far), `100` = best access (close), same orientation as SCAI.
 
 ### 2d. Stroke Burden Priority Index (SBPI)
 
