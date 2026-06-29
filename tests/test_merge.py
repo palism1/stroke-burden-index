@@ -51,7 +51,7 @@ def test_master_no_duplicate_fips():
 
 def test_master_fips_are_strings():
     master = build_master()
-    assert master["fips"].dtype == object, "fips column should be string (object dtype)"
+    assert pd.api.types.is_string_dtype(master["fips"]), "fips column should be string dtype"
 
 
 def test_master_fips_are_5_chars():
