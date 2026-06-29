@@ -56,10 +56,15 @@ _BASE_URL = "https://geocoding.geo.census.gov/geocoder/geographies/coordinates"
 _DEFAULT_VINTAGE = "4"
 _CT_VINTAGE = "419"  # old CT county codes (09001-09015), not planning regions
 _SLEEP_SECONDS = 0.5  # be polite to the free API / avoid rate limiting
+_MAX_RETRIES = 3      # attempts per row before giving up
 
 
 def _query_county(lon, lat, vintage):
-    """Return (state_fips, county_fips) for a point, or None on any failure."""
+    """Return (state_fips, county_fips) for a point, or None on any failure.
+
+    Retries up to _MAX_RETRIES times with exponential backoff so transient
+    rate-limit or timeout errors don't leave rows blank.
+    """
     params = {
         "x": lon,
         "y": lat,
@@ -68,13 +73,23 @@ def _query_county(lon, lat, vintage):
         "layers": "86",
         "format": "json",
     }
-    resp = requests.get(_BASE_URL, params=params, timeout=30)
-    resp.raise_for_status()
-    counties = resp.json()["result"]["geographies"]["Counties"]
-    if not counties:
-        return None
-    county = counties[0]
-    return county["STATE"], county["COUNTY"]
+    last_exc = None
+    for attempt in range(_MAX_RETRIES):
+        try:
+            resp = requests.get(_BASE_URL, params=params, timeout=30)
+            resp.raise_for_status()
+            counties = resp.json()["result"]["geographies"]["Counties"]
+            if not counties:
+                return None
+            county = counties[0]
+            return county["STATE"], county["COUNTY"]
+        except (requests.RequestException, KeyError, ValueError) as exc:
+            last_exc = exc
+            if attempt < _MAX_RETRIES - 1:
+                wait = 2 ** attempt
+                print(f"    retrying in {wait}s (attempt {attempt + 1}/{_MAX_RETRIES}): {exc}")
+                time.sleep(wait)
+    raise last_exc
 
 
 def lookup_fips(lon, lat):
