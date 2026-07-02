@@ -13,6 +13,7 @@ Identifying high-priority stroke intervention areas across the United States by 
 | Resource | Path |
 |---|---|
 | Project plan and methodology | [docs/plan.md](docs/plan.md) |
+| Pipeline guide (adding data, contracts, building indices) | [docs/pipeline_guide.md](docs/pipeline_guide.md) |
 | Data dictionary and naming conventions | [data/data_dictionary.md](data/data_dictionary.md) |
 
 ---

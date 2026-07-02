@@ -69,11 +69,26 @@ def _load_pop_density() -> pd.DataFrame:
     return df.drop(columns=["county", "state"], errors="ignore")
 
 
+def _load_scai() -> pd.DataFrame | None:
+    """SCAI is still being collected — returns None until the file lands.
+
+    Expected columns: fips, hospitals_per_100k, hospital_beds_per_100k,
+    pcp_per_100k, neurologists_per_100k, stroke_centers_per_100k
+    (see data/scai_data/README.md).
+    """
+    path = DATA / "scai_data" / "scai_data.csv"
+    if not path.exists():
+        return None
+    df = pd.read_csv(path, dtype={"fips": str})
+    return df.drop(columns=["county", "state"], errors="ignore")
+
+
 # ---------------------------------------------------------------------------
 # Add new sources here when they land. Pattern:
 #   def _load_<name>() -> pd.DataFrame:
 #       df = pd.read_csv(DATA / "<file>.csv", dtype={"fips": str})
 #       return df.drop(columns=["county", "state"], errors="ignore")
+# A loader may return None to signal its file isn't collected yet.
 # ---------------------------------------------------------------------------
 
 
@@ -82,13 +97,21 @@ def build_master() -> pd.DataFrame:
     validate_ct_codes(spine, fips_col="fips")
 
     master = spine
-    for loader in [_load_acs, _load_mortality, _load_geographic, _load_cdc_places, _load_pop_density]:
-        master = master.merge(loader(), on="fips", how="left")
+    skipped = []
+    for loader in [_load_acs, _load_mortality, _load_geographic, _load_cdc_places, _load_pop_density, _load_scai]:
+        df = loader()
+        if df is None:
+            skipped.append(loader.__name__.removeprefix("_load_"))
+            continue
+        master = master.merge(df, on="fips", how="left")
 
     out = DATA / "master.csv"
     master.to_csv(out, index=False)
 
-    print(f"wrote {out.relative_to(REPO_ROOT)}  ({len(master)} rows, {len(master.columns)} columns)")
+    out_label = out.relative_to(REPO_ROOT) if out.is_relative_to(REPO_ROOT) else out
+    print(f"wrote {out_label}  ({len(master)} rows, {len(master.columns)} columns)")
+    if skipped:
+        print(f"skipped (file not found): {', '.join(skipped)}")
     missing = master.isnull().sum()
     missing = missing[missing > 0]
     if not missing.empty:

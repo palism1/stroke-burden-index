@@ -1,0 +1,106 @@
+---
+layout: default
+title: Pipeline guide
+---
+
+# Pipeline guide — how to use the data infrastructure
+
+One-page reference for working with the repo's data pipeline. Audience: anyone
+adding data files or building indices in notebooks. For methodology see the
+[project plan](./plan.html); for variable definitions see
+`data/data_dictionary.md`.
+
+---
+
+## Adding a data file
+
+Every county-level CSV must follow the data dictionary conventions:
+
+- **`fips`**: zero-padded 5-character string (`"09001"`, never `9001`). Read it
+  back with `pd.read_csv(path, dtype={"fips": str})` to check yours survives a
+  round trip.
+- **Columns**: lowercase snake_case (`pcp_per_100k`, not `PCP Per 100k`).
+- **Rows**: exactly 91 (62 NY, 21 NJ, 8 CT), one per county.
+- **Rates**: `_per_100k` suffix for per-100,000 rates.
+
+CI checks all of this automatically on every push and PR
+(`tests/test_data_contracts.py`). If your PR goes red there, the error names
+the file and the offending values — fix and push again. If you are
+*intentionally* adding or renaming a column, update two things in the same PR:
+the registry at the top of `tests/test_data_contracts.py` and
+`data/data_dictionary.md`.
+
+### SCAI specifically
+
+Commit the file to exactly `data/scai_data/scai_data.csv` (inside the folder,
+not the repo root) with columns `fips`, `hospitals_per_100k`,
+`hospital_beds_per_100k`, `pcp_per_100k`, `neurologists_per_100k`,
+`stroke_centers_per_100k`. That's all — the merge and database pipelines are
+already wired to pick it up automatically the moment it merges. Full spec:
+`data/scai_data/README.md`.
+
+---
+
+## Getting the merged data in a notebook
+
+Regenerate locally whenever data files change (both outputs are gitignored):
+
+```bash
+python src/merge.py       # -> data/master.csv, one row per county
+python src/build_db.py    # -> data/stroke_burden.db (SQLite)
+```
+
+```python
+import sqlite3, pandas as pd
+
+con = sqlite3.connect("data/stroke_burden.db")
+df = pd.read_sql("SELECT * FROM master", con)   # everything joined on fips
+con.close()
+```
+
+Always join on `fips`, never on county/state names.
+
+---
+
+## Building an index (SVI / SCAI / GAI)
+
+Don't hand-roll the PCA pipeline — `src/index_pipeline.py` implements the
+standard pipeline from the plan (align direction → standardize → PCA → sign
+check → normalize 0–100) once, with tests.
+
+```python
+import sys; sys.path.insert(0, "src")    # adjust to your notebook's location
+from index_pipeline import build_index
+
+result = build_index(
+    df,
+    ["pcnt_65_plus", "poverty_rate", "smoking_prevalence", "pcnt_bachelors"],
+    flip=["pcnt_bachelors"],     # variables whose high value points the "wrong" way
+    name="svi",
+)
+df["svi"] = result.scores                # 0-100
+result.loadings                          # PC1 loadings per variable (for write-ups)
+result.explained_variance_ratio          # fraction of variance PC1 captures
+```
+
+**The one thing you must get right is `flip`.** Put every variable whose
+*high* raw value points against the index direction in it:
+
+| Index | Direction | What to flip |
+|---|---|---|
+| SVI | higher = more vulnerable | protective vars (income, education, insurance) |
+| SCAI | higher = better access | nothing (all per-capita access vars already point up) |
+| GAI | higher = better access | all four drive-time/distance vars (lower = closer = better) |
+
+Everything else is automatic — in particular the PC1 sign check, so the index
+can't silently come out backwards. The function raises on NaN on purpose:
+imputing or dropping is an analytical decision that belongs in your notebook,
+never silently inside the pipeline.
+
+---
+
+## Mapping
+
+County boundary geometry keyed on `fips` lives at
+`reference/county_boundaries/ny_nj_ct_counties.geojson` — ready for Plotly or
+geopandas choropleths once index scores exist. See the README in that folder.
