@@ -19,3 +19,7 @@ jobs:
       # merge fails the PR, not someone's next local run. Outputs are gitignored.
       - run: python src/merge.py
       - run: python src/build_db.py
+      # Regenerate the dashboard's data files and fail if the committed
+      # copies are stale (someone changed data without re-exporting).
+      - run: python src/build_site_data.py
+      - run: git diff --exit-code docs/data/
