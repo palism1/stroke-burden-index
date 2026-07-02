@@ -72,9 +72,17 @@ function showLoadError() {
   box.hidden = false;
 }
 
+// A value counts as "missing" if it's null/undefined or a non-finite number
+// (NaN/Infinity from a bad upstream calc). Everything that decides between a
+// real value and the "no data" treatment routes through here so the choropleth,
+// tooltips, and details panel stay consistent.
+function isMissing(v) {
+  return v === null || v === undefined || (typeof v === "number" && !Number.isFinite(v));
+}
+
 function hasField(f) {
   return f in state.data.fields &&
-    Object.values(state.data.counties).some(c => c[f] !== null && c[f] !== undefined);
+    Object.values(state.data.counties).some(c => !isMissing(c[f]));
 }
 
 function fieldLabel(f) {
@@ -212,7 +220,7 @@ function paletteSubset(n) {
 function recolor() {
   const metric = state.metric;
   const values = Object.values(state.data.counties)
-    .map(c => c[metric]).filter(v => v !== null && v !== undefined);
+    .map(c => c[metric]).filter(v => !isMissing(v));
   const breaks = quantileBreaks(values, PALETTE.length);
   const palette = paletteSubset(breaks.length + 1);
 
@@ -225,7 +233,7 @@ function recolor() {
   for (const [fips, c] of Object.entries(state.data.counties)) {
     const path = state.paths[fips];
     const v = c[metric];
-    path.setAttribute("fill", v === null || v === undefined ? NO_DATA_COLOR : palette[classOf(v)]);
+    path.setAttribute("fill", isMissing(v) ? NO_DATA_COLOR : palette[classOf(v)]);
     path.querySelector("title").textContent =
       `${c.county}, ${c.state} — ${fieldLabel(metric)}: ${formatValue(v)}`;
     path.setAttribute("aria-label", `${c.county} County, ${c.state}`);
@@ -285,7 +293,7 @@ function selectCounty(fips) {
       label.textContent = state.data.fields[f].label;
       const value = document.createElement("span");
       const v = c[f];
-      value.className = "value" + (v === null || v === undefined ? " na" : "");
+      value.className = "value" + (isMissing(v) ? " na" : "");
       value.textContent = formatValue(v, state.data.fields[f].unit);
       row.appendChild(label);
       row.appendChild(value);
@@ -306,13 +314,17 @@ function activateMatrix() {
 
 // --- formatting -------------------------------------------------------
 
+// Numbers >= 1000 read as whole counts with thousands separators (e.g.
+// population, density). Smaller numbers keep a fixed single decimal so a
+// column of values lines up (3.0 / 12.0 / 3.6) instead of raggedly mixing
+// "3" with "3.6" — the details rows use tabular-nums for exactly this.
 function fmtNum(v) {
   if (v >= 1000) return Math.round(v).toLocaleString();
-  return (Math.round(v * 10) / 10).toLocaleString();
+  return v.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 }
 
 function formatValue(v, unit) {
-  if (v === null || v === undefined) return "Not available";
+  if (isMissing(v)) return "Not available";
   const n = typeof v === "number" ? fmtNum(v) : v;
   if (!unit) return n;
   if (unit === "%") return `${n}%`;
