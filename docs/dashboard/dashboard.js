@@ -9,7 +9,28 @@ const NO_DATA_COLOR = "#e8e8e8";
 const DEFAULT_METRIC = "drive_time_min";
 const SVG_W = 900, SVG_H = 640, PAD = 10;
 
-const state = { data: null, geo: null, metric: null, selected: null, paths: {} };
+// Zoom/pan tuning. Zoom is expressed as a factor over the full extent, so
+// MIN_ZOOM = 1 means the whole map fits exactly and MAX_ZOOM = 12 is the
+// tightest we ever let the view get (protects tiny counties from becoming
+// microscopic and keeps outlines meaningful). DRAG_THRESHOLD_PX separates a
+// click-that-selects from a real pan so a small pointer wobble still selects.
+const MIN_ZOOM = 1, MAX_ZOOM = 12;
+const WHEEL_STEP = 1.0015;      // per unit of deltaY; e^(deltaY*ln(step))-ish feel
+const BUTTON_ZOOM = 1.5;        // +/- buttons multiply/divide the current zoom
+const DRAG_THRESHOLD_PX = 4;    // screen px of motion before a drag suppresses select
+const ZOOM_ANIM_MS = 300;       // zoom-to-selection ease duration
+
+// view holds the live viewBox {x,y,w,h}; bboxes maps fips -> projected county
+// bounding box {x,y,w,h} in SVG units (filled during drawMap, used by
+// zoom-to-selection). anim tracks an in-flight zoom ease so a new one cancels
+// it. _testSyncAnim makes the ease resolve in a single frame (smoke harness).
+const state = {
+  data: null, geo: null, metric: null, selected: null, paths: {},
+  view: { x: 0, y: 0, w: SVG_W, h: SVG_H },
+  bboxes: {},
+  anim: null,
+  _testSyncAnim: false,
+};
 
 async function init() {
   let data, geo;
@@ -165,15 +186,24 @@ function forEachRing(geo, fn, feature) {
 
 function drawMap() {
   const svg = document.getElementById("map");
-  svg.setAttribute("viewBox", `0 0 ${SVG_W} ${SVG_H}`);
+  state.view = { x: 0, y: 0, w: SVG_W, h: SVG_H };
+  applyView();
   const project = projector();
 
   for (const feat of state.geo.features) {
     const fips = feat.properties.fips;
     let d = "";
+    // Track the projected extent of this feature so we can later frame it.
+    let bx0 = Infinity, by0 = Infinity, bx1 = -Infinity, by1 = -Infinity;
     forEachRing(state.geo, (ring) => {
-      d += ring.map((pt, i) => (i ? "L" : "M") + project(pt).map(v => v.toFixed(1)).join(",")).join("") + "Z";
+      d += ring.map((pt, i) => {
+        const [px, py] = project(pt);
+        if (px < bx0) bx0 = px; if (px > bx1) bx1 = px;
+        if (py < by0) by0 = py; if (py > by1) by1 = py;
+        return (i ? "L" : "M") + px.toFixed(1) + "," + py.toFixed(1);
+      }).join("") + "Z";
     }, feat);
+    state.bboxes[fips] = { x: bx0, y: by0, w: bx1 - bx0, h: by1 - by0 };
 
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", d);
@@ -181,7 +211,12 @@ function drawMap() {
     path.setAttribute("tabindex", "0");
     path.setAttribute("role", "button");
     path.dataset.fips = fips;
-    path.addEventListener("click", () => selectCounty(fips));
+    path.addEventListener("click", () => {
+      // A pan that crossed the drag threshold suppresses the trailing click so
+      // dragging never selects a county (see attachZoomPan).
+      if (svg._suppressClick) { svg._suppressClick = false; return; }
+      selectCounty(fips);
+    });
     path.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectCounty(fips); }
     });
@@ -190,6 +225,244 @@ function drawMap() {
     svg.appendChild(path);
     state.paths[fips] = path;
   }
+
+  attachZoomPan(svg);
+  buildZoomControls();
+}
+
+// --- zoom & pan -------------------------------------------------------
+//
+// Everything is driven by the SVG viewBox only: no re-projection and no
+// transforms on the paths (vector-effect:non-scaling-stroke in the CSS keeps
+// outlines hairline at any zoom). state.view is the single source of truth;
+// applyView() is the only place that writes the attribute.
+
+function applyView() {
+  const svg = document.getElementById("map");
+  if (!svg) return;
+  const v = state.view;
+  svg.setAttribute("viewBox", `${v.x} ${v.y} ${v.w} ${v.h}`);
+}
+
+// Clamp a candidate view to the allowed zoom range and keep it inside the
+// full SVG extent so panning can never wander off the map into blank space.
+function clampView(v) {
+  // Enforce zoom limits via width; height follows the fixed aspect ratio.
+  const minW = SVG_W / MAX_ZOOM, maxW = SVG_W / MIN_ZOOM;
+  let w = Math.min(maxW, Math.max(minW, v.w));
+  let h = w * (SVG_H / SVG_W);
+  // Keep the box within [0,0]..[SVG_W,SVG_H]; if it's as wide/tall as the
+  // extent it pins to the edge (max(0, ...) handles the equal case).
+  let x = Math.min(Math.max(0, v.x), Math.max(0, SVG_W - w));
+  let y = Math.min(Math.max(0, v.y), Math.max(0, SVG_H - h));
+  return { x, y, w, h };
+}
+
+// Zoom by `factor` (>1 zooms in) keeping the SVG point (cx,cy) fixed on screen.
+function zoomAt(cx, cy, factor) {
+  cancelAnim();
+  const v = state.view;
+  let w = v.w / factor;
+  // Pre-clamp width so the fixed-point math uses the final scale.
+  w = Math.min(SVG_W / MIN_ZOOM, Math.max(SVG_W / MAX_ZOOM, w));
+  const h = w * (SVG_H / SVG_W);
+  // Keep (cx,cy) at the same fractional position within the box.
+  const fx = (cx - v.x) / v.w, fy = (cy - v.y) / v.h;
+  state.view = clampView({ x: cx - fx * w, y: cy - fy * h, w, h });
+  applyView();
+}
+
+// Zoom about the current view center (used by the +/- buttons).
+function zoomByCenter(factor) {
+  const v = state.view;
+  zoomAt(v.x + v.w / 2, v.y + v.h / 2, factor);
+}
+
+function resetView() {
+  cancelAnim();
+  state.view = { x: 0, y: 0, w: SVG_W, h: SVG_H };
+  applyView();
+}
+
+// Map a screen (client) point to SVG-user coordinates using the svg's
+// on-screen box. In the smoke shim there's no layout, so getBoundingClientRect
+// returns a zero-origin box the size of the extent — cursor-centered zoom then
+// degenerates gracefully to top-left origin (still a valid zoom for the test).
+function clientToSvg(svg, clientX, clientY) {
+  const r = svg.getBoundingClientRect
+    ? svg.getBoundingClientRect()
+    : { left: 0, top: 0, width: SVG_W, height: SVG_H };
+  const w = r.width || SVG_W, h = r.height || SVG_H;
+  const v = state.view;
+  return {
+    x: v.x + ((clientX - r.left) / w) * v.w,
+    y: v.y + ((clientY - r.top) / h) * v.h,
+  };
+}
+
+function attachZoomPan(svg) {
+  // Wheel zoom, centered on the cursor. Bare wheel (no ctrl needed); we call
+  // preventDefault so the page doesn't scroll while zooming the map.
+  svg.addEventListener("wheel", (e) => {
+    if (e.preventDefault) e.preventDefault();
+    const p = clientToSvg(svg, e.clientX || 0, e.clientY || 0);
+    // deltaY<0 (wheel up) zooms in. Exponential feel, framerate-independent.
+    const factor = Math.pow(WHEEL_STEP, -(e.deltaY || 0));
+    zoomAt(p.x, p.y, factor);
+  });
+
+  // Pointer drag to pan. We track motion in screen px; once it passes
+  // DRAG_THRESHOLD_PX we mark it a real drag and suppress the trailing click.
+  let dragging = false, moved = false, lastX = 0, lastY = 0, startX = 0, startY = 0;
+
+  svg.addEventListener("pointerdown", (e) => {
+    dragging = true; moved = false;
+    // A new gesture ends any earlier suppression; without this, a drag that
+    // ended over the background would swallow the next legitimate click.
+    svg._suppressClick = false;
+    lastX = startX = e.clientX || 0;
+    lastY = startY = e.clientY || 0;
+  });
+
+  svg.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    // If the button was released where we couldn't hear it (capture not yet
+    // taken), don't let a hover re-entry continue a phantom drag.
+    if (e.buttons != null && e.buttons === 0) { dragging = false; return; }
+    const cx = e.clientX || 0, cy = e.clientY || 0;
+    if (!moved &&
+        Math.abs(cx - startX) + Math.abs(cy - startY) >= DRAG_THRESHOLD_PX) {
+      moved = true;
+      cancelAnim();
+      svg._suppressClick = true;
+      // Capture only once a real drag starts. Capturing on pointerdown makes
+      // browsers retarget the trailing click off the county path, which would
+      // break plain click-to-select.
+      if (svg.setPointerCapture && e.pointerId != null) {
+        try { svg.setPointerCapture(e.pointerId); } catch (_) { /* shim/no-op */ }
+      }
+    }
+    if (!moved) { lastX = cx; lastY = cy; return; }
+    // Convert the screen delta to SVG units and shift the box the opposite way
+    // (drag right -> content follows the cursor -> view moves left).
+    const r = svg.getBoundingClientRect
+      ? svg.getBoundingClientRect()
+      : { width: SVG_W, height: SVG_H };
+    const sw = r.width || SVG_W, sh = r.height || SVG_H;
+    const dx = (cx - lastX) * (state.view.w / sw);
+    const dy = (cy - lastY) * (state.view.h / sh);
+    state.view = clampView({ x: state.view.x - dx, y: state.view.y - dy,
+      w: state.view.w, h: state.view.h });
+    applyView();
+    lastX = cx; lastY = cy;
+  });
+
+  const endDrag = (e) => {
+    if (!dragging) return;
+    dragging = false;
+    // _suppressClick was already set when the threshold was crossed (and is
+    // cleared on the next pointerdown), so the trailing click after a real
+    // drag is swallowed while a sub-threshold press still selects normally.
+    if (svg.releasePointerCapture && e && e.pointerId != null) {
+      try { svg.releasePointerCapture(e.pointerId); } catch (_) { /* no-op */ }
+    }
+  };
+  svg.addEventListener("pointerup", endDrag);
+  svg.addEventListener("pointercancel", endDrag);
+  // Pinch-to-zoom is intentionally skipped: robust two-pointer tracking with
+  // capture/cancel edge cases isn't worth the complexity here, and mobile QA
+  // is a separate backlog item. Single-finger drag still pans via the pointer
+  // handlers above.
+}
+
+// Build the +/- /reset overlay. Real <button>s (focusable, aria-labelled),
+// appended to the map section so they float over the SVG (see dashboard.css).
+function buildZoomControls() {
+  const section = document.getElementById("map-section");
+  if (!section || section.querySelector(".zoom-controls")) return;
+  const wrap = document.createElement("div");
+  wrap.className = "zoom-controls";
+
+  const mk = (label, aria, onClick) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "zoom-btn";
+    b.textContent = label;
+    b.setAttribute("aria-label", aria);
+    b.addEventListener("click", onClick);
+    wrap.appendChild(b);
+    return b;
+  };
+  mk("+", "Zoom in", () => zoomByCenter(BUTTON_ZOOM));
+  mk("−", "Zoom out", () => zoomByCenter(1 / BUTTON_ZOOM));
+  mk("↺", "Reset zoom", () => resetView());
+
+  section.appendChild(wrap);
+}
+
+// --- zoom-to-selection ------------------------------------------------
+
+function cancelAnim() {
+  if (state.anim != null) {
+    if (typeof cancelAnimationFrame === "function") cancelAnimationFrame(state.anim);
+    state.anim = null;
+  }
+}
+
+// Compute the target view that frames a county's padded bbox. The county
+// should fill very roughly half the view, so we scale the bbox up and enforce
+// a sensible minimum size so tiny counties (Manhattan, Kings) don't zoom to a
+// microscopic extent and large ones don't over-zoom past MAX_ZOOM.
+function targetViewFor(fips) {
+  const bb = state.bboxes[fips];
+  if (!bb) return null;
+  // Aim for the county spanning ~1/2 of each axis -> frame ~2x the bbox.
+  const FILL = 0.5;
+  let w = bb.w / FILL;
+  let h = bb.h / FILL;
+  // Respect the map aspect ratio: grow the smaller axis to match SVG_W:SVG_H.
+  const aspect = SVG_W / SVG_H;
+  if (w / h < aspect) w = h * aspect; else h = w / aspect;
+  // Never tighter than MAX_ZOOM (keeps tiny counties readable), never looser
+  // than the full extent.
+  const minW = SVG_W / MAX_ZOOM;
+  if (w < minW) { w = minW; h = w / aspect; }
+  if (w > SVG_W) { w = SVG_W; h = SVG_H; }
+  const cx = bb.x + bb.w / 2, cy = bb.y + bb.h / 2;
+  return clampView({ x: cx - w / 2, y: cy - h / 2, w, h });
+}
+
+// Animate state.view -> target with a short ease-out. Returns a promise that
+// resolves when the ease completes (the smoke harness awaits it). When
+// _testSyncAnim is set, or rAF is unavailable, it jumps straight to the target.
+function animateView(target) {
+  cancelAnim();
+  const from = { ...state.view };
+  const noRaf = typeof requestAnimationFrame !== "function";
+  if (state._testSyncAnim || noRaf) {
+    state.view = target;
+    applyView();
+    return Promise.resolve();
+  }
+  return new Promise((resolve) => {
+    const t0 = (typeof performance !== "undefined" && performance.now)
+      ? performance.now() : Date.now();
+    const ease = (t) => 1 - Math.pow(1 - t, 3); // cubic ease-out
+    const step = (now) => {
+      const t = Math.min(1, (now - t0) / ZOOM_ANIM_MS);
+      const k = ease(t);
+      state.view = {
+        x: from.x + (target.x - from.x) * k,
+        y: from.y + (target.y - from.y) * k,
+        w: from.w + (target.w - from.w) * k,
+        h: from.h + (target.h - from.h) * k,
+      };
+      applyView();
+      if (t < 1) { state.anim = requestAnimationFrame(step); }
+      else { state.anim = null; resolve(); }
+    };
+    state.anim = requestAnimationFrame(step);
+  });
 }
 
 // --- coloring ---------------------------------------------------------
@@ -270,6 +543,10 @@ function selectCounty(fips) {
   path.classList.add("selected");
   const svg = document.getElementById("map");
   svg.appendChild(path); // raise above neighbors so the outline isn't clipped
+
+  // Frame the selected county (map click or search) with a short ease.
+  const target = targetViewFor(fips);
+  if (target) animateView(target);
 
   const c = state.data.counties[fips];
   document.getElementById("details-title").textContent = `${c.county} County, ${c.state}`;
