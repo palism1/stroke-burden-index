@@ -7,6 +7,11 @@ Run this whenever source files are updated:
 The database is not committed to the repo (see .gitignore). Anyone on the team
 can regenerate it locally by running this script.
 
+Loaders are shared with src/merge.py and live in src/loaders.py — add new
+sources there, and this script picks them up automatically. Every loader runs
+the CT validation gate on its own file, so a source in planning-region codes
+fails loudly instead of producing blank CT rows.
+
 Tables
 ------
 counties        Spine: 91 counties with fips, county name, state
@@ -15,6 +20,7 @@ mortality       CDC WONDER stroke mortality rates
 geographic      Drive time and distance to nearest stroke center
 cdc_places      CDC PLACES health prevalence variables
 pop_density     Population density
+scai            Hospitals, providers, stroke centers per capita (once collected)
 
 Querying from a notebook
 ------------------------
@@ -38,82 +44,15 @@ Querying from a notebook
 """
 
 from pathlib import Path
-import sys
 import sqlite3
-import pandas as pd
+import sys
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(REPO_ROOT / "reference" / "ct_crosswalk"))
-from validate_ct_codes import validate_ct_codes  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import loaders  # noqa: E402
+from loaders import SOURCE_LOADERS, load_spine  # noqa: E402
 
-DATA = REPO_ROOT / "data"
-DB_PATH = DATA / "stroke_burden.db"
-
-_STATE_NAME_TO_ABBR = {
-    "New York": "NY",
-    "New Jersey": "NJ",
-    "Connecticut": "CT",
-}
-
-
-def _strip_county_suffix(series: pd.Series) -> pd.Series:
-    return series.str.replace(r"\s+County$", "", regex=True)
-
-
-def _load_spine() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "ny_nj_ct_fips.csv", dtype={"fips": str})
-    df["county"] = _strip_county_suffix(df["county"])
-    return df[["fips", "county", "state"]]
-
-
-def _load_acs() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "acs_data.csv", dtype={"fips": str})
-    df = df.rename(columns={"pcnt_65+": "pcnt_65_plus"})
-    return df.drop(columns=["county", "state"])
-
-
-def _load_mortality() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "stroke_mortality.csv", dtype={"fips": str})
-    return df.drop(columns=["county", "state"])
-
-
-def _load_geographic() -> pd.DataFrame:
-    df = pd.read_csv(
-        DATA / "geographic_accessibility_data" / "geographic_stroke_accessibility.csv",
-        dtype={"fips": str},
-    )
-    df["state"] = df["state"].map(_STATE_NAME_TO_ABBR)
-    return df.drop(columns=["county", "state"])
-
-
-def _load_cdc_places() -> pd.DataFrame | None:
-    path = DATA / "cdcplaces_data.csv"
-    if not path.exists():
-        return None
-    df = pd.read_csv(path, dtype={"fips": str})
-    return df.drop(columns=["county", "state"], errors="ignore")
-
-
-def _load_pop_density() -> pd.DataFrame | None:
-    path = DATA / "pop_density.csv"
-    if not path.exists():
-        return None
-    df = pd.read_csv(path, dtype={"fips": str})
-    return df.drop(columns=["county", "state"], errors="ignore")
-
-
-def _load_scai() -> pd.DataFrame | None:
-    # Placeholder — wire in once Cathleen's SCAI file is merged to main.
-    # Expected columns: fips, hospitals_per_100k, hospital_beds_per_100k,
-    #                   pcp_per_100k, neurologists_per_100k, stroke_centers_per_100k
-    path = DATA / "scai_data.csv"
-    if not path.exists():
-        return None
-    df = pd.read_csv(path, dtype={"fips": str})
-    return df.drop(columns=["county", "state"], errors="ignore")
-
-
-# Add new loaders here following the same pattern.
+REPO_ROOT = loaders.REPO_ROOT
+DB_PATH = loaders.DATA / "stroke_burden.db"
 
 
 def build_db() -> None:
@@ -122,46 +61,34 @@ def build_db() -> None:
 
     con = sqlite3.connect(DB_PATH)
 
-    spine = _load_spine()
-    validate_ct_codes(spine, fips_col="fips")
-
+    spine = load_spine()
     spine.to_sql("counties", con, index=False, if_exists="replace")
-
-    optional_tables = {
-        "acs": _load_acs,
-        "mortality": _load_mortality,
-        "geographic": _load_geographic,
-        "cdc_places": _load_cdc_places,
-        "pop_density": _load_pop_density,
-        "scai": _load_scai,
-    }
 
     loaded = []
     skipped = []
-    for table_name, loader in optional_tables.items():
-        df = loader()
-        if df is None:
+    for table_name, loader in SOURCE_LOADERS.items():
+        try:
+            df = loader()
+        except FileNotFoundError:
             skipped.append(table_name)
             continue
         df.to_sql(table_name, con, index=False, if_exists="replace")
         loaded.append(table_name)
 
-    # Build a master view joining everything that is available
-    join_clauses = "\n    ".join(
-        f"LEFT JOIN {t} USING (fips)" for t in loaded if t != "counties"
-    )
-    select_parts = ["c.*"] + [f"{t}.*" for t in loaded]
-    # Exclude fips from joined tables to avoid duplicate columns in the view
+    # Build a master view joining everything that is available.
+    # Exclude fips from joined tables to avoid duplicate columns in the view.
     joined_columns = []
     for t in loaded:
-        df = con.execute(f"PRAGMA table_info({t})").fetchall()
-        cols = [row[1] for row in df if row[1] != "fips"]
+        rows = con.execute(f"PRAGMA table_info({t})").fetchall()
+        cols = [row[1] for row in rows if row[1] != "fips"]
         joined_columns.extend(f"{t}.{c}" for c in cols)
+
+    select_cols = ["c.fips", "c.county", "c.state"] + joined_columns
+    join_clauses = "\n    ".join(f"LEFT JOIN {t} USING (fips)" for t in loaded)
 
     master_sql = f"""
     CREATE VIEW IF NOT EXISTS master AS
-    SELECT c.fips, c.county, c.state,
-           {', '.join(joined_columns)}
+    SELECT {', '.join(select_cols)}
     FROM counties c
     {join_clauses}
     """
@@ -173,7 +100,11 @@ def build_db() -> None:
 
     con.close()
 
-    print(f"wrote {DB_PATH.relative_to(REPO_ROOT)}")
+    try:
+        shown = DB_PATH.relative_to(REPO_ROOT)
+    except ValueError:
+        shown = DB_PATH
+    print(f"wrote {shown}")
     print(f"tables: {', '.join(['counties'] + loaded)}")
     if skipped:
         print(f"skipped (file not found): {', '.join(skipped)}")

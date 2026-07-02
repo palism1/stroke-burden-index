@@ -39,7 +39,7 @@ this automatically.
 - `geographic_stroke_accessibility.csv`: `state` uses full names ("New York").
 - `acs_data.csv`: column `pcnt_65+` is renamed to `pcnt_65_plus` in the DB build.
 - Full table: `data/data_dictionary.md`. Do not "fix" the source files — the
-  loaders in `src/merge.py` / `src/build_db.py` handle it.
+  shared loaders in `src/loaders.py` handle it.
 
 ## Imputed and missing values
 

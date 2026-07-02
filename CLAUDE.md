@@ -21,7 +21,7 @@ priority ranking. Data gathering is the active phase; index math is planned in
 1. **Collect** — notebooks in `data/*/` write tidy per-source CSVs to `data/` root.
 2. **Geocode FIPS** — `src/add_fips_to_geocoded.py` adds county FIPS to stroke centers (CT re-queried at `vintage=419`).
 3. **Gate** — `reference/ct_crosswalk/validate_ct_codes.py` blocks wrong-system CT codes before any FIPS join.
-4. **Merge** — `src/merge.py` joins all sources on `fips` → `data/master.csv` (gitignored).
+4. **Merge** — `src/merge.py` joins all sources on `fips` → `data/master.csv` (gitignored). Loaders shared with build_db live in `src/loaders.py`.
 5. **Database** — `src/build_db.py` → `data/stroke_burden.db` with a `master` view (gitignored).
 6. **Boundaries** — `src/build_county_boundaries.py` → `reference/county_boundaries/*.geojson`.
 

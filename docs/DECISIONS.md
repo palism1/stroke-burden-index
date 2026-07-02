@@ -68,6 +68,14 @@ The API's default vintage returns planning-region codes for CT coordinates. Any
 point resolving to state "09" is re-queried with `vintage=419` to get legacy
 county codes, then the output is run through the validation gate before writing.
 
+**2026-07-02 — Every source file is gated; loaders live in one place.**
+`validate_ct_codes` now runs on every source CSV at load time (`src/loaders.py`),
+not just the FIPS spine — a source arriving in planning-region codes fails
+loudly instead of leaving 8 blank CT rows after a left join. The duplicated
+loader definitions in `merge.py` and `build_db.py` were collapsed into
+`src/loaders.py` after they had already drifted (a stale column rename existed
+in one copy only). Both scripts now skip sources whose file has not landed yet.
+
 **2026-06-30 — County boundaries from TIGER 2019, simplified with QA flags.**
 2019 is the last vintage before CT's county→region switch, so one consistent
 download sidesteps the vintage trap for all three states. Geometry is simplified
