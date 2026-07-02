@@ -154,4 +154,4 @@ One master interactive choropleth map (Plotly or Datawrapper) colored by SBPI sc
 
 Data gathering is the active phase. ACS demographic data, CDC WONDER mortality, CDC PLACES health prevalence, population density, and geographic accessibility (drive time and distance to nearest basic and advanced stroke center for all 91 NY/NJ/CT counties) are collected. SCAI variables (hospitals per capita, physicians per capita, stroke centers per capita) are in progress.
 
-[Full methodology and open questions](./plan.html)
+[Interactive county dashboard (work in progress)](./dashboard/) · [Full methodology and open questions](./plan.html)

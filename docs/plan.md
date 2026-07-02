@@ -16,8 +16,15 @@ title: Project plan
 
 **Still needed:**
 - SCAI: hospitals per capita, hospital beds per capita, PCP per capita, neurologists per capita (HIFLD / HRSA)
-- SVI health variables: smoking, obesity, diabetes, physical inactivity, hypertension (CDC PLACES)
-- Population density (Census TIGER + ACS land area)
+- ~~SVI health variables: smoking, obesity, diabetes, physical inactivity, hypertension (CDC PLACES)~~ *(done — `data/cdcplaces_data.csv`)*
+- ~~Population density (Census TIGER + ACS land area)~~ *(done — `data/pop_density.csv`)*
+
+**Next steps (bookmarked 2026-07-02):**
+1. **SCAI data collection** — the last data gap. The merge pipeline, database, contract tests, and dashboard exporter are all pre-wired: committing `data/scai_data/scai_data.csv` activates everything automatically (see `docs/pipeline_guide.md`).
+2. **Compute GAI** — its four input variables are fully collected; one `build_index` call away (see §2c).
+3. **Compute SVI** — data is in; blocked only on finalizing the variable list (§2a) and the rename decision below.
+4. **Dashboard iteration** — an interactive scaffold is live at `docs/dashboard/` (search, choropleth, county details) running on real data; the UX design doc's recommendations should be iterated against it. The Risk vs. Access matrix section activates once SVI/SCAI scores exist.
+5. **Resolve remaining decisions** — SBPI weights (50/30/20 vs 50/25/25), SBPI method (Option 1 vs 2), SVI rename.
 
 ---
 
@@ -76,6 +83,8 @@ Candidate variables (audit and trim):
 ## 2. Index methodology
 
 Every index follows the same pipeline: **raw → align direction → standardize → PCA → normalize → index (0–100)**.
+
+> **Implemented:** the pipeline below exists once, tested, as `src/index_pipeline.py` (`build_index`) — including the automatic PC1 sign check. Notebooks call it instead of hand-rolling PCA; usage in `docs/pipeline_guide.md`.
 
 ### 2a. Stroke Vulnerability Index (SVI)
 
@@ -182,7 +191,7 @@ Audit each before committing: confirm current vintage, county-level granularity,
 
 - Stroke mortality by county: **CDC WONDER** (mortality) <https://wonder.cdc.gov/> ; CDC Interactive Atlas of Heart Disease and Stroke. `(?)` confirm county-level age-adjusted stroke mortality rate.
 - Stroke prevalence (not mortality): CDC PLACES.
-- **Pooling note (decided):** single-year county mortality from WONDER is suppressed for many smaller counties, so we **pool a few years** for more stable rates. `(?)` exact year window TBD; once chosen it gets locked in the pipeline and documented here as the single source of truth.
+- **Pooling note (decided):** single-year county mortality from WONDER is suppressed for many smaller counties, so we **pool a few years** for more stable rates. ~~`(?)` exact year window TBD~~ **Locked: 2018–2024 pooled** — this is what the committed `data/stroke_mortality.csv` contains (see data dictionary).
 
 **Risk-factor prevalence (county):** CDC PLACES (smoking, obesity, diabetes, physical inactivity, etc.).
 
@@ -279,13 +288,12 @@ Geocoded stroke center files for NY, NJ, CT are in `data/geographic_accessibilit
 
 ---
 
-## 6. Output / delivery surface `(?)`
+## 6. Output / delivery surface (decided)
 
-Options, boring first:
+**Decision (2026-07-02): interactive client-side dashboard on the existing GitHub Pages site — no separate host needed.** Everything the UX research doc calls for (search, clickable choropleth, county details panel, linked matrix) is achievable with static files and client-side JS at this data size (91 counties).
 
-- **v1 (now):** a GitHub Pages site that renders this plan and, as we go, hosts EDA figures and static maps.
-- **Later:** a static dashboard (pre-rendered Plotly / Observable / plain HTML) on the same Pages site.
-- **Heavier `(?)`:** an interactive dashboard (Streamlit / Dash) does **not** run on GitHub Pages (static-only) — it needs a separate host (e.g. Streamlit Community Cloud). Flag before committing to "interactive," because it changes the deploy story.
+- **Built:** dashboard scaffold at `docs/dashboard/` — county search, choropleth (sequential orange, colorblind-safe per the UX doc), plain-language county details. Runs on real data today; index scores appear automatically when computed. Data exported by `src/build_site_data.py` (CI keeps it in sync).
+- ~~**Heavier `(?)`:** an interactive dashboard (Streamlit / Dash) does **not** run on GitHub Pages (static-only) — it needs a separate host.~~ *(moot — no server required)*
 
 ---
 
@@ -294,12 +302,12 @@ Options, boring first:
 - `(?)` Reconcile SBPI weights: formula is 50/30/20, prose target was 50/25/25.
 - `(?)` SBPI method: continuous weighted (Option 1), quadrant classification (Option 2), or both.
 - `(?)` Canonical CT code system (old counties vs planning regions) — pending decision.
-- `(?)` Pooled-mortality year window for CDC WONDER.
+- ~~`(?)` Pooled-mortality year window for CDC WONDER.~~ *(locked: 2018–2024, matches the committed data)*
 - `(?)` Rename SVI to avoid the CDC Social Vulnerability Index collision.
 - `(?)` Stroke-center file scope: tristate proof-of-concept or national.
 - `(?)` National stroke-center designation source: EMNet vs Joint Commission.
 - `(?)` Does County Health Rankings cover enough SVI variables to skip multi-source assembly.
 - `(?)` Final SVI / SCAI variable lists (trim after seeing data quality).
 - `(?)` Hotspot analysis (Local Moran's I / Getis-Ord Gi\*) — include or skip.
-- `(?)` Travel-distance metric: haversine for v1, routed drive time later.
-- `(?)` Output surface: static maps only, or an interactive dashboard (changes the host).
+- ~~`(?)` Travel-distance metric: haversine for v1, routed drive time later.~~ *(both shipped: straight-line miles + ORS drive time in `geographic_stroke_accessibility.csv`)*
+- ~~`(?)` Output surface: static maps only, or an interactive dashboard (changes the host).~~ *(decided: client-side dashboard on Pages, scaffold at `docs/dashboard/` — see §6)*
