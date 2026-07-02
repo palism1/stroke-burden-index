@@ -68,7 +68,6 @@ def _load_spine() -> pd.DataFrame:
 
 def _load_acs() -> pd.DataFrame:
     df = pd.read_csv(DATA / "acs_data.csv", dtype={"fips": str})
-    df = df.rename(columns={"pcnt_65+": "pcnt_65_plus"})
     return df.drop(columns=["county", "state"])
 
 
@@ -103,10 +102,10 @@ def _load_pop_density() -> pd.DataFrame | None:
 
 
 def _load_scai() -> pd.DataFrame | None:
-    # Placeholder — wire in once Cathleen's SCAI file is merged to main.
     # Expected columns: fips, hospitals_per_100k, hospital_beds_per_100k,
     #                   pcp_per_100k, neurologists_per_100k, stroke_centers_per_100k
-    path = DATA / "scai_data.csv"
+    # (see data/scai_data/README.md)
+    path = DATA / "scai_data" / "scai_data.csv"
     if not path.exists():
         return None
     df = pd.read_csv(path, dtype={"fips": str})
