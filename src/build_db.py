@@ -152,7 +152,6 @@ def build_db() -> None:
     join_clauses = "\n    ".join(
         f"LEFT JOIN {t} USING (fips)" for t in loaded if t != "counties"
     )
-    select_parts = ["c.*"] + [f"{t}.*" for t in loaded]
     # Exclude fips from joined tables to avoid duplicate columns in the view
     joined_columns = []
     for t in loaded:
