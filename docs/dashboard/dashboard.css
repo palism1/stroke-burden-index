@@ -43,6 +43,30 @@ header h1 { margin: 20px 0 4px; font-size: 1.5rem; }
   min-width: 220px;
 }
 .controls input:focus, .controls select:focus { outline: 2px solid var(--accent); }
+#search-message {
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+#search-message:empty { display: none; }
+
+#load-error {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--accent);
+  border-left-width: 4px;
+  border-radius: 8px;
+  background: #fff7f2;
+}
+#load-error strong { display: block; margin-bottom: 6px; font-size: 1.05rem; }
+#load-error p { margin: 6px 0; font-size: 0.92rem; }
+#load-error a { color: var(--accent); }
+#load-error code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: #f0f0f0;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
 
 main {
   display: grid;
