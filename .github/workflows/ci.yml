@@ -15,3 +15,7 @@ jobs:
           python-version: "3.11"
       - run: pip install -r requirements.txt
       - run: python -m pytest tests/ -q
+      # Smoke-run both pipeline entry points so a data file that breaks the
+      # merge fails the PR, not someone's next local run. Outputs are gitignored.
+      - run: python src/merge.py
+      - run: python src/build_db.py
