@@ -105,6 +105,35 @@ def test_scores_align_to_df_index():
     assert result.scores.name == "svi"
 
 
+def test_duplicate_variables_raise():
+    with pytest.raises(ValueError, match="duplicate variables"):
+        build_index(_agreeing_frame(), ["a", "b", "a"])
+
+
+def test_cancelling_variables_raise():
+    # A variable and its exact negation: the aligned "majority direction"
+    # is undefined, so the pipeline must refuse rather than pick a side.
+    df = _agreeing_frame()
+    df["anti_a"] = -df["a"]
+    with pytest.raises(ValueError, match="cancel out"):
+        build_index(df, ["a", "anti_a"])
+
+
+def test_disagreeing_variables_raise():
+    # Two anti-correlated pairs plus noise: the anchor is pure noise and
+    # PC1 is a contrast between the pairs — direction is a coin flip.
+    n = 60
+    t = np.linspace(0, 1, n)
+    u = np.sin(np.linspace(0, 9, n))
+    noise = lambda: rng.normal(0, 0.01, n)
+    df = pd.DataFrame({
+        "p1": t + noise(), "p2": -t + noise(),
+        "q1": u + noise(), "q2": -u + noise(),
+    })
+    with pytest.raises(ValueError, match="direction is ambiguous"):
+        build_index(df, ["p1", "p2", "q1", "q2"])
+
+
 def test_gai_orientation_end_to_end():
     # GAI per plan 2c: 4 distance/time variables, all flipped so that the
     # closest county scores 100 (best access) and the farthest scores 0.

@@ -58,6 +58,10 @@ def build_index(
     if not variables:
         raise ValueError(f"{name}: no variables given")
 
+    dupes = sorted({v for v in variables if variables.count(v) > 1})
+    if dupes:
+        raise ValueError(f"{name}: duplicate variables: {dupes}")
+
     missing = [v for v in variables if v not in df.columns]
     if missing:
         raise ValueError(f"{name}: variables not in DataFrame: {missing}")
@@ -94,9 +98,23 @@ def build_index(
 
     # Sign check: PC1's sign is mathematically arbitrary. Anchor it to the
     # majority direction of the aligned variables so higher score always
-    # means "more of what the index measures".
+    # means "more of what the index measures". If the aligned variables
+    # cancel each other out, the anchor is meaningless and choosing a
+    # direction would be a coin flip — refuse instead of ranking blind.
     anchor = Z.mean(axis=1).to_numpy()
-    if np.corrcoef(pc1, anchor)[0, 1] < 0:
+    if anchor.std() < 1e-12:
+        raise ValueError(
+            f"{name}: aligned variables cancel out, so the index direction is "
+            "undefined — some variables point opposite ways; review the flip list"
+        )
+    r = np.corrcoef(pc1, anchor)[0, 1]
+    if abs(r) < 0.1:
+        raise ValueError(
+            f"{name}: PC1 is uncorrelated with the aligned variables "
+            f"(r={r:.3f}), so the index direction is ambiguous — the variables "
+            "likely disagree with each other; review the flip list and variable set"
+        )
+    if r < 0:
         pc1 = -pc1
         loadings = -loadings
 

@@ -15,13 +15,17 @@
   <div class="controls">
     <label for="county-search">Find your county:</label>
     <input id="county-search" list="county-list" type="search"
-           placeholder="e.g. New Haven, CT" autocomplete="off">
+           placeholder="e.g. New Haven, CT" autocomplete="off"
+           aria-describedby="search-message">
     <datalist id="county-list"></datalist>
+    <span id="search-message" role="status" aria-live="polite"></span>
 
     <label for="metric-select">Color the map by:</label>
     <select id="metric-select"></select>
   </div>
 </header>
+
+<div id="load-error" role="alert" hidden></div>
 
 <main>
   <section id="map-section" aria-label="County map">

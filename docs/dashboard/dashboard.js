@@ -12,10 +12,19 @@ const SVG_W = 900, SVG_H = 640, PAD = 10;
 const state = { data: null, geo: null, metric: null, selected: null, paths: {} };
 
 async function init() {
-  const [data, geo] = await Promise.all([
-    fetch("../data/counties.json").then(r => r.json()),
-    fetch("../data/ny_nj_ct_counties.geojson").then(r => r.json()),
-  ]);
+  let data, geo;
+  try {
+    [data, geo] = await Promise.all([
+      fetch("../data/counties.json").then(r => r.json()),
+      fetch("../data/ny_nj_ct_counties.geojson").then(r => r.json()),
+    ]);
+  } catch (err) {
+    // Most common cause: the file was opened directly (file://), where the
+    // browser blocks fetch. Explain how to view it properly instead of
+    // leaving a blank page.
+    showLoadError();
+    return;
+  }
   state.data = data;
   state.geo = geo;
   state.metric = DEFAULT_METRIC in data.fields ? DEFAULT_METRIC : Object.keys(data.fields)[0];
@@ -28,6 +37,39 @@ async function init() {
   // If index scores ever appear in the data, swap the matrix placeholder
   // for the real chart.
   if (hasField("svi") && hasField("scai")) activateMatrix();
+}
+
+// Renders a friendly, on-page explanation when the data files can't be
+// fetched (textContent/DOM only — no innerHTML, no alert, no console-only).
+function showLoadError() {
+  const box = document.getElementById("load-error");
+  if (!box) return;
+
+  const heading = document.createElement("strong");
+  heading.textContent = "The dashboard data couldn't be loaded.";
+
+  const p1 = document.createElement("p");
+  p1.textContent = "This usually happens when the page is opened directly from a " +
+    "file (file://), which browsers block from loading the data. The dashboard " +
+    "needs to be viewed over http.";
+
+  const p2 = document.createElement("p");
+  p2.textContent = "View the live site at ";
+  const link = document.createElement("a");
+  link.href = "https://palism1.github.io/stroke-burden-index/dashboard/";
+  link.textContent = "palism1.github.io/stroke-burden-index/dashboard/";
+  p2.appendChild(link);
+  p2.appendChild(document.createTextNode(", or serve it locally by running "));
+  const code = document.createElement("code");
+  code.textContent = "python3 -m http.server";
+  p2.appendChild(code);
+  p2.appendChild(document.createTextNode(" from the docs/ folder and opening the " +
+    "printed http:// address."));
+
+  box.appendChild(heading);
+  box.appendChild(p1);
+  box.appendChild(p2);
+  box.hidden = false;
 }
 
 function hasField(f) {
@@ -58,6 +100,7 @@ function buildMetricSelect() {
 function buildSearch() {
   const input = document.getElementById("county-search");
   const list = document.getElementById("county-list");
+  const message = document.getElementById("search-message");
   const byName = {};
   for (const [fips, c] of Object.entries(state.data.counties)) {
     const name = `${c.county}, ${c.state}`;
@@ -67,9 +110,18 @@ function buildSearch() {
     list.appendChild(opt);
   }
   input.addEventListener("change", () => {
-    const fips = byName[input.value.trim().toLowerCase()];
-    if (fips) selectCounty(fips);
+    const raw = input.value.trim();
+    const fips = byName[raw.toLowerCase()];
+    if (fips) {
+      if (message) message.textContent = "";
+      selectCounty(fips);
+    } else if (raw && message) {
+      // textContent only — never innerHTML with user input.
+      message.textContent = `No county found matching "${raw}"`;
+    }
   });
+  // Clear a stale "not found" message as soon as the user edits the input.
+  input.addEventListener("input", () => { if (message) message.textContent = ""; });
 }
 
 // --- map --------------------------------------------------------------
@@ -140,7 +192,21 @@ function quantileBreaks(values, n) {
   for (let i = 1; i < n; i++) {
     breaks.push(sorted[Math.floor((i / n) * sorted.length)]);
   }
-  return breaks;
+  // With few distinct values the quantile cuts can coincide, which would
+  // give legend entries identical/overlapping ranges. Drop duplicates so
+  // each break (and thus each class) spans a distinct, non-degenerate range.
+  // Fewer breaks simply means fewer classes.
+  return [...new Set(breaks)];
+}
+
+// Pick a light-to-dark subset of PALETTE with exactly `n` colors so that,
+// when there are fewer than PALETTE.length classes, the shades stay far
+// enough apart to remain distinguishable (rather than using the first n).
+function paletteSubset(n) {
+  if (n >= PALETTE.length) return PALETTE;
+  if (n <= 1) return [PALETTE[PALETTE.length - 1]];
+  return Array.from({ length: n }, (_, i) =>
+    PALETTE[Math.round((i / (n - 1)) * (PALETTE.length - 1))]);
 }
 
 function recolor() {
@@ -148,6 +214,7 @@ function recolor() {
   const values = Object.values(state.data.counties)
     .map(c => c[metric]).filter(v => v !== null && v !== undefined);
   const breaks = quantileBreaks(values, PALETTE.length);
+  const palette = paletteSubset(breaks.length + 1);
 
   const classOf = (v) => {
     let k = 0;
@@ -158,20 +225,20 @@ function recolor() {
   for (const [fips, c] of Object.entries(state.data.counties)) {
     const path = state.paths[fips];
     const v = c[metric];
-    path.setAttribute("fill", v === null || v === undefined ? NO_DATA_COLOR : PALETTE[classOf(v)]);
+    path.setAttribute("fill", v === null || v === undefined ? NO_DATA_COLOR : palette[classOf(v)]);
     path.querySelector("title").textContent =
       `${c.county}, ${c.state} — ${fieldLabel(metric)}: ${formatValue(v)}`;
     path.setAttribute("aria-label", `${c.county} County, ${c.state}`);
   }
-  drawLegend(breaks, values);
+  drawLegend(breaks, values, palette);
 }
 
-function drawLegend(breaks, values) {
+function drawLegend(breaks, values, palette) {
   const legend = document.getElementById("legend");
   legend.innerHTML = "";
   const lo = Math.min(...values), hi = Math.max(...values);
   const edges = [lo, ...breaks, hi];
-  PALETTE.forEach((color, i) => {
+  palette.forEach((color, i) => {
     const item = document.createElement("span");
     item.className = "legend-item";
     const swatch = document.createElement("span");
