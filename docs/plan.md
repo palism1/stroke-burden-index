@@ -21,7 +21,7 @@ title: Project plan
 
 **Next steps (bookmarked 2026-07-02):**
 1. **SCAI data collection** — the last data gap. The merge pipeline, database, contract tests, and dashboard exporter are all pre-wired: committing `data/scai_data/scai_data.csv` activates everything automatically (see `docs/pipeline_guide.md`).
-2. **Compute GAI** — its four input variables are fully collected; one `build_index` call away (see §2c).
+2. **Compute GAI** — its four input variables are fully collected; one `build_index` call away (see §2c). Resolve the basic-access definition question first (see open questions / lineage review F2).
 3. **Compute SVI** — data is in; blocked only on finalizing the variable list (§2a) and the rename decision below.
 4. **Dashboard iteration** — an interactive scaffold is live at `docs/dashboard/` (search, choropleth, county details) running on real data; the UX design doc's recommendations should be iterated against it. The Risk vs. Access matrix section activates once SVI/SCAI scores exist.
 5. **Resolve remaining decisions** — SBPI weights (50/30/20 vs 50/25/25), SBPI method (Option 1 vs 2), SVI rename.
@@ -299,6 +299,7 @@ Geocoded stroke center files for NY, NJ, CT are in `data/geographic_accessibilit
 
 ## Open questions to resolve
 
+- `(?)` Basic-access definition: `drive_time_min` / `nearest_stroke_distance` measure the nearest *primary/acute-designated* center only, but an advanced center (which also treats stroke) is closer in 19 of 91 counties. Redefine as nearest any-tier center (columnwise `min` — no re-querying needed) or keep and document as designation-specific. See [the lineage review](./geo_lineage_review.html), finding F2.
 - `(?)` Reconcile SBPI weights: formula is 50/30/20, prose target was 50/25/25.
 - `(?)` SBPI method: continuous weighted (Option 1), quadrant classification (Option 2), or both.
 - `(?)` Canonical CT code system (old counties vs planning regions) — pending decision.

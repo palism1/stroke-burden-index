@@ -7,8 +7,7 @@ For the full documentation and code, see the HTML export of the notebook: `Geogr
 ### Outputs
 
 - `geographic_stroke_accessibility.csv` — main output. One row per county (91 total). Columns: `fips`, `county`, `state`, `drive_time_min` (minutes to nearest basic center), `drive_time_advanced` (minutes to nearest advanced center), `nearest_stroke_distance` (miles to nearest basic center), `nearest_stroke_distance_advanced` (miles to nearest advanced center). Note: the `state` column uses full names ("New York", "New Jersey", "Connecticut") while other data files use abbreviations ("NY", "NJ", "CT"). Always join on `fips`, not on `state`.
-  - Essex County NY and Hamilton County NY have imputed `drive_time_min` values. OpenRouteService failed to route to these remote Adirondack counties, so drive time was estimated using straight-line distance at 45 mph.
-  - Essex County NY and Hamilton County NY have missing `drive_time_advanced` values for the same reason. Impute with: `nearest_stroke_distance_advanced / 45 * 60`.
+  - Essex County NY and Hamilton County NY have imputed `drive_time_min` and `drive_time_advanced` values. OpenRouteService failed to route to these remote Adirondack counties, so both drive times were estimated from straight-line distance at 45 mph (`distance / 45 * 60`). The file has no empty cells — no imputation is needed by consumers.
 
 ### Geocoded stroke center files
 
