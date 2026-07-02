@@ -142,6 +142,22 @@ def test_add_fips_output_contains_fips_column(tmp_path):
     assert result.iloc[0]["fips"] == "36061"
 
 
+def test_add_fips_validates_only_resolved_rows(tmp_path):
+    # Rows whose lookup failed get fips="" and must be excluded from the CT
+    # gate (which would reject them as unexpected), but still written out.
+    csv = tmp_path / "centers.csv"
+    csv.write_text("latitude,longitude,name\n41.5,-72.7,Failed\n40.7,-73.9,Resolved\n")
+    with patch("add_fips_to_geocoded.lookup_fips", side_effect=["", "36061"]):
+        with patch("add_fips_to_geocoded.validate_ct_codes") as gate:
+            with patch("add_fips_to_geocoded.time.sleep"):
+                out = add_fips(csv)
+    passed = gate.call_args.args[0]
+    assert list(passed["fips"]) == ["36061"]
+    result = pd.read_csv(out, dtype={"fips": str})
+    assert len(result) == 2
+    assert result["fips"].isna().sum() == 1  # empty fips survives to the output
+
+
 def test_add_fips_raises_on_missing_latitude(tmp_path):
     csv = tmp_path / "bad.csv"
     csv.write_text("longitude,name\n-73.9,Test\n")

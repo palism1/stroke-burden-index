@@ -61,3 +61,10 @@ def test_returns_dataframe_unchanged():
     frame = df(["09001", "36001"])
     result = validate_ct_codes(frame, fips_col="fips")
     assert result is frame
+
+
+def test_empty_string_fips_passes_the_gate():
+    # "" does not start with "09", so the gate ignores it. add_fips relies on
+    # this by filtering unresolved rows before validating — pinned here so a
+    # refactor does not change it silently.
+    validate_ct_codes(df(["", "09001"]), fips_col="fips")
