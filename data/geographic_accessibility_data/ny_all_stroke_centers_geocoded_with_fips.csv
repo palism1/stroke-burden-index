@@ -1,0 +1,123 @@
+name,designation,address,latitude,longitude,fips
+Albany Medical Center,Comprehensive Stroke Center,"43 New Scotland Ave, Albany, NY 12208",42.65267632,-73.77501017,36001
+Brookdale Hospital Medical Center,Comprehensive Stroke Center,"1 Brookdale Plaza, Brooklyn, NY 11212",40.65524172,-73.91220547,36047
+Buffalo General Medical Center,Comprehensive Stroke Center,"100 High St, Buffalo, NY 14203",42.90038191,-78.86539888,36029
+Crouse Hospital,Comprehensive Stroke Center,"736 Irving Ave, Syracuse, NY 13210",43.04148322,-76.13793403,36067
+Good Samaritan Hospital Medical Center,Comprehensive Stroke Center,"1000 Montauk Hwy, West Islip, NY 11795",40.69581267,-73.29461485,36103
+Jamaica Hospital Medical Center,Comprehensive Stroke Center,"8900 Van Wyck Expy, Jamaica, NY 11418",40.70132747,-73.8163507,36081
+Lenox Hill Hospital,Comprehensive Stroke Center,"100 E 77th St, New York, NY 10075",40.77424291,-73.96144675,36061
+Maimonides Medical Center,Comprehensive Stroke Center,"4802 10th Ave, Brooklyn, NY 11219",40.63955403,-73.99825417,36047
+Mercy Hospital Of Buffalo,Comprehensive Stroke Center,"565 Abbott Rd, Buffalo, NY 14220",42.8482445,-78.81250162,36029
+Montefiore Medical Center - Henry and Lucy Moses Division,Comprehensive Stroke Center,"3457 Bainbridge Ave, Bronx, NY 10467",40.88044071,-73.8787797,36005
+Mount Sinai Hospital,Comprehensive Stroke Center,"1468 Madison Ave, New York, NY 10029",40.79039914,-73.95193585,36061
+North Shore University Hospital,Comprehensive Stroke Center,"300 Community Dr, Manhasset, NY 11030",40.77619541,-73.70296568,36059
+NYC Health + Hospitals/Bellevue,Comprehensive Stroke Center,"462 1st Ave, New York, NY 10016",40.73970918,-73.97639332,36061
+NYU Langone Hospital - Brooklyn,Comprehensive Stroke Center,"150 55th St, Brooklyn, NY 11220",40.64689954,-74.0209651,36047
+NYU Langone Hospital - Long Island,Comprehensive Stroke Center,"259 1st St, Mineola, NY 11501",40.74165027,-73.64325366,36059
+NYU Langone Health - Tisch Hospital,Comprehensive Stroke Center,"550 1st Ave, New York, NY 10016",40.74235468,-73.97446795,36061
+NewYork-Presbyterian Hospital - Columbia University Irving Medical Center,Comprehensive Stroke Center,"622 W 168th St, New York, NY 10032",40.84140552,-73.94069936,36061
+NewYork-Presbyterian Hospital/Weill Cornell Medical Center,Comprehensive Stroke Center,"1414 York Ave, New York, NY 10021",40.76882668,-73.95221646,36061
+Rochester General Hospital,Comprehensive Stroke Center,"1425 Portland Ave, Rochester, NY 14621",43.19140639,-77.58442356,36055
+South Shore University Hospital,Comprehensive Stroke Center,"301 E Main St, Bay Shore, NY 11706",40.72513836,-73.23964479,36103
+Staten Island University Hospital - North,Comprehensive Stroke Center,"475 Seaview Ave, Staten Island, NY 10305",40.58349911,-74.08594261,36085
+Stony Brook University Hospital,Comprehensive Stroke Center,"101 Nicolls Rd, Stony Brook, NY 11794",40.91048801,-73.11472545,36103
+Strong Memorial Hospital,Comprehensive Stroke Center,"601 Elmwood Ave, Rochester, NY 14642",43.12443224,-77.62305477,36055
+United Health Services Hospital - Wilson Medical Center,Comprehensive Stroke Center,"33-57 Harrison St, Johnson City, NY 13790",42.1145103,-75.95905407,36007
+Upstate Medical University,Comprehensive Stroke Center,"750 E Adams St, Syracuse, NY 13210",43.04263209,-76.14062096,36067
+Westchester Medical Center,Comprehensive Stroke Center,"100 Woods Rd, Valhalla, NY 10595",41.08772235,-73.80400732,36119
+White Plains Hospital Center,Comprehensive Stroke Center,"41 E Post Rd, White Plains, NY 10601",41.02606899,-73.77004743,36119
+Wynn Hospital,Comprehensive Stroke Center,"111 Hospital Dr, Utica, NY 13502",43.10324984,-75.23535129,36065
+MidHudson Regional Hospital of Westchester Medical Center,Thrombectomy Capable Stroke Center,"241 North Rd, Poughkeepsie, NY 12601",41.72801854,-73.93273689,36027
+Mount Sinai West,Thrombectomy Capable Stroke Center,"1000 10th Ave, New York, NY 10019",40.77007951,-73.98777144,36061
+NewYork-Presbyterian Brooklyn Methodist Hospital,Thrombectomy Capable Stroke Center,"506 6th St, Brooklyn, NY 11215",40.66846578,-73.97970966,36047
+NewYork-Presbyterian/Queens,Thrombectomy Capable Stroke Center,"56-45 Main St, Flushing, NY 11355",40.74751163,-73.8260085,36081
+NYC Health + Hospitals/Elmhurst,Thrombectomy Capable Stroke Center,"79-01 Broadway, Elmhurst, NY 11373",40.74517078,-73.88585481,36081
+NYC Health + Hospitals/Kings County,Thrombectomy Capable Stroke Center,"451 Clarkson Ave, Brooklyn, NY 11203",40.65577194,-73.94522561,36047
+NYC Health + Hospitals/Lincoln,Thrombectomy Capable Stroke Center,"234 E 149th St, Bronx, NY 10451",40.81759542,-73.92379915,36005
+NYC Health + Hospitals/South Brooklyn Health (Coney Island Hospital),Thrombectomy Capable Stroke Center,"2601 Ocean Pkwy, Brooklyn, NY 11235",40.58663111,-73.9657899,36047
+Phelps Memorial Hospital Center,Thrombectomy Capable Stroke Center,"701 N Broadway, Sleepy Hollow, NY 10591",41.10317445,-73.86089236,36119
+Richmond University Medical Center,Thrombectomy Capable Stroke Center,"355 Bard Ave, Staten Island, NY 10310",40.63504991,-74.10653198,36085
+St. Francis Hospital & Heart Center,Thrombectomy Capable Stroke Center,"100 Port Washington Blvd, Roslyn, NY 11576",40.80588732,-73.66903527,36059
+Vassar Brothers Medical Center,Thrombectomy Capable Stroke Center,"45 Reade Pl, Poughkeepsie, NY 12601",41.69445311,-73.93530552,36027
+Arnot Ogden Medical Center,Primary Stroke Center,"600 Roe Ave, Elmira, NY 14905",42.09931599,-76.82674305,36015
+Auburn Community Hospital,Primary Stroke Center,"17 Lansing St, Auburn, NY 13021",42.94082145,-76.56457698,36011
+BronxCare Health Systems,Primary Stroke Center,"1650 Grand Concourse, Bronx, NY 10457",40.84439724,-73.91125392,36005
+Brooklyn Hospital Center,Primary Stroke Center,"121 Dekalb Ave, Brooklyn, NY 11201",40.68964572,-73.97220892,36047
+Canton-Potsdam Hospital,Primary Stroke Center,"50 Leroy St, Potsdam, NY 13676",44.67602339,-74.98153053,36089
+Cayuga Medical Center,Primary Stroke Center,"101 Dates Dr, Ithaca, NY 14850",42.4708633,-76.53760492,36109
+Columbia Memorial Hospital,Primary Stroke Center,"71 Prospect Ave, Hudson, NY 12534",42.2459799,-73.77730146,36021
+Ellis Hospital,Primary Stroke Center,"1101 Nott St, Schenectady, NY 12308",42.81988076,-73.91902062,36093
+F.F. Thompson Hospital,Primary Stroke Center,"350 Parrish St, Canandaigua, NY 14424",42.87486536,-77.29023511,36069
+Flushing Hospital Medical Center,Primary Stroke Center,"4500 Parsons Blvd, Flushing, NY 11355",40.75554686,-73.8156293,36081
+Garnet Health Medical Center,Primary Stroke Center,"707 E Main St, Middletown, NY 10940",41.43992404,-74.36751296,36071
+Garnet Health Medical Center - Catskills Harris Campus,Primary Stroke Center,"68 Harris-Bushville Rd, Harris, NY 12742",,,
+Geneva General Hospital,Primary Stroke Center,"196 North St, Geneva, NY 14456",42.87575167,-76.9879933,36069
+Glen Cove Hospital,Primary Stroke Center,"101 St Andrews Ln, Glen Cove, NY 11542",40.87173575,-73.62149997,36059
+Glens Falls Hospital,Primary Stroke Center,"100 Park St, Glens Falls, NY 12801",43.30726532,-73.64609883,36113
+Good Samaritan Hospital Of Suffern,Primary Stroke Center,"255 Lafayette Ave, Suffern, NY 10901",41.11223877,-74.13511272,36087
+Guthrie Corning Hospital,Primary Stroke Center,"1 Guthrie Dr, Corning, NY 14830",,,
+Guthrie Cortland Medical Center,Primary Stroke Center,"134 Homer Ave, Cortland, NY 13045",42.60754553,-76.18607417,36023
+HealthAlliance Hospital Mary's Ave Campus,Primary Stroke Center,"105 Marys Ave, Kingston, NY 12401",41.92255323,-73.99956334,36111
+Highland Hospital,Primary Stroke Center,"1000 South Ave, Rochester, NY 14620",43.13576472,-77.60751475,36055
+Huntington Hospital,Primary Stroke Center,"270 Park Ave, Huntington, NY 11743",40.87917653,-73.41741418,36103
+John T Mather Memorial Hospital,Primary Stroke Center,"75 N Country Rd, Port Jefferson, NY 11777",,,
+Jones Memorial Hospital,Primary Stroke Center,"191 N Main St, Wellsville, NY 14895",42.12300142,-77.95011229,36003
+Kenmore Mercy Hospital,Primary Stroke Center,"2950 Elmwood Ave, Buffalo, NY 14217",42.97793978,-78.87875655,36029
+Long Island Community Hospital,Primary Stroke Center,"101 Hospital Rd, Patchogue, NY 11772",40.78033949,-72.97816513,36103
+Long Island Jewish Forest Hills (Forest Hills Hospital),Primary Stroke Center,"102-01 66th Rd, Forest Hills, NY 11375",40.72854879,-73.8516872,36081
+Long Island Jewish Medical Center,Primary Stroke Center,"270-05 76th Ave, New Hyde Park, NY 11040",40.75333388,-73.70688286,36081
+Long Island Jewish Valley Stream,Primary Stroke Center,"900 Franklin Ave, Valley Stream, NY 11580",40.68166883,-73.68577805,36059
+Maimonides Midwood Community Hospital,Primary Stroke Center,"2525 Kings Hwy, Brooklyn, NY 11229",40.61325536,-73.9489297,36047
+Mary Imogene Bassett Hospital,Primary Stroke Center,"1 Atwell Rd, Cooperstown, NY 13326",42.69610879,-74.92404653,36077
+Mercy Hospital,Primary Stroke Center,"1000 N Village Ave, Rockville Centre, NY 11570",,,
+Millard Fillmore Suburban Hospital,Primary Stroke Center,"1540 Maple Rd, Williamsville, NY 14221",42.99116915,-78.72988752,36029
+Montefiore Hospital Nyack,Primary Stroke Center,"160 N Midland Ave, Nyack, NY 10960",41.09669792,-73.92478799,36087
+Montefiore Medical Center - Jack D Weiler,Primary Stroke Center,"1825 Eastchester Rd, Bronx, NY 10461",40.85027345,-73.84494524,36005
+Montefiore Mount Vernon Hospital,Primary Stroke Center,"12 N 7th Ave, Mount Vernon, NY 10550",40.91286854,-73.84011775,36119
+Montefiore New Rochelle Hospital,Primary Stroke Center,"16 Guion Pl, New Rochelle, NY 10801",40.91297527,-73.78711175,36119
+Montefiore - St Luke's Cornwall Hospital,Primary Stroke Center,"70 Dubois St, Newburgh, NY 12550",41.5034572,-74.0151053,36071
+Mount Sinai Brooklyn,Primary Stroke Center,"3201 Kings Hwy, Brooklyn, NY 11234",40.61775495,-73.94321569,36047
+Mount Sinai Hospital of Queens,Primary Stroke Center,"25-10 30th Ave, Astoria, NY 11102",40.76840701,-73.92476881,36081
+Mount Sinai Morningside,Primary Stroke Center,"419 W 114th St, New York, NY 10025",40.80491951,-73.96043367,36061
+Mount Sinai South Nassau Hospital,Primary Stroke Center,"1 Healthy Way, Oceanside, NY 11572",,,
+Mount St. Mary's Hospital and Health Center,Primary Stroke Center,"5300 Military Rd, Lewiston, NY 14092",43.15280574,-79.02878295,36063
+Nassau University Medical Center,Primary Stroke Center,"2201 Hempstead Tpke, East Meadow, NY 11554",40.72536551,-73.55387561,36059
+Newark-Wayne Community Hospital,Primary Stroke Center,"1200 Driving Park Ave, Newark, NY 14513",43.06002226,-77.09991615,36117
+NewYork-Presbyterian Allen Hospital,Primary Stroke Center,"5141 Broadway, New York, NY 10034",40.87278949,-73.91227144,36061
+NewYork-Presbyterian Hospital/Lower Manhattan,Primary Stroke Center,"170 William St, New York, NY 10038",40.71040415,-74.00549304,36061
+NewYork-Presbyterian Hudson Valley Hospital,Primary Stroke Center,"1980 Crompond Rd, Cortlandt Manor, NY 10567",41.2914472,-73.89200125,36119
+NewYork-Presbyterian Westchester (Lawrence Hospital),Primary Stroke Center,"55 Palmer Ave, Bronxville, NY 10708",40.94155765,-73.83714356,36119
+Niagara Falls Memorial Medical Center,Primary Stroke Center,"621 10th St, Niagara Falls, NY 14301",43.09346949,-79.05035074,36063
+Nicholas H Noyes Memorial Hospital,Primary Stroke Center,"111 Clara Barton St, Dansville, NY 14437",42.55243085,-77.70041241,36051
+Northern Dutchess Hospital,Primary Stroke Center,"6511 Spring Brook Ave, Rhinebeck, NY 12572",41.93397722,-73.91265828,36027
+Northern Westchester Hospital,Primary Stroke Center,"400 Main St, Mount Kisco, NY 10549",41.19844821,-73.72495363,36119
+NYC Health + Hospitals/Harlem,Primary Stroke Center,"506 Lenox Ave, New York, NY 10037",40.81479823,-73.94026422,36061
+NYC Health + Hospitals/Jacobi,Primary Stroke Center,"1400 Pelham Pkwy S, Bronx, NY 10461",40.85744772,-73.84764512,36005
+NYC Health + Hospitals/Queens,Primary Stroke Center,"82-68 164th St, Jamaica, NY 11432",40.7172374,-73.80349785,36081
+NYC Health + Hospitals/Woodhull,Primary Stroke Center,"760 Broadway, Brooklyn, NY 11206",40.70045708,-73.94158723,36047
+Olean General Hospital,Primary Stroke Center,"515 Main St, Olean, NY 14760",42.08982405,-78.42688917,36009
+Our Lady Of Lourdes Memorial Hospital Inc,Primary Stroke Center,"169 Riverside Dr, Binghamton, NY 13905",42.09265207,-75.93589511,36007
+Peconic Bay Medical Center,Primary Stroke Center,"1 Heroes Way, Riverhead, NY 11901",40.93427582,-72.67373345,36103
+Plainview Hospital,Primary Stroke Center,"888 Old Country Rd, Plainview, NY 11803",40.77519273,-73.47810458,36059
+Putnam Hospital,Primary Stroke Center,"670 Stoneleigh Ave, Carmel, NY 10512",41.38795676,-73.66367131,36079
+Rome Health,Primary Stroke Center,"1500 N James St, Rome, NY 13440",43.22897783,-75.44414242,36065
+Samaritan Hospital,Primary Stroke Center,"2215 Burdett Ave, Troy, NY 12180",42.73409711,-73.6713273,36083
+Samaritan Medical Center,Primary Stroke Center,"830 Washington St, Watertown, NY 13601",43.96473585,-75.91284628,36045
+Saratoga Hospital,Primary Stroke Center,"211 Church St, Saratoga Springs, NY 12866",43.08484473,-73.79621464,36091
+SBH Health System/St. Barnabas Hospital,Primary Stroke Center,"4422 3rd Ave, Bronx, NY 10457",40.85384297,-73.89106678,36005
+St. Catherine of Siena Medical Center,Primary Stroke Center,"50 Route 25A, Smithtown, NY 11787",40.86764204,-73.22021809,36103
+St. Charles Hospital,Primary Stroke Center,"200 Belle Terre Rd, Port Jefferson, NY 11777",40.94773289,-73.06034676,36103
+St John's Episcopal Hospital South Shore,Primary Stroke Center,"327 Beach 19th St, Far Rockaway, NY 11691",40.59803396,-73.7530278,36081
+St. Johns Riverside Hospital - Andrus Pavilion,Primary Stroke Center,"967 N Broadway, Yonkers, NY 10701",40.96748547,-73.88528762,36119
+St. Joseph Hospital,Primary Stroke Center,"4295 Hempstead Tpke, Bethpage, NY 11714",40.72586459,-73.47850626,36059
+St. Josephs Hospital Health Center,Primary Stroke Center,"301 Prospect Ave, Syracuse, NY 13203",43.05514853,-76.14891418,36067
+St. Joseph's Medical Center,Primary Stroke Center,"127 S Broadway, Yonkers, NY 10701",40.93006987,-73.89760618,36119
+St. Peter's Hospital,Primary Stroke Center,"315 S Manning Blvd, Albany, NY 12208",42.65382597,-73.80644701,36001
+Staten Island University Hospital - South,Primary Stroke Center,"375 Seguine Ave, Staten Island, NY 10309",40.51740197,-74.19687733,36085
+Stony Brook Eastern Long Island Hospital,Primary Stroke Center,"201 Manor Place, Greenport, NY 11944",41.11113114,-72.36087207,36103
+Stony Brook Southampton Hospital,Primary Stroke Center,"240 Meeting House Ln, Southampton, NY 11968",40.8857465,-72.3806666,36103
+Syosset Hospital,Primary Stroke Center,"221 Jericho Turnpike, Syosset, NY 11791",40.81020537,-73.50907967,36059
+Unity Hospital of Rochester,Primary Stroke Center,"1555 Long Pond Rd, Rochester, NY 14626",43.19183376,-77.70154225,36055
+United Memorial Medical Center North Street Campus,Primary Stroke Center,"127 North St, Batavia, NY 14020",43.00397861,-78.17707126,36037
+University Hospital of Brooklyn (SUNY Downstate),Primary Stroke Center,"445 Lenox Rd, Brooklyn, NY 11203",40.65461601,-73.94357464,36047
+Wyckoff Heights Medical Center,Primary Stroke Center,"374 Stockholm St, Brooklyn, NY 11237",40.70467625,-73.91757784,36047
