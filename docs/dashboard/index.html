@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stroke Burden Index — County Dashboard</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+<header>
+  <h1>Stroke Burden Index — County Dashboard</h1>
+  <p class="subtitle">Explore stroke risk and access to stroke care across the 91 counties of
+  New York, New Jersey, and Connecticut. Search for your county or click it on the map.
+  <em>Work in progress — index scores will appear here as they are computed.</em></p>
+  <div class="controls">
+    <label for="county-search">Find your county:</label>
+    <input id="county-search" list="county-list" type="search"
+           placeholder="e.g. New Haven, CT" autocomplete="off"
+           aria-describedby="search-message">
+    <datalist id="county-list"></datalist>
+    <span id="search-message" role="status" aria-live="polite"></span>
+
+    <label for="metric-select">Color the map by:</label>
+    <select id="metric-select"></select>
+  </div>
+</header>
+
+<div id="load-error" role="alert" hidden></div>
+
+<main>
+  <section id="map-section" aria-label="County map">
+    <svg id="map" role="img" aria-label="Choropleth map of NY, NJ, and CT counties"></svg>
+    <div id="legend" aria-label="Map legend"></div>
+    <p class="map-note">Darker orange = higher value. Counties are outlined so every shade is
+    distinguishable; exact values are shown in the panel and in each county's tooltip.</p>
+  </section>
+
+  <aside id="details" aria-live="polite">
+    <h2 id="details-title">County details</h2>
+    <p id="details-hint">Select a county on the map or use the search box to see its details.</p>
+    <div id="details-body"></div>
+  </aside>
+</main>
+
+<section id="matrix-section">
+  <h2>Risk vs. Access Matrix</h2>
+  <div id="matrix-placeholder">
+    <p>This chart will plot every county by <strong>stroke vulnerability</strong> (how likely a
+    community is to experience stroke-related health problems) against <strong>access to stroke
+    care</strong>. Counties that are highly vulnerable <em>and</em> far from care are the region's
+    stroke care deserts — the highest-priority areas.</p>
+    <p class="pending">The vulnerability and access scores are still being computed. The chart
+    activates automatically once they are available.</p>
+  </div>
+  <div id="matrix-chart" hidden></div>
+</section>
+
+<footer>
+  <p><a href="../index.html">About this project</a> · Data: US Census ACS, CDC WONDER,
+  CDC PLACES, state stroke center designations. Drive times via OpenRouteService.</p>
+</footer>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

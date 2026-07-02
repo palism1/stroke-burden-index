@@ -65,3 +65,55 @@ def test_master_no_missing_values():
     missing = master.isnull().sum()
     missing = missing[missing > 0]
     assert missing.empty, f"unexpected missing values in: {dict(missing)}"
+
+
+# SCAI loader (file not collected yet — both paths must work)
+
+SCAI_COLUMNS = [
+    "hospitals_per_100k",
+    "hospital_beds_per_100k",
+    "pcp_per_100k",
+    "neurologists_per_100k",
+    "stroke_centers_per_100k",
+]
+
+
+def _mirror_data_dir(tmp_path):
+    """Symlink every real data file into a tmp data dir so DATA can be redirected."""
+    import merge
+
+    mirror = tmp_path / "data"
+    mirror.mkdir()
+    for entry in merge.DATA.iterdir():
+        if entry.name != "scai_data":
+            (mirror / entry.name).symlink_to(entry)
+    return mirror
+
+
+def test_master_skips_scai_when_file_absent(tmp_path, monkeypatch, capsys):
+    import merge
+
+    monkeypatch.setattr(merge, "DATA", _mirror_data_dir(tmp_path))
+    master = build_master()
+    assert len(master) == 91
+    assert not any(c in master.columns for c in SCAI_COLUMNS)
+    assert "skipped (file not found): scai" in capsys.readouterr().out
+
+
+def test_master_picks_up_scai_when_file_lands(tmp_path, monkeypatch):
+    import merge
+
+    mirror = _mirror_data_dir(tmp_path)
+    spine = pd.read_csv(mirror / "ny_nj_ct_fips.csv", dtype={"fips": str})
+    scai = pd.DataFrame({"fips": spine["fips"]})
+    for col in SCAI_COLUMNS:
+        scai[col] = 1.0
+    (mirror / "scai_data").mkdir()
+    scai.to_csv(mirror / "scai_data" / "scai_data.csv", index=False)
+
+    monkeypatch.setattr(merge, "DATA", mirror)
+    master = build_master()
+    assert len(master) == 91
+    for col in SCAI_COLUMNS:
+        assert col in master.columns, f"expected SCAI column {col} in master"
+        assert master[col].notna().all()

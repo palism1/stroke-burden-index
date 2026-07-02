@@ -33,47 +33,67 @@ def _strip_county_suffix(series: pd.Series) -> pd.Series:
     return series.str.replace(r"\s+County$", "", regex=True)
 
 
+def _read(path) -> pd.DataFrame:
+    # float_precision="round_trip" makes float parsing correctly rounded and
+    # therefore identical across pandas versions and platforms — required so
+    # regenerated outputs (master.csv, docs/data/) are byte-stable and CI's
+    # staleness check can't flake on halfway rounding values.
+    return pd.read_csv(path, dtype={"fips": str}, float_precision="round_trip")
+
+
 def _load_spine() -> pd.DataFrame:
     """91-county FIPS reference — the join backbone."""
-    df = pd.read_csv(DATA / "ny_nj_ct_fips.csv", dtype={"fips": str})
+    df = _read(DATA / "ny_nj_ct_fips.csv")
     df["county"] = _strip_county_suffix(df["county"])
     return df[["fips", "county", "state"]]
 
 
 def _load_acs() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "acs_data.csv", dtype={"fips": str})
+    df = _read(DATA / "acs_data.csv")
     return df.drop(columns=["county", "state"])
 
 
 def _load_mortality() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "stroke_mortality.csv", dtype={"fips": str})
+    df = _read(DATA / "stroke_mortality.csv")
     return df.drop(columns=["county", "state"])
 
 
 def _load_geographic() -> pd.DataFrame:
-    df = pd.read_csv(
-        DATA / "geographic_accessibility_data" / "geographic_stroke_accessibility.csv",
-        dtype={"fips": str},
-    )
+    df = _read(DATA / "geographic_accessibility_data" / "geographic_stroke_accessibility.csv")
     df["state"] = df["state"].map(_STATE_NAME_TO_ABBR)
     return df.drop(columns=["county", "state"])
 
 
 def _load_cdc_places() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "cdcplaces_data.csv", dtype={"fips": str})
+    df = _read(DATA / "cdcplaces_data.csv")
     return df.drop(columns=["county", "state"], errors="ignore")
 
 
 def _load_pop_density() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "pop_density.csv", dtype={"fips": str})
+    df = _read(DATA / "pop_density.csv")
+    return df.drop(columns=["county", "state"], errors="ignore")
+
+
+def _load_scai() -> pd.DataFrame | None:
+    """SCAI is still being collected — returns None until the file lands.
+
+    Expected columns: fips, hospitals_per_100k, hospital_beds_per_100k,
+    pcp_per_100k, neurologists_per_100k, stroke_centers_per_100k
+    (see data/scai_data/README.md).
+    """
+    path = DATA / "scai_data" / "scai_data.csv"
+    if not path.exists():
+        return None
+    df = _read(path)
     return df.drop(columns=["county", "state"], errors="ignore")
 
 
 # ---------------------------------------------------------------------------
 # Add new sources here when they land. Pattern:
 #   def _load_<name>() -> pd.DataFrame:
-#       df = pd.read_csv(DATA / "<file>.csv", dtype={"fips": str})
+#       df = _read(DATA / "<file>.csv")
 #       return df.drop(columns=["county", "state"], errors="ignore")
+# A loader may return None to signal its file isn't collected yet.
 # ---------------------------------------------------------------------------
 
 
@@ -82,13 +102,21 @@ def build_master() -> pd.DataFrame:
     validate_ct_codes(spine, fips_col="fips")
 
     master = spine
-    for loader in [_load_acs, _load_mortality, _load_geographic, _load_cdc_places, _load_pop_density]:
-        master = master.merge(loader(), on="fips", how="left")
+    skipped = []
+    for loader in [_load_acs, _load_mortality, _load_geographic, _load_cdc_places, _load_pop_density, _load_scai]:
+        df = loader()
+        if df is None:
+            skipped.append(loader.__name__.removeprefix("_load_"))
+            continue
+        master = master.merge(df, on="fips", how="left")
 
     out = DATA / "master.csv"
     master.to_csv(out, index=False)
 
-    print(f"wrote {out.relative_to(REPO_ROOT)}  ({len(master)} rows, {len(master.columns)} columns)")
+    out_label = out.relative_to(REPO_ROOT) if out.is_relative_to(REPO_ROOT) else out
+    print(f"wrote {out_label}  ({len(master)} rows, {len(master.columns)} columns)")
+    if skipped:
+        print(f"skipped (file not found): {', '.join(skipped)}")
     missing = master.isnull().sum()
     missing = missing[missing > 0]
     if not missing.empty:

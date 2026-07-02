@@ -45,3 +45,6 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Session handoff notes — local only
+HANDOFF.md

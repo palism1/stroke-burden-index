@@ -13,6 +13,8 @@ Identifying high-priority stroke intervention areas across the United States by 
 | Resource | Path |
 |---|---|
 | Project plan and methodology | [docs/plan.md](docs/plan.md) |
+| Interactive county dashboard (WIP) | [docs/dashboard/](docs/dashboard/) — live at [/dashboard](https://palism1.github.io/stroke-burden-index/dashboard/) |
+| Pipeline guide (adding data, contracts, building indices) | [docs/pipeline_guide.md](docs/pipeline_guide.md) |
 | Data dictionary and naming conventions | [data/data_dictionary.md](data/data_dictionary.md) |
 
 ---
@@ -82,7 +84,7 @@ Add a loader function to `src/merge.py` and register it in the same file's `buil
 
 ```python
 def _load_scai() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "scai_data/scai_data.csv", dtype={"fips": str})
+    df = _read(DATA / "scai_data/scai_data.csv")   # _read handles fips dtype + float parsing
     return df.drop(columns=["county", "state"], errors="ignore")
 ```
 
