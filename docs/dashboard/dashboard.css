@@ -76,15 +76,45 @@ main {
 }
 @media (max-width: 760px) { main { grid-template-columns: 1fr; } }
 
-#map { width: 100%; height: auto; display: block; }
+#map-section { position: relative; }
+#map { width: 100%; height: auto; display: block; touch-action: none; }
 
 .county {
   stroke: #ffffff;
   stroke-width: 0.8;
   cursor: pointer;
+  /* Keep outlines hairline regardless of the viewBox zoom level: stroke-width
+     is interpreted in screen px, not scaled SVG units. */
+  vector-effect: non-scaling-stroke;
 }
 .county:hover, .county:focus { stroke: var(--text); stroke-width: 1.6; outline: none; }
 .county.selected { stroke: var(--text); stroke-width: 2.2; }
+
+/* Zoom controls overlaid on the map's top-right corner. */
+.zoom-controls {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.zoom-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--text);
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.zoom-btn:hover { background: #f2f2f2; }
+.zoom-btn:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.zoom-btn:active { background: #e8e8e8; }
 
 #legend {
   display: flex;
