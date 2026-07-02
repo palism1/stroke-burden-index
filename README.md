@@ -84,7 +84,7 @@ Add a loader function to `src/merge.py` and register it in the same file's `buil
 
 ```python
 def _load_scai() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "scai_data/scai_data.csv", dtype={"fips": str})
+    df = _read(DATA / "scai_data/scai_data.csv")   # _read handles fips dtype + float parsing
     return df.drop(columns=["county", "state"], errors="ignore")
 ```
 

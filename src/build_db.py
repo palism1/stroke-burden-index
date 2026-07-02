@@ -60,27 +60,30 @@ def _strip_county_suffix(series: pd.Series) -> pd.Series:
     return series.str.replace(r"\s+County$", "", regex=True)
 
 
+def _read(path) -> pd.DataFrame:
+    # float_precision="round_trip" — correctly rounded float parsing,
+    # identical across pandas versions and platforms (see merge.py).
+    return pd.read_csv(path, dtype={"fips": str}, float_precision="round_trip")
+
+
 def _load_spine() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "ny_nj_ct_fips.csv", dtype={"fips": str})
+    df = _read(DATA / "ny_nj_ct_fips.csv")
     df["county"] = _strip_county_suffix(df["county"])
     return df[["fips", "county", "state"]]
 
 
 def _load_acs() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "acs_data.csv", dtype={"fips": str})
+    df = _read(DATA / "acs_data.csv")
     return df.drop(columns=["county", "state"])
 
 
 def _load_mortality() -> pd.DataFrame:
-    df = pd.read_csv(DATA / "stroke_mortality.csv", dtype={"fips": str})
+    df = _read(DATA / "stroke_mortality.csv")
     return df.drop(columns=["county", "state"])
 
 
 def _load_geographic() -> pd.DataFrame:
-    df = pd.read_csv(
-        DATA / "geographic_accessibility_data" / "geographic_stroke_accessibility.csv",
-        dtype={"fips": str},
-    )
+    df = _read(DATA / "geographic_accessibility_data" / "geographic_stroke_accessibility.csv")
     df["state"] = df["state"].map(_STATE_NAME_TO_ABBR)
     return df.drop(columns=["county", "state"])
 
@@ -89,7 +92,7 @@ def _load_cdc_places() -> pd.DataFrame | None:
     path = DATA / "cdcplaces_data.csv"
     if not path.exists():
         return None
-    df = pd.read_csv(path, dtype={"fips": str})
+    df = _read(path)
     return df.drop(columns=["county", "state"], errors="ignore")
 
 
@@ -97,7 +100,7 @@ def _load_pop_density() -> pd.DataFrame | None:
     path = DATA / "pop_density.csv"
     if not path.exists():
         return None
-    df = pd.read_csv(path, dtype={"fips": str})
+    df = _read(path)
     return df.drop(columns=["county", "state"], errors="ignore")
 
 
@@ -108,7 +111,7 @@ def _load_scai() -> pd.DataFrame | None:
     path = DATA / "scai_data" / "scai_data.csv"
     if not path.exists():
         return None
-    df = pd.read_csv(path, dtype={"fips": str})
+    df = _read(path)
     return df.drop(columns=["county", "state"], errors="ignore")
 
 
