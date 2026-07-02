@@ -41,11 +41,11 @@ Every index follows the same pipeline: **raw → align direction → standardize
 
 Demographics: % population over 65, population density
 
-Socioeconomic: poverty rate, median income, education level
+Socioeconomic: poverty rate, percent low income, education level
 
 Health: smoking prevalence, obesity prevalence, diabetes prevalence, physical inactivity, hypertension prevalence, high cholesterol prevalence, binge drinking prevalence, stroke prevalence
 
-**Direction:** higher value = worse vulnerability. Protective variables (income, education) are flipped before standardizing.
+**Direction:** higher value = worse vulnerability. Percent low income already points the harmful way (higher = worse), so it is not flipped. Protective variables (education) are flipped before standardizing.
 
 ---
 

@@ -88,7 +88,7 @@ result.explained_variance_ratio          # fraction of variance PC1 captures
 
 | Index | Direction | What to flip |
 |---|---|---|
-| SVI | higher = more vulnerable | protective vars (income, education, insurance) |
+| SVI | higher = more vulnerable | protective vars (education, insurance); percent low income is harmful-direction, so it is *not* flipped |
 | SCAI | higher = better access | nothing (all per-capita access vars already point up) |
 | GAI | higher = better access | all four drive-time/distance vars (lower = closer = better) |
 
