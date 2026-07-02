@@ -78,7 +78,7 @@ Source: Computed from county population centers (Census 2020) and geocoded strok
 | `county` | string | County name without "County" suffix (e.g. "Albany") |
 | `state` | string | Full state name (e.g. "New York") — **inconsistent with other files, use fips to join** |
 | `drive_time_min` | float | Estimated drive time in minutes to nearest basic stroke center (primary or acute). Essex NY and Hamilton NY are imputed at 45 mph. |
-| `drive_time_advanced` | float | Estimated drive time in minutes to nearest advanced stroke center (comprehensive or thrombectomy-capable). Empty for Essex NY and Hamilton NY — impute as `nearest_stroke_distance_advanced / 45 * 60`. |
+| `drive_time_advanced` | float | Estimated drive time in minutes to nearest advanced stroke center (comprehensive or thrombectomy-capable). Essex NY and Hamilton NY are imputed at 45 mph. |
 | `nearest_stroke_distance` | float | Straight-line distance in miles to nearest basic stroke center |
 | `nearest_stroke_distance_advanced` | float | Straight-line distance in miles to nearest advanced stroke center |
 
