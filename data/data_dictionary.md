@@ -82,7 +82,7 @@ Source: Computed from county population centers (Census 2020) and geocoded strok
 | `nearest_stroke_distance` | float | Straight-line distance in miles to nearest basic stroke center |
 | `nearest_stroke_distance_advanced` | float | Straight-line distance in miles to nearest advanced stroke center |
 
-These 4 columns are the inputs to the Geographic Accessibility Index (GAI). The GAI is calculated via PCA across all 4 variables and normalized to 0-100. Higher = better access (closer). See the geographic accessibility analysis notebook for the index calculation.
+These 4 columns are the inputs to the Geographic Accessibility Index (GAI). The GAI is calculated via PCA across all 4 variables and normalized to 0-100. Higher = better access (closer). See the analysis notebooks in `notebooks/` for the index calculation.
 
 ---
 

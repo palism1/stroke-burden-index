@@ -58,7 +58,7 @@ We build two indices plus a geographic score, then combine them into the headlin
 Candidate variables (audit and trim once data quality is known):
 
 - **Demographics:** % population over 65, population density
-- **Socioeconomic:** poverty rate, median income, education level
+- **Socioeconomic:** poverty rate, percent low income, education level
 - **Health:** smoking prevalence, obesity prevalence, diabetes prevalence, physical inactivity, etc. `(?)`
 
 ### Stroke Care Access Index (SCAI)
@@ -88,8 +88,7 @@ Every index follows the same pipeline: **raw → align direction → standardize
 
 ### 2a. Stroke Vulnerability Index (SVI)
 
-1. **Align direction** so higher value = worse vulnerability. Flip "protective" variables:
-   - income → `-(income)`
+1. **Align direction** so higher value = worse vulnerability. Percent low income already points the harmful way (higher = worse), so it is left as-is. Flip "protective" variables:
    - education → `-(education)`
 2. **Standardize** (scale) all variables.
 3. **Compute** the index with **PCA** (use PC1).
@@ -195,7 +194,7 @@ Audit each before committing: confirm current vintage, county-level granularity,
 
 **Risk-factor prevalence (county):** CDC PLACES (smoking, obesity, diabetes, physical inactivity, etc.).
 
-**Demographics + socioeconomic (county):** US Census ACS 5-year (age 65+, poverty, median income, educational attainment). Population density: Census population + land area (TIGER/Line).
+**Demographics + socioeconomic (county):** US Census ACS 5-year (age 65+, poverty, percent low income, educational attainment). Population density: Census population + land area (TIGER/Line).
 
 **Insurance coverage (county):** Census SAHIE or ACS. `(?)`
 
