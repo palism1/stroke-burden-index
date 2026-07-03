@@ -149,3 +149,112 @@ def test_gai_orientation_end_to_end():
     gai = build_index(df, variables, flip=variables, name="gai").scores
     assert gai.iloc[0] == 100.0   # closest county = best access
     assert gai.iloc[-1] == 0.0    # farthest county = worst access
+
+
+# --- skew diagnostics & opt-in transforms -----------------------------------
+
+def _lognormal_frame(n=400):
+    """A heavily right-skewed variable ('skewed') alongside two tame ones."""
+    r = np.random.default_rng(7)
+    return pd.DataFrame({
+        "skewed": r.lognormal(mean=0.0, sigma=1.0, size=n),
+        "b": r.normal(10, 1, n),
+        "c": r.normal(5, 1, n),
+    })
+
+
+def test_no_transform_scores_byte_identical_to_baseline():
+    # Regression guard: the additive diagnostics must not perturb scores by a
+    # single bit versus a call with no transforms argument at all.
+    df = _agreeing_frame()
+    variables = ["a", "b", "c"]
+    baseline = build_index(df, variables).scores.to_numpy()
+    with_arg = build_index(df, variables, transforms={}).scores.to_numpy()
+    assert baseline.tobytes() == with_arg.tobytes()
+
+
+def test_skewness_matches_hand_computed_value():
+    # Adjusted Fisher-Pearson (pandas default). [1,2,3,4,10] worked by hand to
+    # ~1.6971; a symmetric column is exactly 0. "b" is unflipped so its raw and
+    # aligned skew coincide.
+    df = pd.DataFrame({
+        "b": [1.0, 2.0, 3.0, 4.0, 10.0],
+        "sym": [1.0, 2.0, 3.0, 4.0, 5.0],
+    })
+    result = build_index(df, ["b", "sym"])
+    assert result.skewness["b"] == pytest.approx(1.6970562748, abs=1e-9)
+    assert result.skewness["sym"] == pytest.approx(0.0, abs=1e-12)
+
+
+def test_log1p_reduces_absolute_skew_on_lognormal():
+    df = _lognormal_frame()
+    variables = ["skewed", "b", "c"]
+    raw_skew = abs(build_index(df, variables).skewness["skewed"])
+    logged_skew = abs(
+        build_index(df, variables, transforms={"skewed": "log1p"}).skewness["skewed"]
+    )
+    assert raw_skew > 2.0                  # heavily skewed to begin with
+    assert logged_skew < raw_skew          # the log pulls the tail in
+    assert logged_skew < raw_skew / 2      # and roughly halves the skew here
+
+
+def test_transform_changes_scores():
+    df = _lognormal_frame()
+    variables = ["skewed", "b", "c"]
+    plain = build_index(df, variables).scores.to_numpy()
+    logged = build_index(df, variables, transforms={"skewed": "log1p"}).scores.to_numpy()
+    assert not np.allclose(plain, logged)
+
+
+def test_high_skew_flags_untransformed_and_clears_when_transformed():
+    df = _lognormal_frame()
+    variables = ["skewed", "b", "c"]
+    flagged = build_index(df, variables)
+    assert "skewed" in flagged.high_skew         # |skew| > threshold, no transform
+    assert "b" not in flagged.high_skew
+    cleared = build_index(df, variables, transforms={"skewed": "log1p"})
+    assert "skewed" not in cleared.high_skew      # transformed vars are never flagged
+
+
+def test_log_requires_positive_values():
+    df = _agreeing_frame()   # "a" starts at 0.0
+    with pytest.raises(ValueError, match="'log' transform on 'a' needs all values > 0"):
+        build_index(df, ["a", "b"], transforms={"a": "log"})
+
+
+def test_log1p_requires_nonnegative_values():
+    df = _agreeing_frame()
+    df["a"] = df["a"] - 1.0   # now includes a negative value
+    with pytest.raises(ValueError, match="'log1p' transform on 'a' needs all values >= 0"):
+        build_index(df, ["a", "b"], transforms={"a": "log1p"})
+
+
+def test_unknown_transform_name_raises_and_lists_options():
+    with pytest.raises(ValueError, match="unknown transform 'sqrt'.*log, log1p"):
+        build_index(_agreeing_frame(), ["a", "b"], transforms={"a": "sqrt"})
+
+
+def test_transform_on_unknown_variable_raises():
+    with pytest.raises(ValueError, match="transform entries not in variables"):
+        build_index(_agreeing_frame(), ["a", "b"], transforms={"nope": "log1p"})
+
+
+def test_transform_applies_before_flip():
+    # log then negate must not error; negate then log would blow up on the
+    # negatives. The pipeline transforms raw values first, so this succeeds and
+    # the flipped variable's contribution still reverses the single-var order.
+    df = _lognormal_frame()
+    ascending = build_index(df, ["skewed"], transforms={"skewed": "log1p"}).scores
+    descending = build_index(
+        df, ["skewed"], flip=["skewed"], transforms={"skewed": "log1p"}
+    ).scores
+    assert np.allclose(ascending, 100 - descending)
+
+
+def test_callable_transform_supported():
+    # A caller-supplied callable is honored just like a named transform.
+    df = _lognormal_frame()
+    variables = ["skewed", "b", "c"]
+    by_name = build_index(df, variables, transforms={"skewed": "log1p"}).scores
+    by_callable = build_index(df, variables, transforms={"skewed": np.log1p}).scores
+    assert np.allclose(by_name, by_callable)
