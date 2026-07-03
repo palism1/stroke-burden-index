@@ -9,6 +9,22 @@ neurologists, and stroke centers).
 at the repo root by accident. The collection notebook, intermediate downloads,
 and the final CSV all belong here.
 
+### Root cleanup (2026-07-02) — where files went
+
+The root-level working copies were removed or moved. If a notebook read them by
+bare filename, update its paths per this mapping (exact duplicates were deleted;
+the canonical copy is listed):
+
+| Was at repo root | Now |
+|---|---|
+| `SCAI_Data_Gathering.ipynb`, `healthPerCapita.py`, `hospitals_per_100k_nj_ny.csv` | `data/scai_data/` (moved) |
+| `hospitals_per_100k_all.csv`, `pcp_per_100k_all.csv` | `data/scai_data/` (root duplicate deleted) |
+| `County_Health_Rankings_{CT,NJ,NY}.xlsx` | `data/raw/county_health_rankings/` (moved) |
+| `Hospital_General_Information.csv`, `co-est2025-alldata.csv`, `ct_towns_pop2023.csv`, `ny_nj_ct_fips.csv` | `data/` (root duplicate deleted) |
+| `ct_basic_geocoded.csv`, `ct_advanced_geocoded.csv` | `data/geographic_accessibility_data/` (root duplicate deleted) |
+| `ct_stroke_centers_geocoded.csv` | `data/geographic_accessibility_data/` (moved) |
+| `ct_town_crosswalk.csv` | `reference/ct_crosswalk/` (root duplicate deleted) |
+
 ## Expected files
 
 | File | Description |
