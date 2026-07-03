@@ -97,6 +97,25 @@ can't silently come out backwards. The function raises on NaN on purpose:
 imputing or dropping is an analytical decision that belongs in your notebook,
 never silently inside the pipeline.
 
+### Skew and transforms
+
+Team rule: PCA is sensitive to extreme outliers and heavy skew, so a heavily
+skewed variable needs a non-linear fix (e.g. a log) *before* scaling — z-scoring
+can't undo the shape. To act on it, pass `transforms`:
+
+```python
+result = build_index(df, variables, transforms={"poverty_rate": "log1p"})
+```
+
+`transforms` reshapes each named variable's raw values ("log" or "log1p") and
+nothing auto-applies — the choice is yours. `result.skewness` reports each
+variable's skewness, and `result.high_skew` lists untransformed variables with
+`|skew| > 2.0` (`HIGH_SKEW_THRESHOLD`) so you can see what the rule would flag;
+both are diagnostics and never change the scores. Order is **transform → align
+(flip) → standardize → PCA**: transforms hit the raw values first, because a log
+of a negated variable is nonsense. `"log"` raises on any value ≤ 0 and `"log1p"`
+on any value < 0.
+
 ---
 
 ## Mapping
