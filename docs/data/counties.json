@@ -114,6 +114,31 @@
    "label": "Population density",
    "unit": "per sq mi",
    "group": "community"
+  },
+  "hospitals_per_100k": {
+   "label": "Hospitals",
+   "unit": "per 100k",
+   "group": "access"
+  },
+  "hospital_beds_per_100k": {
+   "label": "Hospital beds",
+   "unit": "per 100k",
+   "group": "access"
+  },
+  "pcp_per_100k": {
+   "label": "Primary care physicians",
+   "unit": "per 100k",
+   "group": "access"
+  },
+  "neurologists_per_100k": {
+   "label": "Neurologists",
+   "unit": "per 100k",
+   "group": "access"
+  },
+  "stroke_centers_per_100k": {
+   "label": "Stroke centers",
+   "unit": "per 100k",
+   "group": "access"
   }
  },
  "groups": {
@@ -148,7 +173,12 @@
    "diabetes_prevalence": 9.2,
    "obesity_prevalence": 29.8,
    "stroke_prevalence": 3.0,
-   "pop_density": 605.6
+   "pop_density": 605.6,
+   "hospitals_per_100k": 1.26,
+   "hospital_beds_per_100k": 384.46,
+   "pcp_per_100k": 96.67,
+   "neurologists_per_100k": 13.22,
+   "stroke_centers_per_100k": 0.63
   },
   "36003": {
    "county": "Allegany",
@@ -175,7 +205,12 @@
    "diabetes_prevalence": 11.1,
    "obesity_prevalence": 34.4,
    "stroke_prevalence": 3.7,
-   "pop_density": 45.31
+   "pop_density": 45.31,
+   "hospitals_per_100k": 4.28,
+   "hospital_beds_per_100k": 147.77,
+   "pcp_per_100k": 40.69,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 2.14
   },
   "36005": {
    "county": "Bronx",
@@ -202,7 +237,12 @@
    "diabetes_prevalence": 16.1,
    "obesity_prevalence": 33.5,
    "stroke_prevalence": 4.4,
-   "pop_density": 32162.17
+   "pop_density": 32162.17,
+   "hospitals_per_100k": 0.51,
+   "hospital_beds_per_100k": 210.65,
+   "pcp_per_100k": 65.7,
+   "neurologists_per_100k": 6.23,
+   "stroke_centers_per_100k": 0.43
   },
   "36007": {
    "county": "Broome",
@@ -229,7 +269,12 @@
    "diabetes_prevalence": 10.9,
    "obesity_prevalence": 33.1,
    "stroke_prevalence": 3.7,
-   "pop_density": 277.87
+   "pop_density": 277.87,
+   "hospitals_per_100k": 1.53,
+   "hospital_beds_per_100k": 257.23,
+   "pcp_per_100k": 83.19,
+   "neurologists_per_100k": 4.08,
+   "stroke_centers_per_100k": 1.02
   },
   "36009": {
    "county": "Cattaraugus",
@@ -256,7 +301,12 @@
    "diabetes_prevalence": 12.1,
    "obesity_prevalence": 35.7,
    "stroke_prevalence": 4.1,
-   "pop_density": 57.79
+   "pop_density": 57.79,
+   "hospitals_per_100k": 1.32,
+   "hospital_beds_per_100k": 266.95,
+   "pcp_per_100k": 46.25,
+   "neurologists_per_100k": 1.32,
+   "stroke_centers_per_100k": 1.32
   },
   "36011": {
    "county": "Cayuga",
@@ -283,7 +333,12 @@
    "diabetes_prevalence": 11.8,
    "obesity_prevalence": 35.7,
    "stroke_prevalence": 3.9,
-   "pop_density": 107.7
+   "pop_density": 107.7,
+   "hospitals_per_100k": 1.34,
+   "hospital_beds_per_100k": 114.0,
+   "pcp_per_100k": 25.48,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 1.34
   },
   "36013": {
    "county": "Chautauqua",
@@ -310,7 +365,12 @@
    "diabetes_prevalence": 12.6,
    "obesity_prevalence": 36.3,
    "stroke_prevalence": 4.0,
-   "pop_density": 117.78
+   "pop_density": 117.78,
+   "hospitals_per_100k": 2.4,
+   "hospital_beds_per_100k": 257.47,
+   "pcp_per_100k": 55.97,
+   "neurologists_per_100k": 0.8,
+   "stroke_centers_per_100k": 0.0
   },
   "36015": {
    "county": "Chemung",
@@ -337,7 +397,12 @@
    "diabetes_prevalence": 11.5,
    "obesity_prevalence": 30.7,
    "stroke_prevalence": 3.8,
-   "pop_density": 199.65
+   "pop_density": 199.65,
+   "hospitals_per_100k": 2.47,
+   "hospital_beds_per_100k": 235.54,
+   "pcp_per_100k": 82.62,
+   "neurologists_per_100k": 3.7,
+   "stroke_centers_per_100k": 1.23
   },
   "36017": {
    "county": "Chenango",
@@ -364,7 +429,12 @@
    "diabetes_prevalence": 12.3,
    "obesity_prevalence": 36.3,
    "stroke_prevalence": 4.1,
-   "pop_density": 51.4
+   "pop_density": 51.4,
+   "hospitals_per_100k": 2.18,
+   "hospital_beds_per_100k": 126.35,
+   "pcp_per_100k": 32.68,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36019": {
    "county": "Clinton",
@@ -391,7 +461,12 @@
    "diabetes_prevalence": 10.7,
    "obesity_prevalence": 33.2,
    "stroke_prevalence": 3.5,
-   "pop_density": 75.27
+   "pop_density": 75.27,
+   "hospitals_per_100k": 1.28,
+   "hospital_beds_per_100k": 367.11,
+   "pcp_per_100k": 77.02,
+   "neurologists_per_100k": 1.28,
+   "stroke_centers_per_100k": 0.0
   },
   "36021": {
    "county": "Columbia",
@@ -418,7 +493,12 @@
    "diabetes_prevalence": 11.8,
    "obesity_prevalence": 30.8,
    "stroke_prevalence": 3.9,
-   "pop_density": 95.28
+   "pop_density": 95.28,
+   "hospitals_per_100k": 1.65,
+   "hospital_beds_per_100k": 316.8,
+   "pcp_per_100k": 39.6,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 1.65
   },
   "36023": {
    "county": "Cortland",
@@ -445,7 +525,12 @@
    "diabetes_prevalence": 9.3,
    "obesity_prevalence": 30.5,
    "stroke_prevalence": 3.1,
-   "pop_density": 91.73
+   "pop_density": 91.73,
+   "hospitals_per_100k": 2.17,
+   "hospital_beds_per_100k": 182.59,
+   "pcp_per_100k": 39.13,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 2.17
   },
   "36025": {
    "county": "Delaware",
@@ -472,7 +557,12 @@
    "diabetes_prevalence": 12.5,
    "obesity_prevalence": 32.8,
    "stroke_prevalence": 4.3,
-   "pop_density": 30.78
+   "pop_density": 30.78,
+   "hospitals_per_100k": 6.74,
+   "hospital_beds_per_100k": 125.75,
+   "pcp_per_100k": 31.44,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36027": {
    "county": "Dutchess",
@@ -499,7 +589,12 @@
    "diabetes_prevalence": 9.9,
    "obesity_prevalence": 28.2,
    "stroke_prevalence": 3.1,
-   "pop_density": 373.49
+   "pop_density": 373.49,
+   "hospitals_per_100k": 0.67,
+   "hospital_beds_per_100k": 142.54,
+   "pcp_per_100k": 68.25,
+   "neurologists_per_100k": 4.71,
+   "stroke_centers_per_100k": 1.01
   },
   "36029": {
    "county": "Erie",
@@ -526,7 +621,12 @@
    "diabetes_prevalence": 10.8,
    "obesity_prevalence": 32.8,
    "stroke_prevalence": 3.4,
-   "pop_density": 907.35
+   "pop_density": 907.35,
+   "hospitals_per_100k": 1.06,
+   "hospital_beds_per_100k": 235.9,
+   "pcp_per_100k": 77.47,
+   "neurologists_per_100k": 9.29,
+   "stroke_centers_per_100k": 0.42
   },
   "36031": {
    "county": "Essex",
@@ -553,7 +653,12 @@
    "diabetes_prevalence": 11.8,
    "obesity_prevalence": 34.8,
    "stroke_prevalence": 4.0,
-   "pop_density": 20.5
+   "pop_density": 20.5,
+   "hospitals_per_100k": 2.73,
+   "hospital_beds_per_100k": 68.15,
+   "pcp_per_100k": 40.89,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36033": {
    "county": "Franklin",
@@ -580,7 +685,12 @@
    "diabetes_prevalence": 12.2,
    "obesity_prevalence": 40.7,
    "stroke_prevalence": 3.9,
-   "pop_density": 28.54
+   "pop_density": 28.54,
+   "hospitals_per_100k": 4.33,
+   "hospital_beds_per_100k": 257.44,
+   "pcp_per_100k": 62.74,
+   "neurologists_per_100k": 4.33,
+   "stroke_centers_per_100k": 0.0
   },
   "36035": {
    "county": "Fulton",
@@ -607,7 +717,12 @@
    "diabetes_prevalence": 12.1,
    "obesity_prevalence": 35.8,
    "stroke_prevalence": 4.0,
-   "pop_density": 105.43
+   "pop_density": 105.43,
+   "hospitals_per_100k": 1.91,
+   "hospital_beds_per_100k": 108.64,
+   "pcp_per_100k": 32.4,
+   "neurologists_per_100k": 1.91,
+   "stroke_centers_per_100k": 0.0
   },
   "36037": {
    "county": "Genesee",
@@ -634,7 +749,12 @@
    "diabetes_prevalence": 10.7,
    "obesity_prevalence": 30.2,
    "stroke_prevalence": 3.5,
-   "pop_density": 116.7
+   "pop_density": 116.7,
+   "hospitals_per_100k": 1.72,
+   "hospital_beds_per_100k": 217.18,
+   "pcp_per_100k": 29.3,
+   "neurologists_per_100k": 1.72,
+   "stroke_centers_per_100k": 1.72
   },
   "36039": {
    "county": "Greene",
@@ -661,7 +781,12 @@
    "diabetes_prevalence": 11.7,
    "obesity_prevalence": 34.4,
    "stroke_prevalence": 3.9,
-   "pop_density": 72.72
+   "pop_density": 72.72,
+   "hospitals_per_100k": 0.0,
+   "hospital_beds_per_100k": 0.0,
+   "pcp_per_100k": 35.86,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36041": {
    "county": "Hamilton",
@@ -688,7 +813,12 @@
    "diabetes_prevalence": 13.4,
    "obesity_prevalence": 31.0,
    "stroke_prevalence": 4.5,
-   "pop_density": 2.96
+   "pop_density": 2.96,
+   "hospitals_per_100k": 0.0,
+   "hospital_beds_per_100k": 0.0,
+   "pcp_per_100k": 19.73,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36043": {
    "county": "Herkimer",
@@ -715,7 +845,12 @@
    "diabetes_prevalence": 11.3,
    "obesity_prevalence": 37.0,
    "stroke_prevalence": 3.9,
-   "pop_density": 42.17
+   "pop_density": 42.17,
+   "hospitals_per_100k": 1.68,
+   "hospital_beds_per_100k": 41.98,
+   "pcp_per_100k": 28.55,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36045": {
    "county": "Jefferson",
@@ -742,7 +877,12 @@
    "diabetes_prevalence": 10.0,
    "obesity_prevalence": 37.8,
    "stroke_prevalence": 3.1,
-   "pop_density": 90.53
+   "pop_density": 90.53,
+   "hospitals_per_100k": 3.53,
+   "hospital_beds_per_100k": 189.8,
+   "pcp_per_100k": 52.97,
+   "neurologists_per_100k": 0.88,
+   "stroke_centers_per_100k": 0.88
   },
   "36047": {
    "county": "Kings",
@@ -769,7 +909,12 @@
    "diabetes_prevalence": 12.0,
    "obesity_prevalence": 25.1,
    "stroke_prevalence": 3.6,
-   "pop_density": 36917.72
+   "pop_density": 36917.72,
+   "hospitals_per_100k": 0.42,
+   "hospital_beds_per_100k": 108.73,
+   "pcp_per_100k": 69.64,
+   "neurologists_per_100k": 6.66,
+   "stroke_centers_per_100k": 0.46
   },
   "36049": {
    "county": "Lewis",
@@ -796,7 +941,12 @@
    "diabetes_prevalence": 11.8,
    "obesity_prevalence": 40.9,
    "stroke_prevalence": 3.9,
-   "pop_density": 20.8
+   "pop_density": 20.8,
+   "hospitals_per_100k": 3.76,
+   "hospital_beds_per_100k": 94.1,
+   "pcp_per_100k": 63.99,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36051": {
    "county": "Livingston",
@@ -823,7 +973,12 @@
    "diabetes_prevalence": 10.1,
    "obesity_prevalence": 30.8,
    "stroke_prevalence": 3.4,
-   "pop_density": 96.82
+   "pop_density": 96.82,
+   "hospitals_per_100k": 1.63,
+   "hospital_beds_per_100k": 109.51,
+   "pcp_per_100k": 42.49,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 1.63
   },
   "36053": {
    "county": "Madison",
@@ -850,7 +1005,12 @@
    "diabetes_prevalence": 10.3,
    "obesity_prevalence": 36.4,
    "stroke_prevalence": 3.4,
-   "pop_density": 102.19
+   "pop_density": 102.19,
+   "hospitals_per_100k": 2.97,
+   "hospital_beds_per_100k": 187.38,
+   "pcp_per_100k": 74.36,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36055": {
    "county": "Monroe",
@@ -877,7 +1037,12 @@
    "diabetes_prevalence": 11.2,
    "obesity_prevalence": 31.4,
    "stroke_prevalence": 3.3,
-   "pop_density": 1139.34
+   "pop_density": 1139.34,
+   "hospitals_per_100k": 0.8,
+   "hospital_beds_per_100k": 235.39,
+   "pcp_per_100k": 108.82,
+   "neurologists_per_100k": 18.03,
+   "stroke_centers_per_100k": 0.53
   },
   "36057": {
    "county": "Montgomery",
@@ -904,7 +1069,12 @@
    "diabetes_prevalence": 11.5,
    "obesity_prevalence": 38.8,
    "stroke_prevalence": 3.8,
-   "pop_density": 122.47
+   "pop_density": 122.47,
+   "hospitals_per_100k": 2.02,
+   "hospital_beds_per_100k": 201.89,
+   "pcp_per_100k": 52.49,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36059": {
    "county": "Nassau",
@@ -931,7 +1101,12 @@
    "diabetes_prevalence": 10.1,
    "obesity_prevalence": 28.4,
    "stroke_prevalence": 2.9,
-   "pop_density": 4855.92
+   "pop_density": 4855.92,
+   "hospitals_per_100k": 0.65,
+   "hospital_beds_per_100k": 168.62,
+   "pcp_per_100k": 140.25,
+   "neurologists_per_100k": 15.12,
+   "stroke_centers_per_100k": 0.79
   },
   "36061": {
    "county": "New York",
@@ -958,7 +1133,12 @@
    "diabetes_prevalence": 8.9,
    "obesity_prevalence": 19.2,
    "stroke_prevalence": 2.7,
-   "pop_density": 70502.82
+   "pop_density": 70502.82,
+   "hospitals_per_100k": 0.98,
+   "hospital_beds_per_100k": 475.2,
+   "pcp_per_100k": 137.48,
+   "neurologists_per_100k": 37.57,
+   "stroke_centers_per_100k": 0.67
   },
   "36063": {
    "county": "Niagara",
@@ -985,7 +1165,12 @@
    "diabetes_prevalence": 11.3,
    "obesity_prevalence": 39.5,
    "stroke_prevalence": 3.7,
-   "pop_density": 400.99
+   "pop_density": 400.99,
+   "hospitals_per_100k": 0.95,
+   "hospital_beds_per_100k": 199.09,
+   "pcp_per_100k": 40.1,
+   "neurologists_per_100k": 3.82,
+   "stroke_centers_per_100k": 0.95
   },
   "36065": {
    "county": "Oneida",
@@ -1012,7 +1197,12 @@
    "diabetes_prevalence": 11.5,
    "obesity_prevalence": 36.1,
    "stroke_prevalence": 3.7,
-   "pop_density": 187.68
+   "pop_density": 187.68,
+   "hospitals_per_100k": 1.32,
+   "hospital_beds_per_100k": 264.55,
+   "pcp_per_100k": 76.03,
+   "neurologists_per_100k": 3.08,
+   "stroke_centers_per_100k": 0.88
   },
   "36067": {
    "county": "Onondaga",
@@ -1039,7 +1229,12 @@
    "diabetes_prevalence": 10.9,
    "obesity_prevalence": 36.9,
    "stroke_prevalence": 3.4,
-   "pop_density": 601.08
+   "pop_density": 601.08,
+   "hospitals_per_100k": 1.07,
+   "hospital_beds_per_100k": 312.68,
+   "pcp_per_100k": 95.62,
+   "neurologists_per_100k": 10.03,
+   "stroke_centers_per_100k": 0.64
   },
   "36069": {
    "county": "Ontario",
@@ -1066,7 +1261,12 @@
    "diabetes_prevalence": 10.5,
    "obesity_prevalence": 30.7,
    "stroke_prevalence": 3.4,
-   "pop_density": 174.66
+   "pop_density": 174.66,
+   "hospitals_per_100k": 2.67,
+   "hospital_beds_per_100k": 273.19,
+   "pcp_per_100k": 77.42,
+   "neurologists_per_100k": 6.23,
+   "stroke_centers_per_100k": 1.78
   },
   "36071": {
    "county": "Orange",
@@ -1093,7 +1293,12 @@
    "diabetes_prevalence": 11.2,
    "obesity_prevalence": 32.2,
    "stroke_prevalence": 3.2,
-   "pop_density": 501.76
+   "pop_density": 501.76,
+   "hospitals_per_100k": 1.46,
+   "hospital_beds_per_100k": 157.0,
+   "pcp_per_100k": 65.09,
+   "neurologists_per_100k": 3.41,
+   "stroke_centers_per_100k": 0.49
   },
   "36073": {
    "county": "Orleans",
@@ -1120,7 +1325,12 @@
    "diabetes_prevalence": 11.7,
    "obesity_prevalence": 32.9,
    "stroke_prevalence": 3.9,
-   "pop_density": 99.99
+   "pop_density": 99.99,
+   "hospitals_per_100k": 2.53,
+   "hospital_beds_per_100k": 63.18,
+   "pcp_per_100k": 7.58,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36075": {
    "county": "Oswego",
@@ -1147,7 +1357,12 @@
    "diabetes_prevalence": 11.2,
    "obesity_prevalence": 36.4,
    "stroke_prevalence": 3.7,
-   "pop_density": 124.17
+   "pop_density": 124.17,
+   "hospitals_per_100k": 0.85,
+   "hospital_beds_per_100k": 111.92,
+   "pcp_per_100k": 40.7,
+   "neurologists_per_100k": 0.85,
+   "stroke_centers_per_100k": 0.0
   },
   "36077": {
    "county": "Otsego",
@@ -1174,7 +1389,12 @@
    "diabetes_prevalence": 10.2,
    "obesity_prevalence": 29.9,
    "stroke_prevalence": 3.4,
-   "pop_density": 60.02
+   "pop_density": 60.02,
+   "hospitals_per_100k": 3.3,
+   "hospital_beds_per_100k": 351.6,
+   "pcp_per_100k": 123.8,
+   "neurologists_per_100k": 9.9,
+   "stroke_centers_per_100k": 1.65
   },
   "36079": {
    "county": "Putnam",
@@ -1201,7 +1421,12 @@
    "diabetes_prevalence": 9.7,
    "obesity_prevalence": 27.5,
    "stroke_prevalence": 2.9,
-   "pop_density": 425.88
+   "pop_density": 425.88,
+   "hospitals_per_100k": 1.02,
+   "hospital_beds_per_100k": 89.7,
+   "pcp_per_100k": 50.96,
+   "neurologists_per_100k": 1.02,
+   "stroke_centers_per_100k": 1.02
   },
   "36081": {
    "county": "Queens",
@@ -1228,7 +1453,12 @@
    "diabetes_prevalence": 14.3,
    "obesity_prevalence": 24.0,
    "stroke_prevalence": 3.5,
-   "pop_density": 20714.79
+   "pop_density": 20714.79,
+   "hospitals_per_100k": 0.35,
+   "hospital_beds_per_100k": 123.34,
+   "pcp_per_100k": 62.6,
+   "neurologists_per_100k": 4.1,
+   "stroke_centers_per_100k": 0.39
   },
   "36083": {
    "county": "Rensselaer",
@@ -1255,7 +1485,12 @@
    "diabetes_prevalence": 9.9,
    "obesity_prevalence": 31.5,
    "stroke_prevalence": 3.1,
-   "pop_density": 244.16
+   "pop_density": 244.16,
+   "hospitals_per_100k": 0.63,
+   "hospital_beds_per_100k": 157.89,
+   "pcp_per_100k": 46.36,
+   "neurologists_per_100k": 1.25,
+   "stroke_centers_per_100k": 0.63
   },
   "36085": {
    "county": "Richmond",
@@ -1282,7 +1517,12 @@
    "diabetes_prevalence": 11.9,
    "obesity_prevalence": 30.3,
    "stroke_prevalence": 3.2,
-   "pop_density": 8530.34
+   "pop_density": 8530.34,
+   "hospitals_per_100k": 0.61,
+   "hospital_beds_per_100k": 152.07,
+   "pcp_per_100k": 86.84,
+   "neurologists_per_100k": 4.85,
+   "stroke_centers_per_100k": 0.61
   },
   "36087": {
    "county": "Rockland",
@@ -1309,7 +1549,12 @@
    "diabetes_prevalence": 11.3,
    "obesity_prevalence": 30.5,
    "stroke_prevalence": 3.4,
-   "pop_density": 1962.22
+   "pop_density": 1962.22,
+   "hospitals_per_100k": 1.44,
+   "hospital_beds_per_100k": 150.97,
+   "pcp_per_100k": 83.13,
+   "neurologists_per_100k": 5.2,
+   "stroke_centers_per_100k": 0.58
   },
   "36089": {
    "county": "St. Lawrence",
@@ -1336,7 +1581,12 @@
    "diabetes_prevalence": 11.9,
    "obesity_prevalence": 41.8,
    "stroke_prevalence": 3.8,
-   "pop_density": 39.91
+   "pop_density": 39.91,
+   "hospitals_per_100k": 5.63,
+   "hospital_beds_per_100k": 101.31,
+   "pcp_per_100k": 53.47,
+   "neurologists_per_100k": 0.94,
+   "stroke_centers_per_100k": 0.94
   },
   "36091": {
    "county": "Saratoga",
@@ -1363,7 +1613,12 @@
    "diabetes_prevalence": 9.6,
    "obesity_prevalence": 33.1,
    "stroke_prevalence": 3.0,
-   "pop_density": 294.72
+   "pop_density": 294.72,
+   "hospitals_per_100k": 0.84,
+   "hospital_beds_per_100k": 71.64,
+   "pcp_per_100k": 67.87,
+   "neurologists_per_100k": 3.35,
+   "stroke_centers_per_100k": 0.42
   },
   "36093": {
    "county": "Schenectady",
@@ -1390,7 +1645,12 @@
    "diabetes_prevalence": 10.2,
    "obesity_prevalence": 34.3,
    "stroke_prevalence": 3.3,
-   "pop_density": 781.27
+   "pop_density": 781.27,
+   "hospitals_per_100k": 1.25,
+   "hospital_beds_per_100k": 179.23,
+   "pcp_per_100k": 78.69,
+   "neurologists_per_100k": 8.12,
+   "stroke_centers_per_100k": 0.62
   },
   "36095": {
    "county": "Schoharie",
@@ -1417,7 +1677,12 @@
    "diabetes_prevalence": 11.3,
    "obesity_prevalence": 32.4,
    "stroke_prevalence": 3.8,
-   "pop_density": 48.41
+   "pop_density": 48.41,
+   "hospitals_per_100k": 3.32,
+   "hospital_beds_per_100k": 82.95,
+   "pcp_per_100k": 29.86,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36097": {
    "county": "Schuyler",
@@ -1444,7 +1709,12 @@
    "diabetes_prevalence": 12.4,
    "obesity_prevalence": 31.7,
    "stroke_prevalence": 4.1,
-   "pop_density": 53.32
+   "pop_density": 53.32,
+   "hospitals_per_100k": 5.73,
+   "hospital_beds_per_100k": 143.34,
+   "pcp_per_100k": 63.07,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36099": {
    "county": "Seneca",
@@ -1471,7 +1741,12 @@
    "diabetes_prevalence": 11.6,
    "obesity_prevalence": 34.7,
    "stroke_prevalence": 4.0,
-   "pop_density": 99.94
+   "pop_density": 99.94,
+   "hospitals_per_100k": 0.0,
+   "hospital_beds_per_100k": 0.0,
+   "pcp_per_100k": 27.74,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36101": {
    "county": "Steuben",
@@ -1498,7 +1773,12 @@
    "diabetes_prevalence": 11.5,
    "obesity_prevalence": 34.8,
    "stroke_prevalence": 3.8,
-   "pop_density": 66.28
+   "pop_density": 66.28,
+   "hospitals_per_100k": 4.34,
+   "hospital_beds_per_100k": 103.17,
+   "pcp_per_100k": 53.22,
+   "neurologists_per_100k": 2.17,
+   "stroke_centers_per_100k": 1.09
   },
   "36103": {
    "county": "Suffolk",
@@ -1525,7 +1805,12 @@
    "diabetes_prevalence": 10.0,
    "obesity_prevalence": 29.7,
    "stroke_prevalence": 3.0,
-   "pop_density": 1672.12
+   "pop_density": 1672.12,
+   "hospitals_per_100k": 0.91,
+   "hospital_beds_per_100k": 172.58,
+   "pcp_per_100k": 70.83,
+   "neurologists_per_100k": 8.28,
+   "stroke_centers_per_100k": 0.72
   },
   "36105": {
    "county": "Sullivan",
@@ -1552,7 +1837,12 @@
    "diabetes_prevalence": 12.1,
    "obesity_prevalence": 31.9,
    "stroke_prevalence": 3.7,
-   "pop_density": 82.55
+   "pop_density": 82.55,
+   "hospitals_per_100k": 2.49,
+   "hospital_beds_per_100k": 113.17,
+   "pcp_per_100k": 34.82,
+   "neurologists_per_100k": 2.49,
+   "stroke_centers_per_100k": 1.24
   },
   "36107": {
    "county": "Tioga",
@@ -1579,7 +1869,12 @@
    "diabetes_prevalence": 11.3,
    "obesity_prevalence": 30.5,
    "stroke_prevalence": 3.8,
-   "pop_density": 91.98
+   "pop_density": 91.98,
+   "hospitals_per_100k": 0.0,
+   "hospital_beds_per_100k": 0.0,
+   "pcp_per_100k": 29.41,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36109": {
    "county": "Tompkins",
@@ -1606,7 +1901,12 @@
    "diabetes_prevalence": 7.6,
    "obesity_prevalence": 24.6,
    "stroke_prevalence": 2.4,
-   "pop_density": 218.18
+   "pop_density": 218.18,
+   "hospitals_per_100k": 0.96,
+   "hospital_beds_per_100k": 85.21,
+   "pcp_per_100k": 78.5,
+   "neurologists_per_100k": 4.79,
+   "stroke_centers_per_100k": 0.96
   },
   "36111": {
    "county": "Ulster",
@@ -1633,7 +1933,12 @@
    "diabetes_prevalence": 10.9,
    "obesity_prevalence": 30.5,
    "stroke_prevalence": 3.5,
-   "pop_density": 162.18
+   "pop_density": 162.18,
+   "hospitals_per_100k": 1.09,
+   "hospital_beds_per_100k": 74.33,
+   "pcp_per_100k": 62.31,
+   "neurologists_per_100k": 5.47,
+   "stroke_centers_per_100k": 0.55
   },
   "36113": {
    "county": "Warren",
@@ -1660,7 +1965,12 @@
    "diabetes_prevalence": 11.2,
    "obesity_prevalence": 31.0,
    "stroke_prevalence": 3.6,
-   "pop_density": 75.39
+   "pop_density": 75.39,
+   "hospitals_per_100k": 1.53,
+   "hospital_beds_per_100k": 597.25,
+   "pcp_per_100k": 116.09,
+   "neurologists_per_100k": 1.53,
+   "stroke_centers_per_100k": 1.53
   },
   "36115": {
    "county": "Washington",
@@ -1687,7 +1997,12 @@
    "diabetes_prevalence": 11.2,
    "obesity_prevalence": 31.4,
    "stroke_prevalence": 3.8,
-   "pop_density": 72.24
+   "pop_density": 72.24,
+   "hospitals_per_100k": 0.0,
+   "hospital_beds_per_100k": 0.0,
+   "pcp_per_100k": 34.97,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36117": {
    "county": "Wayne",
@@ -1714,7 +2029,12 @@
    "diabetes_prevalence": 11.2,
    "obesity_prevalence": 37.4,
    "stroke_prevalence": 3.7,
-   "pop_density": 150.42
+   "pop_density": 150.42,
+   "hospitals_per_100k": 1.1,
+   "hospital_beds_per_100k": 111.33,
+   "pcp_per_100k": 24.25,
+   "neurologists_per_100k": 3.31,
+   "stroke_centers_per_100k": 1.1
   },
   "36119": {
    "county": "Westchester",
@@ -1741,7 +2061,12 @@
    "diabetes_prevalence": 10.5,
    "obesity_prevalence": 26.0,
    "stroke_prevalence": 3.0,
-   "pop_density": 2299.85
+   "pop_density": 2299.85,
+   "hospitals_per_100k": 1.2,
+   "hospital_beds_per_100k": 203.74,
+   "pcp_per_100k": 134.12,
+   "neurologists_per_100k": 14.22,
+   "stroke_centers_per_100k": 1.0
   },
   "36121": {
    "county": "Wyoming",
@@ -1768,7 +2093,12 @@
    "diabetes_prevalence": 11.2,
    "obesity_prevalence": 35.6,
    "stroke_prevalence": 3.7,
-   "pop_density": 66.7
+   "pop_density": 66.7,
+   "hospitals_per_100k": 2.52,
+   "hospital_beds_per_100k": 118.24,
+   "pcp_per_100k": 27.67,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "36123": {
    "county": "Yates",
@@ -1795,7 +2125,12 @@
    "diabetes_prevalence": 11.6,
    "obesity_prevalence": 33.9,
    "stroke_prevalence": 4.0,
-   "pop_density": 72.37
+   "pop_density": 72.37,
+   "hospitals_per_100k": 4.1,
+   "hospital_beds_per_100k": 102.6,
+   "pcp_per_100k": 53.35,
+   "neurologists_per_100k": 0.0,
+   "stroke_centers_per_100k": 0.0
   },
   "34001": {
    "county": "Atlantic",
@@ -1822,7 +2157,12 @@
    "diabetes_prevalence": 12.7,
    "obesity_prevalence": 30.7,
    "stroke_prevalence": 3.7,
-   "pop_density": 495.36
+   "pop_density": 495.36,
+   "hospitals_per_100k": 1.08,
+   "hospital_beds_per_100k": 264.24,
+   "pcp_per_100k": 76.27,
+   "neurologists_per_100k": 2.89,
+   "stroke_centers_per_100k": 1.08
   },
   "34003": {
    "county": "Bergen",
@@ -1849,7 +2189,12 @@
    "diabetes_prevalence": 9.7,
    "obesity_prevalence": 25.6,
    "stroke_prevalence": 2.8,
-   "pop_density": 4114.19
+   "pop_density": 4114.19,
+   "hospitals_per_100k": 0.73,
+   "hospital_beds_per_100k": 197.27,
+   "pcp_per_100k": 115.13,
+   "neurologists_per_100k": 11.82,
+   "stroke_centers_per_100k": 0.52
   },
   "34005": {
    "county": "Burlington",
@@ -1876,7 +2221,12 @@
    "diabetes_prevalence": 10.5,
    "obesity_prevalence": 30.2,
    "stroke_prevalence": 3.1,
-   "pop_density": 586.98
+   "pop_density": 586.98,
+   "hospitals_per_100k": 1.27,
+   "hospital_beds_per_100k": 115.4,
+   "pcp_per_100k": 79.83,
+   "neurologists_per_100k": 4.45,
+   "stroke_centers_per_100k": 0.42
   },
   "34007": {
    "county": "Camden",
@@ -1903,7 +2253,12 @@
    "diabetes_prevalence": 11.4,
    "obesity_prevalence": 29.8,
    "stroke_prevalence": 3.3,
-   "pop_density": 2381.6
+   "pop_density": 2381.6,
+   "hospitals_per_100k": 0.94,
+   "hospital_beds_per_100k": 266.8,
+   "pcp_per_100k": 96.04,
+   "neurologists_per_100k": 7.55,
+   "stroke_centers_per_100k": 1.13
   },
   "34009": {
    "county": "Cape May",
@@ -1930,7 +2285,12 @@
    "diabetes_prevalence": 11.7,
    "obesity_prevalence": 33.5,
    "stroke_prevalence": 3.9,
-   "pop_density": 376.15
+   "pop_density": 376.15,
+   "hospitals_per_100k": 1.06,
+   "hospital_beds_per_100k": 157.54,
+   "pcp_per_100k": 53.92,
+   "neurologists_per_100k": 5.29,
+   "stroke_centers_per_100k": 1.06
   },
   "34011": {
    "county": "Cumberland",
@@ -1957,7 +2317,12 @@
    "diabetes_prevalence": 13.5,
    "obesity_prevalence": 40.4,
    "stroke_prevalence": 4.0,
-   "pop_density": 315.13
+   "pop_density": 315.13,
+   "hospitals_per_100k": 0.65,
+   "hospital_beds_per_100k": 181.23,
+   "pcp_per_100k": 40.13,
+   "neurologists_per_100k": 1.94,
+   "stroke_centers_per_100k": 0.65
   },
   "34013": {
    "county": "Essex",
@@ -1984,7 +2349,12 @@
    "diabetes_prevalence": 12.0,
    "obesity_prevalence": 29.6,
    "stroke_prevalence": 3.6,
-   "pop_density": 6750.48
+   "pop_density": 6750.48,
+   "hospitals_per_100k": 1.15,
+   "hospital_beds_per_100k": 243.47,
+   "pcp_per_100k": 77.25,
+   "neurologists_per_100k": 6.89,
+   "stroke_centers_per_100k": 0.69
   },
   "34015": {
    "county": "Gloucester",
@@ -2011,7 +2381,12 @@
    "diabetes_prevalence": 10.3,
    "obesity_prevalence": 31.5,
    "stroke_prevalence": 3.0,
-   "pop_density": 957.81
+   "pop_density": 957.81,
+   "hospitals_per_100k": 0.0,
+   "hospital_beds_per_100k": 92.65,
+   "pcp_per_100k": 54.42,
+   "neurologists_per_100k": 1.3,
+   "stroke_centers_per_100k": 0.65
   },
   "34017": {
    "county": "Hudson",
@@ -2038,7 +2413,12 @@
    "diabetes_prevalence": 10.5,
    "obesity_prevalence": 27.9,
    "stroke_prevalence": 2.6,
-   "pop_density": 15272.08
+   "pop_density": 15272.08,
+   "hospitals_per_100k": 0.97,
+   "hospital_beds_per_100k": 82.12,
+   "pcp_per_100k": 50.44,
+   "neurologists_per_100k": 3.06,
+   "stroke_centers_per_100k": 0.69
   },
   "34019": {
    "county": "Hunterdon",
@@ -2065,7 +2445,12 @@
    "diabetes_prevalence": 9.2,
    "obesity_prevalence": 26.3,
    "stroke_prevalence": 2.8,
-   "pop_density": 304.28
+   "pop_density": 304.28,
+   "hospitals_per_100k": 0.77,
+   "hospital_beds_per_100k": 0.0,
+   "pcp_per_100k": 115.11,
+   "neurologists_per_100k": 4.6,
+   "stroke_centers_per_100k": 1.53
   },
   "34021": {
    "county": "Mercer",
@@ -2092,7 +2477,12 @@
    "diabetes_prevalence": 11.1,
    "obesity_prevalence": 25.4,
    "stroke_prevalence": 3.1,
-   "pop_density": 1700.26
+   "pop_density": 1700.26,
+   "hospitals_per_100k": 1.02,
+   "hospital_beds_per_100k": 136.44,
+   "pcp_per_100k": 91.98,
+   "neurologists_per_100k": 6.13,
+   "stroke_centers_per_100k": 1.02
   },
   "34023": {
    "county": "Middlesex",
@@ -2119,7 +2509,12 @@
    "diabetes_prevalence": 11.6,
    "obesity_prevalence": 29.9,
    "stroke_prevalence": 2.8,
-   "pop_density": 2792.66
+   "pop_density": 2792.66,
+   "hospitals_per_100k": 0.8,
+   "hospital_beds_per_100k": 210.81,
+   "pcp_per_100k": 92.07,
+   "neurologists_per_100k": 9.39,
+   "stroke_centers_per_100k": 0.57
   },
   "34025": {
    "county": "Monmouth",
@@ -2146,7 +2541,12 @@
    "diabetes_prevalence": 9.8,
    "obesity_prevalence": 30.4,
    "stroke_prevalence": 2.9,
-   "pop_density": 1372.9
+   "pop_density": 1372.9,
+   "hospitals_per_100k": 0.77,
+   "hospital_beds_per_100k": 195.42,
+   "pcp_per_100k": 115.05,
+   "neurologists_per_100k": 6.81,
+   "stroke_centers_per_100k": 0.77
   },
   "34027": {
    "county": "Morris",
@@ -2173,7 +2573,12 @@
    "diabetes_prevalence": 9.0,
    "obesity_prevalence": 22.8,
    "stroke_prevalence": 2.6,
-   "pop_density": 1115.83
+   "pop_density": 1115.83,
+   "hospitals_per_100k": 0.77,
+   "hospital_beds_per_100k": 172.57,
+   "pcp_per_100k": 95.96,
+   "neurologists_per_100k": 6.0,
+   "stroke_centers_per_100k": 0.77
   },
   "34029": {
    "county": "Ocean",
@@ -2200,7 +2605,12 @@
    "diabetes_prevalence": 11.4,
    "obesity_prevalence": 29.8,
    "stroke_prevalence": 3.6,
-   "pop_density": 1049.19
+   "pop_density": 1049.19,
+   "hospitals_per_100k": 0.76,
+   "hospital_beds_per_100k": 198.83,
+   "pcp_per_100k": 38.25,
+   "neurologists_per_100k": 1.36,
+   "stroke_centers_per_100k": 0.6
   },
   "34031": {
    "county": "Passaic",
@@ -2227,7 +2637,12 @@
    "diabetes_prevalence": 12.7,
    "obesity_prevalence": 31.0,
    "stroke_prevalence": 3.4,
-   "pop_density": 2758.22
+   "pop_density": 2758.22,
+   "hospitals_per_100k": 0.38,
+   "hospital_beds_per_100k": 153.24,
+   "pcp_per_100k": 55.34,
+   "neurologists_per_100k": 4.58,
+   "stroke_centers_per_100k": 0.57
   },
   "34033": {
    "county": "Salem",
@@ -2254,7 +2669,12 @@
    "diabetes_prevalence": 11.9,
    "obesity_prevalence": 34.0,
    "stroke_prevalence": 3.8,
-   "pop_density": 196.88
+   "pop_density": 196.88,
+   "hospitals_per_100k": 1.53,
+   "hospital_beds_per_100k": 172.55,
+   "pcp_per_100k": 29.01,
+   "neurologists_per_100k": 3.05,
+   "stroke_centers_per_100k": 3.05
   },
   "34035": {
    "county": "Somerset",
@@ -2281,7 +2701,12 @@
    "diabetes_prevalence": 10.1,
    "obesity_prevalence": 26.3,
    "stroke_prevalence": 2.6,
-   "pop_density": 1155.61
+   "pop_density": 1155.61,
+   "hospitals_per_100k": 0.57,
+   "hospital_beds_per_100k": 94.58,
+   "pcp_per_100k": 108.82,
+   "neurologists_per_100k": 6.84,
+   "stroke_centers_per_100k": 0.28
   },
   "34037": {
    "county": "Sussex",
@@ -2308,7 +2733,12 @@
    "diabetes_prevalence": 9.5,
    "obesity_prevalence": 26.9,
    "stroke_prevalence": 2.9,
-   "pop_density": 281.84
+   "pop_density": 281.84,
+   "hospitals_per_100k": 0.68,
+   "hospital_beds_per_100k": 94.99,
+   "pcp_per_100k": 45.79,
+   "neurologists_per_100k": 0.68,
+   "stroke_centers_per_100k": 0.68
   },
   "34039": {
    "county": "Union",
@@ -2335,7 +2765,12 @@
    "diabetes_prevalence": 11.6,
    "obesity_prevalence": 29.7,
    "stroke_prevalence": 3.2,
-   "pop_density": 5573.09
+   "pop_density": 5573.09,
+   "hospitals_per_100k": 0.85,
+   "hospital_beds_per_100k": 130.18,
+   "pcp_per_100k": 63.13,
+   "neurologists_per_100k": 5.29,
+   "stroke_centers_per_100k": 0.51
   },
   "34041": {
    "county": "Warren",
@@ -2362,7 +2797,12 @@
    "diabetes_prevalence": 10.0,
    "obesity_prevalence": 32.5,
    "stroke_prevalence": 3.2,
-   "pop_density": 312.03
+   "pop_density": 312.03,
+   "hospitals_per_100k": 1.79,
+   "hospital_beds_per_100k": 167.49,
+   "pcp_per_100k": 56.43,
+   "neurologists_per_100k": 2.69,
+   "stroke_centers_per_100k": 1.79
   },
   "09001": {
    "county": "Fairfield",
@@ -2389,7 +2829,12 @@
    "diabetes_prevalence": 9.1,
    "obesity_prevalence": 25.8,
    "stroke_prevalence": 3.0,
-   "pop_density": 1531.93
+   "pop_density": 1531.93,
+   "hospitals_per_100k": 0.83,
+   "hospital_beds_per_100k": 166.64,
+   "pcp_per_100k": 95.25,
+   "neurologists_per_100k": 6.02,
+   "stroke_centers_per_100k": 0.62
   },
   "09003": {
    "county": "Hartford",
@@ -2416,7 +2861,12 @@
    "diabetes_prevalence": 11.4,
    "obesity_prevalence": 32.1,
    "stroke_prevalence": 3.3,
-   "pop_density": 1223.9
+   "pop_density": 1223.9,
+   "hospitals_per_100k": 0.89,
+   "hospital_beds_per_100k": 199.78,
+   "pcp_per_100k": 95.27,
+   "neurologists_per_100k": 6.79,
+   "stroke_centers_per_100k": 0.67
   },
   "09005": {
    "county": "Litchfield",
@@ -2443,7 +2893,12 @@
    "diabetes_prevalence": 9.6,
    "obesity_prevalence": 27.8,
    "stroke_prevalence": 3.3,
-   "pop_density": 201.17
+   "pop_density": 201.17,
+   "hospitals_per_100k": 1.07,
+   "hospital_beds_per_100k": 84.7,
+   "pcp_per_100k": 53.6,
+   "neurologists_per_100k": 3.75,
+   "stroke_centers_per_100k": 1.61
   },
   "09007": {
    "county": "Middlesex",
@@ -2470,7 +2925,12 @@
    "diabetes_prevalence": 9.4,
    "obesity_prevalence": 29.1,
    "stroke_prevalence": 3.2,
-   "pop_density": 444.74
+   "pop_density": 444.74,
+   "hospitals_per_100k": 1.81,
+   "hospital_beds_per_100k": 112.58,
+   "pcp_per_100k": 77.66,
+   "neurologists_per_100k": 4.82,
+   "stroke_centers_per_100k": 0.6
   },
   "09009": {
    "county": "New Haven",
@@ -2497,7 +2957,12 @@
    "diabetes_prevalence": 10.6,
    "obesity_prevalence": 33.8,
    "stroke_prevalence": 3.3,
-   "pop_density": 1431.12
+   "pop_density": 1431.12,
+   "hospitals_per_100k": 1.04,
+   "hospital_beds_per_100k": 210.81,
+   "pcp_per_100k": 85.48,
+   "neurologists_per_100k": 16.29,
+   "stroke_centers_per_100k": 0.81
   },
   "09011": {
    "county": "New London",
@@ -2524,7 +2989,12 @@
    "diabetes_prevalence": 9.7,
    "obesity_prevalence": 31.9,
    "stroke_prevalence": 3.2,
-   "pop_density": 403.8
+   "pop_density": 403.8,
+   "hospitals_per_100k": 0.74,
+   "hospital_beds_per_100k": 157.53,
+   "pcp_per_100k": 62.19,
+   "neurologists_per_100k": 3.35,
+   "stroke_centers_per_100k": 0.74
   },
   "09013": {
    "county": "Tolland",
@@ -2551,7 +3021,12 @@
    "diabetes_prevalence": 8.2,
    "obesity_prevalence": 30.4,
    "stroke_prevalence": 2.8,
-   "pop_density": 365.02
+   "pop_density": 365.02,
+   "hospitals_per_100k": 1.33,
+   "hospital_beds_per_100k": 96.75,
+   "pcp_per_100k": 53.68,
+   "neurologists_per_100k": 1.33,
+   "stroke_centers_per_100k": 1.33
   },
   "09015": {
    "county": "Windham",
@@ -2578,7 +3053,12 @@
    "diabetes_prevalence": 10.7,
    "obesity_prevalence": 34.0,
    "stroke_prevalence": 3.4,
-   "pop_density": 226.97
+   "pop_density": 226.97,
+   "hospitals_per_100k": 1.71,
+   "hospital_beds_per_100k": 128.08,
+   "pcp_per_100k": 44.4,
+   "neurologists_per_100k": 0.85,
+   "stroke_centers_per_100k": 1.71
   }
  }
 }
