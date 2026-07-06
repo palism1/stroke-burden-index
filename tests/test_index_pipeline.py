@@ -100,9 +100,9 @@ def test_loadings_and_explained_variance():
 def test_scores_align_to_df_index():
     df = _agreeing_frame()
     df.index = [f"county_{i}" for i in range(len(df))]
-    result = build_index(df, ["a", "b"], name="svi")
+    result = build_index(df, ["a", "b"], name="sri")
     assert list(result.scores.index) == list(df.index)
-    assert result.scores.name == "svi"
+    assert result.scores.name == "sri"
 
 
 def test_duplicate_variables_raise():
