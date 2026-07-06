@@ -7815,6 +7815,151 @@ a.anchor-link {
 </div>
 </div>
 </div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=755da48b-6810-45ad-9eed-3d4744e9b170">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="SRI-Candidate-Variable-Catalog-&amp;-Data-Source-Reference">SRI Candidate Variable Catalog &amp; Data Source Reference<a class="anchor-link" href="#SRI-Candidate-Variable-Catalog-&amp;-Data-Source-Reference">¶</a></h3><p>This table inventories the candidate variables evaluated during the Exploratory Data Analysis (EDA) phase. It includes all structural socioeconomic income brackets, behavioral traits, and clinical outcomes compiled from the local SQLite database (<code>data/stroke_burden.db</code>) prior to feature trimming and PCA index generation.</p>
+<table>
+<thead>
+<tr>
+<th>Variable Name</th>
+<th>Category</th>
+<th>Description</th>
+<th>Data Source</th>
+<th>Notes / Action Item</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>acute_stroke_mortality_per_100k</code></td>
+<td>Clinical Outcome</td>
+<td><strong>Primary Validation Target</strong> - Age-adjusted mortality rate per 100,000 for sudden, acute stroke (ICD-10 I60–I66).</td>
+<td>CDC WONDER (2018–2024 Pooled)</td>
+<td><strong>Withhold from Index.</strong> Used as ground-truth target to validate final SRI/SCAI predictability.</td>
+</tr>
+<tr>
+<td><code>sequelae_stroke_mortality_per_100k</code></td>
+<td>Clinical Outcome</td>
+<td><strong>Secondary Validation Target</strong> - Age-adjusted mortality rate per 100,000 for chronic stroke sequelae/late effects (ICD-10 I69).</td>
+<td>CDC WONDER (2018–2024 Pooled)</td>
+<td><strong>Withhold from Index.</strong> Evaluates long-term care, secondary prevention, and rehabilitation deficits.</td>
+</tr>
+<tr>
+<td><code>stroke_prevalence</code></td>
+<td>Clinical Outcome</td>
+<td><strong>SRI Input Feature</strong> - % of living adults who have ever been diagnosed as having experienced a stroke.</td>
+<td>CDC PLACES (2023 data released in 2025)</td>
+<td><strong>Keep.</strong> Tracks baseline biological and historical disease burden within the community.</td>
+</tr>
+<tr>
+<td><code>pop_density</code></td>
+<td>Demographic</td>
+<td>Population density (people per sq. mile)</td>
+<td>Census TIGER + ACS</td>
+<td>Check skewness for extreme urban outliers</td>
+</tr>
+<tr>
+<td><code>pcnt_65_plus</code></td>
+<td>Demographic</td>
+<td>% of population aged 65 and older</td>
+<td>ACS 5-year estimates (2023)</td>
+<td>Core biological risk factor</td>
+</tr>
+<tr>
+<td><code>poverty_rate</code></td>
+<td>Socioeconomic</td>
+<td>% of individuals living below the federal poverty line</td>
+<td>ACS 5-year estimates (2023)</td>
+<td>Continuous economic distress baseline</td>
+</tr>
+<tr>
+<td><code>pcnt_low_income</code></td>
+<td>Socioeconomic</td>
+<td>% of population falling into the low-income bracket</td>
+<td>ACS 5-year estimates (2023)</td>
+<td>Represents structural deficit; <strong>Keep for SRI</strong></td>
+</tr>
+<tr>
+<td><code>pcnt_middle_class</code></td>
+<td>Socioeconomic</td>
+<td>% of population falling into the middle-income bracket</td>
+<td>ACS 5-year estimates (2023)</td>
+<td>Explore for collinearity audit; <em>Omit from SRI</em></td>
+</tr>
+<tr>
+<td><code>pcnt_upper_class</code></td>
+<td>Socioeconomic</td>
+<td>% of population falling into the upper-income bracket</td>
+<td>ACS 5-year estimates (2023)</td>
+<td>Explore for collinearity audit; <em>Omit from SRI</em></td>
+</tr>
+<tr>
+<td><code>pcnt_bachelors</code></td>
+<td>Socioeconomic</td>
+<td>% of adults with a Bachelor's degree or higher</td>
+<td>ACS 5-year estimates (2023)</td>
+<td>Protective factor; Must be <code>flip</code> aligned</td>
+</tr>
+<tr>
+<td><code>smoking_prevalence</code></td>
+<td>Behavioral</td>
+<td>% of adults who currently smoke cigarettes</td>
+<td>CDC PLACES (2023 data released in 2025)</td>
+<td>Modifiable behavioral health risk</td>
+</tr>
+<tr>
+<td><code>physical_inactivity</code></td>
+<td>Behavioral</td>
+<td>% of adults with no leisure-time physical activity</td>
+<td>CDC PLACES (2023 data released in 2025)</td>
+<td>Modifiable behavioral health risk</td>
+</tr>
+<tr>
+<td><code>obesity_prevalence</code></td>
+<td>Clinical Outcome</td>
+<td>% of adults with a Body Mass Index (BMI) greater than 30$</td>
+<td>CDC PLACES (2023 data released in 2025)</td>
+<td>Chronic metabolic condition</td>
+</tr>
+<tr>
+<td><code>diabetes_prevalence</code></td>
+<td>Clinical Outcome</td>
+<td>% of adults with diagnosed diabetes mellitus</td>
+<td>CDC PLACES (2023 data released in 2025)</td>
+<td>Chronic metabolic condition</td>
+</tr>
+<tr>
+<td><code>hypertension_prevalence</code></td>
+<td>Clinical Outcome</td>
+<td>% of adults with diagnosed high blood pressure</td>
+<td>CDC PLACES (2023 data released in 2025)</td>
+<td>Key physiological precursor to stroke</td>
+</tr>
+<tr>
+<td><code>high_chol_prevalence</code></td>
+<td>Clinical Outcome</td>
+<td>% of adults with diagnosed high cholesterol levels</td>
+<td>CDC PLACES (2023 data released in 2025)</td>
+<td>Key physiological precursor to stroke</td>
+</tr>
+<tr>
+<td><code>binge_drinking_prev</code></td>
+<td>Behavioral</td>
+<td>% of adults reporting recent binge drinking episodes</td>
+<td>CDC PLACES (2023 data released in 2025)</td>
+<td>Modifiable behavioral health risk</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<p><em>Note: In addition to these SRI feature candidates, the baseline validation target used throughout the EDA notebook is <strong><code>acute_stroke_mortality_per_100k</code></strong>, drawn from multi-year pooled (2018–2024) CDC WONDER mortality records.</em></p>
+</div>
+</div>
+</div>
+</div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46003641-f21c-4526-96b9-fb9907a8b473">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -7822,39 +7967,6 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="DATA-EXTRACTION">DATA EXTRACTION<a class="anchor-link" href="#DATA-EXTRACTION">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=755da48b-6810-45ad-9eed-3d4744e9b170">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="SRI-Candidate-Variable-Catalog-&amp;-Data-Source-Reference">SRI Candidate Variable Catalog &amp; Data Source Reference<a class="anchor-link" href="#SRI-Candidate-Variable-Catalog-&amp;-Data-Source-Reference">¶</a></h3><p>This table inventories the 16 candidate variables evaluated during the Exploratory Data Analysis (EDA) phase. It includes all structural socioeconomic income brackets, behavioral traits, and clinical outcomes compiled from the local SQLite database (<code>data/stroke_burden.db</code>) prior to feature trimming and PCA index generation.</p>
-<p>| Variable Name | Category | Description | Data Source | Notes / Action Item |
-| :--- | :--- | :--- | :--- | :--- |
-| <strong><code>acute_stroke_mortality_per_100k</code></strong> | Clinical Outcome | <strong>Primary Validation Target</strong> | Age-adjusted mortality rate per 100,000 for sudden, acute stroke (ICD-10 I60–I66). | CDC WONDER (2018–2024 Pooled) | <strong>Withhold from Index.</strong> Used as ground-truth target to validate final SRI/SCAI predictability. |
-| <strong><code>sequelae_stroke_mortality_per_100k</code></strong>| Clinical Outcome | <strong>Secondary Validation Target</strong> | Age-adjusted mortality rate per 100,000 for chronic stroke sequelae/late effects (ICD-10 I69). | CDC WONDER (2018–2024 Pooled) | <strong>Withhold from Index.</strong> Evaluates long-term care, secondary prevention, and rehabilitation deficits. |
-| <strong><code>stroke_prevalence</code></strong> | Clinical Outcome | <strong>SRI Input Feature</strong> | % of living adults who have ever been diagnosed as having experienced a stroke. | CDC PLACES | <strong>Keep.</strong> Tracks baseline biological and historical disease burden within the community. |
-| <strong><code>pop_density</code></strong> | Demographic | Population density (people per sq. mile) | Census TIGER + ACS | Check skewness for extreme urban outliers |
-| <strong><code>pcnt_65_plus</code></strong> | Demographic | % of population aged 65 and older | American Community Survey | Core biological risk factor |
-| <strong><code>poverty_rate</code></strong> | Socioeconomic | % of individuals living below the federal poverty line | American Community Survey | Continuous economic distress baseline |
-| <strong><code>pcnt_low_income</code></strong> | Socioeconomic | % of population falling into the low-income bracket | American Community Survey | <strong>Keep for SRI</strong>; Represents structural deficit |
-| <strong><code>pcnt_middle_class</code></strong> | Socioeconomic | % of population falling into the middle-income bracket | American Community Survey | <em>Omit from SRI</em>; Explored for collinearity audit |
-| <strong><code>pcnt_upper_class</code></strong> | Socioeconomic | % of population falling into the upper-income bracket | American Community Survey | <em>Omit from SRI</em>; Explored for collinearity audit |
-| <strong><code>pcnt_bachelors</code></strong> | Socioeconomic | % of adults with a Bachelor's degree or higher | American Community Survey | Protective factor; Must be <code>flip</code> aligned |
-| <strong><code>pcnt_insured</code></strong> | Socioeconomic | % of population with health insurance coverage | American Community Survey | <em>Omit from SRI</em>; Reallocate to Care Access (SCAI) |
-| <strong><code>smoking_prevalence</code></strong> | Behavioral | % of adults who currently smoke cigarettes | CDC PLACES | Modifiable behavioral health risk |
-| <strong><code>physical_inactivity</code></strong> | Behavioral | % of adults with no leisure-time physical activity | CDC PLACES | Modifiable behavioral health risk |
-| <strong><code>obesity_prevalence</code></strong> | Clinical Outcome | % of adults with a Body Mass Index (BMI) $\ge 30$ | CDC PLACES | Chronic metabolic condition |
-| <strong><code>diabetes_prevalence</code></strong> | Clinical Outcome | % of adults with diagnosed diabetes mellitus | CDC PLACES | Chronic metabolic condition |
-| <strong><code>hypertension_prevalence</code></strong>| Clinical Outcome | % of adults with diagnosed high blood pressure | CDC PLACES | Key physiological precursor to stroke |
-| <strong><code>high_chol_prevalence</code></strong> | Clinical Outcome | % of adults with diagnosed high cholesterol levels | CDC PLACES | Key physiological precursor to stroke |
-| <strong><code>binge_drinking_prev</code></strong> | Behavioral | % of adults reporting recent binge drinking episodes | CDC PLACES | Modifiable behavioral health risk |</p>
-<hr/>
-<p><em>Note: In addition to these SRI feature candidates, the baseline validation target used throughout the EDA notebook is <strong><code>acute_stroke_mortality_per_100k</code></strong>, drawn from multi-year pooled (2018–2024) CDC WONDER mortality records.</em></p>
 </div>
 </div>
 </div>
