@@ -37,7 +37,9 @@ not the repo root) with columns `fips`, `hospitals_per_100k`,
 `hospital_beds_per_100k`, `pcp_per_100k`, `neurologists_per_100k`,
 `stroke_centers_per_100k`. That's all — the merge and database pipelines are
 already wired to pick it up automatically the moment it merges. Full spec:
-`data/scai_data/README.md`.
+`data/scai_data/README.md`. Note that `pcnt_insured` is part of the SCAI *index
+calculation* but is NOT a column of `scai_data.csv` — it lives in
+`data/acs_data.csv` and joins in via the master merge.
 
 ---
 
@@ -62,7 +64,7 @@ Always join on `fips`, never on county/state names.
 
 ---
 
-## Building an index (SVI / SCAI / GAI)
+## Building an index (SRI / SCAI / GAI)
 
 Don't hand-roll the PCA pipeline — `src/index_pipeline.py` implements the
 standard pipeline from the plan (align direction → standardize → PCA → sign
@@ -76,9 +78,9 @@ result = build_index(
     df,
     ["pcnt_65_plus", "poverty_rate", "smoking_prevalence", "pcnt_bachelors"],
     flip=["pcnt_bachelors"],     # variables whose high value points the "wrong" way
-    name="svi",
+    name="sri",
 )
-df["svi"] = result.scores                # 0-100
+df["sri"] = result.scores                # 0-100
 result.loadings                          # PC1 loadings per variable (for write-ups)
 result.explained_variance_ratio          # fraction of variance PC1 captures
 ```
@@ -88,8 +90,8 @@ result.explained_variance_ratio          # fraction of variance PC1 captures
 
 | Index | Direction | What to flip |
 |---|---|---|
-| SVI | higher = more vulnerable | protective vars (education, insurance); percent low income is harmful-direction, so it is *not* flipped |
-| SCAI | higher = better access | nothing (all per-capita access vars already point up) |
+| SRI | higher = more vulnerable | protective vars (education); percent low income is harmful-direction, so it is *not* flipped |
+| SCAI | higher = better access | nothing (all per-capita access vars already point up, and `pcnt_insured` points up too — higher = more insured = better access) |
 | GAI | higher = better access | all four drive-time/distance vars (lower = closer = better) |
 
 Everything else is automatic — in particular the PC1 sign check, so the index

@@ -57,7 +57,7 @@ async function init() {
 
   // If index scores ever appear in the data, swap the matrix placeholder
   // for the real chart.
-  if (hasField("svi") && hasField("scai")) activateMatrix();
+  if (hasField("sri") && hasField("scai")) activateMatrix();
 }
 
 // Renders a friendly, on-page explanation when the data files can't be

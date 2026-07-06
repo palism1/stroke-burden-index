@@ -16,7 +16,7 @@
  *      details panel with non-empty text.
  *   5. Searching garbage surfaces the no-match feedback message.
  *   6. The Risk-vs-Access matrix stays in its placeholder state while the
- *      svi/scai index fields are absent from counties.json.
+ *      sri/scai index fields are absent from counties.json.
  *
  * The element registry is seeded by parsing the id="..." attributes out of
  * index.html, so if dashboard.js reaches for an id that index.html never
@@ -361,17 +361,17 @@ async function main() {
   assert(message.textContent.includes(garbage),
     `expected no-match message referencing the query, got "${message.textContent}"`);
 
-  // 6. matrix stays a placeholder (svi/scai absent from the data)
+  // 6. matrix stays a placeholder (sri/scai absent from the data)
   const counties = JSON.parse(fs.readFileSync(COUNTIES_JSON, "utf8"));
-  const hasIndexFields = "svi" in counties.fields || "scai" in counties.fields;
+  const hasIndexFields = "sri" in counties.fields || "scai" in counties.fields;
   assert(!hasIndexFields,
-    "counties.json now defines svi/scai fields — update this smoke test to cover the activated matrix");
+    "counties.json now defines sri/scai fields — update this smoke test to cover the activated matrix");
   const placeholder = document.getElementById("matrix-placeholder");
   const chart = document.getElementById("matrix-chart");
   assert(placeholder.hidden === false,
-    "matrix placeholder should remain visible while svi/scai are absent");
+    "matrix placeholder should remain visible while sri/scai are absent");
   assert(chart.hidden === true,
-    "matrix chart should stay hidden while svi/scai are absent");
+    "matrix chart should stay hidden while sri/scai are absent");
 
   // 7. zoom & pan controls. Make any zoom-to-selection ease resolve
   // synchronously so viewBox assertions aren't racy, then work from a known

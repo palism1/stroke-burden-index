@@ -26,7 +26,7 @@ We build three components and combine them into a single headline index.
 
 | Index | What it measures |
 |---|---|
-| **Stroke Vulnerability Index (SVI)** | Likelihood a community will experience stroke-related health problems |
+| **Stroke Risk Index (SRI)** | Likelihood a community will experience stroke-related health problems |
 | **Stroke Care Access Index (SCAI)** | Availability of treatment resources |
 | **Geographic Accessibility Index (GAI)** | Drive time and distance to the nearest stroke center |
 | **Stroke Burden Priority Index (SBPI)** | Combined ranking of overall stroke burden |
@@ -35,7 +35,7 @@ Every index follows the same pipeline: **raw → align direction → standardize
 
 ---
 
-## Stroke Vulnerability Index (SVI)
+## Stroke Risk Index (SRI)
 
 **Variables:**
 
@@ -80,7 +80,7 @@ All 4 run through the standard pipeline: align direction (flip so higher = bette
 **Option 1 — weighted index:**
 
 ```
-SBPI = 0.5 × SVI + 0.25 × (Access Deficit) + 0.25 × (Distance Deficit)
+SBPI = 0.5 × SRI + 0.25 × (Access Deficit) + 0.25 × (Distance Deficit)
 ```
 
 Where Access Deficit = 100 − SCAI and Distance Deficit = 100 − GAI. Vulnerability carries the most weight; weights are tunable.
@@ -89,8 +89,8 @@ Where Access Deficit = 100 − SCAI and Distance Deficit = 100 − GAI. Vulnerab
 
 | Priority | Criteria | Score |
 |---|---|---|
-| Critical | Top 25% SVI + bottom 25% SCAI + top 25% distance | 4 |
-| High | Top 25% SVI + bottom 50% SCAI | 3 |
+| Critical | Top 25% SRI + bottom 25% SCAI + top 25% distance | 4 |
+| High | Top 25% SRI + bottom 50% SCAI | 3 |
 | Moderate | One elevated risk factor | 2 |
 | Low | Good access + low vulnerability | 1 |
 
@@ -115,15 +115,15 @@ Focused on NY, NJ, and CT. We want to know: are there geographic barriers to str
 3. Choropleth map of counties colored by travel time band (0–15 min, 15–30 min, 30–60 min, 60+ min)
 4. Top 5 and bottom 5 counties per state by accessibility
 5. Scatter: distance to stroke center vs. stroke mortality rate
-6. Scatter: distance vs. SVI — are vulnerable populations also geographically isolated?
-7. Accessibility × Vulnerability matrix (X = SVI, Y = accessibility; split at 75th/25th percentile into quadrants)
+6. Scatter: distance vs. SRI — are vulnerable populations also geographically isolated?
+7. Accessibility × Vulnerability matrix (X = SRI, Y = accessibility; split at 75th/25th percentile into quadrants)
 8. Hotspot analysis (optional): Local Moran's I or Getis-Ord Gi* to identify statistically significant clusters
 
 ---
 
 ## Visualization
 
-One master interactive choropleth map (Plotly or Datawrapper) colored by SBPI score. Hovering over a county shows SVI, SCAI, and estimated travel time to nearest stroke center.
+One master interactive choropleth map (Plotly or Datawrapper) colored by SBPI score. Hovering over a county shows SRI, SCAI, and estimated travel time to nearest stroke center.
 
 ---
 
@@ -131,7 +131,7 @@ One master interactive choropleth map (Plotly or Datawrapper) colored by SBPI sc
 
 1. **Data engineering** — collection, cleaning, integration into one county-level table keyed by FIPS
 2. **EDA** — descriptive statistics, visualizations, relationships among risk factors, regional differences
-3. **SVI** — variable selection, PCA, vulnerability scores, ranking table
+3. **SRI** — variable selection, PCA, vulnerability scores, ranking table
 4. **SCAI + spatial analysis** — access metrics, geographic analysis, index, clustering
 5. **Predict stroke mortality (ML)** — linear regression, random forest, XGBoost; evaluate with RMSE / MAE / R²; interpret with SHAP
 6. **Policy recommendations** — translate findings into resource-prioritization recommendations
@@ -152,6 +152,6 @@ One master interactive choropleth map (Plotly or Datawrapper) colored by SBPI sc
 
 ## Status
 
-Data gathering is the active phase. ACS demographic data, CDC WONDER mortality, CDC PLACES health prevalence, population density, and geographic accessibility (drive time and distance to nearest basic and advanced stroke center for all 91 NY/NJ/CT counties) are collected. SCAI variables (hospitals per capita, physicians per capita, stroke centers per capita) are in progress.
+Data gathering is the active phase. ACS demographic data, CDC WONDER mortality, CDC PLACES health prevalence, population density, and geographic accessibility (drive time and distance to nearest basic and advanced stroke center for all 91 NY/NJ/CT counties) are collected. SCAI variables (hospitals per capita, physicians per capita, stroke centers per capita) are now collected (`data/scai_data/scai_data.csv`), and index calculation has begun in `notebooks/Calculating Indices.ipynb`.
 
 [Interactive county dashboard (work in progress)](./dashboard/) · [Full methodology and open questions](./plan.html)

@@ -86,28 +86,47 @@ These 4 columns are the inputs to the Geographic Accessibility Index (GAI). The 
 
 ---
 
-## Variables still needed
+### `data/cdcplaces_data.csv`
+Source: CDC PLACES 2025 release, county level. One row per county (91 total: 62 NY, 21 NJ, 8 CT). These are the health risk-factor variables for the Stroke Risk Index (SRI).
 
-These are planned for upcoming data collection. Follow the naming convention above when adding them.
-
-### For SCAI
-| Suggested column name | Description | Planned source |
+| Column | Type | Description |
 |---|---|---|
-| `hospitals_per_100k` | General hospitals per 100,000 population | HIFLD / state health dept |
-| `hospital_beds_per_100k` | Hospital beds per 100,000 population | HIFLD BEDS column |
-| `pcp_per_100k` | Primary care physicians per 100,000 population | County Health Rankings |
-| `neurologists_per_100k` | Neurologists per 100,000 population | HRSA AHRF |
-| `stroke_centers_per_100k` | Stroke centers per 100,000 population | Geocoded stroke center files + ACS population |
+| `fips` | string | 5-digit county FIPS code, zero-padded |
+| `county` | string | County name |
+| `state` | string | Two-letter state abbreviation |
+| `binge_drinking_prevalence` | float | % of adults who binge drink |
+| `smoking_prevalence` | float | % of adults who currently smoke |
+| `physical_inactivity` | float | % of adults with no leisure-time physical activity |
+| `hypertension_prevalence` | float | % of adults with hypertension |
+| `high_cholesterol_prevalence` | float | % of adults with high cholesterol |
+| `diabetes_prevalence` | float | % of adults with diagnosed diabetes |
+| `obesity_prevalence` | float | % of adults with obesity (BMI ≥ 30) |
+| `stroke_prevalence` | float | % of adults ever told they had a stroke |
 
-### For SVI (health variables)
-| Suggested column name | Description | Planned source |
+---
+
+### `data/pop_density.csv`
+Source: Census population + TIGER/Line land area. One row per county (91 total).
+
+| Column | Type | Description |
 |---|---|---|
-| `smoking_prevalence` | % of adults who currently smoke | CDC PLACES |
-| `obesity_prevalence` | % of adults with obesity (BMI ≥ 30) | CDC PLACES |
-| `diabetes_prevalence` | % of adults with diagnosed diabetes | CDC PLACES |
-| `physical_inactivity` | % of adults with no leisure-time physical activity | CDC PLACES |
-| `hypertension_prevalence` | % of adults with hypertension | CDC PLACES |
-| `high_cholesterol_prevalence` | % of adults with high cholesterol | CDC PLACES |
-| `binge_drinking_prevalence` | % of adults who binge drink | CDC PLACES |
-| `stroke_prevalence` | % of adults ever told they had a stroke | CDC PLACES |
-| `pop_density` | Population per square mile | Census TIGER + ACS |
+| `fips` | string | 5-digit county FIPS code, zero-padded |
+| `county` | string | County name |
+| `state` | string | Two-letter state abbreviation |
+| `pop_density` | float | Population per square mile |
+
+---
+
+### `data/scai_data/scai_data.csv`
+Source: healthcare-access counts (hospitals, beds, providers, stroke centers) per county, per-capita against a vintage-matched ACS population denominator. See `data/scai_data/README.md` for the collection notebook and denominator rules. One row per county (91 total). These are the healthcare-access variables for the Stroke Care Access Index (SCAI).
+
+| Column | Type | Description |
+|---|---|---|
+| `fips` | string | 5-digit county FIPS code, zero-padded |
+| `hospitals_per_100k` | float | General hospitals per 100,000 population |
+| `hospital_beds_per_100k` | float | Hospital beds per 100,000 population |
+| `pcp_per_100k` | float | Primary care physicians per 100,000 population |
+| `neurologists_per_100k` | float | Neurologists per 100,000 population |
+| `stroke_centers_per_100k` | float | Stroke centers per 100,000 population |
+
+Note: `pcnt_insured` (ACS, in `data/acs_data.csv`) joins these five variables at SCAI index-calculation time but is **not** a column of this file — it comes in via the master merge.
