@@ -1,11 +1,11 @@
 """
 The standard index pipeline from docs/plan.md section 2, implemented once for
-SVI, SCAI, and GAI:
+SRI, SCAI, and GAI:
 
     raw -> [optional transform] -> align direction -> standardize -> PCA (PC1)
         -> sign check -> 0-100
 
-Usage from a notebook (SVI example):
+Usage from a notebook (SRI example):
 
     import sys; sys.path.insert(0, "src")   # adjust to your notebook's location
     from index_pipeline import build_index
@@ -13,16 +13,17 @@ Usage from a notebook (SVI example):
     result = build_index(
         df,
         ["pcnt_65_plus", "poverty_rate", "smoking_prevalence", "obesity_prevalence",
-         "pcnt_bachelors", "pcnt_insured"],
-        flip=["pcnt_bachelors", "pcnt_insured"],   # protective vars point the other way
+         "pcnt_bachelors"],
+        flip=["pcnt_bachelors"],   # protective vars point the other way
+        name="sri",
     )
-    df["svi"] = result.scores                  # 0 = lowest, 100 = highest
+    df["sri"] = result.scores                  # 0 = lowest, 100 = highest
     result.loadings                            # PC1 loadings per variable
     result.explained_variance_ratio           # fraction of variance PC1 captures
 
 Orientation is the caller's contract: put every variable whose *high* raw value
-points against the index direction in `flip`. For SVI (higher = worse), flip
-protective variables like income and education. For GAI (higher = better
+points against the index direction in `flip`. For SRI (higher = worse), flip
+protective variables like education. For GAI (higher = better
 access), flip all four drive-time/distance variables, since lower = closer.
 
 The PC1 sign is chosen automatically so the index agrees with the majority

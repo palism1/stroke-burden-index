@@ -63,7 +63,7 @@ FIELD_LABELS = {
     "neurologists_per_100k":              {"label": "Neurologists",                                 "unit": "per 100k", "group": "access"},
     "stroke_centers_per_100k":            {"label": "Stroke centers",                               "unit": "per 100k", "group": "access"},
     # Index scores — appear automatically once computed and merged
-    "svi":                                {"label": "Stroke Vulnerability Index",                   "unit": "0-100",  "group": "indices"},
+    "sri":                                {"label": "Stroke Risk Index",                            "unit": "0-100",  "group": "indices"},
     "scai":                               {"label": "Stroke Care Access Index",                     "unit": "0-100",  "group": "indices"},
     "gai":                                {"label": "Geographic Accessibility Index",               "unit": "0-100",  "group": "indices"},
     "sbpi":                               {"label": "Stroke Burden Priority Index",                 "unit": "0-100",  "group": "indices"},

@@ -1,10 +1,10 @@
 # Stroke Burden Index
 
-Identifying high-priority stroke intervention areas across the United States by combining a **Stroke Vulnerability Index** (community stroke risk) and a **Stroke Care Access Index** (treatment availability) at the county level into a single **Stroke Burden Priority Index**.
+Identifying high-priority stroke intervention areas across the United States by combining a **Stroke Risk Index (SRI)** (community stroke risk) and a **Stroke Care Access Index** (treatment availability) at the county level into a single **Stroke Burden Priority Index**.
 
 **Live site:** [palism1.github.io/stroke-burden-index](https://palism1.github.io/stroke-burden-index/)
 
-**Status:** Data collection is nearly complete for all 91 NY/NJ/CT counties. ACS demographics, CDC WONDER stroke mortality, CDC PLACES health prevalence, population density, and geographic accessibility (drive time and distance to nearest basic and advanced stroke center) are collected. SCAI variables (hospitals, physicians, and stroke centers per capita) are in progress.
+**Status:** Data collection is nearly complete for all 91 NY/NJ/CT counties. ACS demographics, CDC WONDER stroke mortality, CDC PLACES health prevalence, population density, and geographic accessibility (drive time and distance to nearest basic and advanced stroke center) are collected. SCAI variables (hospitals, physicians, and stroke centers per capita) are now collected (`data/scai_data/scai_data.csv`), and index calculation has begun.
 
 ---
 

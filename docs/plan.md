@@ -16,15 +16,15 @@ title: Project plan
 
 **Still needed:**
 - SCAI: hospitals per capita, hospital beds per capita, PCP per capita, neurologists per capita (HIFLD / HRSA)
-- ~~SVI health variables: smoking, obesity, diabetes, physical inactivity, hypertension (CDC PLACES)~~ *(done — `data/cdcplaces_data.csv`)*
+- ~~SRI health variables: smoking, obesity, diabetes, physical inactivity, hypertension (CDC PLACES)~~ *(done — `data/cdcplaces_data.csv`)*
 - ~~Population density (Census TIGER + ACS land area)~~ *(done — `data/pop_density.csv`)*
 
 **Next steps (bookmarked 2026-07-02):**
 1. **SCAI data collection** — the last data gap. The merge pipeline, database, contract tests, and dashboard exporter are all pre-wired: committing `data/scai_data/scai_data.csv` activates everything automatically (see `docs/pipeline_guide.md`).
 2. **Compute GAI** — its four input variables are fully collected; one `build_index` call away (see §2c). Resolve the basic-access definition question first (see open questions / lineage review F2).
-3. **Compute SVI** — data is in; blocked only on finalizing the variable list (§2a) and the rename decision below.
-4. **Dashboard iteration** — an interactive scaffold is live at `docs/dashboard/` (search, choropleth, county details) running on real data; the UX design doc's recommendations should be iterated against it. The Risk vs. Access matrix section activates once SVI/SCAI scores exist.
-5. **Resolve remaining decisions** — SBPI weights (50/30/20 vs 50/25/25), SBPI method (Option 1 vs 2), SVI rename.
+3. **Compute SRI** — data is in; blocked only on finalizing the variable list (§2a).
+4. **Dashboard iteration** — an interactive scaffold is live at `docs/dashboard/` (search, choropleth, county details) running on real data; the UX design doc's recommendations should be iterated against it. The Risk vs. Access matrix section activates once SRI/SCAI scores exist.
+5. **Resolve remaining decisions** — SBPI weights (50/30/20 vs 50/25/25), SBPI method (Option 1 vs 2). ~~SRI rename~~ *(done — renamed to SRI, Stroke Risk Index, 2026-07-05)*.
 
 ---
 
@@ -46,14 +46,14 @@ title: Project plan
 
 We build two indices plus a geographic score, then combine them into the headline **Stroke Burden Priority Index (SBPI)**.
 
-- **Stroke Vulnerability Index (SVI)** — likelihood a community experiences stroke-related health problems.
+- **Stroke Risk Index (SRI)** — likelihood a community experiences stroke-related health problems.
 - **Stroke Care Access Index (SCAI)** — availability of treatment resources.
 - **Geographic Access Score** — travel distance to the nearest stroke center.
 - **Stroke Burden Priority Index (SBPI)** — the main, combined index that ranks counties by overall burden.
 
-> `(?)` **Naming collision.** CDC/ATSDR already publishes a "Social Vulnerability Index (SVI)" that dominates any data search for "SVI." We use SVI as the working name, but consider renaming ours (e.g. `StrokeVI`) before write-up to avoid citation/file-name confusion.
+> **Naming collision (resolved 2026-07-05).** CDC/ATSDR already publishes a "Social Vulnerability Index (SVI)" that dominated any data search for "SVI." To avoid citation/file-name confusion, our index was renamed to the **Stroke Risk Index (SRI)**.
 
-### Stroke Vulnerability Index (SVI)
+### Stroke Risk Index (SRI)
 
 Candidate variables (audit and trim once data quality is known):
 
@@ -86,16 +86,13 @@ Every index follows the same pipeline: **raw → align direction → standardize
 
 > **Implemented:** the pipeline below exists once, tested, as `src/index_pipeline.py` (`build_index`) — including the automatic PC1 sign check. Notebooks call it instead of hand-rolling PCA; usage in `docs/pipeline_guide.md`.
 
-### 2a. Stroke Vulnerability Index (SVI)
+### 2a. Stroke Risk Index (SRI)
 
 1. **Align direction** so higher value = worse vulnerability. Percent low income already points the harmful way (higher = worse), so it is left as-is. Flip "protective" variables:
    - education → `-(education)`
 2. **Standardize** (scale) all variables.
 3. **Compute** the index with **PCA** (use PC1).
-4. **Interpret:** higher PC1 → higher vulnerability — **check the sign of PC1** and flip if needed:
-   ```python
-   df["SVI"] = -df["SVI"]   # only if PC1 loaded the "wrong" way
-   ```
+4. **Interpret:** higher PC1 → higher vulnerability. The PC1 sign check is automatic — `index_pipeline.build_index` orients the index against the aligned variables, so there is no manual "flip the index if it came out backwards" step. See `docs/pipeline_guide.md`.
 5. **Normalize to 0–100.** `0` = lowest risk, `100` = highest risk.
 
 ### 2b. Stroke Care Access Index (SCAI)
@@ -120,7 +117,7 @@ The main combined index. Two candidate methods:
 
 | Component | `0` means | `100` means |
 |---|---|---|
-| SVI | least vulnerable | most vulnerable |
+| SRI | least vulnerable | most vulnerable |
 | SCAI | worst access | best access |
 | Geographic distance score | very far | very close |
 
@@ -130,7 +127,7 @@ Build deficits so higher = worse:
 - Distance deficit = `100 − Distance score`
 
 ```
-SBPI = 0.5 · SVI + 0.3 · (Access deficit) + 0.2 · (Distance deficit)
+SBPI = 0.5 · SRI + 0.3 · (Access deficit) + 0.2 · (Distance deficit)
 ```
 
 Weights are tunable, but vulnerability should always carry the most weight.
@@ -141,9 +138,9 @@ Weights are tunable, but vulnerability should always carry the most weight.
 
 | Class | Rule | Score |
 |---|---|---|
-| **Critical priority** | Top 25% SVI **and** bottom 25% SCAI **and** top 25% distance | 4 |
-| **High priority** | Top 25% SVI **and** bottom 50% SCAI | 3 |
-| **Moderate priority** | One elevated risk factor (top 25% SVI, *or* bottom 25% SCAI, *or* top 25% distance) | 2 |
+| **Critical priority** | Top 25% SRI **and** bottom 25% SCAI **and** top 25% distance | 4 |
+| **High priority** | Top 25% SRI **and** bottom 50% SCAI | 3 |
+| **Moderate priority** | One elevated risk factor (top 25% SRI, *or* bottom 25% SCAI, *or* top 25% distance) | 2 |
 | **Low priority** | Good access **and** low vulnerability | 1 |
 
 ### National ranking
@@ -161,8 +158,8 @@ Produce a county-level ranking by SBPI. `(?)` Final ranking/combination method (
 3. **Accessibility map.** Choropleth colored by distance band: 0–10 mi, 10–25 mi, 25–50 mi, 50+ mi.
 4. **Accessibility rankings.** Top 5 and bottom 5 counties per state.
 5. **Distance vs. mortality.** Scatter of distance to stroke center vs. stroke mortality rate.
-6. **Distance vs. SVI.** Scatter of distance vs. SVI — are vulnerable populations also geographically isolated? Those are high-priority areas.
-7. **Accessibility × Vulnerability matrix.** X = vulnerability (SVI), Y = access (SCAI or distance, oriented so higher Y = better access). Split each at the 75th / 25th percentile into quadrants:
+6. **Distance vs. SRI.** Scatter of distance vs. SRI — are vulnerable populations also geographically isolated? Those are high-priority areas.
+7. **Accessibility × Vulnerability matrix.** X = vulnerability (SRI), Y = access (SCAI or distance, oriented so higher Y = better access). Split each at the 75th / 25th percentile into quadrants:
    - High vulnerability, **low access** → **Critical intervention** (these are the **stroke care deserts**)
    - High vulnerability, high access → focus on prevention
    - Low vulnerability, low access → monitor for changes
@@ -170,7 +167,7 @@ Produce a county-level ranking by SBPI. `(?)` Final ranking/combination method (
 8. **Hotspot analysis** `(?)` (optional). "Is this county part of a statistically significant cluster?"
    - **Local Moran's I** — High-High (hotspot), Low-Low (coldspot), High-Low / Low-High (outliers); map significant clusters.
    - **Getis-Ord Gi\*** — classic hot/cold-spot clusters.
-   - Analyze on: stroke mortality (mortality clusters), distance (care deserts), SVI (vulnerability clusters), SBPI (highest-priority intervention regions).
+   - Analyze on: stroke mortality (mortality clusters), distance (care deserts), SRI (vulnerability clusters), SBPI (highest-priority intervention regions).
 
 Then: produce a national ranking.
 
@@ -184,7 +181,7 @@ Audit each before committing: confirm current vintage, county-level granularity,
 
 **Strong "buy not build" candidate to audit first:**
 
-- **County Health Rankings & Roadmaps (RWJF / Univ. of Wisconsin)** — aggregates poverty, smoking, obesity, diabetes, physical inactivity, PCP ratio, uninsured rate, and more at county level. May collapse much of the SVI collection work. `(?)` confirm coverage. <https://www.countyhealthrankings.org/health-data>
+- **County Health Rankings & Roadmaps (RWJF / Univ. of Wisconsin)** — aggregates poverty, smoking, obesity, diabetes, physical inactivity, PCP ratio, uninsured rate, and more at county level. May collapse much of the SRI collection work. `(?)` confirm coverage. <https://www.countyhealthrankings.org/health-data>
 
 **Stroke outcomes:**
 
@@ -262,7 +259,7 @@ Geocoded stroke center files for NY, NJ, CT are in `data/geographic_accessibilit
 - Descriptive statistics; visualizations.
 - Investigate: counties with highest stroke mortality, relationships among risk factors, regional differences `(?)`.
 
-### Stroke Vulnerability Index (SVI)
+### Stroke Risk Index (SRI)
 
 - Variable selection / risk-factor identification, standardize, PCA, component interpretation, construct index.
 - **Deliverables:** PCA results, vulnerability scores, ranking table.
@@ -303,11 +300,11 @@ Geocoded stroke center files for NY, NJ, CT are in `data/geographic_accessibilit
 - `(?)` SBPI method: continuous weighted (Option 1), quadrant classification (Option 2), or both.
 - `(?)` Canonical CT code system (old counties vs planning regions) — pending decision.
 - ~~`(?)` Pooled-mortality year window for CDC WONDER.~~ *(locked: 2018–2024, matches the committed data)*
-- `(?)` Rename SVI to avoid the CDC Social Vulnerability Index collision.
+- ~~`(?)` Rename SVI to avoid the CDC Social Vulnerability Index collision.~~ *(resolved 2026-07-05: renamed to SRI, Stroke Risk Index)*
 - `(?)` Stroke-center file scope: tristate proof-of-concept or national.
 - `(?)` National stroke-center designation source: EMNet vs Joint Commission.
-- `(?)` Does County Health Rankings cover enough SVI variables to skip multi-source assembly.
-- `(?)` Final SVI / SCAI variable lists (trim after seeing data quality).
+- `(?)` Does County Health Rankings cover enough SRI variables to skip multi-source assembly.
+- `(?)` Final SRI / SCAI variable lists (trim after seeing data quality).
 - `(?)` Hotspot analysis (Local Moran's I / Getis-Ord Gi\*) — include or skip.
 - ~~`(?)` Travel-distance metric: haversine for v1, routed drive time later.~~ *(both shipped: straight-line miles + ORS drive time in `geographic_stroke_accessibility.csv`)*
 - ~~`(?)` Output surface: static maps only, or an interactive dashboard (changes the host).~~ *(decided: client-side dashboard on Pages, scaffold at `docs/dashboard/` — see §6)*
