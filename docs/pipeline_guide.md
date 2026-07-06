@@ -38,8 +38,11 @@ not the repo root) with columns `fips`, `hospitals_per_100k`,
 `stroke_centers_per_100k`. That's all — the merge and database pipelines are
 already wired to pick it up automatically the moment it merges. Full spec:
 `data/scai_data/README.md`. Note that `pcnt_insured` is part of the SCAI *index
-calculation* but is NOT a column of `scai_data.csv` — it lives in
-`data/acs_data.csv` and joins in via the master merge.
+calculation* (recast there as the uninsured rate) but is NOT a column of
+`scai_data.csv` — it lives in `data/acs_data.csv` and joins in via the master
+merge. Conversely, `hospitals_per_100k` and `stroke_centers_per_100k` stay
+columns of this file but are excluded from the index calculation
+(`docs/DECISIONS.md`, 2026-07-06).
 
 ---
 
@@ -91,7 +94,7 @@ result.explained_variance_ratio          # fraction of variance PC1 captures
 | Index | Direction | What to flip |
 |---|---|---|
 | SRI | higher = more vulnerable | protective vars (education); percent low income is harmful-direction, so it is *not* flipped |
-| SCAI | higher = better access | nothing (all per-capita access vars already point up, and `pcnt_insured` points up too — higher = more insured = better access) |
+| SCAI | higher = better access | `pcnt_uninsured` (= `100 − pcnt_insured`, log1p-transformed; higher = more uninsured = worse access). The per-capita access vars already point up. Note the index uses only beds/PCP/neurologists — hospitals and stroke centers per capita are excluded (see `docs/DECISIONS.md` 2026-07-06) |
 | GAI | higher = better access | all four drive-time/distance vars (lower = closer = better) |
 
 Everything else is automatic — in particular the PC1 sign check, so the index

@@ -53,11 +53,12 @@ Health: smoking prevalence, obesity prevalence, diabetes prevalence, physical in
 
 **Variables:**
 
-- Hospitals per capita
-- Stroke centers per capita (basic and advanced)
+- Hospital beds per capita
 - Primary care physicians per capita
-- Insurance coverage
 - Neurologists per capita
+- Insurance coverage — enters as the uninsured rate (`100 − pcnt_insured`), log1p-transformed and flipped
+
+Hospitals per capita and stroke centers per capita are collected and kept in the EDA but are excluded from the index: small-county denominators inflate them and they load weakly/negatively against the other access variables (see the [decisions log](./DECISIONS.html), 2026-07-06).
 
 **Stroke center tiers:** Acute + Primary = Basic care. Thrombectomy-capable + Comprehensive = Advanced care.
 

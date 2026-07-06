@@ -129,4 +129,4 @@ Source: healthcare-access counts (hospitals, beds, providers, stroke centers) pe
 | `neurologists_per_100k` | float | Neurologists per 100,000 population |
 | `stroke_centers_per_100k` | float | Stroke centers per 100,000 population |
 
-Note: `pcnt_insured` (ACS, in `data/acs_data.csv`) joins these five variables at SCAI index-calculation time but is **not** a column of this file — it comes in via the master merge.
+Note: `pcnt_insured` (ACS, in `data/acs_data.csv`) joins in at SCAI index-calculation time (recast there as the uninsured rate) but is **not** a column of this file — it comes in via the master merge. Also note that not every column of this file enters the SCAI index: `hospitals_per_100k` and `stroke_centers_per_100k` are excluded from the index calculation but kept here and in the EDA (`docs/DECISIONS.md`, 2026-07-06).
