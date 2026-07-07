@@ -103,7 +103,13 @@ Because population density exhibited substantial positive skew resulting from se
 
 # Healthcare Resource Data
 
-Multiple public healthcare datasets were combined to construct county-level measures of healthcare availability for the Stroke Care Access Index (SCAI).
+**Sources:**
+
+- **Centers for Medicare & Medicaid Services (CMS) Hospital General Information** – General hospital locations and facility information
+- **Centers for Medicare & Medicaid Services (CMS) Hospital Cost Reports** – Licensed hospital bed counts
+- **Health Resources and Services Administration (HRSA) Area Health Resources Files (AHRF)** – County-level primary care physician and neurologist counts
+- **State Stroke Center Registries (New York, New Jersey, and Connecticut)** – Certified stroke center locations and designations
+- **American Community Survey (ACS)** – County population estimates used to calculate population-adjusted rates
 
 | Variable | Description | Why Included |
 |----------|-------------|--------------|
@@ -119,22 +125,9 @@ Exploratory analysis was used to evaluate redundancy among healthcare resource v
 
 ---
 
-# Geographic Accessibility
+# Geographic Accessibility Data
 
 Geographic accessibility measures were generated using county population centers and the locations of certified stroke centers.
-
-The final accessibility dataset includes:
-
-- Drive time to the nearest stroke center
-- Drive time to the nearest advanced stroke center
-- Distance to the nearest stroke center
-- Distance to the nearest advanced stroke center
-
-Driving times were calculated using the OpenRouteService routing engine, while straight-line distances were calculated using county centroid and stroke center coordinates. These variables form the Geographic Accessibility Index (GAI).
-
----
-
-# Geographic Reference Data
 
 County boundaries and FIPS codes were standardized using U.S. Census geographic reference files.
 
@@ -146,6 +139,8 @@ Because Connecticut transitioned from historical counties to planning regions, a
 | `drive_time_advanced` | Estimated driving time to the nearest advanced stroke center. | Measures accessibility to facilities providing advanced stroke interventions. |
 | `nearest_stroke_distance` | Straight-line distance to the nearest certified stroke center. | Provides a simple measure of geographic proximity independent of the road network. |
 | `nearest_stroke_distance_advanced` | Straight-line distance to the nearest advanced stroke center. | Measures proximity to advanced stroke treatment facilities. |
+
+Driving times were calculated using the OpenRouteService routing engine, while straight-line distances were calculated using county centroid and stroke center coordinates. These variables form the Geographic Accessibility Index (GAI).
 
 ---
 
