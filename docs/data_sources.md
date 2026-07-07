@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Data & sources
 nav_order: 7
 ---

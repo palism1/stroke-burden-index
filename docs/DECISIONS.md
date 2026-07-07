@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Decisions log
 nav_order: 5
 ---

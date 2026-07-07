@@ -1,0 +1,39 @@
+#-------------------------------
+# General Site Settings
+title: Stroke Burden Index
+logo: # text logo (site title) — no image
+description: Identifying high-priority stroke intervention areas across NY, NJ, and CT.
+
+#-------------------------------
+# Hero (repurposed from the theme's author block — keys kept so the
+# theme templates need minimal edits)
+author:
+  name: Stroke Burden Index
+  image: hero.svg
+  say-hello: Where do <strong>stroke risk</strong> and <strong>poor access to care</strong> overlap?
+  bio: We combine county-level risk factors, care supply, and drive times across <strong>91 NY/NJ/CT counties</strong> into clear priority scores — and an interactive map anyone can read.
+
+#-------------------------------
+# Contact links (off — project site, not a portfolio)
+twitter:
+facebook:
+dribbble:
+instagram:
+pinterest:
+
+#-------------------------------
+# Comment Section (Disqus) — off
+disqus-identifier:
+
+#-------------------------------
+# Instagram Feed — off
+instafeed: false
+instagram-profile:
+
+#-------------------------------
+# Google Analytics — off
+google-analytics:
+
+#-------------------------------
+# Newsletter — off
+mailchimp:
