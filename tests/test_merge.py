@@ -100,6 +100,23 @@ def test_master_skips_scai_when_file_absent(tmp_path, monkeypatch, capsys):
     assert "skipped (file not found): scai" in capsys.readouterr().out
 
 
+def test_build_master_never_writes_the_real_master(tmp_path, monkeypatch):
+    # Regression: build_master() used to write master.csv as a side effect.
+    # With DATA monkeypatched to the symlink mirror, that write followed the
+    # master.csv symlink and clobbered the real file with fixture data —
+    # every local pytest run silently corrupted data/master.csv.
+    import merge
+
+    real_master = merge.DATA / "master.csv"
+    before = real_master.read_bytes() if real_master.exists() else None
+
+    monkeypatch.setattr(merge, "DATA", _mirror_data_dir(tmp_path))
+    build_master()
+
+    after = real_master.read_bytes() if real_master.exists() else None
+    assert before == after, "build_master() must not write data/master.csv"
+
+
 def test_master_picks_up_scai_when_file_lands(tmp_path, monkeypatch):
     import merge
 
