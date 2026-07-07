@@ -195,8 +195,6 @@ The table below summarizes the construction and performance of the three composi
 
 ## Geospatial Analysis
 
-## Overview
-
 Geospatial analyses were performed to examine the spatial distribution of stroke care resources and evaluate geographic accessibility across New York, New Jersey, and Connecticut. County boundaries, stroke center locations, and county population centers were combined to quantify spatial access to stroke care and identify areas with limited access to specialized services.
 
 County boundaries were obtained from the 2020 U.S. Census TIGER/Line shapefiles to maintain consistency with historical Connecticut county definitions used throughout the project.
@@ -216,10 +214,3 @@ Mapping these facilities provided an initial assessment of healthcare resource d
 
 These spatial patterns motivated the subsequent development of the Geographic Accessibility Index (GAI), which quantifies county-level accessibility using estimated travel times and distances to both basic and advanced stroke centers.
 
----
-
-### Geographic Accessibility Analysis
-
-Following identification of stroke center locations, county-level accessibility was quantified using both travel time and travel distance. Accessibility measures were calculated from county population centers to the nearest certified Basic Stroke Center, the nearest Advanced Stroke Center, and the nearest stroke center regardless of designation.
-
-Travel times were estimated using the OpenRouteService routing engine, while straight-line distances were calculated using geographic coordinates. Together, these measures capture complementary aspects of geographic accessibility and form the basis of the Geographic Accessibility Index (GAI).
