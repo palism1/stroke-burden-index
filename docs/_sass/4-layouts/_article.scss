@@ -6,8 +6,12 @@
     align-items: center;
   }
 
+  // Every card row shares identical geometry: fixed image aspect, a uniform
+  // content height, and true vertical centering — so cards don't drift with
+  // text length (they looked staggered/off-center with varying titles).
   .article__image {
     width: 50%;
+    flex-shrink: 0;
     display: block;
     background-position: center;
     background-size: cover;
@@ -21,13 +25,17 @@
       content: "";
       display: table;
       width: 100%;
-      padding-bottom: 70%;
+      padding-bottom: 62%;
     }
   }
 
   .article__content {
     width: 60%;
-    padding: 50px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 50px;
     margin-left: -10%;
     z-index: 1;
     border-radius: 3px;
