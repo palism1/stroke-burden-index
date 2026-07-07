@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Decisions log
+nav_order: 5
 ---
 
 # Decisions log

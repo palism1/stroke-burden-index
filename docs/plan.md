@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Project plan
+title: Methodology & plan
+nav_order: 3
 ---
 
 # Stroke Burden Index — Project Plan

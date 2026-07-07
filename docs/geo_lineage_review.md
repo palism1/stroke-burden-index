@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Geographic accessibility data — lineage review
+title: Data lineage review
+nav_order: 6
 ---
 
 # Geographic accessibility data — lineage review

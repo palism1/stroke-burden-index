@@ -1,7 +1,40 @@
-# Jekyll config for GitHub Pages.
-# Source folder is /docs, set in Settings > Pages once published.
-# TWEAK: swap theme to minima or jekyll-theme-minimal if cayman feels too marketing-y.
+# Jekyll config for GitHub Pages. Source folder is /docs (Settings > Pages).
+#
+# Theme: just-the-docs via remote_theme. GitHub Pages builds this through the
+# jekyll-remote-theme plugin (declared below), so no Gemfile is needed on Pages.
+# We moved off jekyll-theme-cayman for a documentation-style site with real
+# sections + search, per reference/ux_research/conformance_map.md (minimal
+# interface, plain language, WCAG contrast, orange identity accent).
+remote_theme: just-the-docs/just-the-docs
 
-theme: jekyll-theme-cayman
 title: Stroke Burden Index
 description: Identifying high-priority stroke intervention areas in the US.
+
+# jekyll-remote-theme must be listed explicitly for GitHub Pages to load a
+# remote theme. (github-pages already whitelists it.)
+plugins:
+  - jekyll-remote-theme
+
+# just-the-docs client-side search over page content.
+search_enabled: true
+
+# Custom orange color scheme (docs/_sass/color_schemes/stroke.scss) — accent
+# only (link + primary-button color). Keeps the project's orange identity.
+color_scheme: stroke
+
+# The dashboard is a standalone static app, not a doc page, so it lives as an
+# external nav link rather than an ordinary nav_order page. just-the-docs renders
+# nav_external_links after the ordinary pages. Absolute URL is unambiguous under
+# the project-page baseurl (/stroke-burden-index/). Opens in a new tab since it
+# is a separate application.
+nav_external_links:
+  - title: "Dashboard"
+    url: "https://palism1.github.io/stroke-burden-index/dashboard/"
+    hide_icon: false
+    opens_in_new_tab: true
+
+# NOTE on copying: we deliberately set no `exclude:`/`include:` here, so Jekyll
+# copies docs/dashboard/ and docs/data/ verbatim. just-the-docs' own exclude
+# list lives in the theme's _config.yml and is NOT inherited via remote_theme,
+# so nothing here drops those folders. The dashboard files carry no front
+# matter, so Jekyll passes them through untouched.

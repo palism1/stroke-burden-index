@@ -1,0 +1,29 @@
+# Build-only preview of the GitHub Pages site for non-main branches.
+#
+# Why: the site uses a remote theme (just-the-docs) and dev machines don't have
+# a working Jekyll toolchain, so this builds docs/ with the SAME builder GitHub
+# Pages uses and uploads the rendered site as an artifact. Download it to
+# review a theme/IA change before it merges to main (which is what actually
+# deploys).
+name: site preview
+
+on:
+  push:
+    branches-ignore: ["main"]
+    paths: ["docs/**", ".github/workflows/site-preview.yml"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./docs
+          destination: ./_site
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: ./_site
+          retention-days: 5

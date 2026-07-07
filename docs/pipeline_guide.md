@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Pipeline guide
+nav_order: 4
 ---
 
 # Pipeline guide — how to use the data infrastructure
