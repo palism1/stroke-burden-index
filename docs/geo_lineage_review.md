@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Data lineage review
 nav_order: 6
 ---
