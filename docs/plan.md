@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Project plan
+title: Methodology & plan
+nav_order: 3
 ---
 
 # Stroke Burden Index — Project Plan
@@ -19,12 +20,12 @@ title: Project plan
 - ~~SRI health variables: smoking, obesity, diabetes, physical inactivity, hypertension (CDC PLACES)~~ *(done — `data/cdcplaces_data.csv`)*
 - ~~Population density (Census TIGER + ACS land area)~~ *(done — `data/pop_density.csv`)*
 
-**Next steps (bookmarked 2026-07-02):**
-1. **SCAI data collection** — the last data gap. The merge pipeline, database, contract tests, and dashboard exporter are all pre-wired: committing `data/scai_data/scai_data.csv` activates everything automatically (see `docs/pipeline_guide.md`).
-2. **Compute GAI** — its four input variables are fully collected; one `build_index` call away (see §2c). Resolve the basic-access definition question first (see open questions / lineage review F2).
-3. **Compute SRI** — data is in; blocked only on finalizing the variable list (§2a).
-4. **Dashboard iteration** — an interactive scaffold is live at `docs/dashboard/` (search, choropleth, county details) running on real data; the UX design doc's recommendations should be iterated against it. The Risk vs. Access matrix section activates once SRI/SCAI scores exist.
-5. **Resolve remaining decisions** — SBPI weights (50/30/20 vs 50/25/25), SBPI method (Option 1 vs 2). ~~SRI rename~~ *(done — renamed to SRI, Stroke Risk Index, 2026-07-05)*.
+**Next steps (bookmarked 2026-07-07):**
+1. ~~**SCAI data collection**~~ *(done — `scai_data.csv` landed 2026-07-05, pipeline auto-activated)*
+2. ~~**Compute GAI / SRI / SCAI**~~ *(done — all three computed and persisted: `src/compute_indices.py` → `data/indices.csv`, CI-gated; scores in the db `indices` table and on the dashboard. GAI is provisional pending the basic-access definition — see `DECISIONS.md`.)*
+3. ~~**Risk vs. Access matrix**~~ *(done 2026-07-07 — live scatter on the dashboard: X = SRI, Y = SCAI, 75th/25th-percentile quadrants, linked to county selection)*
+4. **SBPI** — the last index. Blocked on method + weights (now tracked in `DECISIONS.md` open items, with Hunterdon beds, neurologists skew, and the GAI definition).
+5. **Dashboard iteration** — mobile QA, UX-doc pass against the now-complete feature set.
 
 ---
 

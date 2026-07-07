@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Pipeline guide
+nav_order: 4
 ---
 
 # Pipeline guide — how to use the data infrastructure
@@ -120,6 +121,33 @@ both are diagnostics and never change the scores. Order is **transform → align
 (flip) → standardize → PCA**: transforms hit the raw values first, because a log
 of a negated variable is nonsense. `"log"` raises on any value ≤ 0 and `"log1p"`
 on any value < 0.
+
+### The committed index scores
+
+`src/compute_indices.py` is the canonical producer of the committed scores —
+its CONFIG block encodes the settled decisions from
+[the decisions log](./DECISIONS.html), one annotated entry per index:
+
+```
+python src/merge.py              # master.csv must be current first
+python src/compute_indices.py   # -> data/indices.csv (fips, sri, scai, gai)
+```
+
+CI reruns this on every push and fails if `data/indices.csv` is stale, exactly
+like the dashboard-data gate. So when a methodology decision changes: edit the
+CONFIG block, rerun the two commands plus `python src/build_site_data.py`, and
+commit the CONFIG + regenerated `indices.csv` + `counties.json` together — the
+decision shows up as one reviewable diff. An EVR regression test pins the
+numbers, so an accidental config change fails loudly.
+
+The scores also land in the database as their own `indices` table. They are
+deliberately **not** in the `master` view (they derive *from* master — keeping
+the DAG acyclic); join them explicitly:
+
+```sql
+SELECT m.*, i.sri, i.scai, i.gai
+FROM master m JOIN indices i USING (fips);
+```
 
 ---
 

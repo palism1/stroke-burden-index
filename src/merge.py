@@ -110,13 +110,24 @@ def build_master() -> pd.DataFrame:
             continue
         master = master.merge(df, on="fips", how="left")
 
+    if skipped:
+        print(f"skipped (file not found): {', '.join(skipped)}")
+
+    return master
+
+
+def main() -> None:
+    # The write lives here, NOT in build_master(): tests call build_master()
+    # directly (sometimes with DATA monkeypatched to a symlinked mirror), and
+    # a write inside it follows the master.csv symlink and clobbers the real
+    # file with fixture data.
+    master = build_master()
+
     out = DATA / "master.csv"
     master.to_csv(out, index=False)
 
     out_label = out.relative_to(REPO_ROOT) if out.is_relative_to(REPO_ROOT) else out
     print(f"wrote {out_label}  ({len(master)} rows, {len(master.columns)} columns)")
-    if skipped:
-        print(f"skipped (file not found): {', '.join(skipped)}")
     missing = master.isnull().sum()
     missing = missing[missing > 0]
     if not missing.empty:
@@ -126,8 +137,6 @@ def build_master() -> pd.DataFrame:
     else:
         print("no missing values")
 
-    return master
-
 
 if __name__ == "__main__":
-    build_master()
+    main()

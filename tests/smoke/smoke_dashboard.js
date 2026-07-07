@@ -15,8 +15,9 @@
  *   4. Searching a known county ("Kings, NY") selects it and fills the
  *      details panel with non-empty text.
  *   5. Searching garbage surfaces the no-match feedback message.
- *   6. The Risk-vs-Access matrix stays in its placeholder state while the
- *      sri/scai index fields are absent from counties.json.
+ *   6. The Risk-vs-Access matrix activates (sri/scai fields are present):
+ *      the placeholder hides, the scatter renders 91 dots plus quadrant
+ *      lines/labels, and clicking a dot selects that county.
  *
  * The element registry is seeded by parsing the id="..." attributes out of
  * index.html, so if dashboard.js reaches for an id that index.html never
@@ -315,11 +316,13 @@ async function main() {
     assert(p.getAttribute("fill"), `county path ${p.dataset.fips} has no fill`);
   }
 
-  // 3. switch through every metric the selector offers
+  // 3. switch through every metric the selector offers. With the three index
+  // scores (sri/scai/gai) now joined into counties.json, the selector offers
+  // exactly 31 metrics (28 data fields + 3 index scores).
   const select = document.getElementById("metric-select");
   const options = select.querySelectorAll("option");
-  assert(options.length >= 2,
-    `metric selector should offer multiple metrics, found ${options.length}`);
+  assert(options.length === 31,
+    `metric selector should offer 31 metrics (28 data + 3 index scores), found ${options.length}`);
   const legend = document.getElementById("legend");
   for (const opt of options) {
     select.value = opt.value;
@@ -361,17 +364,69 @@ async function main() {
   assert(message.textContent.includes(garbage),
     `expected no-match message referencing the query, got "${message.textContent}"`);
 
-  // 6. matrix stays a placeholder (sri/scai absent from the data)
+  // 6. matrix activates: sri/scai are present in counties.json, so the
+  // placeholder hides and the Risk-vs-Access scatter renders.
   const counties = JSON.parse(fs.readFileSync(COUNTIES_JSON, "utf8"));
-  const hasIndexFields = "sri" in counties.fields || "scai" in counties.fields;
-  assert(!hasIndexFields,
-    "counties.json now defines sri/scai fields — update this smoke test to cover the activated matrix");
+  const hasIndexFields = "sri" in counties.fields && "scai" in counties.fields;
+  assert(hasIndexFields,
+    "counties.json should define sri and scai fields so the matrix can activate");
   const placeholder = document.getElementById("matrix-placeholder");
   const chart = document.getElementById("matrix-chart");
-  assert(placeholder.hidden === false,
-    "matrix placeholder should remain visible while sri/scai are absent");
-  assert(chart.hidden === true,
-    "matrix chart should stay hidden while sri/scai are absent");
+  assert(placeholder.hidden === true,
+    "matrix placeholder should be hidden once sri/scai scores are present");
+  assert(chart.hidden === false,
+    "matrix chart should be visible once sri/scai scores are present");
+
+  // One dot per county: 91 <circle> elements inside the chart.
+  const dots = chart.querySelectorAll("circle");
+  assert(dots.length === 91,
+    `matrix should render one dot per county (91), found ${dots.length}`);
+  for (const dot of dots) {
+    assert(dot.dataset.fips, "a matrix dot is missing its data-fips");
+    assert(dot.getAttribute("role") === "button" && dot.getAttribute("tabindex") === "0",
+      `matrix dot ${dot.dataset.fips} is not keyboard-focusable like the map paths`);
+    const t = dot.querySelector("title");
+    assert(t && /SRI .* SCAI/.test(t.textContent),
+      `matrix dot ${dot.dataset.fips} is missing its SRI/SCAI tooltip`);
+  }
+
+  // Quadrant divider lines and the four region labels must be present.
+  const quadLines = chart.querySelectorAll("line").filter(
+    (l) => (l.getAttribute("class") || "").includes("mtx-quadrant-line"));
+  assert(quadLines.length === 2,
+    `matrix should draw two quadrant lines (75th SRI, 25th SCAI), found ${quadLines.length}`);
+  const quadLabels = chart.querySelectorAll("text").filter(
+    (t) => (t.getAttribute("class") || "").includes("mtx-quad-label"));
+  assert(quadLabels.length === 4,
+    `matrix should label all four quadrants, found ${quadLabels.length}`);
+  const hasCritical = quadLabels.some((t) => /critical intervention/i.test(t.textContent));
+  assert(hasCritical, "matrix is missing the critical-intervention quadrant label");
+  // The caption should name the 75th/25th-percentile thresholds.
+  const captionText = chart.textContent;
+  assert(/75th percentile/.test(captionText) && /25th percentile/.test(captionText),
+    "matrix caption should state the 75th/25th-percentile quadrant thresholds");
+
+  // Clicking a dot selects that county and updates the details panel — the same
+  // selection path as a map click or a search.
+  const detailsTitle = document.getElementById("details-title");
+  const detailsBody = document.getElementById("details-body");
+  const clickFips = dots[0].dataset.fips;
+  const clickCounty = counties.counties[clickFips];
+  dots[0].dispatch("click", {});
+  assert(sandbox.__state.selected === clickFips,
+    `clicking a matrix dot should select its county (expected ${clickFips}, got ${sandbox.__state.selected})`);
+  assert(new RegExp(`${clickCounty.county} County, ${clickCounty.state}`).test(detailsTitle.textContent),
+    `details title after dot click was "${detailsTitle.textContent}", expected "${clickCounty.county} County, ${clickCounty.state}"`);
+  assert(detailsBody.textContent.trim().length > 0,
+    "details panel body is empty after clicking a matrix dot");
+  // The clicked dot carries the .selected emphasis; exactly one dot is selected.
+  const selectedDots = dots.filter((d) => d.classList.contains("selected"));
+  assert(selectedDots.length === 1 && selectedDots[0].dataset.fips === clickFips,
+    `exactly the clicked dot should be marked selected (found ${selectedDots.length})`);
+  // And the corresponding map path is selected too (map <-> matrix stay in sync).
+  const selectedPaths = paths.filter((p) => p.classList.contains("selected"));
+  assert(selectedPaths.length === 1 && selectedPaths[0].dataset.fips === clickFips,
+    "the map path for the dot-selected county should also be marked selected");
 
   // 7. zoom & pan controls. Make any zoom-to-selection ease resolve
   // synchronously so viewBox assertions aren't racy, then work from a known
@@ -489,7 +544,7 @@ async function main() {
   console.log(`  - ${options.length} metrics switched without error`);
   console.log(`  - search selected Kings County, NY and filled the details panel`);
   console.log(`  - garbage search surfaced the no-match message`);
-  console.log(`  - matrix section stayed in placeholder state`);
+  console.log(`  - matrix activated: 91 dots, quadrant lines/labels; dot click selected a county`);
   console.log(`  - +/−/reset buttons and wheel changed the viewBox as expected`);
   console.log(`  - drag suppressed county select; a plain click still selected`);
   console.log(`  - search-select framed the county inside the animated viewBox`);

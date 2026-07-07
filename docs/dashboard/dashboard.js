@@ -30,7 +30,27 @@ const state = {
   bboxes: {},
   anim: null,
   _testSyncAnim: false,
+  // Risk-vs-Access matrix: dots[fips] -> that county's scatter <circle>, kept
+  // parallel to paths[] so selectCounty() can toggle .selected on both the map
+  // path and the matrix dot from a single place (map click, search, or dot click).
+  dots: {},
 };
+
+// --- matrix (Risk vs Access scatter) layout ---------------------------------
+// Its own coordinate space, independent of the map's. PLOT is the drawable
+// data area inside the axis margins; MARGIN leaves room for axis labels/ticks.
+const MTX_W = 640, MTX_H = 460;
+const MTX_MARGIN = { top: 16, right: 16, bottom: 52, left: 56 };
+const MTX_PLOT = {
+  x: MTX_MARGIN.left,
+  y: MTX_MARGIN.top,
+  w: MTX_W - MTX_MARGIN.left - MTX_MARGIN.right,
+  h: MTX_H - MTX_MARGIN.top - MTX_MARGIN.bottom,
+};
+// Scores are 0-100 by construction, so the axes are fixed 0..100 (stable across
+// data updates, and the 75th/25th quadrant lines read against a known scale).
+const MTX_MIN = 0, MTX_MAX = 100;
+const SVGNS = "http://www.w3.org/2000/svg";
 
 async function init() {
   let data, geo;
@@ -537,12 +557,26 @@ function drawLegend(breaks, values, palette) {
 // --- details panel ----------------------------------------------------
 
 function selectCounty(fips) {
-  if (state.selected) state.paths[state.selected].classList.remove("selected");
+  // Clear the previous selection on BOTH surfaces (map + matrix), then mark the
+  // new one on both, so selection stays in sync no matter what triggered it
+  // (map click, search box, or a matrix dot click). dots may be empty when the
+  // matrix hasn't activated — the guard handles that.
+  if (state.selected) {
+    state.paths[state.selected].classList.remove("selected");
+    if (state.dots[state.selected]) state.dots[state.selected].classList.remove("selected");
+  }
   state.selected = fips;
   const path = state.paths[fips];
   path.classList.add("selected");
   const svg = document.getElementById("map");
   svg.appendChild(path); // raise above neighbors so the outline isn't clipped
+
+  const dot = state.dots[fips];
+  if (dot) {
+    dot.classList.add("selected");
+    // Raise the selected dot above its neighbors so the emphasis ring shows.
+    if (dot.parentNode) dot.parentNode.appendChild(dot);
+  }
 
   // Frame the selected county (map click or search) with a short ease.
   const target = targetViewFor(fips);
@@ -580,13 +614,163 @@ function selectCounty(fips) {
   }
 }
 
-// --- matrix (activates when index scores exist) -----------------------
+// --- matrix (Risk vs Access scatter; activates when index scores exist) ----
+//
+// X = SRI (stroke risk; left low -> right high). Y = SCAI (access to care)
+// oriented so HIGHER access sits HIGHER on screen — SVG y grows downward, so
+// the y scale inverts. One dot per county; dots link to selectCounty() exactly
+// like the map paths (same click / keyboard / .selected treatment), so the two
+// views stay in lockstep through the shared selection state.
+
+// Linear percentile of an already-known score list (textbook / numpy-default
+// interpolation between closest ranks). Used for the 75th-SRI and 25th-SCAI
+// quadrant lines, computed from the plotted scores so the caption is exact.
+function percentile(values, p) {
+  const sorted = [...values].sort((a, b) => a - b);
+  if (sorted.length === 0) return NaN;
+  const idx = (p / 100) * (sorted.length - 1);
+  const lo = Math.floor(idx), hi = Math.min(lo + 1, sorted.length - 1);
+  return sorted[lo] + (sorted[hi] - sorted[lo]) * (idx - lo);
+}
+
+// Map a score (0..100) to an SVG x / y within the plot area. y inverts so a
+// higher SCAI lands nearer the top.
+function mtxX(score) {
+  return MTX_PLOT.x + ((score - MTX_MIN) / (MTX_MAX - MTX_MIN)) * MTX_PLOT.w;
+}
+function mtxY(score) {
+  return MTX_PLOT.y + (1 - (score - MTX_MIN) / (MTX_MAX - MTX_MIN)) * MTX_PLOT.h;
+}
+
+function mtxLine(x1, y1, x2, y2, cls) {
+  const ln = document.createElementNS(SVGNS, "line");
+  ln.setAttribute("x1", x1.toFixed(1));
+  ln.setAttribute("y1", y1.toFixed(1));
+  ln.setAttribute("x2", x2.toFixed(1));
+  ln.setAttribute("y2", y2.toFixed(1));
+  if (cls) ln.setAttribute("class", cls);
+  return ln;
+}
+
+function mtxText(x, y, text, cls) {
+  const t = document.createElementNS(SVGNS, "text");
+  t.setAttribute("x", x.toFixed(1));
+  t.setAttribute("y", y.toFixed(1));
+  if (cls) t.setAttribute("class", cls);
+  t.textContent = text;
+  return t;
+}
 
 function activateMatrix() {
   document.getElementById("matrix-placeholder").hidden = true;
   const chart = document.getElementById("matrix-chart");
   chart.hidden = false;
-  chart.textContent = "Index scores detected — matrix chart implementation goes here.";
+  chart.innerHTML = "";
+
+  const counties = Object.entries(state.data.counties)
+    .filter(([, c]) => !isMissing(c.sri) && !isMissing(c.scai));
+  const sriVals = counties.map(([, c]) => c.sri);
+  const scaiVals = counties.map(([, c]) => c.scai);
+  const sri75 = percentile(sriVals, 75);   // vertical line: high-risk boundary
+  const scai25 = percentile(scaiVals, 25); // horizontal line: low-access boundary
+
+  const svg = document.createElementNS(SVGNS, "svg");
+  svg.setAttribute("id", "matrix-svg");
+  svg.setAttribute("viewBox", `0 0 ${MTX_W} ${MTX_H}`);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label",
+    "Scatter plot of counties by stroke risk (SRI) versus access to stroke care (SCAI)");
+
+  // Critical-intervention quadrant tint: high SRI (right of the vertical line)
+  // AND low SCAI (below the horizontal line, since low access sits low on
+  // screen). A subtle fill, not a shout — it just draws the eye to the deserts.
+  const critX = mtxX(sri75), critY = mtxY(scai25);
+  const critRect = document.createElementNS(SVGNS, "rect");
+  critRect.setAttribute("class", "mtx-critical-zone");
+  critRect.setAttribute("x", critX.toFixed(1));
+  critRect.setAttribute("y", critY.toFixed(1));
+  critRect.setAttribute("width", (MTX_PLOT.x + MTX_PLOT.w - critX).toFixed(1));
+  critRect.setAttribute("height", (MTX_PLOT.y + MTX_PLOT.h - critY).toFixed(1));
+  svg.appendChild(critRect);
+
+  // Plot frame.
+  const frame = document.createElementNS(SVGNS, "rect");
+  frame.setAttribute("class", "mtx-frame");
+  frame.setAttribute("x", MTX_PLOT.x);
+  frame.setAttribute("y", MTX_PLOT.y);
+  frame.setAttribute("width", MTX_PLOT.w);
+  frame.setAttribute("height", MTX_PLOT.h);
+  svg.appendChild(frame);
+
+  // Quadrant divider lines.
+  svg.appendChild(mtxLine(critX, MTX_PLOT.y, critX, MTX_PLOT.y + MTX_PLOT.h, "mtx-quadrant-line"));
+  svg.appendChild(mtxLine(MTX_PLOT.x, critY, MTX_PLOT.x + MTX_PLOT.w, critY, "mtx-quadrant-line"));
+
+  // Quadrant labels (plan §3.7 language). Placed in each quadrant's outer
+  // corner so they don't collide with the dot cloud in the middle.
+  const loX = (MTX_PLOT.x + critX) / 2, hiX = (critX + MTX_PLOT.x + MTX_PLOT.w) / 2;
+  const topY = MTX_PLOT.y + 14, botY = MTX_PLOT.y + MTX_PLOT.h - 8;
+  // Top row = higher access (good); bottom row = lower access (poor).
+  svg.appendChild(mtxText(loX, topY, "System working well", "mtx-quad-label"));
+  svg.appendChild(mtxText(hiX, topY, "Prevention focus", "mtx-quad-label"));
+  svg.appendChild(mtxText(loX, botY, "Monitor for change", "mtx-quad-label"));
+  const critLabel = mtxText(hiX, botY, "Critical intervention", "mtx-quad-label mtx-quad-label-critical");
+  svg.appendChild(critLabel);
+
+  // Axis lines.
+  svg.appendChild(mtxLine(MTX_PLOT.x, MTX_PLOT.y + MTX_PLOT.h,
+    MTX_PLOT.x + MTX_PLOT.w, MTX_PLOT.y + MTX_PLOT.h, "mtx-axis"));
+  svg.appendChild(mtxLine(MTX_PLOT.x, MTX_PLOT.y, MTX_PLOT.x, MTX_PLOT.y + MTX_PLOT.h, "mtx-axis"));
+
+  // Axis titles with direction arrows (higher x = riskier, higher y = better access).
+  svg.appendChild(mtxText(MTX_PLOT.x + MTX_PLOT.w / 2, MTX_H - 12,
+    "Stroke risk (SRI) →", "mtx-axis-title"));
+  const yTitle = mtxText(0, 0, "Access to care (SCAI) →", "mtx-axis-title");
+  // Rotate the y-title up the left edge (arrow then points upward = more access).
+  const yx = 16, yy = MTX_PLOT.y + MTX_PLOT.h / 2;
+  yTitle.setAttribute("x", yx);
+  yTitle.setAttribute("y", yy);
+  yTitle.setAttribute("transform", `rotate(-90 ${yx} ${yy})`);
+  svg.appendChild(yTitle);
+
+  // One dot per county. Selection/keyboard/tooltip mirror the map paths exactly.
+  state.dots = {};
+  for (const [fips, c] of counties) {
+    const dot = document.createElementNS(SVGNS, "circle");
+    dot.setAttribute("class", "mtx-dot");
+    dot.setAttribute("cx", mtxX(c.sri).toFixed(1));
+    dot.setAttribute("cy", mtxY(c.scai).toFixed(1));
+    dot.setAttribute("r", "5");
+    dot.setAttribute("tabindex", "0");
+    dot.setAttribute("role", "button");
+    dot.dataset.fips = fips;
+    const label = `${c.county} County, ${c.state}. ` +
+      `Stroke risk ${fmtNum(c.sri)}, access to care ${fmtNum(c.scai)}.`;
+    dot.setAttribute("aria-label", label);
+    dot.addEventListener("click", () => selectCounty(fips));
+    dot.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectCounty(fips); }
+    });
+    const title = document.createElementNS(SVGNS, "title");
+    title.textContent =
+      `${c.county}, ${c.state} — SRI ${fmtNum(c.sri)}, SCAI ${fmtNum(c.scai)}`;
+    dot.appendChild(title);
+    if (fips === state.selected) dot.classList.add("selected");
+    svg.appendChild(dot);
+    state.dots[fips] = dot;
+  }
+
+  chart.appendChild(svg);
+
+  // Caption: state the exact quadrant thresholds (the plotted percentiles).
+  const caption = document.createElement("p");
+  caption.className = "mtx-caption";
+  caption.textContent =
+    `Each dot is one county. Quadrant lines mark the 75th percentile of stroke risk ` +
+    `(SRI ${fmtNum(sri75)}) and the 25th percentile of access (SCAI ${fmtNum(scai25)}) ` +
+    `across the plotted counties. The shaded corner — high risk and low access — is the ` +
+    `stroke care deserts / critical-intervention quadrant.`;
+  chart.appendChild(caption);
 }
 
 // --- formatting -------------------------------------------------------
