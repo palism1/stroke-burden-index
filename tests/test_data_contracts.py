@@ -50,7 +50,7 @@ REGISTRY = {
         "pcp_per_100k", "neurologists_per_100k", "stroke_centers_per_100k",
     ],
     # Computed index scores (src/compute_indices.py). Skipped until it lands.
-    "data/indices.csv": ["fips", "sri", "scai", "gai"],
+    "data/indices.csv": ["fips", "sri", "scai", "gai", "sbpi", "sbpi_class"],
 }
 
 
@@ -73,14 +73,17 @@ def test_data_file_matches_contract(rel_path):
 
 # PC1 explained-variance ratios from the notebook's committed outputs
 # (notebooks/Calculating Indices.ipynb). compute_indices.py must reproduce them.
+# Updated 2026-07-07 after the team decisions landed (neurologists log1p,
+# Hunterdon beds corrected, GAI nearest-any-tier) — see docs/DECISIONS.md.
 NOTEBOOK_EVR = {
-    "sri": 0.5223875266272114,
-    "scai": 0.5394857770201571,
-    "gai": 0.7706484916219887,
+    "sri": 0.5223875266272116,
+    "scai": 0.5490574193488794,
+    "gai": 0.8217631411124711,
 }
-# The county at each end of GAI, read off the notebook's scores (higher GAI =
-# better geographic access): Kings is closest to care, Clinton is farthest.
-GAI_BEST_FIPS = "36047"   # Kings — max GAI (100)
+# The county at each end of GAI (higher = better geographic access). Under the
+# nearest-any-tier definition (2026-07-07) Manhattan takes the top spot — its
+# comprehensive center is ~2.5 min from the population centroid.
+GAI_BEST_FIPS = "36061"   # New York (Manhattan) — max GAI (100)
 GAI_WORST_FIPS = "36019"  # Clinton — min GAI (0)
 
 _MASTER_EXISTS = (REPO_ROOT / "data" / "master.csv").exists()
@@ -112,6 +115,20 @@ def test_index_scores_in_range_and_finite():
         col = indices[name]
         assert col.notna().all(), f"{name} has NaN"
         assert (col >= 0).all() and (col <= 100).all(), f"{name} outside [0, 100]"
+
+
+@_needs_master
+def test_sbpi_score_and_class():
+    indices, _ = _compute()
+    sri, scai, gai = indices["sri"], indices["scai"], indices["gai"]
+    expected = (0.5 * sri + 0.3 * (100 - scai) + 0.2 * (100 - gai)).round(4)
+    assert (indices["sbpi"] == expected).all(), "sbpi != 50/30/20 weighted deficits"
+    assert indices["sbpi"].between(0, 100).all()
+    assert set(indices["sbpi_class"].unique()) <= {1, 2, 3, 4}
+    # Critical class must be exactly the triple-threshold counties.
+    crit = (sri >= sri.quantile(0.75)) & (scai <= scai.quantile(0.25)) & (gai <= gai.quantile(0.25))
+    assert (indices.loc[crit, "sbpi_class"] == 4).all()
+    assert (indices.loc[~crit, "sbpi_class"] < 4).all()
 
 
 @_needs_master
