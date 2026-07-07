@@ -1,4 +1,9 @@
 .article {
+  // The home page drops each .article straight into a flex .row without a
+  // width, so every row was shrinking to fit its own content — cards
+  // staggered per-row and left dead space on the right. Full width makes
+  // every row's geometry identical and flush with the container edges.
+  width: 100%;
   margin-bottom: 40px;
 
   .article__wrapper {
@@ -8,10 +13,12 @@
 
   // Every card row shares identical geometry: fixed image aspect, a uniform
   // content height, and true vertical centering — so cards don't drift with
-  // text length (they looked staggered/off-center with varying titles).
+  // text length. Image left 46%, card 62% overlapping by 8%: 46+62-8 = 100,
+  // so the card always ends flush right (no trailing whitespace) and sits a
+  // touch further right than the image midpoint.
   .article__image {
-    width: 50%;
-    flex-shrink: 0;
+    width: 46%;
+    flex: 0 0 46%;
     display: block;
     background-position: center;
     background-size: cover;
@@ -30,13 +37,14 @@
   }
 
   .article__content {
-    width: 60%;
+    width: 62%;
+    flex: 0 0 62%;
     min-height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 40px 50px;
-    margin-left: -10%;
+    margin-left: -8%;
     z-index: 1;
     border-radius: 3px;
     background: rgba(255, 255, 255, 0.98);
