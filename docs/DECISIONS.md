@@ -10,6 +10,43 @@ One entry per decision, newest first. This log distills team decisions (mostly
 from Discord) into the repo so we stop re-litigating settled questions. For
 how-to and mechanics see the [pipeline guide](./pipeline_guide.html).
 
+## 2026-07-07 — the four open calls, decided in one Discord round
+
+Decided by: Ngan Vu + Jane Condon (Discord, 2026-07-07, ~12:00-12:31); details
+per item. All implemented in `src/compute_indices.py` the same day; EVR pins
+updated (SRI 0.5224 unchanged, SCAI 0.539 → **0.549**, GAI 0.771 → **0.822**).
+
+1. **neurologists_per_100k gets log1p** inside SCAI (rule consistency with the
+   GAI precedent; both Janes voted yes).
+2. **Hunterdon beds: real count pulled.** Better than expected — Hunterdon
+   Medical Center (CCN 310005) was in the committed cost report all along; the
+   notebook's join had missed it. 184 beds ÷ the same population denominator
+   her pipeline used (130,313) → `hospital_beds_per_100k = 141.1985`, patched
+   into `data/scai_data/scai_data.csv`. Note for the SCAI notebook: fix the
+   join that dropped CCN 310005 before the next data refresh.
+3. **GAI uses nearest-ANY-tier centers** (option b): the basic-tier slots are
+   now `min(basic, advanced)` per county — derived in memory as
+   `drive_time_any` / `nearest_stroke_distance_any`; source CSVs unchanged.
+   The gai column is no longer provisional. EVR rose to 0.822 and Manhattan
+   (comprehensive center ~2.5 min away) replaced Kings as the best-access
+   county — both effects of the definition getting more physically real.
+4. **SBPI exists: both methods, weights 50/30/20.**
+   `sbpi = 0.5*SRI + 0.3*(100-SCAI) + 0.2*(100-GAI)` computed from the rounded
+   published component scores (reproducible from indices.csv alone), plus
+   `sbpi_class` 1-4 per plan.md's quadrant table with exact thresholds
+   (75th pct SRI; 25th/50th pct SCAI; 25th pct GAI — rules in the script).
+   Class counts: 55 low / 16 moderate / 10 high / 10 critical. Both columns in
+   indices.csv + the db `indices` table; the sbpi score is on the dashboard,
+   the class deliberately is not (the selector is built for continuous values).
+
+## 2026-07-07 — per-county recommendations engine: direction approved
+
+Decided by: Ngan Vu (spec) + Jane Condon (agree), Discord 2026-07-07 12:27.
+V1 spec: classify each county into a quadrant from its SRI/SCAI/GAI scores,
+pull its top-3 percentile risk drivers, and auto-generate a tailored action
+plan. Implementation pending (dashboard details panel); wording rules open —
+whoever wants to own the copy, speak up.
+
 ## 2026-07-07 — index scores are persisted: data/indices.csv is canonical
 
 Decided by: jane + Ngan Vu (Discord, issues channel, 2026-07-06: save the
@@ -87,52 +124,3 @@ Decided by: Jane Condon. Three of the four variables exceed the team skew rule
 (`|skew| > 2`) and get reshaped per the rule, even though PC1 explained variance
 drops slightly (0.82 raw → 0.77 log1p). Rule over metric: heavy tails should not
 dominate PC1.
-
-## Open — neurologists_per_100k exceeds the skew rule inside SCAI
-
-Raised by: repo review 2026-07-06, surfaced by the notebook's new
-`scai_result.high_skew` check after the SCAI variable set was trimmed.
-`neurologists_per_100k` has skew **3.21** (> 2.0) and no transform, so it sits
-in the same position `pcnt_insured` did under the team's PCA rule. Applying
-`log1p` to it barely moves the metric (EVR 0.539 → 0.541, loadings stable), so
-this is a rule-consistency call, not a numbers call — the GAI precedent
-("rule over metric") says transform it. NOT YET DECIDED — needs team sign-off.
-When decided: one-line change in `src/compute_indices.py` CONFIG + regenerate.
-
-## Open — Hunterdon NJ hospital_beds_per_100k = 0 is a data gap, not a value
-
-Raised by: PR #22/#24 review, 2026-07-05. Hunterdon has a hospital, but its
-CMS cost report was missing and the NA was zero-filled — and
-`hospital_beds_per_100k` survived the SCAI trim, so the fake 0 is inside the
-live index: Hunterdon currently reads as the worst bed access in the tristate.
-Options: (a) pull the real bed count from the cost report, (b) impute (e.g.
-state median) and document, (c) keep 0 deliberately. Owner: Jane Condon
-(`scai_data.csv` is contract-pinned; the fix edits that file, CI handles the
-rest). NOT YET DECIDED.
-
-## Open — GAI's "nearest basic center" definition (persisted as provisional)
-
-Raised by: geographic data lineage review (F2), 2026-07-02. The basic-tier
-columns count primary/acute-designated centers only; an advanced center (which
-also treats stroke) is closer in 19 of 91 counties, so basic drive time is
-overstated there. GAI was computed and persisted with the current
-designation-specific definition — treat the committed `gai` column as
-**provisional** until the team either (a) blesses designation-specific
-explicitly, or (b) switches to nearest-any-tier (columnwise min of the two
-tiers; no re-querying, minutes to recompute). The matrix does not use GAI, so
-this doesn't affect the dashboard's quadrants. NOT YET DECIDED.
-
-## Open — SBPI method and weights (blocks the headline index)
-
-From docs/plan.md, migrated here 2026-07-07 so this log is the single list of
-open questions. Two calls, both needed before SBPI can exist:
-
-- **Method:** continuous weighted score (Option 1), quadrant classification
-  (Option 2), or both (dashboard can show both; extra cost is small).
-- **Weights (Option 1):** the plan says 50/25/25 in one place and 50/30/20 in
-  another — which is canonical? (Weights can also be a config with a published
-  sensitivity check.)
-
-When decided: SBPI lands in `src/compute_indices.py` + `data/indices.csv`
-(schema grows an `sbpi` column — the dashboard field registry already has its
-label waiting). NOT YET DECIDED.

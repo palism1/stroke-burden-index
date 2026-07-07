@@ -98,13 +98,9 @@ INDEX_CONFIG = {
     #   docs/DECISIONS.md 2026-07-06, "pcnt_insured ... recast as the uninsured
     #   rate with log1p + flip". pcnt_uninsured is derived in memory below; it is
     #   never written to a data file.
-    # PENDING TEAM VOTE: neurologists_per_100k has |skew| ~3.21 (> 2) and gets NO
-    #   transform here. The team's PCA rule ("rule over metric") would log1p it,
-    #   but this is NOT YET DECIDED — see docs/DECISIONS.md "Open —
-    #   neurologists_per_100k exceeds the skew rule inside SCAI". Leaving it
-    #   untransformed matches the notebook's committed output; it will surface in
-    #   the high_skew diagnostic below (that's expected). If the vote lands, add
-    #   `"neurologists_per_100k": "log1p"` to transforms.
+    # neurologists_per_100k has |skew| ~3.21 (> 2) so it gets log1p, matching the
+    #   GAI precedent ("rule over metric") — team vote 2026-07-07 (Ngan Vu +
+    #   Jane Condon, Discord). EVR barely moves; this is rule consistency.
     "scai": {
         "variables": [
             "hospital_beds_per_100k",
@@ -113,35 +109,55 @@ INDEX_CONFIG = {
             "pcnt_uninsured",  # derived: 100 - pcnt_insured (see below)
         ],
         "flip": ["pcnt_uninsured"],
-        "transforms": {"pcnt_uninsured": "log1p"},
+        "transforms": {
+            "pcnt_uninsured": "log1p",
+            "neurologists_per_100k": "log1p",
+        },
     },
     # GAI — Geographic Accessibility Index (higher = better access).
-    # All four drive-time/distance variables get log1p and all four flip
-    #   (lower time/distance = closer = better access) — docs/DECISIONS.md
-    #   2026-07-05, "GAI uses log1p transforms on all four
-    #   drive-time/distance variables". EVR drops slightly under log1p (0.82 raw
-    #   -> 0.77) and the team took the rule over the metric.
+    # "Nearest basic center" is the nearest ANY-tier center (team vote
+    #   2026-07-07, option b of the lineage-review F2 question): advanced centers
+    #   also treat stroke and are closer in 19/91 counties, so the basic-tier
+    #   slots use the columnwise min of the two tiers — derived in memory as
+    #   drive_time_any / nearest_stroke_distance_any (see _load_master). The
+    #   advanced-tier columns are unchanged. Source CSVs keep the
+    #   designation-specific values; only the index derivation changes.
+    # All four inputs get log1p and all four flip (lower time/distance = closer
+    #   = better access) — docs/DECISIONS.md 2026-07-05 ("rule over metric").
     "gai": {
         "variables": [
-            "drive_time_min",
+            "drive_time_any",
             "drive_time_advanced",
-            "nearest_stroke_distance",
+            "nearest_stroke_distance_any",
             "nearest_stroke_distance_advanced",
         ],
         "flip": [
-            "drive_time_min",
+            "drive_time_any",
             "drive_time_advanced",
-            "nearest_stroke_distance",
+            "nearest_stroke_distance_any",
             "nearest_stroke_distance_advanced",
         ],
         "transforms": {
-            "drive_time_min": "log1p",
+            "drive_time_any": "log1p",
             "drive_time_advanced": "log1p",
-            "nearest_stroke_distance": "log1p",
+            "nearest_stroke_distance_any": "log1p",
             "nearest_stroke_distance_advanced": "log1p",
         },
     },
 }
+
+# SBPI — Stroke Burden Priority Index (team vote 2026-07-07: BOTH methods).
+# Option 1, the continuous score, from the ROUNDED published component scores
+# so SBPI is exactly reproducible from indices.csv itself:
+#   SBPI = 0.5*SRI + 0.3*(100 - SCAI) + 0.2*(100 - GAI)   (weights 50/30/20)
+# Option 2, the priority class (sbpi_class, 4 = worst), per plan.md's quadrant
+# table with the thresholds made exact:
+#   sri_hi = 75th pct of SRI; scai_lo/gai_lo = 25th pct; scai_med = median.
+#   4 Critical  : sri >= sri_hi AND scai <= scai_lo AND gai <= gai_lo
+#   3 High      : (else) sri >= sri_hi AND scai <= scai_med
+#   2 Moderate  : (else) any ONE of sri >= sri_hi / scai <= scai_lo / gai <= gai_lo
+#   1 Low       : otherwise
+SBPI_WEIGHTS = {"sri": 0.5, "access_deficit": 0.3, "distance_deficit": 0.2}
 
 
 def _read(path) -> pd.DataFrame:
@@ -158,6 +174,14 @@ def _load_master() -> pd.DataFrame:
     # flip (docs/DECISIONS.md 2026-07-06). This column is never written anywhere
     # permanent — it exists solely as a SCAI input.
     df["pcnt_uninsured"] = 100 - df["pcnt_insured"]
+    # Nearest ANY-tier stroke center (team vote 2026-07-07): advanced centers
+    # also treat stroke, so "nearest basic care" is the closer of the two tiers.
+    # Derived in memory only — the geographic source CSV keeps its
+    # designation-specific columns.
+    df["drive_time_any"] = df[["drive_time_min", "drive_time_advanced"]].min(axis=1)
+    df["nearest_stroke_distance_any"] = df[
+        ["nearest_stroke_distance", "nearest_stroke_distance_advanced"]
+    ].min(axis=1)
     return df
 
 
@@ -180,7 +204,37 @@ def compute_indices(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
         # builds (see module docstring).
         out[name] = result.scores.round(SCORE_DECIMALS).to_numpy()
         results[name] = result
+    _add_sbpi(out)
     return out, results
+
+
+def _add_sbpi(out: pd.DataFrame) -> None:
+    """Add sbpi (Option 1, weighted) and sbpi_class (Option 2, 1-4) in place.
+
+    Computed from the ROUNDED component scores so both columns are exactly
+    reproducible from indices.csv alone. Rules documented at SBPI_WEIGHTS.
+    """
+    sri, scai, gai = out["sri"], out["scai"], out["gai"]
+    sbpi = (
+        SBPI_WEIGHTS["sri"] * sri
+        + SBPI_WEIGHTS["access_deficit"] * (100 - scai)
+        + SBPI_WEIGHTS["distance_deficit"] * (100 - gai)
+    )
+    out["sbpi"] = sbpi.round(SCORE_DECIMALS)
+
+    sri_hi = sri.quantile(0.75)
+    scai_lo, scai_med = scai.quantile(0.25), scai.quantile(0.50)
+    gai_lo = gai.quantile(0.25)
+
+    critical = (sri >= sri_hi) & (scai <= scai_lo) & (gai <= gai_lo)
+    high = ~critical & (sri >= sri_hi) & (scai <= scai_med)
+    moderate = ~critical & ~high & (
+        (sri >= sri_hi) | (scai <= scai_lo) | (gai <= gai_lo)
+    )
+    out["sbpi_class"] = 1
+    out.loc[moderate, "sbpi_class"] = 2
+    out.loc[high, "sbpi_class"] = 3
+    out.loc[critical, "sbpi_class"] = 4
 
 
 def _print_summary(results: dict) -> None:
@@ -197,6 +251,15 @@ def _print_summary(results: dict) -> None:
             print(f"    high skew (|skew| > 2, untransformed): {', '.join(res.high_skew)}")
 
 
+def _print_sbpi_summary(indices: pd.DataFrame) -> None:
+    counts = indices["sbpi_class"].value_counts().sort_index()
+    labels = {1: "low", 2: "moderate", 3: "high", 4: "critical"}
+    parts = ", ".join(f"{labels[k]}={v}" for k, v in counts.items())
+    worst = indices.nlargest(3, "sbpi")[["fips", "sbpi"]]
+    worst_str = ", ".join(f"{r.fips}={r.sbpi:.1f}" for r in worst.itertuples())
+    print(f"  sbpi: classes ({parts}); highest burden: {worst_str}")
+
+
 def main() -> None:
     df = _load_master()
     indices, results = compute_indices(df)
@@ -206,6 +269,7 @@ def main() -> None:
     out_label = OUT.relative_to(REPO_ROOT) if OUT.is_relative_to(REPO_ROOT) else OUT
     print(f"wrote {out_label}  ({len(indices)} rows, {len(indices.columns)} columns)")
     _print_summary(results)
+    _print_sbpi_summary(indices)
 
 
 if __name__ == "__main__":
