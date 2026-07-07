@@ -191,3 +191,35 @@ The table below summarizes the construction and performance of the three composi
 | **Stroke Care Access Index (SCAI)** | Hospital beds per 100,000, primary care physicians per 100,000, neurologists per 100,000, uninsured population | **53.9%** | Measures the availability of healthcare resources related to stroke prevention and treatment. Higher scores indicate better access to stroke care. |
 | **Geographic Accessibility Index (GAI)** | Drive time to the nearest stroke center, drive time to the nearest advanced stroke center, distance to the nearest stroke center, distance to the nearest advanced stroke center | **77.0%** | Measures the geographic accessibility of stroke care. Higher scores indicate better geographic access. |
 
+
+
+## Geospatial Analysis
+
+## Overview
+
+Geospatial analyses were performed to examine the spatial distribution of stroke care resources and evaluate geographic accessibility across New York, New Jersey, and Connecticut. County boundaries, stroke center locations, and county population centers were combined to quantify spatial access to stroke care and identify areas with limited access to specialized services.
+
+County boundaries were obtained from the 2020 U.S. Census TIGER/Line shapefiles to maintain consistency with historical Connecticut county definitions used throughout the project.
+
+---
+
+### Mapping Stroke Centers
+
+Certified stroke centers were mapped to visualize the geographic distribution of stroke care resources throughout the study region. Two categories of facilities were considered:
+
+- **Basic Stroke Centers**, including Primary Stroke Centers (PSC) and Acute Care Stroke Centers (ACSC)
+- **Advanced Stroke Centers**, including Thrombectomy-Capable Stroke Centers (TSC) and Comprehensive Stroke Centers (CSC)
+
+Basic stroke centers represent the minimum level of certified stroke care capable of rapidly diagnosing and treating acute stroke, including the administration of thrombolytic therapy. Advanced stroke centers provide higher levels of specialized care, including mechanical thrombectomy, neurosurgical services, and comprehensive management of complex stroke cases.
+
+Mapping these facilities provided an initial assessment of healthcare resource distribution prior to calculating travel times and distances. The maps demonstrated that basic stroke centers are distributed throughout much of the tri-state region, while advanced stroke centers are fewer in number and are concentrated primarily within major metropolitan areas, including New York City, northern New Jersey, Hartford, and New Haven. In contrast, many rural counties in northern New York and northwestern Connecticut are located substantially farther from advanced stroke care.
+
+These spatial patterns motivated the subsequent development of the Geographic Accessibility Index (GAI), which quantifies county-level accessibility using estimated travel times and distances to both basic and advanced stroke centers.
+
+---
+
+### Geographic Accessibility Analysis
+
+Following identification of stroke center locations, county-level accessibility was quantified using both travel time and travel distance. Accessibility measures were calculated from county population centers to the nearest certified Basic Stroke Center, the nearest Advanced Stroke Center, and the nearest stroke center regardless of designation.
+
+Travel times were estimated using the OpenRouteService routing engine, while straight-line distances were calculated using geographic coordinates. Together, these measures capture complementary aspects of geographic accessibility and form the basis of the Geographic Accessibility Index (GAI).
