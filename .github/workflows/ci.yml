@@ -18,6 +18,11 @@ jobs:
       # Smoke-run both pipeline entry points so a data file that breaks the
       # merge fails the PR, not someone's next local run. Outputs are gitignored.
       - run: python src/merge.py
+      # Index scores are derived from the data and committed to data/indices.csv.
+      # Recompute them and fail if the committed copy is stale — proves the
+      # scores still match the data they claim to summarize.
+      - run: python src/compute_indices.py
+      - run: git diff --exit-code data/indices.csv
       - run: python src/build_db.py
       # Regenerate the dashboard's data files and fail if the committed
       # copies are stale (someone changed data without re-exporting).

@@ -49,6 +49,8 @@ REGISTRY = {
         "fips", "hospitals_per_100k", "hospital_beds_per_100k",
         "pcp_per_100k", "neurologists_per_100k", "stroke_centers_per_100k",
     ],
+    # Computed index scores (src/compute_indices.py). Skipped until it lands.
+    "data/indices.csv": ["fips", "sri", "scai", "gai"],
 }
 
 
@@ -59,6 +61,79 @@ def test_data_file_matches_contract(rel_path):
         pytest.skip(f"{rel_path} not collected yet")
     df = pd.read_csv(path, dtype={"fips": str})
     validate_schema(df, rel_path, expected_columns=REGISTRY[rel_path])
+
+
+# ---------------------------------------------------------------------------
+# Index computation (src/compute_indices.py)
+#
+# The index scores used to live only in notebooks/Calculating Indices.ipynb;
+# compute_indices.py is now the canonical source. These tests pin its output to
+# the notebook's committed numbers so the two can't silently drift.
+# ---------------------------------------------------------------------------
+
+# PC1 explained-variance ratios from the notebook's committed outputs
+# (notebooks/Calculating Indices.ipynb). compute_indices.py must reproduce them.
+NOTEBOOK_EVR = {
+    "sri": 0.5223875266272114,
+    "scai": 0.5394857770201571,
+    "gai": 0.7706484916219887,
+}
+# The county at each end of GAI, read off the notebook's scores (higher GAI =
+# better geographic access): Kings is closest to care, Clinton is farthest.
+GAI_BEST_FIPS = "36047"   # Kings — max GAI (100)
+GAI_WORST_FIPS = "36019"  # Clinton — min GAI (0)
+
+_MASTER_EXISTS = (REPO_ROOT / "data" / "master.csv").exists()
+_needs_master = pytest.mark.skipif(
+    not _MASTER_EXISTS, reason="data/master.csv not built yet (run src/merge.py)"
+)
+
+
+def _compute():
+    """Run compute_indices in-process, returning (indices_df, results)."""
+    import compute_indices  # imported here so collection never depends on it
+
+    df = compute_indices._load_master()
+    return compute_indices.compute_indices(df)
+
+
+@_needs_master
+def test_index_evr_matches_notebook():
+    _, results = _compute()
+    for name, expected in NOTEBOOK_EVR.items():
+        got = results[name].explained_variance_ratio
+        assert abs(got - expected) < 1e-3, f"{name} EVR {got} != notebook {expected}"
+
+
+@_needs_master
+def test_index_scores_in_range_and_finite():
+    indices, _ = _compute()
+    for name in ("sri", "scai", "gai"):
+        col = indices[name]
+        assert col.notna().all(), f"{name} has NaN"
+        assert (col >= 0).all() and (col <= 100).all(), f"{name} outside [0, 100]"
+
+
+@_needs_master
+def test_index_computation_is_deterministic(tmp_path):
+    import compute_indices
+
+    df = compute_indices._load_master()
+    a, _ = compute_indices.compute_indices(df)
+    b, _ = compute_indices.compute_indices(df)
+    first = tmp_path / "a.csv"
+    second = tmp_path / "b.csv"
+    a.to_csv(first, index=False)
+    b.to_csv(second, index=False)
+    assert first.read_bytes() == second.read_bytes(), "two runs differ byte-for-byte"
+
+
+@_needs_master
+def test_gai_best_and_worst_county():
+    indices, _ = _compute()
+    gai = indices.set_index("fips")["gai"]
+    assert gai.idxmax() == GAI_BEST_FIPS, f"best GAI is {gai.idxmax()}, expected {GAI_BEST_FIPS}"
+    assert gai.idxmin() == GAI_WORST_FIPS, f"worst GAI is {gai.idxmin()}, expected {GAI_WORST_FIPS}"
 
 
 # validate_schema unit tests (synthetic frames)

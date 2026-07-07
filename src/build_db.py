@@ -15,6 +15,9 @@ mortality       CDC WONDER stroke mortality rates
 geographic      Drive time and distance to nearest stroke center
 cdc_places      CDC PLACES health prevalence variables
 pop_density     Population density
+scai            Stroke-care supply counts (hospital beds, PCPs, neurologists, ...)
+indices         Computed index scores: sri, scai, gai (NOT in the master view —
+                they derive from master; join explicitly on fips)
 
 Querying from a notebook
 ------------------------
@@ -115,6 +118,15 @@ def _load_scai() -> pd.DataFrame | None:
     return df.drop(columns=["county", "state"], errors="ignore")
 
 
+def _load_indices() -> pd.DataFrame | None:
+    # The computed index scores: fips, sri, scai, gai (see src/compute_indices.py).
+    # Regenerate with `python src/compute_indices.py` after a data change.
+    path = DATA / "indices.csv"
+    if not path.exists():
+        return None
+    return _read(path)
+
+
 # Add new loaders here following the same pattern.
 
 
@@ -136,7 +148,14 @@ def build_db() -> None:
         "cdc_places": _load_cdc_places,
         "pop_density": _load_pop_density,
         "scai": _load_scai,
+        "indices": _load_indices,
     }
+
+    # Tables loaded for querying but kept OUT of the master view. The index
+    # scores derive FROM master (src/compute_indices.py reads master.csv), so
+    # folding them back into master would make the data DAG cyclic — join
+    # `indices` explicitly when you want scores alongside their inputs.
+    VIEW_EXCLUDED = {"indices"}
 
     loaded = []
     skipped = []
@@ -148,13 +167,15 @@ def build_db() -> None:
         df.to_sql(table_name, con, index=False, if_exists="replace")
         loaded.append(table_name)
 
+    view_tables = [t for t in loaded if t not in VIEW_EXCLUDED]
+
     # Build a master view joining everything that is available
     join_clauses = "\n    ".join(
-        f"LEFT JOIN {t} USING (fips)" for t in loaded if t != "counties"
+        f"LEFT JOIN {t} USING (fips)" for t in view_tables if t != "counties"
     )
     # Exclude fips from joined tables to avoid duplicate columns in the view
     joined_columns = []
-    for t in loaded:
+    for t in view_tables:
         df = con.execute(f"PRAGMA table_info({t})").fetchall()
         cols = [row[1] for row in df if row[1] != "fips"]
         joined_columns.extend(f"{t}.{c}" for c in cols)
