@@ -26,8 +26,10 @@ import pandas as pd
 from merge import build_master
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA = REPO_ROOT / "data"
 SITE_DATA = REPO_ROOT / "docs" / "data"
 BOUNDARIES_SRC = REPO_ROOT / "reference" / "county_boundaries" / "ny_nj_ct_counties.geojson"
+INDICES_CSV = DATA / "indices.csv"
 
 # Plain-language labels and units for the dashboard (UX doc: general-public
 # users need plain language, and values should carry visible units).
@@ -62,23 +64,48 @@ FIELD_LABELS = {
     "pcp_per_100k":                       {"label": "Primary care physicians",                      "unit": "per 100k", "group": "access"},
     "neurologists_per_100k":              {"label": "Neurologists",                                 "unit": "per 100k", "group": "access"},
     "stroke_centers_per_100k":            {"label": "Stroke centers",                               "unit": "per 100k", "group": "access"},
-    # Index scores — appear automatically once computed and merged
-    "sri":                                {"label": "Stroke Risk Index",                            "unit": "0-100",  "group": "indices"},
-    "scai":                               {"label": "Stroke Care Access Index",                     "unit": "0-100",  "group": "indices"},
-    "gai":                                {"label": "Geographic Accessibility Index",               "unit": "0-100",  "group": "indices"},
-    "sbpi":                               {"label": "Stroke Burden Priority Index",                 "unit": "0-100",  "group": "indices"},
+    # Index scores — 0-100, joined from data/indices.csv (see main()). The
+    # scores are unitless, so unit is "" — that renders cleanest through the
+    # dashboard's formatValue ("72.7", not "72.7 0-100") and fieldLabel (the
+    # metric selector / legend title show just the label, no "(0-100)" suffix).
+    # Directions are MIXED (SRI up = worse, SCAI/GAI up = better) and share one
+    # sequential palette, so the label is the only text that can disambiguate:
+    # each label states its direction inline.
+    "sri":                                {"label": "Stroke Risk Index (SRI) — higher = more risk",         "unit": "", "group": "index"},
+    "scai":                               {"label": "Stroke Care Access Index (SCAI) — higher = better access", "unit": "", "group": "index"},
+    "gai":                                {"label": "Geographic Accessibility Index (GAI) — higher = better access", "unit": "", "group": "index"},
+    "sbpi":                               {"label": "Stroke Burden Priority Index (SBPI)",                  "unit": "", "group": "index"},
 }
 
 GROUP_TITLES = {
     "burden": "Stroke burden and risk factors",
     "access": "Getting to care",
     "community": "About the community",
-    "indices": "Index scores",
+    "index": "Index scores",
 }
 
 
 def _fallback_label(column: str) -> str:
     return column.replace("_", " ").capitalize()
+
+
+def _join_indices(master: pd.DataFrame) -> pd.DataFrame:
+    """Left-join the computed index scores (sri, scai, gai) onto master.
+
+    The scores live in data/indices.csv (canonical source: src/compute_indices.py),
+    which is NOT part of build_master() — the data DAG is deliberately acyclic and
+    the indices derive FROM master. We fold them in here, at export time, so the
+    dashboard's index fields populate. Missing file -> master unchanged (the
+    dashboard's matrix simply stays in its placeholder state until scores exist).
+
+    Read with the same float_precision="round_trip" + fips-as-string convention
+    the rest of the pipeline uses, so the emitted JSON is byte-stable across
+    machines (matches merge._read; keeps CI's staleness gate from flaking).
+    """
+    if not INDICES_CSV.exists():
+        return master
+    indices = pd.read_csv(INDICES_CSV, dtype={"fips": str}, float_precision="round_trip")
+    return master.merge(indices, on="fips", how="left")
 
 
 def export_site_data(master: pd.DataFrame) -> dict:
@@ -107,7 +134,7 @@ def export_site_data(master: pd.DataFrame) -> dict:
 
 
 def main() -> None:
-    master = build_master()
+    master = _join_indices(build_master())
     payload = export_site_data(master)
 
     SITE_DATA.mkdir(parents=True, exist_ok=True)

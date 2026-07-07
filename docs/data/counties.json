@@ -139,13 +139,28 @@
    "label": "Stroke centers",
    "unit": "per 100k",
    "group": "access"
+  },
+  "sri": {
+   "label": "Stroke Risk Index (SRI) \u2014 higher = more risk",
+   "unit": "",
+   "group": "index"
+  },
+  "scai": {
+   "label": "Stroke Care Access Index (SCAI) \u2014 higher = better access",
+   "unit": "",
+   "group": "index"
+  },
+  "gai": {
+   "label": "Geographic Accessibility Index (GAI) \u2014 higher = better access",
+   "unit": "",
+   "group": "index"
   }
  },
  "groups": {
   "burden": "Stroke burden and risk factors",
   "access": "Getting to care",
   "community": "About the community",
-  "indices": "Index scores"
+  "index": "Index scores"
  },
  "counties": {
   "36001": {
@@ -178,7 +193,10 @@
    "hospital_beds_per_100k": 384.46,
    "pcp_per_100k": 96.67,
    "neurologists_per_100k": 13.22,
-   "stroke_centers_per_100k": 0.63
+   "stroke_centers_per_100k": 0.63,
+   "sri": 29.02,
+   "scai": 56.43,
+   "gai": 78.08
   },
   "36003": {
    "county": "Allegany",
@@ -210,7 +228,10 @@
    "hospital_beds_per_100k": 147.77,
    "pcp_per_100k": 40.69,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 2.14
+   "stroke_centers_per_100k": 2.14,
+   "sri": 72.74,
+   "scai": 12.81,
+   "gai": 34.03
   },
   "36005": {
    "county": "Bronx",
@@ -242,7 +263,10 @@
    "hospital_beds_per_100k": 210.65,
    "pcp_per_100k": 65.7,
    "neurologists_per_100k": 6.23,
-   "stroke_centers_per_100k": 0.43
+   "stroke_centers_per_100k": 0.43,
+   "sri": 100.0,
+   "scai": 28.9,
+   "gai": 90.07
   },
   "36007": {
    "county": "Broome",
@@ -274,7 +298,10 @@
    "hospital_beds_per_100k": 257.23,
    "pcp_per_100k": 83.19,
    "neurologists_per_100k": 4.08,
-   "stroke_centers_per_100k": 1.02
+   "stroke_centers_per_100k": 1.02,
+   "sri": 65.78,
+   "scai": 34.46,
+   "gai": 87.22
   },
   "36009": {
    "county": "Cattaraugus",
@@ -306,7 +333,10 @@
    "hospital_beds_per_100k": 266.95,
    "pcp_per_100k": 46.25,
    "neurologists_per_100k": 1.32,
-   "stroke_centers_per_100k": 1.32
+   "stroke_centers_per_100k": 1.32,
+   "sri": 91.76,
+   "scai": 21.99,
+   "gai": 29.16
   },
   "36011": {
    "county": "Cayuga",
@@ -338,7 +368,10 @@
    "hospital_beds_per_100k": 114.0,
    "pcp_per_100k": 25.48,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 1.34
+   "stroke_centers_per_100k": 1.34,
+   "sri": 78.77,
+   "scai": 7.6,
+   "gai": 73.4
   },
   "36013": {
    "county": "Chautauqua",
@@ -370,7 +403,10 @@
    "hospital_beds_per_100k": 257.47,
    "pcp_per_100k": 55.97,
    "neurologists_per_100k": 0.8,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 86.23,
+   "scai": 23.39,
+   "gai": 17.83
   },
   "36015": {
    "county": "Chemung",
@@ -402,7 +438,10 @@
    "hospital_beds_per_100k": 235.54,
    "pcp_per_100k": 82.62,
    "neurologists_per_100k": 3.7,
-   "stroke_centers_per_100k": 1.23
+   "stroke_centers_per_100k": 1.23,
+   "sri": 71.88,
+   "scai": 32.3,
+   "gai": 55.3
   },
   "36017": {
    "county": "Chenango",
@@ -434,7 +473,10 @@
    "hospital_beds_per_100k": 126.35,
    "pcp_per_100k": 32.68,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 84.67,
+   "scai": 10.5,
+   "gai": 25.46
   },
   "36019": {
    "county": "Clinton",
@@ -466,7 +508,10 @@
    "hospital_beds_per_100k": 367.11,
    "pcp_per_100k": 77.02,
    "neurologists_per_100k": 1.28,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 63.7,
+   "scai": 36.41,
+   "gai": 0.0
   },
   "36021": {
    "county": "Columbia",
@@ -498,7 +543,10 @@
    "hospital_beds_per_100k": 316.8,
    "pcp_per_100k": 39.6,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 1.65
+   "stroke_centers_per_100k": 1.65,
+   "sri": 62.46,
+   "scai": 22.8,
+   "gai": 44.23
   },
   "36023": {
    "county": "Cortland",
@@ -530,7 +578,10 @@
    "hospital_beds_per_100k": 182.59,
    "pcp_per_100k": 39.13,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 2.17
+   "stroke_centers_per_100k": 2.17,
+   "sri": 45.66,
+   "scai": 15.21,
+   "gai": 57.63
   },
   "36025": {
    "county": "Delaware",
@@ -562,7 +613,10 @@
    "hospital_beds_per_100k": 125.75,
    "pcp_per_100k": 31.44,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 89.39,
+   "scai": 9.55,
+   "gai": 16.03
   },
   "36027": {
    "county": "Dutchess",
@@ -594,7 +648,10 @@
    "hospital_beds_per_100k": 142.54,
    "pcp_per_100k": 68.25,
    "neurologists_per_100k": 4.71,
-   "stroke_centers_per_100k": 1.01
+   "stroke_centers_per_100k": 1.01,
+   "sri": 31.34,
+   "scai": 24.93,
+   "gai": 51.01
   },
   "36029": {
    "county": "Erie",
@@ -626,7 +683,10 @@
    "hospital_beds_per_100k": 235.9,
    "pcp_per_100k": 77.47,
    "neurologists_per_100k": 9.29,
-   "stroke_centers_per_100k": 0.42
+   "stroke_centers_per_100k": 0.42,
+   "sri": 51.27,
+   "scai": 38.82,
+   "gai": 61.63
   },
   "36031": {
    "county": "Essex",
@@ -658,7 +718,10 @@
    "hospital_beds_per_100k": 68.15,
    "pcp_per_100k": 40.89,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 75.6,
+   "scai": 8.38,
+   "gai": 6.5
   },
   "36033": {
    "county": "Franklin",
@@ -690,7 +753,10 @@
    "hospital_beds_per_100k": 257.44,
    "pcp_per_100k": 62.74,
    "neurologists_per_100k": 4.33,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 87.57,
+   "scai": 28.81,
+   "gai": 5.19
   },
   "36035": {
    "county": "Fulton",
@@ -722,7 +788,10 @@
    "hospital_beds_per_100k": 108.64,
    "pcp_per_100k": 32.4,
    "neurologists_per_100k": 1.91,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 85.73,
+   "scai": 11.63,
+   "gai": 26.26
   },
   "36037": {
    "county": "Genesee",
@@ -754,7 +823,10 @@
    "hospital_beds_per_100k": 217.18,
    "pcp_per_100k": 29.3,
    "neurologists_per_100k": 1.72,
-   "stroke_centers_per_100k": 1.72
+   "stroke_centers_per_100k": 1.72,
+   "sri": 58.21,
+   "scai": 16.81,
+   "gai": 69.44
   },
   "36039": {
    "county": "Greene",
@@ -786,7 +858,10 @@
    "hospital_beds_per_100k": 0.0,
    "pcp_per_100k": 35.86,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 71.34,
+   "scai": 3.92,
+   "gai": 35.83
   },
   "36041": {
    "county": "Hamilton",
@@ -818,7 +893,10 @@
    "hospital_beds_per_100k": 0.0,
    "pcp_per_100k": 19.73,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 91.32,
+   "scai": 0.04,
+   "gai": 18.79
   },
   "36043": {
    "county": "Herkimer",
@@ -850,7 +928,10 @@
    "hospital_beds_per_100k": 41.98,
    "pcp_per_100k": 28.55,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 78.53,
+   "scai": 4.13,
+   "gai": 38.36
   },
   "36045": {
    "county": "Jefferson",
@@ -882,7 +963,10 @@
    "hospital_beds_per_100k": 189.8,
    "pcp_per_100k": 52.97,
    "neurologists_per_100k": 0.88,
-   "stroke_centers_per_100k": 0.88
+   "stroke_centers_per_100k": 0.88,
+   "sri": 54.64,
+   "scai": 18.76,
+   "gai": 46.87
   },
   "36047": {
    "county": "Kings",
@@ -914,7 +998,10 @@
    "hospital_beds_per_100k": 108.73,
    "pcp_per_100k": 69.64,
    "neurologists_per_100k": 6.66,
-   "stroke_centers_per_100k": 0.46
+   "stroke_centers_per_100k": 0.46,
+   "sri": 43.24,
+   "scai": 24.96,
+   "gai": 100.0
   },
   "36049": {
    "county": "Lewis",
@@ -946,7 +1033,10 @@
    "hospital_beds_per_100k": 94.1,
    "pcp_per_100k": 63.99,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 82.65,
+   "scai": 15.1,
+   "gai": 24.29
   },
   "36051": {
    "county": "Livingston",
@@ -978,7 +1068,10 @@
    "hospital_beds_per_100k": 109.51,
    "pcp_per_100k": 42.49,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 1.63
+   "stroke_centers_per_100k": 1.63,
+   "sri": 50.27,
+   "scai": 11.52,
+   "gai": 35.93
   },
   "36053": {
    "county": "Madison",
@@ -1010,7 +1103,10 @@
    "hospital_beds_per_100k": 187.38,
    "pcp_per_100k": 74.36,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 54.5,
+   "scai": 23.67,
+   "gai": 32.57
   },
   "36055": {
    "county": "Monroe",
@@ -1042,7 +1138,10 @@
    "hospital_beds_per_100k": 235.39,
    "pcp_per_100k": 108.82,
    "neurologists_per_100k": 18.03,
-   "stroke_centers_per_100k": 0.53
+   "stroke_centers_per_100k": 0.53,
+   "sri": 46.8,
+   "scai": 56.47,
+   "gai": 79.98
   },
   "36057": {
    "county": "Montgomery",
@@ -1074,7 +1173,10 @@
    "hospital_beds_per_100k": 201.89,
    "pcp_per_100k": 52.49,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 78.8,
+   "scai": 18.02,
+   "gai": 29.64
   },
   "36059": {
    "county": "Nassau",
@@ -1106,7 +1208,10 @@
    "hospital_beds_per_100k": 168.62,
    "pcp_per_100k": 140.25,
    "neurologists_per_100k": 15.12,
-   "stroke_centers_per_100k": 0.79
+   "stroke_centers_per_100k": 0.79,
+   "sri": 15.17,
+   "scai": 55.87,
+   "gai": 74.84
   },
   "36061": {
    "county": "New York",
@@ -1138,7 +1243,10 @@
    "hospital_beds_per_100k": 475.2,
    "pcp_per_100k": 137.48,
    "neurologists_per_100k": 37.57,
-   "stroke_centers_per_100k": 0.67
+   "stroke_centers_per_100k": 0.67,
+   "sri": 0.0,
+   "scai": 100.0,
+   "gai": 90.18
   },
   "36063": {
    "county": "Niagara",
@@ -1170,7 +1278,10 @@
    "hospital_beds_per_100k": 199.09,
    "pcp_per_100k": 40.1,
    "neurologists_per_100k": 3.82,
-   "stroke_centers_per_100k": 0.95
+   "stroke_centers_per_100k": 0.95,
+   "sri": 71.06,
+   "scai": 21.64,
+   "gai": 48.31
   },
   "36065": {
    "county": "Oneida",
@@ -1202,7 +1313,10 @@
    "hospital_beds_per_100k": 264.55,
    "pcp_per_100k": 76.03,
    "neurologists_per_100k": 3.08,
-   "stroke_centers_per_100k": 0.88
+   "stroke_centers_per_100k": 0.88,
+   "sri": 72.73,
+   "scai": 32.23,
+   "gai": 59.16
   },
   "36067": {
    "county": "Onondaga",
@@ -1234,7 +1348,10 @@
    "hospital_beds_per_100k": 312.68,
    "pcp_per_100k": 95.62,
    "neurologists_per_100k": 10.03,
-   "stroke_centers_per_100k": 0.64
+   "stroke_centers_per_100k": 0.64,
+   "sri": 53.39,
+   "scai": 47.99,
+   "gai": 81.73
   },
   "36069": {
    "county": "Ontario",
@@ -1266,7 +1383,10 @@
    "hospital_beds_per_100k": 273.19,
    "pcp_per_100k": 77.42,
    "neurologists_per_100k": 6.23,
-   "stroke_centers_per_100k": 1.78
+   "stroke_centers_per_100k": 1.78,
+   "sri": 43.88,
+   "scai": 36.95,
+   "gai": 59.24
   },
   "36071": {
    "county": "Orange",
@@ -1298,7 +1418,10 @@
    "hospital_beds_per_100k": 157.0,
    "pcp_per_100k": 65.09,
    "neurologists_per_100k": 3.41,
-   "stroke_centers_per_100k": 0.49
+   "stroke_centers_per_100k": 0.49,
+   "sri": 44.32,
+   "scai": 23.17,
+   "gai": 43.61
   },
   "36073": {
    "county": "Orleans",
@@ -1330,7 +1453,10 @@
    "hospital_beds_per_100k": 63.18,
    "pcp_per_100k": 7.58,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 77.28,
+   "scai": 0.0,
+   "gai": 34.7
   },
   "36075": {
    "county": "Oswego",
@@ -1362,7 +1488,10 @@
    "hospital_beds_per_100k": 111.92,
    "pcp_per_100k": 40.7,
    "neurologists_per_100k": 0.85,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 75.83,
+   "scai": 12.02,
+   "gai": 29.59
   },
   "36077": {
    "county": "Otsego",
@@ -1394,7 +1523,10 @@
    "hospital_beds_per_100k": 351.6,
    "pcp_per_100k": 123.8,
    "neurologists_per_100k": 9.9,
-   "stroke_centers_per_100k": 1.65
+   "stroke_centers_per_100k": 1.65,
+   "sri": 52.56,
+   "scai": 55.87,
+   "gai": 34.57
   },
   "36079": {
    "county": "Putnam",
@@ -1426,7 +1558,10 @@
    "hospital_beds_per_100k": 89.7,
    "pcp_per_100k": 50.96,
    "neurologists_per_100k": 1.02,
-   "stroke_centers_per_100k": 1.02
+   "stroke_centers_per_100k": 1.02,
+   "sri": 18.02,
+   "scai": 13.91,
+   "gai": 59.36
   },
   "36081": {
    "county": "Queens",
@@ -1458,7 +1593,10 @@
    "hospital_beds_per_100k": 123.34,
    "pcp_per_100k": 62.6,
    "neurologists_per_100k": 4.1,
-   "stroke_centers_per_100k": 0.39
+   "stroke_centers_per_100k": 0.39,
+   "sri": 50.89,
+   "scai": 20.23,
+   "gai": 86.78
   },
   "36083": {
    "county": "Rensselaer",
@@ -1490,7 +1628,10 @@
    "hospital_beds_per_100k": 157.89,
    "pcp_per_100k": 46.36,
    "neurologists_per_100k": 1.25,
-   "stroke_centers_per_100k": 0.63
+   "stroke_centers_per_100k": 0.63,
+   "sri": 39.76,
+   "scai": 17.05,
+   "gai": 62.03
   },
   "36085": {
    "county": "Richmond",
@@ -1522,7 +1663,10 @@
    "hospital_beds_per_100k": 152.07,
    "pcp_per_100k": 86.84,
    "neurologists_per_100k": 4.85,
-   "stroke_centers_per_100k": 0.61
+   "stroke_centers_per_100k": 0.61,
+   "sri": 44.53,
+   "scai": 30.09,
+   "gai": 67.35
   },
   "36087": {
    "county": "Rockland",
@@ -1554,7 +1698,10 @@
    "hospital_beds_per_100k": 150.97,
    "pcp_per_100k": 83.13,
    "neurologists_per_100k": 5.2,
-   "stroke_centers_per_100k": 0.58
+   "stroke_centers_per_100k": 0.58,
+   "sri": 42.5,
+   "scai": 29.3,
+   "gai": 59.1
   },
   "36089": {
    "county": "St. Lawrence",
@@ -1586,7 +1733,10 @@
    "hospital_beds_per_100k": 101.31,
    "pcp_per_100k": 53.47,
    "neurologists_per_100k": 0.94,
-   "stroke_centers_per_100k": 0.94
+   "stroke_centers_per_100k": 0.94,
+   "sri": 85.87,
+   "scai": 13.83,
+   "gai": 26.62
   },
   "36091": {
    "county": "Saratoga",
@@ -1618,7 +1768,10 @@
    "hospital_beds_per_100k": 71.64,
    "pcp_per_100k": 67.87,
    "neurologists_per_100k": 3.35,
-   "stroke_centers_per_100k": 0.42
+   "stroke_centers_per_100k": 0.42,
+   "sri": 27.47,
+   "scai": 20.08,
+   "gai": 50.11
   },
   "36093": {
    "county": "Schenectady",
@@ -1650,7 +1803,10 @@
    "hospital_beds_per_100k": 179.23,
    "pcp_per_100k": 78.69,
    "neurologists_per_100k": 8.12,
-   "stroke_centers_per_100k": 0.62
+   "stroke_centers_per_100k": 0.62,
+   "sri": 45.13,
+   "scai": 34.04,
+   "gai": 67.29
   },
   "36095": {
    "county": "Schoharie",
@@ -1682,7 +1838,10 @@
    "hospital_beds_per_100k": 82.95,
    "pcp_per_100k": 29.86,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 68.95,
+   "scai": 6.98,
+   "gai": 25.09
   },
   "36097": {
    "county": "Schuyler",
@@ -1714,7 +1873,10 @@
    "hospital_beds_per_100k": 143.34,
    "pcp_per_100k": 63.07,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 80.6,
+   "scai": 18.1,
+   "gai": 26.89
   },
   "36099": {
    "county": "Seneca",
@@ -1746,7 +1908,10 @@
    "hospital_beds_per_100k": 0.0,
    "pcp_per_100k": 27.74,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 78.99,
+   "scai": 0.06,
+   "gai": 37.05
   },
   "36101": {
    "county": "Steuben",
@@ -1778,7 +1943,10 @@
    "hospital_beds_per_100k": 103.17,
    "pcp_per_100k": 53.22,
    "neurologists_per_100k": 2.17,
-   "stroke_centers_per_100k": 1.09
+   "stroke_centers_per_100k": 1.09,
+   "sri": 73.13,
+   "scai": 15.88,
+   "gai": 21.96
   },
   "36103": {
    "county": "Suffolk",
@@ -1810,7 +1978,10 @@
    "hospital_beds_per_100k": 172.58,
    "pcp_per_100k": 70.83,
    "neurologists_per_100k": 8.28,
-   "stroke_centers_per_100k": 0.72
+   "stroke_centers_per_100k": 0.72,
+   "sri": 24.09,
+   "scai": 31.42,
+   "gai": 57.65
   },
   "36105": {
    "county": "Sullivan",
@@ -1842,7 +2013,10 @@
    "hospital_beds_per_100k": 113.17,
    "pcp_per_100k": 34.82,
    "neurologists_per_100k": 2.49,
-   "stroke_centers_per_100k": 1.24
+   "stroke_centers_per_100k": 1.24,
+   "sri": 70.49,
+   "scai": 12.3,
+   "gai": 46.79
   },
   "36107": {
    "county": "Tioga",
@@ -1874,7 +2048,10 @@
    "hospital_beds_per_100k": 0.0,
    "pcp_per_100k": 29.41,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 68.02,
+   "scai": 3.02,
+   "gai": 38.59
   },
   "36109": {
    "county": "Tompkins",
@@ -1906,7 +2083,10 @@
    "hospital_beds_per_100k": 85.21,
    "pcp_per_100k": 78.5,
    "neurologists_per_100k": 4.79,
-   "stroke_centers_per_100k": 0.96
+   "stroke_centers_per_100k": 0.96,
+   "sri": 7.59,
+   "scai": 24.1,
+   "gai": 44.82
   },
   "36111": {
    "county": "Ulster",
@@ -1938,7 +2118,10 @@
    "hospital_beds_per_100k": 74.33,
    "pcp_per_100k": 62.31,
    "neurologists_per_100k": 5.47,
-   "stroke_centers_per_100k": 0.55
+   "stroke_centers_per_100k": 0.55,
+   "sri": 55.15,
+   "scai": 19.66,
+   "gai": 50.66
   },
   "36113": {
    "county": "Warren",
@@ -1970,7 +2153,10 @@
    "hospital_beds_per_100k": 597.25,
    "pcp_per_100k": 116.09,
    "neurologists_per_100k": 1.53,
-   "stroke_centers_per_100k": 1.53
+   "stroke_centers_per_100k": 1.53,
+   "sri": 55.12,
+   "scai": 58.66,
+   "gai": 41.52
   },
   "36115": {
    "county": "Washington",
@@ -2002,7 +2188,10 @@
    "hospital_beds_per_100k": 0.0,
    "pcp_per_100k": 34.97,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 69.39,
+   "scai": 3.06,
+   "gai": 33.45
   },
   "36117": {
    "county": "Wayne",
@@ -2034,7 +2223,10 @@
    "hospital_beds_per_100k": 111.33,
    "pcp_per_100k": 24.25,
    "neurologists_per_100k": 3.31,
-   "stroke_centers_per_100k": 1.1
+   "stroke_centers_per_100k": 1.1,
+   "sri": 65.35,
+   "scai": 10.64,
+   "gai": 46.98
   },
   "36119": {
    "county": "Westchester",
@@ -2066,7 +2258,10 @@
    "hospital_beds_per_100k": 203.74,
    "pcp_per_100k": 134.12,
    "neurologists_per_100k": 14.22,
-   "stroke_centers_per_100k": 1.0
+   "stroke_centers_per_100k": 1.0,
+   "sri": 17.11,
+   "scai": 54.86,
+   "gai": 69.73
   },
   "36121": {
    "county": "Wyoming",
@@ -2098,7 +2293,10 @@
    "hospital_beds_per_100k": 118.24,
    "pcp_per_100k": 27.67,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 71.85,
+   "scai": 8.45,
+   "gai": 30.86
   },
   "36123": {
    "county": "Yates",
@@ -2130,7 +2328,10 @@
    "hospital_beds_per_100k": 102.6,
    "pcp_per_100k": 53.35,
    "neurologists_per_100k": 0.0,
-   "stroke_centers_per_100k": 0.0
+   "stroke_centers_per_100k": 0.0,
+   "sri": 76.25,
+   "scai": 9.89,
+   "gai": 29.0
   },
   "34001": {
    "county": "Atlantic",
@@ -2162,7 +2363,10 @@
    "hospital_beds_per_100k": 264.24,
    "pcp_per_100k": 76.27,
    "neurologists_per_100k": 2.89,
-   "stroke_centers_per_100k": 1.08
+   "stroke_centers_per_100k": 1.08,
+   "sri": 65.51,
+   "scai": 30.27,
+   "gai": 62.13
   },
   "34003": {
    "county": "Bergen",
@@ -2194,7 +2398,10 @@
    "hospital_beds_per_100k": 197.27,
    "pcp_per_100k": 115.13,
    "neurologists_per_100k": 11.82,
-   "stroke_centers_per_100k": 0.52
+   "stroke_centers_per_100k": 0.52,
+   "sri": 12.6,
+   "scai": 46.71,
+   "gai": 74.43
   },
   "34005": {
    "county": "Burlington",
@@ -2226,7 +2433,10 @@
    "hospital_beds_per_100k": 115.4,
    "pcp_per_100k": 79.83,
    "neurologists_per_100k": 4.45,
-   "stroke_centers_per_100k": 0.42
+   "stroke_centers_per_100k": 0.42,
+   "sri": 32.69,
+   "scai": 25.93,
+   "gai": 66.34
   },
   "34007": {
    "county": "Camden",
@@ -2258,7 +2468,10 @@
    "hospital_beds_per_100k": 266.8,
    "pcp_per_100k": 96.04,
    "neurologists_per_100k": 7.55,
-   "stroke_centers_per_100k": 1.13
+   "stroke_centers_per_100k": 1.13,
+   "sri": 47.37,
+   "scai": 41.01,
+   "gai": 70.19
   },
   "34009": {
    "county": "Cape May",
@@ -2290,7 +2503,10 @@
    "hospital_beds_per_100k": 157.54,
    "pcp_per_100k": 53.92,
    "neurologists_per_100k": 5.29,
-   "stroke_centers_per_100k": 1.06
+   "stroke_centers_per_100k": 1.06,
+   "sri": 62.55,
+   "scai": 22.58,
+   "gai": 66.23
   },
   "34011": {
    "county": "Cumberland",
@@ -2322,7 +2538,10 @@
    "hospital_beds_per_100k": 181.23,
    "pcp_per_100k": 40.13,
    "neurologists_per_100k": 1.94,
-   "stroke_centers_per_100k": 0.65
+   "stroke_centers_per_100k": 0.65,
+   "sri": 95.12,
+   "scai": 15.31,
+   "gai": 62.0
   },
   "34013": {
    "county": "Essex",
@@ -2354,7 +2573,10 @@
    "hospital_beds_per_100k": 243.47,
    "pcp_per_100k": 77.25,
    "neurologists_per_100k": 6.89,
-   "stroke_centers_per_100k": 0.69
+   "stroke_centers_per_100k": 0.69,
+   "sri": 51.27,
+   "scai": 33.16,
+   "gai": 89.01
   },
   "34015": {
    "county": "Gloucester",
@@ -2386,7 +2608,10 @@
    "hospital_beds_per_100k": 92.65,
    "pcp_per_100k": 54.42,
    "neurologists_per_100k": 1.3,
-   "stroke_centers_per_100k": 0.65
+   "stroke_centers_per_100k": 0.65,
+   "sri": 38.45,
+   "scai": 14.72,
+   "gai": 65.73
   },
   "34017": {
    "county": "Hudson",
@@ -2418,7 +2643,10 @@
    "hospital_beds_per_100k": 82.12,
    "pcp_per_100k": 50.44,
    "neurologists_per_100k": 3.06,
-   "stroke_centers_per_100k": 0.69
+   "stroke_centers_per_100k": 0.69,
+   "sri": 23.91,
+   "scai": 13.13,
+   "gai": 80.29
   },
   "34019": {
    "county": "Hunterdon",
@@ -2450,7 +2678,10 @@
    "hospital_beds_per_100k": 0.0,
    "pcp_per_100k": 115.11,
    "neurologists_per_100k": 4.6,
-   "stroke_centers_per_100k": 1.53
+   "stroke_centers_per_100k": 1.53,
+   "sri": 8.35,
+   "scai": 28.17,
+   "gai": 47.96
   },
   "34021": {
    "county": "Mercer",
@@ -2482,7 +2713,10 @@
    "hospital_beds_per_100k": 136.44,
    "pcp_per_100k": 91.98,
    "neurologists_per_100k": 6.13,
-   "stroke_centers_per_100k": 1.02
+   "stroke_centers_per_100k": 1.02,
+   "sri": 30.06,
+   "scai": 30.48,
+   "gai": 73.63
   },
   "34023": {
    "county": "Middlesex",
@@ -2514,7 +2748,10 @@
    "hospital_beds_per_100k": 210.81,
    "pcp_per_100k": 92.07,
    "neurologists_per_100k": 9.39,
-   "stroke_centers_per_100k": 0.57
+   "stroke_centers_per_100k": 0.57,
+   "sri": 29.4,
+   "scai": 38.9,
+   "gai": 63.7
   },
   "34025": {
    "county": "Monmouth",
@@ -2546,7 +2783,10 @@
    "hospital_beds_per_100k": 195.42,
    "pcp_per_100k": 115.05,
    "neurologists_per_100k": 6.81,
-   "stroke_centers_per_100k": 0.77
+   "stroke_centers_per_100k": 0.77,
+   "sri": 19.48,
+   "scai": 40.86,
+   "gai": 57.72
   },
   "34027": {
    "county": "Morris",
@@ -2578,7 +2818,10 @@
    "hospital_beds_per_100k": 172.57,
    "pcp_per_100k": 95.96,
    "neurologists_per_100k": 6.0,
-   "stroke_centers_per_100k": 0.77
+   "stroke_centers_per_100k": 0.77,
+   "sri": 1.19,
+   "scai": 34.38,
+   "gai": 68.54
   },
   "34029": {
    "county": "Ocean",
@@ -2610,7 +2853,10 @@
    "hospital_beds_per_100k": 198.83,
    "pcp_per_100k": 38.25,
    "neurologists_per_100k": 1.36,
-   "stroke_centers_per_100k": 0.6
+   "stroke_centers_per_100k": 0.6,
+   "sri": 54.96,
+   "scai": 17.17,
+   "gai": 63.56
   },
   "34031": {
    "county": "Passaic",
@@ -2642,7 +2888,10 @@
    "hospital_beds_per_100k": 153.24,
    "pcp_per_100k": 55.34,
    "neurologists_per_100k": 4.58,
-   "stroke_centers_per_100k": 0.57
+   "stroke_centers_per_100k": 0.57,
+   "sri": 56.06,
+   "scai": 20.02,
+   "gai": 83.21
   },
   "34033": {
    "county": "Salem",
@@ -2674,7 +2923,10 @@
    "hospital_beds_per_100k": 172.55,
    "pcp_per_100k": 29.01,
    "neurologists_per_100k": 3.05,
-   "stroke_centers_per_100k": 3.05
+   "stroke_centers_per_100k": 3.05,
+   "sri": 72.6,
+   "scai": 15.18,
+   "gai": 55.08
   },
   "34035": {
    "county": "Somerset",
@@ -2706,7 +2958,10 @@
    "hospital_beds_per_100k": 94.58,
    "pcp_per_100k": 108.82,
    "neurologists_per_100k": 6.84,
-   "stroke_centers_per_100k": 0.28
+   "stroke_centers_per_100k": 0.28,
+   "sri": 6.08,
+   "scai": 33.47,
+   "gai": 72.5
   },
   "34037": {
    "county": "Sussex",
@@ -2738,7 +2993,10 @@
    "hospital_beds_per_100k": 94.99,
    "pcp_per_100k": 45.79,
    "neurologists_per_100k": 0.68,
-   "stroke_centers_per_100k": 0.68
+   "stroke_centers_per_100k": 0.68,
+   "sri": 24.02,
+   "scai": 12.5,
+   "gai": 47.11
   },
   "34039": {
    "county": "Union",
@@ -2770,7 +3028,10 @@
    "hospital_beds_per_100k": 130.18,
    "pcp_per_100k": 63.13,
    "neurologists_per_100k": 5.29,
-   "stroke_centers_per_100k": 0.51
+   "stroke_centers_per_100k": 0.51,
+   "sri": 36.84,
+   "scai": 21.29,
+   "gai": 66.02
   },
   "34041": {
    "county": "Warren",
@@ -2802,7 +3063,10 @@
    "hospital_beds_per_100k": 167.49,
    "pcp_per_100k": 56.43,
    "neurologists_per_100k": 2.69,
-   "stroke_centers_per_100k": 1.79
+   "stroke_centers_per_100k": 1.79,
+   "sri": 41.44,
+   "scai": 20.94,
+   "gai": 36.62
   },
   "09001": {
    "county": "Fairfield",
@@ -2834,7 +3098,10 @@
    "hospital_beds_per_100k": 166.64,
    "pcp_per_100k": 95.25,
    "neurologists_per_100k": 6.02,
-   "stroke_centers_per_100k": 0.62
+   "stroke_centers_per_100k": 0.62,
+   "sri": 16.38,
+   "scai": 32.8,
+   "gai": 49.02
   },
   "09003": {
    "county": "Hartford",
@@ -2866,7 +3133,10 @@
    "hospital_beds_per_100k": 199.78,
    "pcp_per_100k": 95.27,
    "neurologists_per_100k": 6.79,
-   "stroke_centers_per_100k": 0.67
+   "stroke_centers_per_100k": 0.67,
+   "sri": 43.86,
+   "scai": 36.98,
+   "gai": 75.83
   },
   "09005": {
    "county": "Litchfield",
@@ -2898,7 +3168,10 @@
    "hospital_beds_per_100k": 84.7,
    "pcp_per_100k": 53.6,
    "neurologists_per_100k": 3.75,
-   "stroke_centers_per_100k": 1.61
+   "stroke_centers_per_100k": 1.61,
+   "sri": 33.44,
+   "scai": 17.23,
+   "gai": 50.21
   },
   "09007": {
    "county": "Middlesex",
@@ -2930,7 +3203,10 @@
    "hospital_beds_per_100k": 112.58,
    "pcp_per_100k": 77.66,
    "neurologists_per_100k": 4.82,
-   "stroke_centers_per_100k": 0.6
+   "stroke_centers_per_100k": 0.6,
+   "sri": 28.2,
+   "scai": 25.89,
+   "gai": 47.41
   },
   "09009": {
    "county": "New Haven",
@@ -2962,7 +3238,10 @@
    "hospital_beds_per_100k": 210.81,
    "pcp_per_100k": 85.48,
    "neurologists_per_100k": 16.29,
-   "stroke_centers_per_100k": 0.81
+   "stroke_centers_per_100k": 0.81,
+   "sri": 47.54,
+   "scai": 46.53,
+   "gai": 59.1
   },
   "09011": {
    "county": "New London",
@@ -2994,7 +3273,10 @@
    "hospital_beds_per_100k": 157.53,
    "pcp_per_100k": 62.19,
    "neurologists_per_100k": 3.35,
-   "stroke_centers_per_100k": 0.74
+   "stroke_centers_per_100k": 0.74,
+   "sri": 40.67,
+   "scai": 22.74,
+   "gai": 40.06
   },
   "09013": {
    "county": "Tolland",
@@ -3026,7 +3308,10 @@
    "hospital_beds_per_100k": 96.75,
    "pcp_per_100k": 53.68,
    "neurologists_per_100k": 1.33,
-   "stroke_centers_per_100k": 1.33
+   "stroke_centers_per_100k": 1.33,
+   "sri": 18.16,
+   "scai": 15.09,
+   "gai": 52.46
   },
   "09015": {
    "county": "Windham",
@@ -3058,7 +3343,10 @@
    "hospital_beds_per_100k": 128.08,
    "pcp_per_100k": 44.4,
    "neurologists_per_100k": 0.85,
-   "stroke_centers_per_100k": 1.71
+   "stroke_centers_per_100k": 1.71,
+   "sri": 59.17,
+   "scai": 13.81,
+   "gai": 36.65
   }
  }
 }
