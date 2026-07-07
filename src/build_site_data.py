@@ -74,7 +74,7 @@ FIELD_LABELS = {
     "sri":                                {"label": "Stroke Risk Index (SRI) — higher = more risk",         "unit": "", "group": "index"},
     "scai":                               {"label": "Stroke Care Access Index (SCAI) — higher = better access", "unit": "", "group": "index"},
     "gai":                                {"label": "Geographic Accessibility Index (GAI) — higher = better access", "unit": "", "group": "index"},
-    "sbpi":                               {"label": "Stroke Burden Priority Index (SBPI)",                  "unit": "", "group": "index"},
+    "sbpi":                               {"label": "Stroke Burden Priority Index (SBPI) — higher = higher priority", "unit": "", "group": "index"},
 }
 
 GROUP_TITLES = {
@@ -105,6 +105,11 @@ def _join_indices(master: pd.DataFrame) -> pd.DataFrame:
     if not INDICES_CSV.exists():
         return master
     indices = pd.read_csv(INDICES_CSV, dtype={"fips": str}, float_precision="round_trip")
+    # sbpi_class (1-4 priority class) stays out of the dashboard export: the
+    # metric selector/choropleth are built for continuous values, and the
+    # matrix already derives quadrants client-side. The class lives in
+    # indices.csv and the db's indices table for analysis use.
+    indices = indices.drop(columns=["sbpi_class"], errors="ignore")
     return master.merge(indices, on="fips", how="left")
 
 

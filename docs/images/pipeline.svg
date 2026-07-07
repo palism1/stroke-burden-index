@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#fff7ed"/><stop offset="1" stop-color="#ffedd5"/>
+</linearGradient></defs>
+<rect width="880" height="560" fill="url(#g)"/>
+
+<g fill="#ffffff" stroke="#c2410c" stroke-width="4">
+<rect x="110" y="110" width="170" height="80" rx="12"/><rect x="360" y="110" width="170" height="80" rx="12"/>
+<rect x="610" y="110" width="170" height="80" rx="12"/><rect x="360" y="330" width="170" height="80" rx="12"/></g>
+<g stroke="#ea580c" stroke-width="5" fill="none">
+<path d="M280 150 L350 150"/><path d="M530 150 L600 150"/><path d="M445 190 L445 320"/></g>
+<g fill="#ea580c"><path d="M350 138 L367 150 L350 162 Z"/><path d="M600 138 L617 150 L600 162 Z"/>
+<path d="M433 320 L445 338 L457 320 Z"/></g>
+<g fill="#c2410c" font-family="Helvetica,Arial" font-weight="bold" font-size="26" text-anchor="middle">
+<text x="195" y="160">sources</text><text x="445" y="160">merge</text><text x="695" y="160">indices</text>
+<text x="445" y="380">dashboard</text></g>
+<circle cx="695" cy="370" r="34" fill="none" stroke="#fdba74" stroke-width="6"/>
+<path d="M695 348 L695 370 L712 380" stroke="#fdba74" stroke-width="6" fill="none"/>
+
+</svg>

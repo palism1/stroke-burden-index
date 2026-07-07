@@ -316,13 +316,13 @@ async function main() {
     assert(p.getAttribute("fill"), `county path ${p.dataset.fips} has no fill`);
   }
 
-  // 3. switch through every metric the selector offers. With the three index
-  // scores (sri/scai/gai) now joined into counties.json, the selector offers
-  // exactly 31 metrics (28 data fields + 3 index scores).
+  // 3. switch through every metric the selector offers. With the four index
+  // scores (sri/scai/gai/sbpi) joined into counties.json, the selector offers
+  // exactly 32 metrics (28 data fields + 4 index scores).
   const select = document.getElementById("metric-select");
   const options = select.querySelectorAll("option");
-  assert(options.length === 31,
-    `metric selector should offer 31 metrics (28 data + 3 index scores), found ${options.length}`);
+  assert(options.length === 32,
+    `metric selector should offer 32 metrics (28 data + 4 index scores), found ${options.length}`);
   const legend = document.getElementById("legend");
   for (const opt of options) {
     select.value = opt.value;

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Pipeline guide
 nav_order: 4
 ---
