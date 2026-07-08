@@ -91,8 +91,7 @@ Figures:
 <i>Figure 1. County-level drive time to the nearest certified Basic Stroke Center. Counties are categorized into four travel-time intervals, illustrating regional differences in access to basic stroke care.</i>
 </p>
 
-Basic stroke centers are distributed throughout New York, New Jersey, and Connecticut, resulting in relatively short travel times for most counties. However, several rural counties in northern New York remain more than 60 minutes from the nearest facility, highlighting geographic disparities in access.
-
+Basic stroke centers are distributed throughout the region, resulting in relatively short travel times for most counties. The highest accessibility is concentrated around major metropolitan areas, while some rural counties in northern New York remain more than 60 minutes from the nearest facility. Overall, the map suggests that access to basic stroke care is relatively widespread, though notable geographic disparities remain in rural regions.
 
 <h2>Accessibility to Advanced Stroke Centers</h2>
 
@@ -105,6 +104,7 @@ Basic stroke centers are distributed throughout New York, New Jersey, and Connec
 <i>Figure 2. County-level drive time to the nearest certified Advanced Stroke Center. Advanced stroke centers are concentrated in metropolitan regions, resulting in substantially longer travel times for many rural counties.</i>
 </p>
 
+Compared to basic stroke centers, advanced centers are substantially less common and are concentrated in densely populated metropolitan regions, particularly around New York City and portions of Connecticut. Large portions of northern and western New York fall into the 60+ minute travel category, indicating limited access to specialized stroke care. These differences highlight the importance of distinguishing between basic and advanced stroke services when evaluating geographic accessibility.
 
 <h2>Stroke Center Distribution</h2>
 
@@ -116,6 +116,8 @@ Basic stroke centers are distributed throughout New York, New Jersey, and Connec
 <p align="center">
 <i>Figure 3. Locations of certified Basic Stroke Centers (circles) and Advanced Stroke Centers (triangles) overlaid on county accessibility categories.</i>
 </p>
+
+This map overlays both Basic Stroke Centers (circles) and Advanced Stroke Centers (triangles) on county accessibility categories. The figure demonstrates the geographic concentration of advanced stroke care around major urban centers while illustrating the broader distribution of basic stroke centers. Together, these patterns reveal substantial spatial disparities in access to specialized stroke treatment, particularly in rural counties.
 
 ---
 
@@ -133,6 +135,21 @@ Possible figures:
 - Final SBPI map
 - Top 10 priority counties
 - Ranking table
+
+### Top 20 Highest Priority Counties
+
+<h2>Highest Priority Counties</h2>
+
+<p align="center">
+  <img src="../images/sbpi_priority_counties.png"
+    style="width:50%; height:auto;">
+</p>
+
+<p align="center">
+<i>Figure 10. Twenty counties with the highest Stroke Burden Priority Index (SBPI), representing locations where elevated stroke risk coincides with reduced healthcare accessibility.</i>
+</p>
+
+The lollipop chart above ranks the twenty counties with the highest Stroke Burden Priority Index scores. Nearly all of the highest-priority counties are located in rural upstate New York, where elevated stroke risk coincides with reduced healthcare resources and longer travel times to stroke centers. Counties such as Hamilton, Delaware, Chenango, and Essex consistently emerge as the highest-priority locations for potential intervention. This ranking provides a practical framework for identifying counties where investments in stroke prevention, healthcare resources, or geographic accessibility may have the greatest impact.
 
 ---
 
