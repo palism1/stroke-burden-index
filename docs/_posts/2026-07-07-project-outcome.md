@@ -136,13 +136,11 @@ Possible figures:
 - Top 10 priority counties
 - Ranking table
 
-### Top 20 Highest Priority Counties
-
 <h2>Highest Priority Counties</h2>
 
 <p align="center">
   <img src="../images/sbpi_priority_counties.png"
-    style="width:50%; height:auto;">
+    style="width:70%; height:auto;">
 </p>
 
 <p align="center">
@@ -155,8 +153,84 @@ The lollipop chart above ranks the twenty counties with the highest Stroke Burde
 
 ## Complete Index Analysis
 
-Include all major data visualizations from index analysis here.
+<h2>Distribution of Indices</h2>
 
+<p align="center">
+  <img src="../images/index_histograms.png"
+    style="width:60%; height:auto;">
+</p>
+
+<p align="center">
+<i>Figure 4. Distribution of the Stroke Risk Index (SRI), Stroke Care Access Index (SCAI), Geographic Accessibility Index (GAI), and Stroke Burden Priority Index (SBPI).</i>
+</p>
+
+The histograms above summarize the distributions of the four indices across all counties. The SRI, GAI, and SBPI exhibit relatively symmetric distributions centered near the middle of the standardized 0–100 scale, indicating that counties span the full spectrum of stroke risk and accessibility. The SCAI distribution is more concentrated toward lower values, reflecting that relatively few counties possess abundant healthcare resources. Mean and median values are generally similar, suggesting limited skewness after transformation and standardization.
+
+
+<p align="center">
+  <img src="../images/index_boxplots.png"
+    style="width:60%; height:auto;">
+</p>
+
+<p align="center">
+<i>Figure 5. Boxplots summarizing the distribution, variability, and outliers of each composite index.</i>
+</p>
+
+The boxplots above provide a concise summary of each index's central tendency and variability. The relatively wide interquartile ranges indicate meaningful differences between counties, supporting the usefulness of the indices for distinguishing geographic variation. SCAI contains a small number of high-scoring outliers, representing counties with substantially greater healthcare resource availability than the regional average. Overall, the indices exhibit sufficient variability to support meaningful comparisons across counties.
+
+
+<h2>Relationships Between Indices</h2>
+
+<p align="center">
+  <img src="../images/index_correlation_heatmap.png"
+    style="width:60%; height:auto;">
+</p>
+
+<p align="center">
+<i>Figure 6. Pearson correlation matrix illustrating relationships among the four indices.</i>
+</p>
+
+The correlation matrix demonstrates that the indices capture related but distinct dimensions of stroke burden. SRI is moderately negatively correlated with both SCAI and GAI, indicating that counties with higher stroke risk generally have poorer healthcare access. SCAI and GAI exhibit a moderate positive correlation, suggesting that counties with stronger healthcare infrastructure also tend to have shorter travel times to stroke care. As expected, SBPI is strongly positively correlated with SRI because stroke risk is the primary driver of overall priority while still incorporating accessibility measures.
+
+
+<p align="center">
+  <img src="../images/index_relationships.png"
+    style="width:60%; height:auto;">
+</p>
+
+<p align="center">
+<i>Figure 7. Pairwise relationships among the indices with fitted regression lines.</i>
+</p>
+
+The pairwise regression plots further illustrate the relationships among the indices. Negative associations between SRI and both accessibility indices reinforce the observation that higher-risk counties often experience reduced access to care. Conversely, SCAI and GAI display a positive relationship, indicating that counties with greater healthcare capacity also tend to have better geographic accessibility. The strong relationship between SBPI and SRI confirms that the composite priority index effectively incorporates stroke risk while still reflecting accessibility information.
+
+
+<h2>Relationship With Stroke Mortality</h2>
+
+<p align="center">
+  <img src="../images/mortality_relationships.png"
+    style="width:60%; height:auto;">
+</p>
+
+<p align="center">
+<i>Figure 8. Relationships between each composite index and county-level acute stroke mortality.</i>
+</p>
+
+The scatterplots above compare each index with observed county-level acute stroke mortality. SRI demonstrates the strongest positive relationship with mortality, suggesting that higher estimated stroke risk corresponds with higher observed mortality rates. Both SCAI and GAI exhibit negative relationships with mortality, indicating that counties with better healthcare resources and shorter travel times generally experience lower mortality. SBPI also demonstrates a positive association with mortality, providing evidence that the integrated index successfully identifies counties with greater overall stroke burden.
+
+
+<h2>Comparison by State</h2>
+
+<p align="center">
+  <img src="../images/state_comparison.png"
+    style="width:60%; height:auto;">
+</p>
+
+<p align="center">
+<i>Figure 9. Distribution of index scores across New York, New Jersey, and Connecticut.</i>
+</p>
+
+The violin plots above compare index distributions across New York, New Jersey, and Connecticut. New York exhibits the greatest variability across all indices, reflecting the coexistence of highly urbanized counties with excellent access and remote rural counties with substantial barriers to care. New Jersey generally demonstrates stronger healthcare access and lower variability due to its dense healthcare network, while Connecticut occupies an intermediate position. These state-level differences highlight how geography contributes to disparities in stroke risk and accessibility.
 
 ## Key Findings
 
