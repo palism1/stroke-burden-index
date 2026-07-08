@@ -179,17 +179,9 @@ Because shorter travel times and shorter travel distances represent better acces
 ### PCA Results
 
 The transformed and standardized accessibility variables were combined using principal component analysis. All four travel variables contributed nearly equally to the first principal component, indicating that each measure captured similar information regarding geographic accessibility. The resulting scores were normalized to a 0–100 scale, where higher values indicate better geographic access to stroke care. From our PCA analysis, we found that the first principal component explained 77.0% of the total variance among the geographic accessibility variables. This indicates that travel time and travel distance to stroke centers measure a strong common underlying dimension of geographic accessibility. The high proportion of explained variance demonstrates that a single principal component effectively summarizes differences in geographic access to stroke care across counties.
-  
 
-## Summary of Final Indices
 
-The table below summarizes the construction and performance of the three composite indices developed for this project.
-
-| Index | Variables Included | PC1 Variance Explained | Interpretation |
-|-------|---------------------|-----------------------:|----------------|
-| **Stroke Risk Index (SRI)** | Population density, age 65+, poverty, low-income population, educational attainment, smoking, obesity, diabetes, hypertension, high cholesterol, physical inactivity, binge drinking, stroke prevalence | **52.2%** | Measures county-level stroke vulnerability based on demographic, socioeconomic, and health-related risk factors. Higher scores indicate greater stroke risk. |
-| **Stroke Care Access Index (SCAI)** | Hospital beds per 100,000, primary care physicians per 100,000, neurologists per 100,000, uninsured population | **53.9%** | Measures the availability of healthcare resources related to stroke prevention and treatment. Higher scores indicate better access to stroke care. |
-| **Geographic Accessibility Index (GAI)** | Drive time to the nearest stroke center, drive time to the nearest advanced stroke center, distance to the nearest stroke center, distance to the nearest advanced stroke center | **77.0%** | Measures the geographic accessibility of stroke care. Higher scores indicate better geographic access. |
+---
 
 
 
