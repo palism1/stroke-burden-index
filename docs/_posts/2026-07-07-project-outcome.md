@@ -157,7 +157,7 @@ The lollipop chart above ranks the twenty counties with the highest Stroke Burde
 
 <p align="center">
   <img src="../images/index_histograms.png"
-    style="width:70%; height:auto;">
+    style="width:80%; height:auto;">
 </p>
 
 <p align="center">
@@ -169,7 +169,7 @@ The histograms above summarize the distributions of the four indices across all 
 
 <p align="center">
   <img src="../images/index_boxplots.png"
-    style="width:70%; height:auto;">
+    style="width:80%; height:auto;">
 </p>
 
 <p align="center">
@@ -183,7 +183,7 @@ The boxplots above provide a concise summary of each index's central tendency an
 
 <p align="center">
   <img src="../images/index_correlation_heatmap.png"
-    style="width:70%; height:auto;">
+    style="width:80%; height:auto;">
 </p>
 
 <p align="center">
@@ -195,7 +195,7 @@ The correlation matrix demonstrates that the indices capture related but distinc
 
 <p align="center">
   <img src="../images/index_relationships.png"
-    style="width:70%; height:auto;">
+    style="width:80%; height:auto;">
 </p>
 
 <p align="center">
@@ -209,7 +209,7 @@ The pairwise regression plots further illustrate the relationships among the ind
 
 <p align="center">
   <img src="../images/mortality_relationships.png"
-    style="width:70%; height:auto;">
+    style="width:80%; height:auto;">
 </p>
 
 <p align="center">
@@ -223,7 +223,7 @@ The scatterplots above compare each index with observed county-level acute strok
 
 <p align="center">
   <img src="../images/state_comparison.png"
-    style="width:70%; height:auto;">
+    style="width:80%; height:auto;">
 </p>
 
 <p align="center">
