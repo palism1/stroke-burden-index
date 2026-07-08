@@ -52,10 +52,6 @@ Describe:
 - Counties with highest/lowest scores
 - Distribution of scores
 
-Possible figures:
-
-- Histogram
-- County map (may not need to include this one since the site already has it)
 - Top 10 counties
 
 ---
@@ -69,11 +65,7 @@ Describe:
 - Counties with highest/lowest access
 - Interpretation
 
-Possible figures:
-
-- Histogram
-- County map (may not need to include since site already has it)
-- Correlation figure
+- Top 10 counties
 
 ---
 
@@ -111,16 +103,14 @@ Possible figures:
 
 ---
 
+## Complete Index Analysis
+
+Include all major data visualizations from index analysis here.
+
+
 ## Key Findings
 
 Summarize the major conclusions.
-
-Examples:
-
-- Stroke risk is not distributed uniformly across the tri-state region.
-- Healthcare resource availability varies substantially between counties.
-- Geographic accessibility differs most between urban and rural regions.
-- Combining all three indices provides a more complete measure of stroke burden than any individual metric.
 
 ---
 
@@ -142,7 +132,7 @@ Examples:
 
 Potential extensions (explaining what we would do if we were to expand on this).
 
-Examples:
+Ideas:
 
 - Expand nationally
 - Incorporate EMS response times
