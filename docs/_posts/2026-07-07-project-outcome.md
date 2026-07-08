@@ -83,7 +83,8 @@ Figures:
 <h2>Accessibility to Basic Stroke Centers</h2>
 
 <p align="center">
-  <img src="../images/basic_accessibility.png" width="60%">
+  <img src="../images/basic_accessibility.png"
+    style="width:70%; height:auto;">
 </p>
 
 <p align="center">
@@ -96,7 +97,8 @@ Basic stroke centers are distributed throughout New York, New Jersey, and Connec
 <h2>Accessibility to Advanced Stroke Centers</h2>
 
 <p align="center">
-  <img src="../images/advanced_accessibility.png" width="60%">
+  <img src="../images/advanced_accessibility.png" 
+    style="width:70%; height:auto;">
 </p>
 
 <p align="center">
@@ -107,7 +109,8 @@ Basic stroke centers are distributed throughout New York, New Jersey, and Connec
 <h2>Stroke Center Distribution</h2>
 
 <p align="center">
-  <img src="../images/stroke_centers_map_full.png" width="60%">
+  <img src="../images/stroke_centers_map_full.png"  
+    style="width:70%; height:auto;">
 </p>
 
 <p align="center">
