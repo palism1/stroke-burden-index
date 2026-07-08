@@ -195,7 +195,8 @@ def build_db() -> None:
 
     con.close()
 
-    print(f"wrote {DB_PATH.relative_to(REPO_ROOT)}")
+    db_label = DB_PATH.relative_to(REPO_ROOT) if DB_PATH.is_relative_to(REPO_ROOT) else DB_PATH
+    print(f"wrote {db_label}")
     print(f"tables: {', '.join(['counties'] + loaded)}")
     if skipped:
         print(f"skipped (file not found): {', '.join(skipped)}")

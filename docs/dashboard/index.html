@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stroke Burden Index — County Dashboard</title>
+---
+layout: default
+title: County Dashboard
+---
 <link rel="stylesheet" href="dashboard.css">
-</head>
-<body>
-<nav class="site-nav" aria-label="Site">
-  <a class="site-nav__home" href="../">&larr; Stroke Burden Index home</a>
-  <span class="site-nav__links">
-    <a href="../methodology/">Methodology</a>
-    <a href="../project-outcome/">Outcome summary</a>
-    <a href="../about/">About the team</a>
-  </span>
-</nav>
+
+<div class="dashboard-app">
 <header>
   <h1>Stroke Burden Index — County Dashboard</h1>
   <p class="subtitle">Explore stroke risk and access to stroke care across the 91 counties of
@@ -35,7 +25,7 @@
 
 <div id="load-error" role="alert" hidden></div>
 
-<main>
+<div class="dashboard-main">
   <section id="map-section" aria-label="County map">
     <svg id="map" role="img" aria-label="Choropleth map of NY, NJ, and CT counties"></svg>
     <div id="legend" aria-label="Map legend"></div>
@@ -48,7 +38,7 @@
     <p id="details-hint">Select a county on the map or use the search box to see its details.</p>
     <div id="details-body"></div>
   </aside>
-</main>
+</div>
 
 <section id="matrix-section">
   <h2>Risk vs. Access Matrix</h2>
@@ -63,11 +53,8 @@
   <div id="matrix-chart" hidden></div>
 </section>
 
-<footer>
-  <p><a href="../index.html">About this project</a> · Data: US Census ACS, CDC WONDER,
-  CDC PLACES, state stroke center designations. Drive times via OpenRouteService.</p>
-</footer>
+<p class="data-credits">Data: US Census ACS, CDC WONDER, CDC PLACES, state stroke center
+designations. Drive times via OpenRouteService.</p>
+</div>
 
 <script src="dashboard.js"></script>
-</body>
-</html>
