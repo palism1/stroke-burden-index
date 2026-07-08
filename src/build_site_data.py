@@ -109,7 +109,13 @@ def _join_indices(master: pd.DataFrame) -> pd.DataFrame:
     # metric selector/choropleth are built for continuous values, and the
     # matrix already derives quadrants client-side. The class lives in
     # indices.csv and the db's indices table for analysis use.
-    indices = indices.drop(columns=["sbpi_class"], errors="ignore")
+    # driver_* (top-3 risk-driver variable name + percentile, src/compute_indices.py
+    # _add_drivers) are excluded the same way for now: driver_N is a variable-name
+    # string, not a continuous metric, so it doesn't fit the generic field/metric
+    # selector. They stay in indices.csv + the db until the recommendations-engine
+    # dashboard rendering consumes them explicitly (docs/DECISIONS.md 2026-07-07).
+    driver_columns = [f"driver_{i}{suffix}" for i in range(1, 4) for suffix in ("", "_pctile")]
+    indices = indices.drop(columns=["sbpi_class", *driver_columns], errors="ignore")
     return master.merge(indices, on="fips", how="left")
 
 

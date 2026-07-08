@@ -50,7 +50,11 @@ REGISTRY = {
         "pcp_per_100k", "neurologists_per_100k", "stroke_centers_per_100k",
     ],
     # Computed index scores (src/compute_indices.py). Skipped until it lands.
-    "data/indices.csv": ["fips", "sri", "scai", "gai", "sbpi", "sbpi_class"],
+    "data/indices.csv": [
+        "fips", "sri", "scai", "gai", "sbpi", "sbpi_class",
+        "driver_1", "driver_1_pctile", "driver_2", "driver_2_pctile",
+        "driver_3", "driver_3_pctile",
+    ],
 }
 
 
@@ -151,6 +155,97 @@ def test_gai_best_and_worst_county():
     gai = indices.set_index("fips")["gai"]
     assert gai.idxmax() == GAI_BEST_FIPS, f"best GAI is {gai.idxmax()}, expected {GAI_BEST_FIPS}"
     assert gai.idxmin() == GAI_WORST_FIPS, f"worst GAI is {gai.idxmin()}, expected {GAI_WORST_FIPS}"
+
+
+# ---------------------------------------------------------------------------
+# Top-3 percentile risk drivers (docs/DECISIONS.md 2026-07-07, "per-county
+# recommendations engine"). For each county, the 3 raw input variables (across
+# all of SRI/SCAI/GAI) that are most extreme in the direction that makes that
+# specific variable "bad" for the county — independent of any one index's own
+# PCA sign convention.
+# ---------------------------------------------------------------------------
+
+def _all_index_variables():
+    import compute_indices
+    variables = set()
+    for cfg in compute_indices.INDEX_CONFIG.values():
+        variables.update(cfg["variables"])
+    return variables
+
+
+# _oriented_badness_pct is the orientation-critical piece: `flip` alone isn't
+# enough to know a variable's "badness" direction, because SRI's own index
+# direction is high=bad while SCAI/GAI's is high=good, so the same flip flag
+# means the opposite thing for badness depending on which index it came from.
+# These 4 cases cover every combination of flip x bad_when_high.
+
+@pytest.mark.parametrize(
+    "flip, bad_when_high, worst_raw_value",
+    [
+        (False, True, 3),   # SRI-style non-flip var (e.g. smoking_prevalence): high raw = bad
+        (True, True, 1),    # SRI-style flip var (e.g. pcnt_bachelors): low raw = bad
+        (False, False, 1),  # SCAI-style non-flip var (e.g. hospital_beds_per_100k): low raw = bad
+        (True, False, 3),   # SCAI/GAI-style flip var (e.g. pcnt_uninsured, drive_time): high raw = bad
+    ],
+)
+def test_oriented_badness_pct_orientation(flip, bad_when_high, worst_raw_value):
+    import compute_indices
+
+    raw = pd.Series([1, 2, 3])
+    badness = compute_indices._oriented_badness_pct(raw, flip=flip, bad_when_high=bad_when_high)
+    worst_idx = raw[raw == worst_raw_value].index[0]
+    assert badness.loc[worst_idx] == badness.max(), (
+        f"flip={flip}, bad_when_high={bad_when_high}: expected raw={worst_raw_value} "
+        f"to be the worst (highest badness pctile), got {badness.to_dict()}"
+    )
+    assert badness.between(0, 100).all()
+
+
+@_needs_master
+def test_top_drivers_are_known_variables():
+    indices, _ = _compute()
+    known = _all_index_variables()
+    for i in (1, 2, 3):
+        col = indices[f"driver_{i}"]
+        assert col.notna().all(), f"driver_{i} has a missing value"
+        assert set(col.unique()) <= known, f"driver_{i} contains an unrecognized variable name"
+
+
+@_needs_master
+def test_top_drivers_percentiles_descending_and_in_range():
+    indices, _ = _compute()
+    for i in (1, 2, 3):
+        col = indices[f"driver_{i}_pctile"]
+        assert col.notna().all(), f"driver_{i}_pctile has NaN"
+        assert (col >= 0).all() and (col <= 100).all(), f"driver_{i}_pctile outside [0, 100]"
+    ordered = (
+        (indices["driver_1_pctile"] >= indices["driver_2_pctile"])
+        & (indices["driver_2_pctile"] >= indices["driver_3_pctile"])
+    )
+    assert ordered.all(), "driver percentiles are not in descending order for every county"
+
+
+@_needs_master
+def test_top_drivers_worst_gai_county_flags_distance():
+    # Clinton (GAI_WORST_FIPS) has the longest drive time/distance nationally
+    # under the nearest-any-tier definition — its top-3 drivers should be
+    # exactly the distance/time variables, not e.g. a health-prevalence rate.
+    indices, _ = _compute()
+    row = indices.set_index("fips").loc[GAI_WORST_FIPS]
+    drivers = {row["driver_1"], row["driver_2"], row["driver_3"]}
+    distance_vars = {
+        "drive_time_any", "drive_time_advanced",
+        "nearest_stroke_distance_any", "nearest_stroke_distance_advanced",
+    }
+    assert drivers <= distance_vars, f"expected distance/time drivers, got {drivers}"
+
+
+@_needs_master
+def test_top_drivers_deterministic():
+    a, _ = _compute()
+    b, _ = _compute()
+    driver_cols = [f"driver_{i}{s}" for i in (1, 2, 3) for s in ("", "_pctile")]
+    assert (a[driver_cols].astype(str).to_numpy() == b[driver_cols].astype(str).to_numpy()).all()
 
 
 # validate_schema unit tests (synthetic frames)

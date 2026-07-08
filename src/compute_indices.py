@@ -146,6 +146,18 @@ INDEX_CONFIG = {
     },
 }
 
+# Whether each index's OWN direction is "high score = bad" (SRI) or
+# "high score = good" (SCAI, GAI). Needed to translate a variable's `flip`
+# flag (which only encodes PCA orientation relative to its own index) into
+# "badness" direction for the top-3 driver feature below — the same flag
+# means opposite things for SRI vs. SCAI/GAI because their index directions
+# are opposite.
+INDEX_BAD_WHEN_HIGH = {"sri": True, "scai": False, "gai": False}
+
+# How many top drivers to surface per county (docs/DECISIONS.md 2026-07-07,
+# "per-county recommendations engine").
+N_DRIVERS = 3
+
 # SBPI — Stroke Burden Priority Index (team vote 2026-07-07: BOTH methods).
 # Option 1, the continuous score, from the ROUNDED published component scores
 # so SBPI is exactly reproducible from indices.csv itself:
@@ -205,7 +217,55 @@ def compute_indices(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
         out[name] = result.scores.round(SCORE_DECIMALS).to_numpy()
         results[name] = result
     _add_sbpi(out)
+    _add_drivers(out, df)
     return out, results
+
+
+def _oriented_badness_pct(raw: pd.Series, flip: bool, bad_when_high: bool) -> pd.Series:
+    """Percentile rank (0-100) of `raw`, oriented so higher = worse for THIS variable.
+
+    `flip` alone doesn't tell you that: it's relative to whichever index the
+    variable belongs to, and SRI's index direction (high score = bad) is the
+    opposite of SCAI/GAI's (high score = good). A variable that is flipped
+    within an index whose own direction is "good" is bad when its raw value is
+    HIGH (e.g. pcnt_uninsured, distance/drive-time); flipped within an index
+    whose direction is "bad" (SRI) it's bad when raw is LOW (e.g.
+    pcnt_bachelors). See INDEX_BAD_WHEN_HIGH.
+    """
+    rank_pct = raw.rank(pct=True) * 100
+    invert = flip if bad_when_high else not flip
+    return (100 - rank_pct) if invert else rank_pct
+
+
+def _add_drivers(out: pd.DataFrame, df: pd.DataFrame, n: int = N_DRIVERS) -> None:
+    """Add driver_1..driver_n (variable name) and driver_i_pctile (0-100, higher=worse).
+
+    Per county, the n raw input variables (pooled across SRI/SCAI/GAI) whose
+    oriented badness percentile is highest — the plain-language "why" behind
+    that county's sbpi_class. Percentiles are within our 91-county universe,
+    not national. Ties break by each variable's position in INDEX_CONFIG
+    (stable sort) so the output is deterministic.
+    """
+    badness = pd.DataFrame(index=df.index)
+    for index_name, cfg in INDEX_CONFIG.items():
+        bad_when_high = INDEX_BAD_WHEN_HIGH[index_name]
+        for v in cfg["variables"]:
+            if v in badness.columns:
+                continue  # no variable appears in more than one index today
+            flip = v in cfg.get("flip", ())
+            badness[v] = _oriented_badness_pct(df[v], flip, bad_when_high)
+
+    def _top_n(row: pd.Series) -> pd.Series:
+        top = row.sort_values(ascending=False, kind="mergesort").head(n)
+        data = {}
+        for i, (var, val) in enumerate(top.items(), start=1):
+            data[f"driver_{i}"] = var
+            data[f"driver_{i}_pctile"] = round(val, SCORE_DECIMALS)
+        return pd.Series(data)
+
+    drivers = badness.apply(_top_n, axis=1)
+    for col in drivers.columns:
+        out[col] = drivers[col].to_numpy()
 
 
 def _add_sbpi(out: pd.DataFrame) -> None:
