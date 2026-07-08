@@ -12,6 +12,6 @@ To process and standardize hundreds of variables across multiple federal dataset
 
 Explore the interactive flowchart below to track how raw health, demographic, and transit data is harmonized, mathematically weighted via Principal Component Analysis (PCA), and ultimately translated into actionable public health strategies.
 
-> **How to use this chart:** Hover over or click on individual pipeline phase boxes to reveal technical documentation, script logs, and baseline mathematical operations under the hood.
+> **How to use this chart:** Hover over or click on individual pipeline phase boxes to reveal detailed description.
 
-<div style="width: 100%;"><div style="position: relative; padding-bottom: 100%; padding-top: 0; height: 0;"><iframe title="01" frameborder="0" width="800" height="800" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://view.genially.com/6a4d58f94e02abab7aeb6fdb" type="text/html" allowscriptaccess="always" allowfullscreen="true" scrolling="yes" allownetworking="all"></iframe> </div> </div>
+<div style="width: 100%;"><div style="position: relative; padding-bottom: 100%; padding-top: 0; height: 0;"><iframe title="01" frameborder="0" width="1200" height="1800" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://view.genially.com/6a4d58f94e02abab7aeb6fdb" type="text/html" allowscriptaccess="always" allowfullscreen="true" scrolling="yes" allownetworking="all"></iframe> </div> </div>
