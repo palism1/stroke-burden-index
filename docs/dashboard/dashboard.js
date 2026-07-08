@@ -588,6 +588,45 @@ function selectCounty(fips) {
 
   const body = document.getElementById("details-body");
   body.innerHTML = "";
+
+  // Per-county recommendation (docs/DECISIONS.md 2026-07-07): priority class,
+  // the framework's rule/action text, and the top-3 percentile risk drivers.
+  // Absent for older/regenerated data without indices.csv — guard and skip.
+  const rec = state.data.recommendations && state.data.recommendations[fips];
+  if (rec) {
+    const div = document.createElement("div");
+    div.className = "detail-group recommendation";
+    const h = document.createElement("h3");
+    h.textContent = `Priority: ${rec.class_label}`;
+    div.appendChild(h);
+
+    const rule = document.createElement("p");
+    rule.className = "recommendation-rule";
+    rule.textContent = rec.rule;
+    div.appendChild(rule);
+
+    const action = document.createElement("p");
+    action.className = "recommendation-action";
+    action.textContent = rec.action;
+    div.appendChild(action);
+
+    const driversLabel = document.createElement("p");
+    driversLabel.className = "recommendation-drivers-label";
+    driversLabel.textContent = "Top contributing factors:";
+    div.appendChild(driversLabel);
+
+    const list = document.createElement("ul");
+    list.className = "recommendation-drivers";
+    for (const d of rec.drivers) {
+      const li = document.createElement("li");
+      li.textContent = `${d.label} (${d.percentile.toFixed(0)}th percentile)`;
+      list.appendChild(li);
+    }
+    div.appendChild(list);
+
+    body.appendChild(div);
+  }
+
   for (const [group, groupTitle] of Object.entries(state.data.groups)) {
     const fields = Object.keys(state.data.fields)
       .filter(f => state.data.fields[f].group === group && hasField(f));

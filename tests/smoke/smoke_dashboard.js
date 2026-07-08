@@ -296,6 +296,8 @@ async function main() {
   await sandbox.__init();
   await drain();
 
+  const counties = JSON.parse(fs.readFileSync(COUNTIES_JSON, "utf8"));
+
   const map = document.getElementById("map");
   assert(map, "index.html/dashboard.js: #map element missing");
 
@@ -357,6 +359,18 @@ async function main() {
   assert(selectedCount === 1,
     `exactly one county should be marked selected, found ${selectedCount}`);
 
+  // 4b. recommendations engine: Kings, NY is currently "Low Priority" per
+  // data/indices.csv sbpi_class — the details panel should surface its
+  // class label, action text, and top driver's plain-language label.
+  const kingsRec = counties.recommendations["36047"];
+  assert(kingsRec, "counties.json is missing a recommendation for Kings, NY (36047)");
+  assert(bodyText.includes(kingsRec.class_label),
+    `details panel should show the recommendation class label "${kingsRec.class_label}"`);
+  assert(bodyText.includes(kingsRec.action),
+    "details panel should show the recommendation action text");
+  assert(bodyText.includes(kingsRec.drivers[0].label),
+    `details panel should list the top driver's label "${kingsRec.drivers[0].label}"`);
+
   // 5. garbage search -> no-match feedback
   const garbage = "zzz not a county 12345";
   search.value = garbage;
@@ -366,7 +380,6 @@ async function main() {
 
   // 6. matrix activates: sri/scai are present in counties.json, so the
   // placeholder hides and the Risk-vs-Access scatter renders.
-  const counties = JSON.parse(fs.readFileSync(COUNTIES_JSON, "utf8"));
   const hasIndexFields = "sri" in counties.fields && "scai" in counties.fields;
   assert(hasIndexFields,
     "counties.json should define sri and scai fields so the matrix can activate");
