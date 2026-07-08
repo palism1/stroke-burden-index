@@ -52,11 +52,12 @@ Describe:
 - Counties with highest/lowest scores
 - Distribution of scores
 
+
+### Worst 10 Counties
+
 <p align="center">
     <img src="../images/worst_sri.png" width="30%">
 </p>
-
-### Worst 10 Counties
 
 <p align="center">
 <i>Figure 1. Ten counties with the highest Stroke Risk Index (SRI) scores.</i>
@@ -91,12 +92,21 @@ The counties with the lowest scores are almost exclusively rural counties in New
 
 ## Geographic Accessibility Index (GAI)
 
-Describe:
+### What it Measures
 
-- What it measures
-- Geographic patterns
-- Urban vs rural differences
-- Interpretation
+The Geographic Accessibility Index (GAI) measures how easily individuals can reach certified stroke centers based on travel time and distance. Higher scores indicate shorter travel times and better geographic access to stroke care, while lower scores indicate greater travel barriers.
+
+### Geographic Patterns
+
+The GAI reveals clear spatial disparities across the tri-state region. Counties surrounding major metropolitan areas—particularly New York City, northern New Jersey, and parts of Connecticut—generally have the highest accessibility. In contrast, many rural counties in northern and western New York have substantially lower GAI scores due to longer travel times to certified stroke centers.
+
+### Urban vs. Rural Differences
+
+Urban counties benefit from dense hospital networks and multiple nearby stroke centers, resulting in higher GAI scores. Rural counties often face longer travel distances and fewer treatment options, creating significant barriers to timely stroke care.
+
+### Interpretation
+
+The GAI demonstrates that geographic location is a critical component of healthcare accessibility. The index showed a moderate negative correlation with the Stroke Risk Index (*r* = -0.52) and acute stroke mortality (*r* = -0.35), suggesting that counties with higher stroke risk and mortality often have poorer geographic access to care. These findings highlight the importance of considering travel time alongside healthcare resources when identifying underserved communities.
 
 ### Worst 10 Counties
 
@@ -270,15 +280,31 @@ Summarize the major conclusions.
 
 ## Applications
 
-Describe how the indices can be used.
+The Stroke Risk Index (SRI), Stroke Care Access Index (SCAI), Geographic Accessibility Index (GAI), and Stroke Burden Priority Index (SBPI) provide a flexible framework for identifying disparities in stroke risk and access to care. Potential applications include:
 
-Examples:
+### Public Health Planning
 
-- Public health planning
-- Resource allocation
-- Hospital planning
-- Policy evaluation
-- Future research
+Public health agencies can use the indices to identify counties with elevated stroke burden and prioritize communities for prevention initiatives, health education campaigns, and community outreach programs. By highlighting areas where stroke risk is greatest, resources can be directed toward populations most likely to benefit from targeted interventions.
+
+### Healthcare Resource Allocation
+
+The SCAI and GAI can help identify counties with limited healthcare resources or poor geographic access to certified stroke centers. These findings can support decisions regarding the placement of additional healthcare providers, telemedicine services, emergency medical resources, or investments in rural healthcare infrastructure.
+
+### Stroke System Planning
+
+Healthcare systems and emergency planners can use the accessibility analyses to evaluate regional coverage of certified stroke centers and identify underserved areas. The geographic accessibility maps may help inform decisions about where new stroke centers, transfer agreements, or emergency transport strategies could improve timely access to care.
+
+### Policy Evaluation
+
+The indices provide a quantitative framework for monitoring changes in stroke care over time. As healthcare resources expand or new stroke centers are established, the indices can be recalculated to evaluate whether accessibility and healthcare equity have improved and to measure the effectiveness of policy interventions.
+
+### Research
+
+The composite indices can serve as predictors or explanatory variables in future studies examining stroke incidence, mortality, healthcare utilization, or health disparities. Because the methodology is data-driven and reproducible, it can be adapted to other geographic regions or extended by incorporating additional demographic, environmental, or socioeconomic variables.
+
+### Decision Support
+
+The integrated Stroke Burden Priority Index (SBPI) provides a single, interpretable measure that summarizes stroke risk, healthcare resource availability, and geographic accessibility. Decision-makers can use the SBPI to rank counties according to overall need, helping prioritize investments where they are likely to have the greatest public health impact.
 
 ---
 
