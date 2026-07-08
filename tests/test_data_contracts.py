@@ -52,6 +52,7 @@ REGISTRY = {
     # Computed index scores (src/compute_indices.py). Skipped until it lands.
     "data/indices.csv": [
         "fips", "sri", "scai", "gai", "sbpi", "sbpi_class",
+        "sri_flag", "scai_flag", "gai_flag",
         "driver_1", "driver_1_pctile", "driver_2", "driver_2_pctile",
         "driver_3", "driver_3_pctile",
     ],
@@ -133,6 +134,28 @@ def test_sbpi_score_and_class():
     crit = (sri >= sri.quantile(0.75)) & (scai <= scai.quantile(0.25)) & (gai <= gai.quantile(0.25))
     assert (indices.loc[crit, "sbpi_class"] == 4).all()
     assert (indices.loc[~crit, "sbpi_class"] < 4).all()
+
+
+@_needs_master
+def test_sbpi_layer_flags_match_thresholds():
+    # sri_flag/scai_flag/gai_flag are the exact three predicates _add_sbpi uses
+    # internally to classify critical/high/moderate — persisted so the
+    # recommendation copy (which layer tripped Moderate?) doesn't have to
+    # reverse-engineer them from sbpi_class or (unreliably) from driver_1,
+    # since PC1 aggregates several raw variables and the single most-extreme
+    # one doesn't always belong to the index that actually crossed threshold.
+    indices, _ = _compute()
+    sri, scai, gai = indices["sri"], indices["scai"], indices["gai"]
+    assert (indices["sri_flag"] == (sri >= sri.quantile(0.75))).all()
+    assert (indices["scai_flag"] == (scai <= scai.quantile(0.25))).all()
+    assert (indices["gai_flag"] == (gai <= gai.quantile(0.25))).all()
+    # Moderate class guarantees at least one flag; critical guarantees all three.
+    moderate = indices["sbpi_class"] == 2
+    any_flag = indices["sri_flag"] | indices["scai_flag"] | indices["gai_flag"]
+    assert any_flag[moderate].all()
+    critical = indices["sbpi_class"] == 4
+    all_flags = indices["sri_flag"] & indices["scai_flag"] & indices["gai_flag"]
+    assert all_flags[critical].all()
 
 
 @_needs_master

@@ -75,7 +75,74 @@ FIELD_LABELS = {
     "scai":                               {"label": "Stroke Care Access Index (SCAI) — higher = better access", "unit": "", "group": "index"},
     "gai":                                {"label": "Geographic Accessibility Index (GAI) — higher = better access", "unit": "", "group": "index"},
     "sbpi":                               {"label": "Stroke Burden Priority Index (SBPI) — higher = higher priority", "unit": "", "group": "index"},
+    # Derived in memory only inside src/compute_indices.py (_load_master) —
+    # never a real master.csv column, so they never appear as a dashboard
+    # metric/field. Labels exist here solely so the recommendations engine's
+    # driver_1..driver_3 (which may name one of these) can look up a
+    # plain-language label the same way it does for every other driver.
+    "pcnt_uninsured":                     {"label": "Residents without health insurance",           "unit": "%",  "group": "access"},
+    "drive_time_any":                     {"label": "Drive to nearest stroke center (any tier)",    "unit": "min", "group": "access"},
+    "nearest_stroke_distance_any":        {"label": "Distance to nearest stroke center (any tier)", "unit": "mi", "group": "access"},
 }
+
+# Per-county recommendations engine (docs/DECISIONS.md 2026-07-07): the
+# per-sbpi_class framework Ngan Vu drafted and shared 2026-07-08, transcribed
+# verbatim. "action" for class 2 is a base sentence — _build_recommendations
+# appends a bottleneck-specific clause naming whichever of sri_flag/scai_flag/
+# gai_flag actually tripped, since Moderate can be reached via any one of the
+# three (or, in an edge case _add_sbpi allows, two of three) deficit layers.
+RECOMMENDATION_FRAMEWORK = {
+    4: {
+        "class_label": "Critical Priority",
+        "title": "Critical Priority Zone (Stroke Care Desert)",
+        "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+        "action": (
+            "Prioritize capital allocation for deploying mobile stroke screening "
+            "clinics, expanding regional telehealth networks, and optimizing "
+            "emergency EMS routing."
+        ),
+    },
+    3: {
+        "class_label": "High Priority",
+        "title": "High Priority / Prevention Focus",
+        "rule": (
+            "Top 25% stroke risk and bottom 50% care access, with acceptable "
+            "geographic transit proximity."
+        ),
+        "action": (
+            "Focus resources on clinical workforce recruitment, public "
+            "preventative health campaigns, and expanding outpatient primary "
+            "care networks to manage baseline risks."
+        ),
+    },
+    2: {
+        "class_label": "Moderate Priority",
+        "title": "Moderate Priority / Infrastructure Monitor",
+        "rule": (
+            "One or more elevated deficit layers: elevated stroke risk, low "
+            "clinical capacity, or poor transit geometry."
+        ),
+        "action": "Perform isolated infrastructure updates targeted at the specific bottleneck.",
+    },
+    1: {
+        "class_label": "Low Priority",
+        "title": "Low Priority / System Maintained",
+        "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+        "action": (
+            "Maintain current resource allocations while actively tracking "
+            "long-term data trends to watch for emerging demographic shifts."
+        ),
+    },
+}
+
+# Moderate-class bottleneck clauses, appended in this order when the
+# corresponding flag is true (a county can trip more than one without being
+# Critical/High — see docs/DECISIONS.md sbpi_class rules).
+MODERATE_BOTTLENECK_CLAUSES = [
+    ("sri_flag", "Elevated population risk is a bottleneck here — prioritize preventive health outreach."),
+    ("scai_flag", "Clinical capacity is a bottleneck here — recruit workforce or expand outpatient primary care access."),
+    ("gai_flag", "Transit distance is a bottleneck here — coordinate regional hospital network routing agreements."),
+]
 
 GROUP_TITLES = {
     "burden": "Stroke burden and risk factors",
@@ -110,16 +177,63 @@ def _join_indices(master: pd.DataFrame) -> pd.DataFrame:
     # matrix already derives quadrants client-side. The class lives in
     # indices.csv and the db's indices table for analysis use.
     # driver_* (top-3 risk-driver variable name + percentile, src/compute_indices.py
-    # _add_drivers) are excluded the same way for now: driver_N is a variable-name
-    # string, not a continuous metric, so it doesn't fit the generic field/metric
-    # selector. They stay in indices.csv + the db until the recommendations-engine
-    # dashboard rendering consumes them explicitly (docs/DECISIONS.md 2026-07-07).
+    # _add_drivers) and sri_flag/scai_flag/gai_flag are excluded the same way:
+    # none of them is a continuous metric fit for the generic field/metric
+    # selector. They flow into the dashboard separately via the "recommendations"
+    # payload key (_build_recommendations), not the flat per-county fields.
     driver_columns = [f"driver_{i}{suffix}" for i in range(1, 4) for suffix in ("", "_pctile")]
-    indices = indices.drop(columns=["sbpi_class", *driver_columns], errors="ignore")
+    layer_flag_columns = ["sri_flag", "scai_flag", "gai_flag"]
+    indices = indices.drop(columns=["sbpi_class", *layer_flag_columns, *driver_columns], errors="ignore")
     return master.merge(indices, on="fips", how="left")
 
 
-def export_site_data(master: pd.DataFrame) -> dict:
+def _driver_label(variable: str) -> str:
+    return FIELD_LABELS.get(variable, {"label": _fallback_label(variable)})["label"]
+
+
+def _moderate_action(row) -> str:
+    clauses = [text for flag, text in MODERATE_BOTTLENECK_CLAUSES if row[flag]]
+    base = RECOMMENDATION_FRAMEWORK[2]["action"]
+    return " ".join([base, *clauses])
+
+
+def _build_recommendations() -> dict:
+    """Per-county recommendation: class + plain-language framework + top-3 drivers.
+
+    Reads data/indices.csv directly (same file _join_indices reads) rather
+    than the already-joined master, since the fields it needs (sbpi_class,
+    the layer flags, driver_*) are deliberately excluded from that join.
+    Missing file -> {} (mirrors _join_indices' missing-file behavior).
+    """
+    if not INDICES_CSV.exists():
+        return {}
+    indices = pd.read_csv(INDICES_CSV, dtype={"fips": str}, float_precision="round_trip")
+
+    recommendations = {}
+    for row in indices.itertuples():
+        cls = row.sbpi_class
+        framework = RECOMMENDATION_FRAMEWORK[cls]
+        drivers = [
+            {
+                "variable": getattr(row, f"driver_{i}"),
+                "label": _driver_label(getattr(row, f"driver_{i}")),
+                "percentile": getattr(row, f"driver_{i}_pctile"),
+            }
+            for i in (1, 2, 3)
+        ]
+        action = _moderate_action(row._asdict()) if cls == 2 else framework["action"]
+        recommendations[row.fips] = {
+            "class": cls,
+            "class_label": framework["class_label"],
+            "title": framework["title"],
+            "rule": framework["rule"],
+            "action": action,
+            "drivers": drivers,
+        }
+    return recommendations
+
+
+def export_site_data(master: pd.DataFrame, recommendations: dict | None = None) -> dict:
     """Turn the master table into the JSON structure the dashboard consumes."""
     value_columns = [c for c in master.columns if c not in ("fips", "county", "state")]
 
@@ -141,12 +255,17 @@ def export_site_data(master: pd.DataFrame) -> dict:
                 record[col] = value
         counties[row["fips"]] = record
 
-    return {"fields": fields, "groups": GROUP_TITLES, "counties": counties}
+    return {
+        "fields": fields,
+        "groups": GROUP_TITLES,
+        "counties": counties,
+        "recommendations": recommendations or {},
+    }
 
 
 def main() -> None:
     master = _join_indices(build_master())
-    payload = export_site_data(master)
+    payload = export_site_data(master, _build_recommendations())
 
     SITE_DATA.mkdir(parents=True, exist_ok=True)
     out = SITE_DATA / "counties.json"

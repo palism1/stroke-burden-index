@@ -286,6 +286,15 @@ def _add_sbpi(out: pd.DataFrame) -> None:
     scai_lo, scai_med = scai.quantile(0.25), scai.quantile(0.50)
     gai_lo = gai.quantile(0.25)
 
+    # Persisted alongside sbpi_class so downstream consumers (recommendation
+    # copy) know exactly which layer(s) crossed threshold, without having to
+    # reverse-engineer it from sbpi_class or from the top driver (PC1
+    # aggregates several raw variables, so the single most-extreme one doesn't
+    # always belong to the index that actually tripped the threshold).
+    out["sri_flag"] = sri >= sri_hi
+    out["scai_flag"] = scai <= scai_lo
+    out["gai_flag"] = gai <= gai_lo
+
     critical = (sri >= sri_hi) & (scai <= scai_lo) & (gai <= gai_lo)
     high = ~critical & (sri >= sri_hi) & (scai <= scai_med)
     moderate = ~critical & ~high & (
