@@ -20,6 +20,22 @@ body {
   line-height: 1.5;
 }
 
+/* Slim bar linking back to the main site (site header nav links here, this
+   is the way back — keep both directions one click). */
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.site-nav a { color: var(--accent); text-decoration: none; font-weight: 600; }
+.site-nav a:hover { text-decoration: underline; }
+.site-nav__links { display: flex; gap: 16px; }
+@media (max-width: 560px) { .site-nav__links { display: none; } }
+
 header h1 { margin: 20px 0 4px; font-size: 1.5rem; }
 .subtitle { margin: 0 0 16px; color: var(--muted); max-width: 70ch; }
 .subtitle em { color: var(--accent); font-style: normal; font-weight: 600; }
