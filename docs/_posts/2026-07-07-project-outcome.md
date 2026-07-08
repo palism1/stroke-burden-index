@@ -118,6 +118,8 @@ The GAI demonstrates that geographic location is a critical component of healthc
 <i>Figure 3. Ten counties with the lowest Geographic Accessibility Index (GAI) scores.</i>
 </p>
 
+Counties such as Clinton, Franklin, Essex, Delaware, and Hamilton rank among the lowest due to their long travel times to advanced stroke care. These findings reinforce the geographic disparities observed in the accessibility maps and demonstrate that many rural counties face substantial barriers to timely emergency stroke treatment.
+
 ### Figures: 
 
 <h2>Accessibility to Basic Stroke Centers</h2>
