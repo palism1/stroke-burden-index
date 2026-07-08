@@ -53,8 +53,10 @@ Describe:
 - Distribution of scores
 
 <p align="center">
-    <img src="../images/worst_sri.png" width="45%">
+    <img src="../images/worst_sri.png" width="30%">
 </p>
+
+### Worst 10 Counties
 
 <p align="center">
 <i>Figure 1. Ten counties with the highest Stroke Risk Index (SRI) scores.</i>
@@ -73,8 +75,10 @@ Describe:
 - Counties with highest/lowest access
 - Interpretation
 
+### Worst 10 Counties
+
 <p align="center">
-    <img src="../images/worst_scai.png" width="45%">
+    <img src="../images/worst_scai.png" width="30%">
 </p>
 
 <p align="center">
@@ -97,7 +101,7 @@ Describe:
 ### Worst 10 Counties
 
 <p align="center">
-    <img src="../images/worst_gai.png" width="45%">
+    <img src="../images/worst_gai.png" width="30%">
 </p>
 
 <p align="center">
