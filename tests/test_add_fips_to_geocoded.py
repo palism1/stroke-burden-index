@@ -154,3 +154,19 @@ def test_add_fips_raises_on_missing_longitude(tmp_path):
     csv.write_text("latitude,name\n40.7,Test\n")
     with pytest.raises(ValueError, match="longitude"):
         add_fips(csv)
+
+
+def test_add_fips_validates_only_resolved_rows(tmp_path):
+    # Rows whose lookup failed get fips="" and must be excluded from the CT
+    # gate (which would reject them as unexpected), but still written out.
+    csv = tmp_path / "centers.csv"
+    csv.write_text("latitude,longitude,name\n41.5,-72.7,Failed\n40.7,-73.9,Resolved\n")
+    with patch("add_fips_to_geocoded.lookup_fips", side_effect=["", "36061"]):
+        with patch("add_fips_to_geocoded.validate_ct_codes") as gate:
+            with patch("add_fips_to_geocoded.time.sleep"):
+                out = add_fips(csv)
+    passed = gate.call_args.args[0]
+    assert list(passed["fips"]) == ["36061"]
+    result = pd.read_csv(out, dtype={"fips": str})
+    assert len(result) == 2
+    assert result["fips"].isna().sum() == 1  # empty fips survives to the output
