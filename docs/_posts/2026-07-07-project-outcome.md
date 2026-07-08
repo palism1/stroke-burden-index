@@ -78,11 +78,41 @@ Describe:
 - Urban vs rural differences
 - Interpretation
 
-Possible figures:
+Figures: 
 
-- Travel-time map
-- Distribution
-- Stroke center map
+<h2>Accessibility to Basic Stroke Centers</h2>
+
+<p align="center">
+  <img src="../images/basic_accessibility.png" width="850">
+</p>
+
+<p align="center">
+<i>Figure 1. County-level drive time to the nearest certified Basic Stroke Center. Counties are categorized into four travel-time intervals, illustrating regional differences in access to basic stroke care.</i>
+</p>
+
+Basic stroke centers are distributed throughout New York, New Jersey, and Connecticut, resulting in relatively short travel times for most counties. However, several rural counties in northern New York remain more than 60 minutes from the nearest facility, highlighting geographic disparities in access.
+
+
+<h2>Accessibility to Advanced Stroke Centers</h2>
+
+<p align="center">
+  <img src="../images/advanced_accessibility.png" width="850">
+</p>
+
+<p align="center">
+<i>Figure 2. County-level drive time to the nearest certified Advanced Stroke Center. Advanced stroke centers are concentrated in metropolitan regions, resulting in substantially longer travel times for many rural counties.</i>
+</p>
+
+
+<h2>Stroke Center Distribution</h2>
+
+<p align="center">
+  <img src="../images/stroke_centers_map_full.png" width="850">
+</p>
+
+<p align="center">
+<i>Figure 3. Locations of certified Basic Stroke Centers (circles) and Advanced Stroke Centers (triangles) overlaid on county accessibility categories.</i>
+</p>
 
 ---
 
