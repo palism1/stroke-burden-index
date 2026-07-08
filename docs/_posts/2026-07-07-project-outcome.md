@@ -69,12 +69,21 @@ The Bronx ranks highest, followed by several rural counties in upstate New York 
 
 ## Stroke Care Access Index (SCAI)
 
-Describe:
+### What it Measures
 
-- What it measures
-- General patterns
-- Counties with highest/lowest access
-- Interpretation
+The Stroke Care Access Index (SCAI) measures the availability of healthcare resources that support stroke prevention and treatment within each county. The index incorporates hospitals, hospital beds, primary care physicians, neurologists, and certified stroke centers, providing an overall measure of healthcare capacity. Higher scores indicate greater access to healthcare resources, while lower scores indicate more limited healthcare infrastructure.
+
+### General Patterns
+
+The SCAI revealed substantial variation in healthcare resource availability across the tri-state region. Counties within major metropolitan areas generally had the highest scores due to larger hospital systems, greater physician density, and more certified stroke centers. In contrast, many rural counties in northern and western New York had considerably lower scores, reflecting limited healthcare infrastructure.
+
+### Counties with Highest and Lowest Access
+
+The highest SCAI scores were observed in urban counties with extensive healthcare networks, including New York County (Manhattan), Bronx County, Kings County (Brooklyn), and several counties in northern New Jersey. The lowest scores were concentrated in rural upstate New York, with Hamilton, Lewis, Delaware, and Franklin Counties consistently ranking among the counties with the poorest healthcare resource availability.
+
+### Interpretation
+
+The SCAI demonstrates that healthcare resources are not evenly distributed across the study region. Counties with stronger healthcare infrastructure generally also exhibited better geographic accessibility (*r* = 0.54), while counties with limited resources were more likely to have higher stroke risk (*r* = -0.33) and higher stroke mortality (*r* = -0.30). These findings suggest that healthcare resource availability is an important contributor to disparities in stroke care and should be considered alongside geographic accessibility when identifying underserved communities.
 
 ### Worst 10 Counties
 
