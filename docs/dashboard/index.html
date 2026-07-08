@@ -7,11 +7,19 @@
 <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
+<nav class="site-nav" aria-label="Site">
+  <a class="site-nav__home" href="../">&larr; Stroke Burden Index home</a>
+  <span class="site-nav__links">
+    <a href="../methodology/">Methodology</a>
+    <a href="../project-outcome/">Outcome summary</a>
+    <a href="../about/">About the team</a>
+  </span>
+</nav>
 <header>
   <h1>Stroke Burden Index — County Dashboard</h1>
   <p class="subtitle">Explore stroke risk and access to stroke care across the 91 counties of
-  New York, New Jersey, and Connecticut. Search for your county or click it on the map.
-  <em>Work in progress — index scores will appear here as they are computed.</em></p>
+  New York, New Jersey, and Connecticut. Search for your county or click it on the map —
+  and color it by any measure, including the SRI, SCAI, GAI, and SBPI index scores.</p>
   <div class="controls">
     <label for="county-search">Find your county:</label>
     <input id="county-search" list="county-list" type="search"
