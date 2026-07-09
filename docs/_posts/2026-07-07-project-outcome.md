@@ -37,6 +37,8 @@ Together, these indices provide a comprehensive framework for identifying geogra
 
 ## Stroke Risk Index (SRI)
 
+[View the EDA Notebook](../notebooks html/SRI%EDA.html)
+
 ### What it Measures
 
 The Stroke Risk Index (SRI) quantifies county-level stroke risk using demographic, socioeconomic, behavioral, and clinical risk factors. Variables include the proportion of older adults, poverty, educational attainment, health insurance coverage, smoking, binge drinking, obesity, diabetes, hypertension, high cholesterol, physical inactivity, and stroke prevalence. Higher SRI scores indicate a greater underlying population risk for stroke.
@@ -69,6 +71,8 @@ The Bronx ranks highest, followed by several rural counties in upstate New York 
 ---
 
 ## Stroke Care Access Index (SCAI)
+
+[View the EDA Notebook](../notebooks html/SCAI_EDA.html)
 
 ### What it Measures
 
