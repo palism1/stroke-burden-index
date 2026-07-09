@@ -24,33 +24,34 @@ figures and plots (Discord 7/7). Drop finished .md content and images
 
 ## Overview
 
-Briefly summarize what the project produced and how the indices can be used.
+This project develops four indices to evaluate county-level stroke burden across New York, New Jersey, and Connecticut:
 
----
+- **Stroke Risk Index (SRI):** Measures underlying population-level stroke risk using demographic, socioeconomic, behavioral, and clinical risk factors.
+- **Stroke Care Access Index (SCAI):** Measures the availability of healthcare resources, including hospitals, physicians, hospital beds, and certified stroke centers.
+- **Geographic Accessibility Index (GAI):** Measures physical access to stroke care based on travel time and distance to certified stroke centers.
+- **Stroke Burden Priority Index (SBPI):** Integrates the three component indices into a single measure that identifies counties with the greatest overall need for stroke prevention and healthcare investment.
 
-## County-Level Stroke Burden Database (Optional Section ?)
-
-Describe the final integrated database.
-
-Include:
-
-- 91 counties
-- NY, NJ, CT
-- One record per county
-- Variables from all data sources
-- Master database used throughout the project
-
+Together, these indices provide a comprehensive framework for identifying geographic disparities in stroke risk and healthcare access. The results can support public health planning, healthcare resource allocation, stroke system planning, and future research by highlighting communities where targeted interventions may have the greatest impact.
 
 ---
 
 ## Stroke Risk Index (SRI)
 
-Describe:
+### What it Measures
 
-- What it measures
-- Key findings
-- Counties with highest/lowest scores
-- Distribution of scores
+The Stroke Risk Index (SRI) quantifies county-level stroke risk using demographic, socioeconomic, behavioral, and clinical risk factors. Variables include the proportion of older adults, poverty, educational attainment, health insurance coverage, smoking, binge drinking, obesity, diabetes, hypertension, high cholesterol, physical inactivity, and stroke prevalence. Higher SRI scores indicate a greater underlying population risk for stroke.
+
+### Key Findings
+
+The SRI identified substantial variation in stroke risk across the tri-state region. Counties with the highest scores generally exhibited a combination of adverse socioeconomic conditions and elevated prevalence of modifiable stroke risk factors. The index explained approximately **52.2%** of the total variability among the included variables, indicating that the first principal component captured a meaningful summary of county-level stroke risk.
+
+### Counties with Highest and Lowest Scores
+
+The highest SRI scores were observed in counties such as **Bronx (NY)**, **Hamilton (NY)**, **Delaware (NY)**, **Franklin (NY)**, and **St. Lawrence (NY)**, reflecting elevated stroke risk driven by demographic and health-related factors. In contrast, several suburban counties surrounding New York City and northern New Jersey had the lowest SRI scores, indicating comparatively lower population-level stroke risk.
+
+### Distribution of Scores
+
+The distribution of SRI scores was approximately symmetric following transformation and standardization, with scores spanning the full 0–100 scale. The histogram and boxplot demonstrate substantial variability between counties while showing relatively little skewness, indicating that the index effectively differentiates counties with low, moderate, and high stroke risk.
 
 
 ### Worst 10 Counties
@@ -190,18 +191,17 @@ The table below summarizes the construction and performance of the three composi
 
 ## Stroke Burden Priority Index (SBPI)
 
-Describe:
+### What it Measures
 
-- Combination of SRI, SCAI, and GAI
-- Final county rankings
-- Priority counties
-- Public health interpretation
+The Stroke Burden Priority Index (SBPI) integrates the Stroke Risk Index (SRI), Stroke Care Access Index (SCAI), and Geographic Accessibility Index (GAI) into a single composite measure. By combining population-level stroke risk with healthcare resource availability and geographic access to stroke care, the SBPI identifies counties where the overall burden of stroke is greatest and where interventions may have the greatest impact.
 
-Possible figures:
+### Final County Rankings
 
-- Final SBPI map
-- Top 10 priority counties
-- Ranking table
+The SBPI produced a comprehensive ranking of all counties across New York, New Jersey, and Connecticut. Counties with high stroke risk and limited healthcare access consistently received the highest SBPI scores, while counties with lower stroke risk and stronger healthcare infrastructure ranked lowest.
+
+### Priority Counties
+
+The highest-priority counties were concentrated in rural upstate New York. Hamilton, Delaware, Chenango, Essex, Seneca, and Franklin Counties consistently ranked among the highest, reflecting the combined effects of elevated stroke risk, limited healthcare resources, and reduced geographic accessibility. These counties emerged as the areas with the greatest overall need for targeted public health interventions.
 
 <h2>Highest Priority Counties</h2>
 
@@ -301,7 +301,13 @@ The violin plots above compare index distributions across New York, New Jersey, 
 
 ## Key Findings
 
-Summarize the major conclusions.
+- Geographic disparities in stroke care are substantial across the tri-state region. Urban counties generally have greater healthcare capacity and shorter travel times to certified stroke centers, while many rural counties in northern and western New York experience limited healthcare resources and reduced geographic accessibility.
+
+- The indices exhibited meaningful relationships with one another. Counties with higher stroke risk generally had poorer healthcare access, while counties with stronger healthcare infrastructure also tended to have better geographic accessibility.
+
+- The indices were associated with county-level acute stroke mortality, providing evidence that counties exhibiting high stroke risk, poor geographic access, and poor access to healthcare services, are associated with a higher stroke mortality rate.
+
+- Several rural upstate New York counties, including Hamilton, Delaware, Chenango, Essex, Franklin, and Lewis, consistently ranked among the highest-priority counties across multiple indices, indicating overlapping challenges related to stroke risk, healthcare resources, and geographic access.
 
 ---
 
@@ -337,13 +343,14 @@ The integrated Stroke Burden Priority Index (SBPI) provides a single, interpreta
 
 ## Future Work
 
-Potential extensions (explaining what we would do if we were to expand on this).
+While this project provides a comprehensive framework for evaluating county-level stroke burden, several opportunities exist to expand and improve the methodology.
 
-Ideas:
+- **Expand the geographic scope:** Apply the framework to additional states or the entire United States to enable nationwide comparisons and identify regional disparities in stroke burden.
 
-- Expand nationally
-- Incorporate EMS response times
-- Add temporal trends
-- Include social vulnerability measures
-- Update annually
+- **Incorporate EMS response times:** Include emergency medical service (EMS) response and transport times to better capture the complete timeline from stroke onset to treatment, providing a more comprehensive measure of accessibility.
+
+- **Analyze temporal trends:** Recalculate the indices using data from multiple years to evaluate how stroke risk, healthcare resources, and accessibility change over time and to assess the impact of policy or infrastructure improvements.
+
+- **Develop an automated annual update pipeline:** Automate data collection and index generation so the SRI, SCAI, GAI, and SBPI can be updated annually as new public health and healthcare datasets become available.
+
 
