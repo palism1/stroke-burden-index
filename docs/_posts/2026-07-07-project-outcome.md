@@ -37,7 +37,7 @@ Together, these indices provide a comprehensive framework for identifying geogra
 
 ## Stroke Risk Index (SRI)
 
-[View the EDA Notebook](../notebooks html/SRI%EDA.html)
+[View the EDA Notebook](../notebooks html/SRI%20EDA.html)
 
 ### What it Measures
 
