@@ -62,3 +62,36 @@
     }
   }
 }
+
+// About page — per-person profile buttons (GitHub / LinkedIn). Icons come
+// from the ionicons set head.html already loads for the post share buttons.
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 6px 0 14px;
+
+  .profile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    border: 1px solid $light-gray;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    color: $dark;
+    transition: border-color .2s, color .2s;
+
+    i {
+      font-size: 17px;
+      color: $brand-color;
+    }
+
+    &:hover {
+      border-color: $brand-color;
+      color: $brand-color;
+    }
+  }
+}
