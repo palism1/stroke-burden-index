@@ -106,6 +106,10 @@ The counties with the lowest scores are almost exclusively rural counties in New
 
 ## Geographic Accessibility Index (GAI)
 
+[View the EDA Notebook](../notebooks html/Geographic%20Accessibility%20EDA.html)
+
+[View the Mapping Notebook](../notebooks html/Mapping%20Geographic%20Accessibility.html)
+
 ### What it Measures
 
 The Geographic Accessibility Index (GAI) measures how easily individuals can reach certified stroke centers based on travel time and distance. Higher scores indicate shorter travel times and better geographic access to stroke care, while lower scores indicate greater travel barriers.
