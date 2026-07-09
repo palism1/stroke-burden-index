@@ -36,7 +36,7 @@ Together, these indices provide a comprehensive framework for identifying geogra
 
 [View the EDA Notebook](../notebooks html/SRI%20EDA.html)
 
-<a href="/notebooks html/SRI%20EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a>
+<a href="../notebooks html/SRI%20EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a>
 
 ### What it Measures
 
@@ -73,7 +73,7 @@ The Bronx ranks highest, followed by several rural counties in upstate New York 
 
 [View the EDA Notebook](../notebooks html/SCAI_EDA.html)
 
-<a href="/notebooks html/SCAI_EDA.html)" target="_blank" rel="noopener">View the EDA Notebook</a>
+<a href="../notebooks html/SCAI_EDA.html)" target="_blank" rel="noopener">View the EDA Notebook</a>
 
 ### What it Measures
 
@@ -109,11 +109,11 @@ The counties with the lowest scores are almost exclusively rural counties in New
 
 [View the EDA Notebook](../notebooks html/Geographic%20Accessibility%20EDA.html)
 
-<a href="/notebooks html/Geographic%20Accessibility%20EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a>
+<a href="../notebooks html/Geographic%20Accessibility%20EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a>
 
 [View the Mapping Notebook](../notebooks html/Mapping%20Geographic%20Accessibility.html)
 
-<a href="/notebooks html/Mapping%20Geographic%20Accessibility.html" target="_blank" rel="noopener">View the Mapping Notebook</a>
+<a href="../notebooks html/Mapping%20Geographic%20Accessibility.html" target="_blank" rel="noopener">View the Mapping Notebook</a>
 
 ### What it Measures
 
@@ -235,7 +235,7 @@ The lollipop chart above ranks the twenty counties with the highest Stroke Burde
 
 [View the Full Analysis Notebook](../notebooks/Analysis%20of%20Stroke%20Burden%20Indices.html)
 
-<a href="/notebooks/Analysis%20of%20Stroke%20Burden%20Indices.html" target="_blank" rel="noopener">View the Full Analysis Notebook</a>
+<a href="../notebooks html/Analysis%20of%20Stroke%20Burden%20Indices.html" target="_blank" rel="noopener">View the Full Analysis Notebook</a>
 
 <h2>Distribution of Indices</h2>
 
