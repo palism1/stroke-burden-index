@@ -69,7 +69,7 @@ The Bronx ranks highest, followed by several rural counties in upstate New York 
 
 ## Stroke Care Access Index (SCAI)
 
-<a href="../notebook_html/SCAI_EDA.html)" target="_blank" rel="noopener">View the EDA Notebook</a>
+<a href="../notebook_html/SCAI_EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a>
 
 ### What it Measures
 
