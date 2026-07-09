@@ -220,7 +220,7 @@ The lollipop chart above ranks the twenty counties with the highest Stroke Burde
 
 ## Complete Index Analysis
 
-[View the Full Analysis Notebook](../../notebooks/analysis-stroke-burden-indices.html)
+[View the Full Analysis Notebook](../notebooks html/Analysis of Stroke Burden Indices.html)
 
 <h2>Distribution of Indices</h2>
 
