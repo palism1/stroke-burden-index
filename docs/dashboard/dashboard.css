@@ -160,6 +160,14 @@
 .detail-row .value { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 600; }
 .detail-row .value.na { color: var(--muted); font-weight: 400; }
 
+/* Per-county recommendation (docs/DECISIONS.md 2026-07-07): rendered as the
+   first detail-group so the priority class + action is the first thing read. */
+.detail-group.recommendation h3 { color: var(--text); border-bottom-color: var(--accent); }
+.recommendation-rule { color: var(--muted); font-size: 0.85rem; margin: 4px 0 8px; }
+.recommendation-action { margin: 0 0 8px; }
+.recommendation-drivers-label { margin: 0 0 2px; font-size: 0.85rem; color: var(--muted); }
+.recommendation-drivers { margin: 0; padding-left: 20px; font-size: 0.92rem; }
+
 #matrix-section {
   margin-top: 28px;
   border: 1px solid var(--border);

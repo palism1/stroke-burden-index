@@ -3444,5 +3444,2191 @@
    "gai": 35.37,
    "sbpi": 66.07
   }
+ },
+ "recommendations": {
+  "36001": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 95.0549
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 69.2308
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 57.1429
+    }
+   ]
+  },
+  "36003": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 93.4066
+    },
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 93.4066
+    }
+   ]
+  },
+  "36005": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Elevated population risk is a bottleneck here \u2014 prioritize preventive health outreach.",
+   "drivers": [
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 100.0
+    },
+    {
+     "variable": "pcnt_low_income",
+     "label": "Low-income households",
+     "percentile": 100.0
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 100.0
+    }
+   ]
+  },
+  "36007": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 98.3516
+    },
+    {
+     "variable": "pcnt_low_income",
+     "label": "Low-income households",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 67.033
+    }
+   ]
+  },
+  "36009": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "smoking_prevalence",
+     "label": "Adults who smoke",
+     "percentile": 99.4505
+    },
+    {
+     "variable": "pcnt_low_income",
+     "label": "Low-income households",
+     "percentile": 97.8022
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 96.7033
+    }
+   ]
+  },
+  "36011": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "smoking_prevalence",
+     "label": "Adults who smoke",
+     "percentile": 87.3626
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 87.3626
+    }
+   ]
+  },
+  "36013": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "pcnt_low_income",
+     "label": "Low-income households",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "nearest_stroke_distance_any",
+     "label": "Distance to nearest stroke center (any tier)",
+     "percentile": 97.8022
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 95.6044
+    }
+   ]
+  },
+  "36015": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 88.4615
+    },
+    {
+     "variable": "pcnt_low_income",
+     "label": "Low-income households",
+     "percentile": 86.8132
+    },
+    {
+     "variable": "smoking_prevalence",
+     "label": "Adults who smoke",
+     "percentile": 84.0659
+    }
+   ]
+  },
+  "36017": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "pcnt_bachelors",
+     "label": "Adults with a bachelor's degree",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "stroke_prevalence",
+     "label": "Adults who have had a stroke",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "nearest_stroke_distance_any",
+     "label": "Distance to nearest stroke center (any tier)",
+     "percentile": 95.6044
+    }
+   ]
+  },
+  "36019": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Transit distance is a bottleneck here \u2014 coordinate regional hospital network routing agreements.",
+   "drivers": [
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 100.0
+    },
+    {
+     "variable": "nearest_stroke_distance_any",
+     "label": "Distance to nearest stroke center (any tier)",
+     "percentile": 100.0
+    },
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 100.0
+    }
+   ]
+  },
+  "36021": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 87.3626
+    }
+   ]
+  },
+  "36023": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access.",
+   "drivers": [
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 97.8022
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 87.3626
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 79.1209
+    }
+   ]
+  },
+  "36025": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "stroke_prevalence",
+     "label": "Adults who have had a stroke",
+     "percentile": 97.8022
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 97.8022
+    }
+   ]
+  },
+  "36027": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 58.2418
+    },
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 54.9451
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 49.4505
+    }
+   ]
+  },
+  "36029": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 85.1648
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 72.5275
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 71.4286
+    }
+   ]
+  },
+  "36031": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "nearest_stroke_distance_any",
+     "label": "Distance to nearest stroke center (any tier)",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 97.2527
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 96.7033
+    }
+   ]
+  },
+  "36033": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Elevated population risk is a bottleneck here \u2014 prioritize preventive health outreach. Transit distance is a bottleneck here \u2014 coordinate regional hospital network routing agreements.",
+   "drivers": [
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 100.0
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 98.9011
+    }
+   ]
+  },
+  "36035": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "smoking_prevalence",
+     "label": "Adults who smoke",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "nearest_stroke_distance_any",
+     "label": "Distance to nearest stroke center (any tier)",
+     "percentile": 92.3077
+    }
+   ]
+  },
+  "36037": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 90.1099
+    },
+    {
+     "variable": "pcnt_bachelors",
+     "label": "Adults with a bachelor's degree",
+     "percentile": 82.4176
+    },
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 70.3297
+    }
+   ]
+  },
+  "36039": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 93.4066
+    },
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 90.1099
+    }
+   ]
+  },
+  "36041": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 100.0
+    },
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 100.0
+    },
+    {
+     "variable": "stroke_prevalence",
+     "label": "Adults who have had a stroke",
+     "percentile": 100.0
+    }
+   ]
+  },
+  "36043": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 93.4066
+    },
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 92.3077
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 92.3077
+    }
+   ]
+  },
+  "36045": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 93.4066
+    }
+   ]
+  },
+  "36047": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 98.3516
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 84.0659
+    }
+   ]
+  },
+  "36049": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "pcnt_bachelors",
+     "label": "Adults with a bachelor's degree",
+     "percentile": 94.5055
+    },
+    {
+     "variable": "nearest_stroke_distance_any",
+     "label": "Distance to nearest stroke center (any tier)",
+     "percentile": 91.2088
+    }
+   ]
+  },
+  "36051": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access.",
+   "drivers": [
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 93.4066
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 87.3626
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 80.2198
+    }
+   ]
+  },
+  "36053": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Transit distance is a bottleneck here \u2014 coordinate regional hospital network routing agreements.",
+   "drivers": [
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 89.011
+    },
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 88.4615
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 87.3626
+    }
+   ]
+  },
+  "36055": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 85.1648
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 75.8242
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 62.0879
+    }
+   ]
+  },
+  "36057": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 94.5055
+    },
+    {
+     "variable": "pcnt_low_income",
+     "label": "Low-income households",
+     "percentile": 93.4066
+    },
+    {
+     "variable": "pcnt_bachelors",
+     "label": "Adults with a bachelor's degree",
+     "percentile": 92.3077
+    }
+   ]
+  },
+  "36059": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 91.2088
+    },
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 71.978
+    },
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 41.7582
+    }
+   ]
+  },
+  "36061": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 100.0
+    },
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 100.0
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 88.4615
+    }
+   ]
+  },
+  "36063": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 86.8132
+    },
+    {
+     "variable": "pcnt_low_income",
+     "label": "Low-income households",
+     "percentile": 78.5714
+    }
+   ]
+  },
+  "36065": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Elevated population risk is a bottleneck here \u2014 prioritize preventive health outreach.",
+   "drivers": [
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 84.6154
+    },
+    {
+     "variable": "physical_inactivity",
+     "label": "Adults with no physical activity",
+     "percentile": 83.5165
+    },
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 78.5714
+    }
+   ]
+  },
+  "36067": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 90.1099
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 71.4286
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 68.1319
+    }
+   ]
+  },
+  "36069": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 84.6154
+    },
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 64.2857
+    },
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 54.9451
+    }
+   ]
+  },
+  "36071": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 69.2308
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 65.9341
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 65.9341
+    }
+   ]
+  },
+  "36073": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "pcnt_bachelors",
+     "label": "Adults with a bachelor's degree",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "smoking_prevalence",
+     "label": "Adults who smoke",
+     "percentile": 95.0549
+    }
+   ]
+  },
+  "36075": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "smoking_prevalence",
+     "label": "Adults who smoke",
+     "percentile": 95.0549
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 91.7582
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 91.2088
+    }
+   ]
+  },
+  "36077": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Transit distance is a bottleneck here \u2014 coordinate regional hospital network routing agreements.",
+   "drivers": [
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 82.967
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 81.3187
+    },
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 79.1209
+    }
+   ]
+  },
+  "36079": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 83.5165
+    },
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 81.8681
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 68.1319
+    }
+   ]
+  },
+  "36081": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "physical_inactivity",
+     "label": "Adults with no physical activity",
+     "percentile": 96.7033
+    }
+   ]
+  },
+  "36083": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 89.011
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 67.033
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 67.033
+    }
+   ]
+  },
+  "36085": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 94.5055
+    },
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 92.8571
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 81.3187
+    }
+   ]
+  },
+  "36087": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 86.8132
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 84.6154
+    },
+    {
+     "variable": "physical_inactivity",
+     "label": "Adults with no physical activity",
+     "percentile": 71.978
+    }
+   ]
+  },
+  "36089": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 100.0
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 97.8022
+    },
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 97.8022
+    }
+   ]
+  },
+  "36091": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 90.1099
+    },
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 78.022
+    },
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 64.2857
+    }
+   ]
+  },
+  "36093": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 73.6264
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 70.3297
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 53.8462
+    }
+   ]
+  },
+  "36095": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access. Transit distance is a bottleneck here \u2014 coordinate regional hospital network routing agreements.",
+   "drivers": [
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 94.5055
+    },
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 92.3077
+    },
+    {
+     "variable": "nearest_stroke_distance_any",
+     "label": "Distance to nearest stroke center (any tier)",
+     "percentile": 90.1099
+    }
+   ]
+  },
+  "36097": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "stroke_prevalence",
+     "label": "Adults who have had a stroke",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 92.3077
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 92.3077
+    }
+   ]
+  },
+  "36099": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 93.4066
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 93.4066
+    }
+   ]
+  },
+  "36101": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 94.5055
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 93.4066
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 90.1099
+    }
+   ]
+  },
+  "36103": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 82.4176
+    },
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 75.2747
+    },
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 60.989
+    }
+   ]
+  },
+  "36105": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "physical_inactivity",
+     "label": "Adults with no physical activity",
+     "percentile": 93.4066
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 91.2088
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 86.8132
+    }
+   ]
+  },
+  "36107": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 89.011
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 87.3626
+    }
+   ]
+  },
+  "36109": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 95.0549
+    },
+    {
+     "variable": "poverty_rate",
+     "label": "Residents below the poverty line",
+     "percentile": 85.7143
+    },
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 84.6154
+    }
+   ]
+  },
+  "36111": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 89.011
+    },
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 86.8132
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 82.967
+    }
+   ]
+  },
+  "36113": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 94.5055
+    },
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 91.2088
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 79.1209
+    }
+   ]
+  },
+  "36115": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access. Transit distance is a bottleneck here \u2014 coordinate regional hospital network routing agreements.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 91.2088
+    },
+    {
+     "variable": "pcnt_bachelors",
+     "label": "Adults with a bachelor's degree",
+     "percentile": 89.5604
+    }
+   ]
+  },
+  "36117": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access.",
+   "drivers": [
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 92.3077
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 74.7253
+    }
+   ]
+  },
+  "36119": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 85.7143
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 65.9341
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 33.5165
+    }
+   ]
+  },
+  "36121": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access. Transit distance is a bottleneck here \u2014 coordinate regional hospital network routing agreements.",
+   "drivers": [
+    {
+     "variable": "pcnt_bachelors",
+     "label": "Adults with a bachelor's degree",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 94.5055
+    },
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 89.011
+    }
+   ]
+  },
+  "36123": {
+   "class": 4,
+   "class_label": "Critical Priority",
+   "title": "Critical Priority Zone (Stroke Care Desert)",
+   "rule": "Top 25% stroke risk, bottom 25% care access, and top 25% distance to care.",
+   "action": "Prioritize capital allocation for deploying mobile stroke screening clinics, expanding regional telehealth networks, and optimizing emergency EMS routing.",
+   "drivers": [
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 100.0
+    },
+    {
+     "variable": "stroke_prevalence",
+     "label": "Adults who have had a stroke",
+     "percentile": 90.6593
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 90.1099
+    }
+   ]
+  },
+  "34001": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 95.0549
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 89.011
+    }
+   ]
+  },
+  "34003": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 94.5055
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 90.1099
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 80.2198
+    }
+   ]
+  },
+  "34005": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 87.9121
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 67.033
+    },
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 64.8352
+    }
+   ]
+  },
+  "34007": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 86.8132
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 82.967
+    },
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 64.2857
+    }
+   ]
+  },
+  "34009": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 100.0
+    },
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 97.8022
+    }
+   ]
+  },
+  "34011": {
+   "class": 3,
+   "class_label": "High Priority",
+   "title": "High Priority / Prevention Focus",
+   "rule": "Top 25% stroke risk and bottom 50% care access, with acceptable geographic transit proximity.",
+   "action": "Focus resources on clinical workforce recruitment, public preventative health campaigns, and expanding outpatient primary care networks to manage baseline risks.",
+   "drivers": [
+    {
+     "variable": "smoking_prevalence",
+     "label": "Adults who smoke",
+     "percentile": 99.4505
+    },
+    {
+     "variable": "physical_inactivity",
+     "label": "Adults with no physical activity",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "pcnt_bachelors",
+     "label": "Adults with a bachelor's degree",
+     "percentile": 97.8022
+    }
+   ]
+  },
+  "34013": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 96.7033
+    },
+    {
+     "variable": "physical_inactivity",
+     "label": "Adults with no physical activity",
+     "percentile": 95.0549
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 93.4066
+    }
+   ]
+  },
+  "34015": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 82.4176
+    },
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 78.5714
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 72.5275
+    }
+   ]
+  },
+  "34017": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 95.6044
+    },
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 87.9121
+    }
+   ]
+  },
+  "34019": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 78.022
+    },
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 69.2308
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 67.033
+    }
+   ]
+  },
+  "34021": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 90.1099
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 83.5165
+    },
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 57.1429
+    }
+   ]
+  },
+  "34023": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 89.011
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 86.8132
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 69.7802
+    }
+   ]
+  },
+  "34025": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 84.0659
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 79.1209
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 69.2308
+    }
+   ]
+  },
+  "34027": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "binge_drinking_prevalence",
+     "label": "Adults who binge drink",
+     "percentile": 91.2088
+    },
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 87.9121
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 74.7253
+    }
+   ]
+  },
+  "34029": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 97.8022
+    },
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 90.1099
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 80.2198
+    }
+   ]
+  },
+  "34031": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "physical_inactivity",
+     "label": "Adults with no physical activity",
+     "percentile": 97.8022
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 97.8022
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 95.0549
+    }
+   ]
+  },
+  "34033": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "hypertension_prevalence",
+     "label": "Adults with high blood pressure",
+     "percentile": 91.2088
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 91.2088
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 81.3187
+    }
+   ]
+  },
+  "34035": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 80.2198
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 76.9231
+    },
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 74.7253
+    }
+   ]
+  },
+  "34037": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 79.1209
+    },
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 78.022
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 74.7253
+    }
+   ]
+  },
+  "34039": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 98.9011
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 92.3077
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 69.7802
+    }
+   ]
+  },
+  "34041": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 85.7143
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 76.9231
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 73.6264
+    }
+   ]
+  },
+  "09001": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pcnt_uninsured",
+     "label": "Residents without health insurance",
+     "percentile": 91.2088
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 81.3187
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 64.8352
+    }
+   ]
+  },
+  "09003": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 78.022
+    },
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 75.2747
+    },
+    {
+     "variable": "diabetes_prevalence",
+     "label": "Adults with diabetes",
+     "percentile": 61.5385
+    }
+   ]
+  },
+  "09005": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 88.4615
+    },
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 85.7143
+    },
+    {
+     "variable": "high_cholesterol_prevalence",
+     "label": "Adults with high cholesterol",
+     "percentile": 84.0659
+    }
+   ]
+  },
+  "09007": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pcnt_65_plus",
+     "label": "Residents aged 65 and over",
+     "percentile": 82.967
+    },
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 68.1319
+    },
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 63.7363
+    }
+   ]
+  },
+  "09009": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "pop_density",
+     "label": "Population density",
+     "percentile": 80.2198
+    },
+    {
+     "variable": "physical_inactivity",
+     "label": "Adults with no physical activity",
+     "percentile": 71.978
+    },
+    {
+     "variable": "obesity_prevalence",
+     "label": "Adults with obesity",
+     "percentile": 69.2308
+    }
+   ]
+  },
+  "09011": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "nearest_stroke_distance_advanced",
+     "label": "Distance to nearest advanced stroke center",
+     "percentile": 76.9231
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 73.6264
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 68.1319
+    }
+   ]
+  },
+  "09013": {
+   "class": 1,
+   "class_label": "Low Priority",
+   "title": "Low Priority / System Maintained",
+   "rule": "High local care access, close proximity to stroke centers, and low population risk.",
+   "action": "Maintain current resource allocations while actively tracking long-term data trends to watch for emerging demographic shifts.",
+   "drivers": [
+    {
+     "variable": "hospital_beds_per_100k",
+     "label": "Hospital beds",
+     "percentile": 78.022
+    },
+    {
+     "variable": "neurologists_per_100k",
+     "label": "Neurologists",
+     "percentile": 62.6374
+    },
+    {
+     "variable": "pcp_per_100k",
+     "label": "Primary care physicians",
+     "percentile": 57.1429
+    }
+   ]
+  },
+  "09015": {
+   "class": 2,
+   "class_label": "Moderate Priority",
+   "title": "Moderate Priority / Infrastructure Monitor",
+   "rule": "One or more elevated deficit layers: elevated stroke risk, low clinical capacity, or poor transit geometry.",
+   "action": "Perform isolated infrastructure updates targeted at the specific bottleneck. Clinical capacity is a bottleneck here \u2014 recruit workforce or expand outpatient primary care access.",
+   "drivers": [
+    {
+     "variable": "physical_inactivity",
+     "label": "Adults with no physical activity",
+     "percentile": 86.2637
+    },
+    {
+     "variable": "drive_time_any",
+     "label": "Drive to nearest stroke center (any tier)",
+     "percentile": 75.8242
+    },
+    {
+     "variable": "drive_time_advanced",
+     "label": "Drive to nearest advanced stroke center",
+     "percentile": 75.8242
+    }
+   ]
+  }
  }
 }
