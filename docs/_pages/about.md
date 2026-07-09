@@ -38,14 +38,18 @@ Hello! I am a graduate student at Stony Brook University from Long Island, NY. I
 
 <div class="profile-links">
   <a class="profile-btn" href="https://github.com/palism1" target="_blank" rel="noopener"><i class="ion ion-logo-github"></i>GitHub</a>
+  <a class="profile-btn" href="https://www.linkedin.com/in/mikko-palis-ab552523a/" target="_blank" rel="noopener"><i class="ion ion-logo-linkedin"></i>LinkedIn</a>
 </div>
 
 - Picture here
 
-I handle the engineering side of the project: the data pipeline that merges
-and validates the county datasets, the computed indices and their tests, the
-SQLite database, and this site — including the interactive dashboard and its
-per-county recommendations.
+Hi! I'm finishing my Master's in Computer Science at the end of August 2026.
+My path here wasn't a straight line — my undergraduate degree was in Exercise
+Science, and it was only after that I made the switch into computer science.
+That background made a public-health project like this one feel like a natural
+fit. On this team I work on the software side: the data pipeline, the project
+database, and this site with its interactive dashboard — turning the team's
+methodology and analysis into working tools.
 
 ### Nitya Nemani
 *UI/UX design*
