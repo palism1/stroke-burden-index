@@ -185,6 +185,28 @@ The transformed and standardized accessibility variables were combined using pri
 
 
 
+
+## Stroke Burden Priority Index (SBPI)
+
+### Purpose
+
+The Stroke Burden Priority Index (SBPI) was developed to integrate the three component indices into a single measure of overall stroke burden. While the Stroke Risk Index (SRI), Stroke Care Access Index (SCAI), and Geographic Accessibility Index (GAI) each capture a different dimension of stroke burden, the SBPI provides a comprehensive ranking of counties by simultaneously considering population risk, healthcare resource availability, and geographic access to stroke care.
+
+The SBPI was calculated as a weighted combination of the three standardized indices:
+
+\[
+\text{SBPI} = 0.50(\text{SRI}) + 0.30(100-\text{SCAI}) + 0.20(100-\text{GAI})
+\]
+
+This approach assigns a 50% weight to stroke risk, 30% weight to healthcare resource availability, and 20% weight to geographic accessibility, producing a single composite score that identifies counties with the greatest overall need for public health intervention. Index weights were decided by the strength of their association with the stroke mortality rate. Greater weight was assigned to the Stroke Risk Index (50%) because underlying population risk was considered the primary driver of stroke burden. The remaining weights emphasized healthcare resource availability (30%) and geographic accessibility (20%), ensuring that counties with limited access to stroke care received higher priority while maintaining population risk as the dominant component.
+
+### Interpretation
+
+Higher SBPI scores indicate counties where elevated stroke risk coincides with limited healthcare resources and poor geographic accessibility. Lower scores represent counties with lower stroke risk and stronger access to stroke care. The SBPI serves as the final prioritization metric used to identify counties where targeted investments in prevention, healthcare infrastructure, and emergency stroke services may have the greatest impact.
+
+---
+
+
 ## Geospatial Analysis
 
 Geospatial analyses were performed to examine the spatial distribution of stroke care resources and evaluate geographic accessibility across New York, New Jersey, and Connecticut. County boundaries, stroke center locations, and county population centers were combined to quantify spatial access to stroke care and identify areas with limited access to specialized services.
