@@ -153,7 +153,7 @@ Driving times were calculated using the OpenRouteService routing engine, while s
 | Health behaviors | ✓ | | |
 | Hospital resources | | ✓ | |
 | Healthcare providers | | ✓ | |
-| Stroke centers | | ✓ | ✓ |
+| Stroke centers | | ✓ | |
 | Travel time | | | ✓ |
 | Travel distance | | | ✓ |
 | Stroke mortality | EDA only | EDA only | EDA only |
