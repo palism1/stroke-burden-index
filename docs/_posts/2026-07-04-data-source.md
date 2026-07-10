@@ -46,7 +46,7 @@ The American Community Survey (ACS) provides county-level demographic and socioe
 
 These variables represent important social determinants of health associated with stroke risk.
 
-<a href="../notebook_html/acs_data_collection.html" target="_blank" rel="noopener">View the data gathering notebook (by Ngan Vu)</a>
+<a href="../notebook_html/acs_data_collection.html" target="_blank" rel="noopener">View the data gathering notebook</a> (by Ngan Vu)
 
 ---
 
@@ -69,7 +69,7 @@ CDC PLACES provides county-level estimates of chronic disease prevalence and hea
 
 These measures capture modifiable stroke risk factors at the population level.
 
-<a href="../notebook_html/cdcplaces_data_collection.html" target="_blank" rel="noopener">View the data gathering notebook (by Ngan Vu)</a>
+<a href="../notebook_html/cdcplaces_data_collection.html" target="_blank" rel="noopener">View the data gathering notebook</a> (by Ngan Vu)
 
 ---
 
@@ -88,7 +88,7 @@ Two stroke mortality measures were included:
 
 Although stroke mortality was not included directly in the Stroke Risk Index, it was used throughout exploratory data analysis to evaluate relationships between candidate predictors and observed stroke outcomes.
 
-<a href="../notebook_html/cdcwonder_data_collection.html" target="_blank" rel="noopener">View the data gathering notebook (by Ngan Vu)</a>
+<a href="../notebook_html/cdcwonder_data_collection.html" target="_blank" rel="noopener">View the data gathering notebook</a> (by Ngan Vu)
 
 ---
 
@@ -102,7 +102,7 @@ Because population density exhibited substantial positive skew resulting from se
 |----------|-------------|--------------|
 | `pop_density` | Population per square mile. | Population density reflects differences between urban and rural environments, influencing healthcare access, healthcare infrastructure, and population health. A log transformation was applied prior to PCA because of substantial right skew. |
 
-<a href="../notebook_html/population_density_data.html" target="_blank" rel="noopener">View the data gathering notebook (by Ngan Vu)</a>
+<a href="../notebook_html/population_density_data.html" target="_blank" rel="noopener">View the data gathering notebook</a> (by Ngan Vu)
 
 ---
 
@@ -128,7 +128,7 @@ Hospital locations were aggregated to the county level using standardized five-d
 
 Exploratory analysis was used to evaluate redundancy among healthcare resource variables prior to constructing the final index.
 
-<a href="../notebook_html/SCAI_Data_Gathering.html" target="_blank" rel="noopener">View the data gathering notebook (by Cathleen Xi)</a>
+<a href="../notebook_html/SCAI_Data_Gathering.html" target="_blank" rel="noopener">View the data gathering notebook</a> (by Cathleen Xi)
 
 ---
 
@@ -149,9 +149,9 @@ Because Connecticut transitioned from historical counties to planning regions, a
 
 Driving times were calculated using the OpenRouteService routing engine, while straight-line distances were calculated using county centroid and stroke center coordinates. These variables form the Geographic Accessibility Index (GAI).
 
-<a href="../notebook_html/Geographic_Accessibility_Data_Gathering.html" target="_blank" rel="noopener">View the data gathering notebook for CT stroke center geocodes (by Jane Condon)</a>
+<a href="../notebook_html/Geographic_Accessibility_Data_Gathering.html" target="_blank" rel="noopener">View the data gathering notebook for CT stroke center geocodes</a> (by Jane Condon)
 
-<a href="../notebook_html/Geographic_Accessibility_Data_Gathering.html" target="_blank" rel="noopener">View the data gathering notebook for GAI (by Jane Condon)</a>
+<a href="../notebook_html/Geographic_Accessibility_Data_Gathering.html" target="_blank" rel="noopener">View the data gathering notebook for GAI</a> (by Jane Condon)
 
 ---
 
