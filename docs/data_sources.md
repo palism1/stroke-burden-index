@@ -2,6 +2,8 @@
 layout: page
 title: Data & sources
 nav_order: 7
+status: living
+last_updated: 2026-07-07
 ---
 
 # Data & sources

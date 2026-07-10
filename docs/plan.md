@@ -2,30 +2,32 @@
 layout: page
 title: Methodology & plan
 nav_order: 3
+status: living
+last_updated: 2026-07-10
 ---
 
 # Stroke Burden Index — Project Plan
 
-**Status: DATA GATHERING is the active phase; methodology below is the agreed plan, not yet executed.** The analytical approach (indices, geospatial analysis, models) is now drafted and aligned across the team. We do not run it until the county-level data is in hand and audited. Items marked `(?)` are still open.
+**Status: the core build is COMPLETE (2026-07-09).** All data is collected and audited for the 91 NY/NJ/CT counties, all four indices (SRI, SCAI, GAI, SBPI + priority class) are computed and CI-gated in `data/indices.csv`, and the live site serves the write-up (methodology, data sources, project outcome) plus the interactive dashboard with the Risk-vs-Access matrix and per-county recommendations. Remaining work is polish and the optional analyses below. Items marked `(?)` are still open; every decided item is logged in `DECISIONS.md`.
 
-**Collected so far (91 NY/NJ/CT counties):**
+**Collected (91 NY/NJ/CT counties, all done):**
 - ACS demographics: `data/acs_data.csv` — age 65+, poverty, insurance, education, income bins
 - CDC WONDER stroke mortality: `data/stroke_mortality.csv` — acute and sequelae age-adjusted rates, 2018–2024 pooled
+- CDC PLACES health prevalence: `data/cdcplaces_data.csv` — smoking, obesity, diabetes, inactivity, hypertension, cholesterol, binge drinking, stroke
+- Population density: `data/pop_density.csv` (Census TIGER + ACS land area)
 - Geographic accessibility: `data/geographic_accessibility_data/geographic_stroke_accessibility.csv` — drive time and distance to nearest basic and advanced stroke center per county, via OpenRouteService
+- SCAI variables: `data/scai_data/scai_data.csv` — hospitals, beds, PCPs, neurologists, stroke centers per 100k
 - Stroke center coordinates: geocoded for all NY, NJ, CT centers (see `data/geographic_accessibility_data/`)
 - CT county crosswalk: `reference/ct_crosswalk/` — town-level mapping to old counties and planning regions
 
-**Still needed:**
-- SCAI: hospitals per capita, hospital beds per capita, PCP per capita, neurologists per capita (HIFLD / HRSA)
-- ~~SRI health variables: smoking, obesity, diabetes, physical inactivity, hypertension (CDC PLACES)~~ *(done — `data/cdcplaces_data.csv`)*
-- ~~Population density (Census TIGER + ACS land area)~~ *(done — `data/pop_density.csv`)*
-
-**Next steps (bookmarked 2026-07-07):**
+**Next steps (updated 2026-07-10):**
 1. ~~**SCAI data collection**~~ *(done — `scai_data.csv` landed 2026-07-05, pipeline auto-activated)*
-2. ~~**Compute GAI / SRI / SCAI**~~ *(done — all three computed and persisted: `src/compute_indices.py` → `data/indices.csv`, CI-gated; scores in the db `indices` table and on the dashboard. GAI is provisional pending the basic-access definition — see `DECISIONS.md`.)*
+2. ~~**Compute GAI / SRI / SCAI**~~ *(done — all three computed and persisted: `src/compute_indices.py` → `data/indices.csv`, CI-gated; scores in the db `indices` table and on the dashboard. GAI definition settled 2026-07-07: nearest any-tier center.)*
 3. ~~**Risk vs. Access matrix**~~ *(done 2026-07-07 — live scatter on the dashboard: X = SRI, Y = SCAI, 75th/25th-percentile quadrants, linked to county selection)*
-4. **SBPI** — the last index. Blocked on method + weights (now tracked in `DECISIONS.md` open items, with Hunterdon beds, neurologists skew, and the GAI definition).
-5. **Dashboard iteration** — mobile QA, UX-doc pass against the now-complete feature set.
+4. ~~**SBPI**~~ *(done 2026-07-07 — both methods per the team vote: continuous 50/30/20 score + 1–4 priority class, in `indices.csv`, the db, and the dashboard)*
+5. ~~**Per-county recommendations engine**~~ *(done 2026-07-08 — top-3 percentile risk drivers + priority-class action plan from the team framework, rendered in the dashboard details panel)*
+6. **Dashboard iteration** — mobile QA, UX-doc pass against the now-complete feature set.
+7. **Optional analyses** `(?)` — hotspot clustering (Local Moran's I / Getis-Ord Gi*), predictive models (§5).
 
 ---
 
@@ -133,7 +135,7 @@ SBPI = 0.5 · SRI + 0.3 · (Access deficit) + 0.2 · (Distance deficit)
 
 Weights are tunable, but vulnerability should always carry the most weight.
 
-> `(?)` **Weights need reconciling.** The formula above uses **50 / 30 / 20**, but the prose target was **50% vulnerability / 25% access / 25% distance** (50 / 25 / 25). Pick one before write-up — the numbers don't currently match.
+> ~~`(?)` **Weights need reconciling.**~~ *(resolved 2026-07-07: team vote locked **50 / 30 / 20** — see `DECISIONS.md`.)*
 
 **Option 2 — quadrant-based SBPI.** Instead of a continuous score, classify each county 1–4:
 
@@ -146,7 +148,7 @@ Weights are tunable, but vulnerability should always carry the most weight.
 
 ### National ranking
 
-Produce a county-level ranking by SBPI. `(?)` Final ranking/combination method (Option 1 vs Option 2, or both) TBD once both indices exist.
+Produce a county-level ranking by SBPI. ~~`(?)` Final ranking/combination method TBD~~ *(resolved 2026-07-07: **both** — the continuous score (`sbpi`) and the 1–4 class (`sbpi_class`) ship together in `data/indices.csv`; class counts today: 55 low / 16 moderate / 10 high / 10 critical.)*
 
 ---
 
@@ -296,16 +298,16 @@ Geocoded stroke center files for NY, NJ, CT are in `data/geographic_accessibilit
 
 ## Open questions to resolve
 
-- `(?)` Basic-access definition: `drive_time_min` / `nearest_stroke_distance` measure the nearest *primary/acute-designated* center only, but an advanced center (which also treats stroke) is closer in 19 of 91 counties. Redefine as nearest any-tier center (columnwise `min` — no re-querying needed) or keep and document as designation-specific. See [the lineage review](./geo_lineage_review.html), finding F2.
-- `(?)` Reconcile SBPI weights: formula is 50/30/20, prose target was 50/25/25.
-- `(?)` SBPI method: continuous weighted (Option 1), quadrant classification (Option 2), or both.
-- `(?)` Canonical CT code system (old counties vs planning regions) — pending decision.
+- ~~`(?)` Basic-access definition (lineage review finding F2).~~ *(resolved 2026-07-07, team vote: nearest **any-tier** center — the basic-tier GAI inputs use the columnwise `min` of the two tiers, derived at index time; source CSVs unchanged. See `DECISIONS.md`.)*
+- ~~`(?)` Reconcile SBPI weights: formula is 50/30/20, prose target was 50/25/25.~~ *(resolved 2026-07-07: 50/30/20 — see `DECISIONS.md`)*
+- ~~`(?)` SBPI method: continuous weighted (Option 1), quadrant classification (Option 2), or both.~~ *(resolved 2026-07-07: both — `sbpi` + `sbpi_class` in `data/indices.csv`)*
+- ~~`(?)` Canonical CT code system (old counties vs planning regions).~~ *(settled in practice: all committed data uses the old 8-county codes, enforced by the `validate_ct_codes` gate in every pipeline)*
 - ~~`(?)` Pooled-mortality year window for CDC WONDER.~~ *(locked: 2018–2024, matches the committed data)*
 - ~~`(?)` Rename SVI to avoid the CDC Social Vulnerability Index collision.~~ *(resolved 2026-07-05: renamed to SRI, Stroke Risk Index)*
-- `(?)` Stroke-center file scope: tristate proof-of-concept or national.
-- `(?)` National stroke-center designation source: EMNet vs Joint Commission.
-- `(?)` Does County Health Rankings cover enough SRI variables to skip multi-source assembly.
-- `(?)` Final SRI / SCAI variable lists (trim after seeing data quality).
+- `(?)` Stroke-center file scope: tristate proof-of-concept or national. *(tristate shipped; going national is a possible extension)*
+- `(?)` National stroke-center designation source: EMNet vs Joint Commission. *(only relevant if the national extension happens)*
+- ~~`(?)` Does County Health Rankings cover enough SRI variables to skip multi-source assembly.~~ *(moot — multi-source assembly is done: ACS + CDC PLACES + WONDER + TIGER)*
+- ~~`(?)` Final SRI / SCAI variable lists (trim after seeing data quality).~~ *(locked in `src/compute_indices.py` CONFIG per the dated `DECISIONS.md` entries — 13 SRI variables, 4 SCAI variables after exclusions)*
 - `(?)` Hotspot analysis (Local Moran's I / Getis-Ord Gi\*) — include or skip.
 - ~~`(?)` Travel-distance metric: haversine for v1, routed drive time later.~~ *(both shipped: straight-line miles + ORS drive time in `geographic_stroke_accessibility.csv`)*
 - ~~`(?)` Output surface: static maps only, or an interactive dashboard (changes the host).~~ *(decided: client-side dashboard on Pages, scaffold at `docs/dashboard/` — see §6)*

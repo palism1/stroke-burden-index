@@ -2,6 +2,8 @@
 layout: page
 title: Pipeline guide
 nav_order: 4
+status: living
+last_updated: 2026-07-10
 ---
 
 # Pipeline guide — how to use the data infrastructure
@@ -130,8 +132,11 @@ its CONFIG block encodes the settled decisions from
 
 ```
 python src/merge.py              # master.csv must be current first
-python src/compute_indices.py   # -> data/indices.csv (fips, sri, scai, gai)
+python src/compute_indices.py   # -> data/indices.csv (sri, scai, gai, sbpi,
+                                 #    sbpi_class, threshold flags, top-3 drivers)
 ```
+
+Full column reference: [`data/data_dictionary.md`](https://github.com/palism1/stroke-burden-index/blob/main/data/data_dictionary.md).
 
 CI reruns this on every push and fails if `data/indices.csv` is stale, exactly
 like the dashboard-data gate. So when a methodology decision changes: edit the
@@ -145,7 +150,7 @@ deliberately **not** in the `master` view (they derive *from* master — keeping
 the DAG acyclic); join them explicitly:
 
 ```sql
-SELECT m.*, i.sri, i.scai, i.gai
+SELECT m.*, i.sri, i.scai, i.gai, i.sbpi, i.sbpi_class
 FROM master m JOIN indices i USING (fips);
 ```
 
