@@ -4,38 +4,35 @@
   <rect x="0" y="0" width="1200" height="10" fill="#D9550F"/>
 
   <!-- connecting pipeline line -->
-  <line x1="280" y1="315" x2="900" y2="315" stroke="#CCCCCC" stroke-width="6"/>
+  <line x1="320" y1="315" x2="880" y2="315" stroke="#CCCCCC" stroke-width="6"/>
 
   <!-- node 1 -->
-  <circle cx="280" cy="315" r="60" fill="#FBDCC0"/>
-  <rect x="252" y="287" width="56" height="56" rx="10" fill="#FBDCC0" opacity="0"/>
-  <path d="M258 315 h44 M280 293 v44" stroke="#8A3A0A" stroke-width="0" />
-
+  <circle cx="320" cy="315" r="60" fill="#FBDCC0"/>
   <!-- node icon 1: raw data (small dots) -->
-  <circle cx="264" cy="304" r="7" fill="#8A3A0A"/>
-  <circle cx="296" cy="304" r="7" fill="#8A3A0A"/>
-  <circle cx="280" cy="330" r="7" fill="#8A3A0A"/>
+  <circle cx="304" cy="304" r="7" fill="#8A3A0A"/>
+  <circle cx="336" cy="304" r="7" fill="#8A3A0A"/>
+  <circle cx="320" cy="330" r="7" fill="#8A3A0A"/>
 
   <!-- node 2 -->
-  <circle cx="486" cy="315" r="60" fill="#F3B483"/>
+  <circle cx="507" cy="315" r="60" fill="#F3B483"/>
   <!-- node icon 2: gear-ish process (simple ring) -->
-  <circle cx="486" cy="315" r="26" fill="none" stroke="#8A3A0A" stroke-width="8"/>
-  <circle cx="486" cy="315" r="8" fill="#8A3A0A"/>
+  <circle cx="507" cy="315" r="26" fill="none" stroke="#8A3A0A" stroke-width="8"/>
+  <circle cx="507" cy="315" r="8" fill="#8A3A0A"/>
 
   <!-- node 3 -->
-  <circle cx="692" cy="315" r="60" fill="#F0812E"/>
+  <circle cx="693" cy="315" r="60" fill="#F0812E"/>
   <!-- node icon 3: bars (scoring) -->
-  <rect x="668" y="330" width="14" height="20" fill="#3A3A3A"/>
-  <rect x="686" y="315" width="14" height="35" fill="#3A3A3A"/>
-  <rect x="704" y="300" width="14" height="50" fill="#3A3A3A"/>
+  <rect x="669" y="330" width="14" height="20" fill="#3A3A3A"/>
+  <rect x="687" y="315" width="14" height="35" fill="#3A3A3A"/>
+  <rect x="705" y="300" width="14" height="50" fill="#3A3A3A"/>
 
   <!-- node 4 -->
-  <circle cx="898" cy="315" r="60" fill="#8A3A0A"/>
+  <circle cx="880" cy="315" r="60" fill="#8A3A0A"/>
   <!-- node icon 4: checkmark output -->
-  <path d="M878 315 L892 330 L920 298" fill="none" stroke="#FBDCC0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M860 315 L874 330 L902 298" fill="none" stroke="#FBDCC0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
 
   <!-- arrowheads along the pipeline -->
-  <path d="M370 315 L352 305 L352 325 Z" fill="#CCCCCC"/>
-  <path d="M576 315 L558 305 L558 325 Z" fill="#CCCCCC"/>
-  <path d="M782 315 L764 305 L764 325 Z" fill="#CCCCCC"/>
+  <path d="M422 315 L404 305 L404 325 Z" fill="#CCCCCC"/>
+  <path d="M609 315 L591 305 L591 325 Z" fill="#CCCCCC"/>
+  <path d="M796 315 L778 305 L778 325 Z" fill="#CCCCCC"/>
 </svg>
