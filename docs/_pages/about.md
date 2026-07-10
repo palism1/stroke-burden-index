@@ -79,15 +79,10 @@ methodology and analysis into working tools.
 ### Nitya Nemani
 *UI/UX design*
 
-<!-- Nitya: uncomment and fill in whatever you'd like to include.
-Links (edit the hrefs):
 <div class="profile-links">
-  <a class="profile-btn" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener"><i class="ion ion-logo-github"></i>GitHub</a>
-  <a class="profile-btn" href="https://www.linkedin.com/in/YOUR-PROFILE/" target="_blank" rel="noopener"><i class="ion ion-logo-linkedin"></i>LinkedIn</a>
+  <a class="profile-btn" href="https://github.com/nitn-3" target="_blank" rel="noopener"><i class="ion ion-logo-github"></i>GitHub</a>
+  <a class="profile-btn" href="http://www.linkedin.com/in/nitya-nemani-4717332b9" target="_blank" rel="noopener"><i class="ion ion-logo-linkedin"></i>LinkedIn</a>
 </div>
 
-Photo (put the image in docs/images/):
-![Nitya Nemani]({{ site.baseurl }}/images/your-photo.jpg)
-
-Bio: write it here as a normal paragraph.
--->
+Hello! My name is Nitya Nemani! I am currently an undergraduate student at San José State University studying Business Administration with a concentration in Management Information Systems while pursuing a minor in Human Systems Integration. I'm interested in UX research, human centered design, and understanding how psychology and technology can improve the way people interact with information and products.
+Before this project, I worked on a UX research project focused on redesigning Quizlet's Content Hub, which sparked my interest in creating more intuitive and accessible digital experiences. I was excited to join this project because it combined healthcare, public policy, and UX research. During the project, I focused on UX research to help guide the dashboard's design so it would be intuitive for both public health professionals and the general public.
