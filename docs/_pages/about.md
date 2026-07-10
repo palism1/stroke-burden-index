@@ -5,12 +5,10 @@ nav_public: true
 permalink: /about/
 ---
 
-We're a small team combining public-health data, statistics, and engineering
-to answer one question: **where do stroke risk and poor access to care
-overlap — and what should be done about it?**
+We are a small team that came together in June 2026 through the Hack Your Summer Program to combine our passion for public-health data, statistics, and engineering. We've been working completely remotely alongside our day jobs, but our shared passion and great communication kept us aligned and energized to bring this project across the finish line! Together, we set out to answer one critical question: where do stroke risk and poor access to care overlap, and what should be done about it?
 
 ### Jane Condon
-*Data collection · geographic accessibility analysis · index analysis*
+*Data collection · geographic accessibility analysis · index methodology · index analysis*
 
 <div class="profile-links">
   <a class="profile-btn" href="https://github.com/janecondon" target="_blank" rel="noopener"><i class="ion ion-logo-github"></i>GitHub</a>
@@ -24,8 +22,19 @@ Hello! I am a graduate student at Stony Brook University from Long Island, NY. I
 ### Ngan (Jane) Vu
 *Data collection · stroke risk analysis · index methodology*
 
-- Picture here (if you want to include)
-- Bio here
+<div class="profile-links">
+  <a class="profile-btn" href="https://github.com/nvu01" target="_blank" rel="noopener"><i class="ion ion-logo-github"></i>GitHub</a>
+  <a class="profile-btn" href="https://www.linkedin.com/in/nvu01" target="_blank" rel="noopener"><i class="ion ion-logo-linkedin"></i>LinkedIn</a>
+</div>
+
+<a href="https://nvu01.github.io/" target="_blank" rel="noopener">My portfolio</a>
+
+- Picture here
+
+Hi! I’m a Data Analytics graduate, and I love using data to solve complex, real-world problems. 
+After starting my academic career in social sciences, humanities, and healthcare, I transitioned into data analytics to bridge the gap between people-centric fields and technical solutions. 
+I’m passionate about leveraging my analytical skills to improve public service decision-making and public health outcomes. 
+That passion inspired my work on our project, where we are analyzing county-level stroke burdens to help policy makers direct resources exactly where they are needed most.
 
 ### Cathleen Xi
 *Data collection · healthcare access analysis*
