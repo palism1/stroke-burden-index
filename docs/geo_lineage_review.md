@@ -2,6 +2,9 @@
 layout: page
 title: Data lineage review
 nav_order: 6
+status: immutable
+date: 2026-07-02
+superseded_by: null
 ---
 
 # Geographic accessibility data — lineage review

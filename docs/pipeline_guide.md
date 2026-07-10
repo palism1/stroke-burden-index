@@ -2,6 +2,8 @@
 layout: page
 title: Pipeline guide
 nav_order: 4
+status: living
+last_updated: 2026-07-10
 ---
 
 # Pipeline guide — how to use the data infrastructure

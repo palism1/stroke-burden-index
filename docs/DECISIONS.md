@@ -2,6 +2,8 @@
 layout: page
 title: Decisions log
 nav_order: 5
+status: append-only
+last_updated: 2026-07-10
 ---
 
 # Decisions log
@@ -9,6 +11,27 @@ nav_order: 5
 One entry per decision, newest first. This log distills team decisions (mostly
 from Discord) into the repo so we stop re-litigating settled questions. For
 how-to and mechanics see the [pipeline guide](./pipeline_guide.html).
+
+## 2026-07-10 — docs are classified living vs. immutable, declared in frontmatter
+
+Decided by: Mikko (2026-07-10). Every markdown doc declares its class in YAML
+frontmatter so readers know whether they're looking at current state or a
+historical record:
+
+- **living** (`status: living`, `last_updated: YYYY-MM-DD`) — describes
+  current state; edit freely, bump `last_updated` on any substantive change.
+  Applies to plan.md, pipeline_guide.md, data_sources.md,
+  data/data_dictionary.md, HANDOFF.md. If the field ever drifts,
+  `git log -1 --format=%cs -- <file>` is the authoritative timestamp.
+- **immutable** (`status: immutable`, `date:`, `superseded_by:`) — reports and
+  reviews frozen at a point in time (geo_lineage_review.md). Substantive
+  changes require a new superseding doc that sets the old one's
+  `superseded_by`; only typo/broken-link fixes happen in place.
+- **append-only** (`status: append-only`) — this decisions log. Entries are
+  never edited; corrections and reversals come as new entries referencing the
+  old one.
+- README.md is exempt from frontmatter (GitHub renders it as a table on the
+  repo landing page); its git history serves as the timestamp.
 
 ## 2026-07-07 — the four open calls, decided in one Discord round
 

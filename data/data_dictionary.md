@@ -1,3 +1,8 @@
+---
+status: living
+last_updated: 2026-07-10
+---
+
 ## Data Dictionary
 
 Documents all variables across the project's county-level data files. Use this as the reference when naming columns in any new data you bring in.

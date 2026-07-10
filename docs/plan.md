@@ -2,6 +2,8 @@
 layout: page
 title: Methodology & plan
 nav_order: 3
+status: living
+last_updated: 2026-07-10
 ---
 
 # Stroke Burden Index — Project Plan
