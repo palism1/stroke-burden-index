@@ -183,6 +183,8 @@ This map overlays both Basic Stroke Centers (circles) and Advanced Stroke Center
 
 ## Summary of Three Original Indices
 
+<a href="../notebook_html/Calculating Indices.html" target="_blank" rel="noopener">View the Notebook for Index Calculation</a> (by Jane Condon & Mikko Palis & Ngan Vu)
+
 The table below summarizes the construction and performance of the three composite indices developed for this project.
 
 | Index | Variables Included | PC1 Variance Explained | Interpretation |
@@ -190,7 +192,6 @@ The table below summarizes the construction and performance of the three composi
 | **Stroke Risk Index (SRI)** | Population density, age 65+, poverty, low-income population, educational attainment, smoking, obesity, diabetes, hypertension, high cholesterol, physical inactivity, binge drinking, stroke prevalence | **52.2%** | Measures county-level stroke vulnerability based on demographic, socioeconomic, and health-related risk factors. Higher scores indicate greater stroke risk. |
 | **Stroke Care Access Index (SCAI)** | Hospital beds per 100,000, primary care physicians per 100,000, neurologists per 100,000, uninsured population | **53.9%** | Measures the availability of healthcare resources related to stroke prevention and treatment. Higher scores indicate better access to stroke care. |
 | **Geographic Accessibility Index (GAI)** | Drive time to the nearest stroke center, drive time to the nearest advanced stroke center, distance to the nearest stroke center, distance to the nearest advanced stroke center | **77.0%** | Measures the geographic accessibility of stroke care. Higher scores indicate better geographic access. |
-
 
 
 ---
