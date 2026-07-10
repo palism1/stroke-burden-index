@@ -15,9 +15,6 @@ County-level data for all 91 NY/NJ/CT counties, from public sources:
 - **State health departments (NY/NJ/CT)** — designated stroke centers
 - **OpenRouteService** — drive times from each county's population center
 
-*Draft skeleton — jane is writing this section (Discord 7/7): describe each
-variable in detail here; the methodology section just lists them per index.*
-
 
 # Data Sources
 
@@ -31,7 +28,7 @@ All datasets were standardized to five-digit county FIPS codes before being merg
 
 # American Community Survey (ACS)
 
-**Source:** U.S. Census Bureau, American Community Survey (ACS) 5-Year Estimates
+**Source:** U.S. Census Bureau, American Community Survey (ACS) 5-Year Estimates in 2023
 
 The American Community Survey (ACS) provides county-level demographic and socioeconomic characteristics that are strongly associated with stroke risk and healthcare access. These variables primarily contribute to the Stroke Risk Index (SRI).
 
@@ -49,13 +46,15 @@ The American Community Survey (ACS) provides county-level demographic and socioe
 
 These variables represent important social determinants of health associated with stroke risk.
 
+<a href="../notebook_html/acs_data_collection.html" target="_blank" rel="noopener">View the data gathering notebook (by Ngan Vu)</a>
+
 ---
 
 # CDC PLACES
 
-**Source:** Centers for Disease Control and Prevention (CDC) PLACES
+**Source:** Centers for Disease Control and Prevention (CDC) PLACES (2025 release)
 
-CDC PLACES provides county-level estimates of chronic disease prevalence and health behaviors known to influence stroke risk.
+CDC PLACES provides county-level estimates of chronic disease prevalence and health behaviors known to influence stroke risk. The 2025 release provides model-based estimates of health behaviors and chronic diseases in 2023.
 
 | Variable | Description | Why Included |
 |----------|-------------|--------------|
@@ -69,6 +68,8 @@ CDC PLACES provides county-level estimates of chronic disease prevalence and hea
 | `stroke_prevalence` | Percentage of adults who have previously experienced a stroke. | Indicates the existing burden of cerebrovascular disease within a county. |
 
 These measures capture modifiable stroke risk factors at the population level.
+
+<a href="../notebook_html/cdcplaces_data_collection.html" target="_blank" rel="noopener">View the data gathering notebook (by Ngan Vu)</a>
 
 ---
 
@@ -87,6 +88,8 @@ Two stroke mortality measures were included:
 
 Although stroke mortality was not included directly in the Stroke Risk Index, it was used throughout exploratory data analysis to evaluate relationships between candidate predictors and observed stroke outcomes.
 
+<a href="../notebook_html/cdcwonder_data_collection.html" target="_blank" rel="noopener">View the data gathering notebook (by Ngan Vu)</a>
+
 ---
 
 # Population Density
@@ -98,6 +101,8 @@ Because population density exhibited substantial positive skew resulting from se
 | Variable | Description | Why Included |
 |----------|-------------|--------------|
 | `pop_density` | Population per square mile. | Population density reflects differences between urban and rural environments, influencing healthcare access, healthcare infrastructure, and population health. A log transformation was applied prior to PCA because of substantial right skew. |
+
+<a href="../notebook_html/population_density_data.html" target="_blank" rel="noopener">View the data gathering notebook (by Ngan Vu)</a>
 
 ---
 
@@ -123,6 +128,8 @@ Hospital locations were aggregated to the county level using standardized five-d
 
 Exploratory analysis was used to evaluate redundancy among healthcare resource variables prior to constructing the final index.
 
+<a href="../notebook_html/SCAI_Data_Gathering.html" target="_blank" rel="noopener">View the data gathering notebook (by Cathleen Xi)</a>
+
 ---
 
 # Geographic Accessibility Data
@@ -141,6 +148,10 @@ Because Connecticut transitioned from historical counties to planning regions, a
 | `nearest_stroke_distance_advanced` | Straight-line distance to the nearest advanced stroke center. | Measures proximity to advanced stroke treatment facilities. |
 
 Driving times were calculated using the OpenRouteService routing engine, while straight-line distances were calculated using county centroid and stroke center coordinates. These variables form the Geographic Accessibility Index (GAI).
+
+<a href="../notebook_html/Geographic_Accessibility_Data_Gathering.html" target="_blank" rel="noopener">View the data gathering notebook for CT stroke center geocodes (by Jane Condon)</a>
+
+<a href="../notebook_html/Geographic_Accessibility_Data_Gathering.html" target="_blank" rel="noopener">View the data gathering notebook for GAI (by Jane Condon)</a>
 
 ---
 
