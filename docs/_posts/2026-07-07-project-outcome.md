@@ -34,7 +34,7 @@ Together, these indices provide a comprehensive framework for identifying geogra
 
 ## Stroke Risk Index (SRI)
 
-<a href="../notebook_html/SRI%20EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a>
+<a href="../notebook_html/SRI%20EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a> (by Ngan Vu)
 
 ### What it Measures
 
@@ -69,7 +69,7 @@ The Bronx ranks highest, followed by several rural counties in upstate New York 
 
 ## Stroke Care Access Index (SCAI)
 
-<a href="../notebook_html/SCAI_EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a>
+<a href="../notebook_html/SCAI_EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a> (by Cathleen Xi)
 
 ### What it Measures
 
@@ -103,10 +103,10 @@ The counties with the lowest scores are almost exclusively rural counties in New
 
 ## Geographic Accessibility Index (GAI)
 
-<a href="../notebook_html/Geographic%20Accessibility%20EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a>
+<a href="../notebook_html/Geographic%20Accessibility%20EDA.html" target="_blank" rel="noopener">View the EDA Notebook</a> (by Jane Condon)
 
 
-<a href="../notebook_html/Mapping%20Geographic%20Accessibility.html" target="_blank" rel="noopener">View the Mapping Notebook</a>
+<a href="../notebook_html/Mapping%20Geographic%20Accessibility.html" target="_blank" rel="noopener">View the Mapping Notebook</a> (by Jane Condon)
 
 ### What it Measures
 
@@ -227,7 +227,7 @@ The lollipop chart above ranks the twenty counties with the highest Stroke Burde
 ## Complete Index Analysis
 
 
-<a href="../notebook_html/Analysis%20of%20Stroke%20Burden%20Indices.html" target="_blank" rel="noopener">View the Full Analysis Notebook</a>
+<a href="../notebook_html/Analysis%20of%20Stroke%20Burden%20Indices.html" target="_blank" rel="noopener">View the Full Analysis Notebook</a> (by Jane Condon)
 
 <h2>Distribution of Indices</h2>
 
