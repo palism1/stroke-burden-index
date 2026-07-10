@@ -130,3 +130,22 @@ Source: healthcare-access counts (hospitals, beds, providers, stroke centers) pe
 | `stroke_centers_per_100k` | float | Stroke centers per 100,000 population |
 
 Note: `pcnt_insured` (ACS, in `data/acs_data.csv`) joins in at SCAI index-calculation time (recast there as the uninsured rate) but is **not** a column of this file — it comes in via the master merge. Also note that not every column of this file enters the SCAI index: `hospitals_per_100k` and `stroke_centers_per_100k` are excluded from the index calculation but kept here and in the EDA (`docs/DECISIONS.md`, 2026-07-06).
+
+### `data/indices.csv`
+Source: computed by `src/compute_indices.py` from `data/master.csv` — this file is the **canonical committed copy** of the index scores (CI recomputes it on every push and fails on any diff, so it can never go stale). One row per county (91 total). Index definitions mirror `docs/DECISIONS.md` entry-by-entry; scores are rounded to 4 decimals for byte-stability across machines.
+
+| Column | Type | Description |
+|---|---|---|
+| `fips` | string | 5-digit county FIPS code, zero-padded |
+| `sri` | float | Stroke Risk Index, 0–100 (higher = more risk) |
+| `scai` | float | Stroke Care Access Index, 0–100 (higher = better access) |
+| `gai` | float | Geographic Accessibility Index, 0–100 (higher = better access) |
+| `sbpi` | float | Stroke Burden Priority Index, 0–100 (higher = higher priority); `0.5*SRI + 0.3*(100−SCAI) + 0.2*(100−GAI)`, reproducible from this file alone |
+| `sbpi_class` | int | Priority class 1–4 (1 low, 2 moderate, 3 high, 4 critical) per the quadrant rules in `docs/plan.md` / the script |
+| `sri_flag` | bool | `sri` ≥ its 75th percentile (elevated stroke risk) |
+| `scai_flag` | bool | `scai` ≤ its 25th percentile (low clinical capacity) |
+| `gai_flag` | bool | `gai` ≤ its 25th percentile (poor geographic access) |
+| `driver_1` … `driver_3` | string | The county's top-3 risk drivers: raw index-input variable names, ranked by how extreme the county is in each variable's "bad" direction |
+| `driver_1_pctile` … `driver_3_pctile` | float | Matching percentile ranks, 0–100 within the 91-county universe (higher = worse); descending across the three drivers |
+
+Notes: the three `*_flag` columns are the exact predicates behind `sbpi_class` (persisted so the dashboard's recommendation text can name which deficit tripped a Moderate class). Driver names can include two variables derived in memory during index computation that exist in no data file: `pcnt_uninsured` (= 100 − `pcnt_insured`) and `drive_time_any` / `nearest_stroke_distance_any` (columnwise min of the basic/advanced tiers). Percentiles are relative to our 91 NY/NJ/CT counties, **not** national.

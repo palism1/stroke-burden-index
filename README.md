@@ -1,10 +1,10 @@
 # Stroke Burden Index
 
-Identifying high-priority stroke intervention areas across the United States by combining a **Stroke Risk Index (SRI)** (community stroke risk) and a **Stroke Care Access Index** (treatment availability) at the county level into a single **Stroke Burden Priority Index**.
+Identifying high-priority stroke intervention areas across the United States by combining a **Stroke Risk Index (SRI)** (community stroke risk), a **Stroke Care Access Index (SCAI)** (treatment availability), and a **Geographic Accessibility Index (GAI)** (travel to care) at the county level into a single **Stroke Burden Priority Index (SBPI)**.
 
 **Live site:** [palism1.github.io/stroke-burden-index](https://palism1.github.io/stroke-burden-index/)
 
-**Status:** Data collection is nearly complete for all 91 NY/NJ/CT counties. ACS demographics, CDC WONDER stroke mortality, CDC PLACES health prevalence, population density, and geographic accessibility (drive time and distance to nearest basic and advanced stroke center) are collected. SCAI variables (hospitals, physicians, and stroke centers per capita) are now collected (`data/scai_data/scai_data.csv`), and index calculation has begun.
+**Status:** All data is collected and all four indices are computed for the 91 NY/NJ/CT counties. The committed scores live in `data/indices.csv` (canonical producer: `src/compute_indices.py`, CI-gated against staleness) along with each county's priority class and top-3 risk drivers. The live site serves the full write-up (methodology, data sources, project outcome) plus the interactive dashboard: choropleth over 32 metrics, county search, a Risk-vs-Access quadrant matrix, and a per-county recommendation generated from the team's priority framework (`docs/DECISIONS.md`, 2026-07-07/08).
 
 ---
 
@@ -13,7 +13,8 @@ Identifying high-priority stroke intervention areas across the United States by 
 | Resource | Path |
 |---|---|
 | Project plan and methodology | [docs/plan.md](docs/plan.md) |
-| Interactive county dashboard (WIP) | [docs/dashboard/](docs/dashboard/) — live at [/dashboard](https://palism1.github.io/stroke-burden-index/dashboard/) |
+| Decisions log (every methodology call, dated) | [docs/DECISIONS.md](docs/DECISIONS.md) |
+| Interactive county dashboard | [docs/dashboard/](docs/dashboard/) — live at [/dashboard](https://palism1.github.io/stroke-burden-index/dashboard/) |
 | Pipeline guide (adding data, contracts, building indices) | [docs/pipeline_guide.md](docs/pipeline_guide.md) |
 | Data dictionary and naming conventions | [data/data_dictionary.md](data/data_dictionary.md) |
 
@@ -23,18 +24,20 @@ Identifying high-priority stroke intervention areas across the United States by 
 
 ```
 data/
+  indices.csv                     computed index scores + priority class + top-3 drivers (CI-gated)
   acs_data/                       ACS demographics notebook and outputs
   cdcwonder_data/                 CDC WONDER stroke mortality notebook and outputs
   cdcplaces_data/                 CDC PLACES health prevalence notebook and outputs
   pop_density_data/               population density notebook and outputs
   geographic_accessibility_data/  stroke center geocoding and accessibility outputs
   scai_data/                      SCAI variables (hospitals, physicians, stroke centers per capita)
-docs/                             GitHub Pages site (Jekyll, jekyll-theme-cayman)
-reference/                        crosswalks and reference tables (CT county crosswalk)
-src/                              data pipelines (merge, database, FIPS utilities)
-tests/                            automated test suite
-notebooks/                        exploratory analysis
-outputs/                          figures, maps, tables
+docs/                             GitHub Pages site (Jekyll, vendored Zolan theme) + dashboard
+  dashboard/                      interactive county dashboard (client-side JS, no server)
+  notebook_html/                  exported HTML views of the analysis notebooks
+reference/                        crosswalks and reference tables (CT county crosswalk, boundaries, UX research)
+src/                              data pipelines (merge, indices, database, site data export)
+tests/                            automated test suite (pytest + dashboard smoke test)
+notebooks/                        exploratory analysis and index EDA
 ```
 
 `raw/` and `interim/` subdirectories inside `data/` are gitignored and can be regenerated locally.
@@ -76,27 +79,38 @@ df = pd.read_sql("SELECT * FROM master", con)
 con.close()
 ```
 
-Available tables: `counties`, `acs`, `mortality`, `geographic`, `cdc_places`, `pop_density`. The `master` view joins all loaded tables on `fips`. A `scai` table will be added once that data is collected.
+Available tables: `counties`, `acs`, `mortality`, `geographic`, `cdc_places`, `pop_density`, `scai`, `indices`. The `master` view joins all loaded tables on `fips` — except `indices`, which derives *from* master and must be joined explicitly (`JOIN indices USING (fips)`) to keep the data DAG acyclic.
+
+### Compute the index scores
+
+```bash
+python src/compute_indices.py
+```
+
+Writes `data/indices.csv` — SRI/SCAI/GAI/SBPI scores (0–100), the 1–4 priority class, the threshold flags behind it, and each county's top-3 percentile risk drivers. This file **is** committed; CI recomputes it on every push and fails if the committed copy is stale, so the scores can never silently drift from the data. The index definitions mirror `docs/DECISIONS.md` entry-by-entry in the script's CONFIG block.
+
+### Export dashboard data
+
+```bash
+python src/build_site_data.py
+```
+
+Writes `docs/data/counties.json` (+ boundary GeoJSON) for the dashboard, including the per-county recommendation payload. Also CI-gated: regenerate and commit alongside any data change.
 
 ### Adding a new data source
 
-Add a loader function to `src/merge.py` and register it in the same file's `build_master()` call, then mirror the same in `src/build_db.py`:
-
-```python
-def _load_scai() -> pd.DataFrame:
-    df = _read(DATA / "scai_data/scai_data.csv")   # _read handles fips dtype + float parsing
-    return df.drop(columns=["county", "state"], errors="ignore")
-```
+Add a loader function to `src/merge.py` and register it in the same file's `build_master()` call, then mirror the same in `src/build_db.py` (see the existing loaders for the pattern — `_read` handles fips dtype + float parsing). Full walkthrough in [docs/pipeline_guide.md](docs/pipeline_guide.md).
 
 ---
 
 ## Tests
 
 ```bash
-python -m pytest tests/ -q
+python -m pytest tests/ -q            # 135 tests: contracts, pipeline, indices, db, site export
+node tests/smoke/smoke_dashboard.js   # runs the real dashboard JS against the real data
 ```
 
-34 tests covering the CT FIPS validation gate, the merge pipeline, and the FIPS geocoding utility. All tests must pass before merging changes to pipeline code or data files. CI runs automatically on every push and pull request.
+All tests must pass before merging changes to pipeline code or data files. CI runs the suite plus staleness gates (recompute `indices.csv` and `docs/data/`, fail on diff) on every push and pull request.
 
 ---
 
