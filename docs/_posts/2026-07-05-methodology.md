@@ -19,9 +19,6 @@ transforms) → align direction → standardize → PCA → a 0–100 score**.
   50% risk + 30% access deficit + 20% distance deficit, plus a 4-level
   priority class.
 
-*Draft skeleton — jane is writing this section (Discord 7/7). Full variable
-detail belongs in the Data Source section; list per-index variables here.*
-
 
 ## Overview
 
