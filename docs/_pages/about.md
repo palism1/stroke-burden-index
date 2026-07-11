@@ -43,18 +43,20 @@ That passion inspired my work on our project, where we are analyzing county-leve
 ### Cathleen Xi
 *Data collection · healthcare access analysis*
 
-<!-- Cathleen: uncomment and fill in whatever you'd like to include.
+
 Links (edit the hrefs):
 <div class="profile-links">
-  <a class="profile-btn" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener"><i class="ion ion-logo-github"></i>GitHub</a>
-  <a class="profile-btn" href="https://www.linkedin.com/in/YOUR-PROFILE/" target="_blank" rel="noopener"><i class="ion ion-logo-linkedin"></i>LinkedIn</a>
+  <a class="profile-btn" href="https://github.com/cathleen-xi" target="_blank" rel="noopener"><i class="ion ion-logo-github"></i>GitHub</a>
+  <a class="profile-btn" href="https://www.linkedin.com/in/cathleen-xi-b905713bb/" target="_blank" rel="noopener"><i class="ion ion-logo-linkedin"></i>LinkedIn</a>
 </div>
 
+<!--
 Photo (put the image in docs/images/):
 ![Cathleen Xi]({{ site.baseurl }}/images/your-photo.jpg)
-
-Bio: write it here as a normal paragraph.
 -->
+
+Hi! I'm an undergraduate student studying Cognitive Science at the University of California San Diego. As a New York City native, I'm especially passionate about the Stroke Burden Index because it addresses health disparities in the communities I grew up in. For this project, I gathered and analyzed healthcare access data, worked with an SQL database to organize and query the information, and helped identify factors that contribute to stroke burden across counties. This experience allowed me to combine my interests in healthcare, data analytics, and technology while contributing to a project with direct public health impact.
+
 
 ### Mikko Palis
 *Engineering · pipeline & site*
