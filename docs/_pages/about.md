@@ -44,7 +44,7 @@ That passion inspired my work on our project, where we are analyzing county-leve
 *Data collection · healthcare access analysis*
 
 
-Links (edit the hrefs):
+
 <div class="profile-links">
   <a class="profile-btn" href="https://github.com/cathleen-xi" target="_blank" rel="noopener"><i class="ion ion-logo-github"></i>GitHub</a>
   <a class="profile-btn" href="https://www.linkedin.com/in/cathleen-xi-b905713bb/" target="_blank" rel="noopener"><i class="ion ion-logo-linkedin"></i>LinkedIn</a>
